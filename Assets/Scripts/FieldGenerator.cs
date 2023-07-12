@@ -9,9 +9,12 @@ public class FieldGenerator : MonoBehaviour
   void Awake()
   {
     int fieldSize = 5;
-    int tileSize = 10;
-    var fieldLength = fieldSize * tileSize;
+    float tileSize = 1;
+    
+    tileSize = fieldPrefabs[0].GetComponent<MeshRenderer>().bounds.size.x;
 
+    var fieldLength = fieldSize * tileSize;
+    
     for (int x = 0; x < fieldSize; x++)
     {
       for (int y = 0; y < fieldSize; y++)
