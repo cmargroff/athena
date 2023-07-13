@@ -9,7 +9,7 @@ public class FlyingBehavior : AthenaMonoBehavior
 
     public Vector2 MoveAngle;
 
-    public Collider collider;
+    public Collider Collider;
 
     [SerializeField]
     private float speed;
@@ -18,32 +18,33 @@ public class FlyingBehavior : AthenaMonoBehavior
     {
         base.Start();
         _rigidBody = SafeGetComponent<Rigidbody>();
-        SafeAssigned(collider);
+        SafeAssigned(Collider);
     }
-
+    const float OFFSET_ANGLE= 45;
+    const float SLOWDOWN = 1.5f;
     // Update is called once per frame
     protected override void PausibleFixedUpdate()
     {
         MoveAngle = MoveAngle.normalized;
         var moveDir = new Vector3(MoveAngle.x*-1, 0f, MoveAngle.y*-1);
         var newPosition=_rigidBody.position+(moveDir * speed);
-        if (ColliderUtils.IsPointInsideCollider(collider, newPosition))
+        if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
         {
             _rigidBody.position = newPosition;
         }
         else
         {
             //moveDir = new Vector3(MoveAngle.x * -1, 0f, 0f);
-            newPosition = _rigidBody.position + (Quaternion.AngleAxis(-45, Vector3.up) *moveDir * speed/1.5f);
-            if (ColliderUtils.IsPointInsideCollider(collider, newPosition))
+            newPosition = _rigidBody.position + (Quaternion.AngleAxis(-OFFSET_ANGLE, Vector3.up) *moveDir * speed/ SLOWDOWN);
+            if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
             {
                 _rigidBody.position = newPosition;
             }
             else
             {
                 //moveDir = new Vector3(0f * -1, 0f, MoveAngle.y * -1);
-                newPosition = _rigidBody.position + (Quaternion.AngleAxis(45, Vector3.up) * moveDir * speed/1.5f);
-                if (ColliderUtils.IsPointInsideCollider(collider, newPosition))
+                newPosition = _rigidBody.position + (Quaternion.AngleAxis(OFFSET_ANGLE, Vector3.up) * moveDir * speed/ SLOWDOWN);
+                if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
                 {
                     _rigidBody.position = newPosition;
                 }
