@@ -2,13 +2,12 @@ using Assets.Scripts.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(Rigidbody))]
 public class FlyingBehavior : AthenaMonoBehavior
 {
     Rigidbody _rigidBody;
 
     public Vector2 MoveAngle;
-
     public Collider Collider;
 
     [SerializeField]
@@ -17,7 +16,7 @@ public class FlyingBehavior : AthenaMonoBehavior
     protected override void Start()
     {
         base.Start();
-        _rigidBody = SafeGetComponent<Rigidbody>();
+        _rigidBody = GetComponent<Rigidbody>();
         SafeAssigned(Collider);
     }
 

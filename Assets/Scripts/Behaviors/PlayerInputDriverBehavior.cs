@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(FlyingBehavior))]
 public class PlayerInputDriverBehavior : AthenaMonoBehavior
 {
     private @PlayerInputActions _controls;
@@ -13,7 +14,7 @@ public class PlayerInputDriverBehavior : AthenaMonoBehavior
     {
         base.Start();
         _controls = new @PlayerInputActions();
-        _flying = SafeGetComponent<FlyingBehavior>();
+        _flying = GetComponent<FlyingBehavior>();
         _controls.Game.Enable();
     }
 

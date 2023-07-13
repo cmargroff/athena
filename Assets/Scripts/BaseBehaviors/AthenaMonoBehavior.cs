@@ -57,19 +57,19 @@ public  class AthenaMonoBehavior : MonoBehaviour
     }
 
 
-    protected T SafeGetComponent<T>()
-    {
-        T obj = this.GetComponent<T>();
-        if (obj == null)
-        {
-            throw new System.Exception($"{typeof(T).Name} not found");
-        }
-        return obj;
-    }
+    //protected T SafeGetComponent<T>()
+    //{
+    //    T obj = this.GetComponent<T>();
+    //    if (obj == null|| obj.ToString()=="null")
+    //    {
+    //        throw new System.Exception($"{typeof(T).Name} not found");
+    //    }
+    //    return obj;
+    //}
 
     protected void SafeAssigned<T>(T obj)
     {
-        if (obj == null)
+        if (obj == null|| obj.ToString()=="null")
         {
             throw new System.Exception($"{typeof(T).Name} not assigned in editor");
         }
