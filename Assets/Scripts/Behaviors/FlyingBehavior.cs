@@ -23,11 +23,14 @@ public class FlyingBehavior : AthenaMonoBehavior
     const float OFFSET_ANGLE= 45;
     const float SLOWDOWN = 1.5f;
     // Update is called once per frame
-    protected override void PausibleFixedUpdate()
+    protected override void PausibleUpdate()
     {
         MoveAngle = MoveAngle.normalized;
+
+        var deltaSpeed=speed*Time.deltaTime;
+
         var moveDir = new Vector3(MoveAngle.x*-1, 0f, MoveAngle.y*-1);
-        var newPosition=_rigidBody.position+(moveDir * speed);
+        var newPosition=_rigidBody.position+(moveDir * deltaSpeed);
         if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
         {
             _rigidBody.position = newPosition;
@@ -35,7 +38,7 @@ public class FlyingBehavior : AthenaMonoBehavior
         else
         {
             //moveDir = new Vector3(MoveAngle.x * -1, 0f, 0f);
-            newPosition = _rigidBody.position + (Quaternion.AngleAxis(-OFFSET_ANGLE, Vector3.up) *moveDir * speed/ SLOWDOWN);
+            newPosition = _rigidBody.position + (Quaternion.AngleAxis(-OFFSET_ANGLE, Vector3.up) *moveDir * deltaSpeed / SLOWDOWN);
             if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
             {
                 _rigidBody.position = newPosition;
@@ -43,7 +46,7 @@ public class FlyingBehavior : AthenaMonoBehavior
             else
             {
                 //moveDir = new Vector3(0f * -1, 0f, MoveAngle.y * -1);
-                newPosition = _rigidBody.position + (Quaternion.AngleAxis(OFFSET_ANGLE, Vector3.up) * moveDir * speed/ SLOWDOWN);
+                newPosition = _rigidBody.position + (Quaternion.AngleAxis(OFFSET_ANGLE, Vector3.up) * moveDir * deltaSpeed / SLOWDOWN);
                 if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
                 {
                     _rigidBody.position = newPosition;
