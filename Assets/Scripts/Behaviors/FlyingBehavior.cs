@@ -20,8 +20,12 @@ public class FlyingBehavior : AthenaMonoBehavior
         _rigidBody = SafeGetComponent<Rigidbody>();
         SafeAssigned(Collider);
     }
-    const float OFFSET_ANGLE= 45;
-    const float SLOWDOWN = 1.5f;
+
+    [SerializeField]
+    private float OFFSET_ANGLE= 90;
+
+    [SerializeField]
+    private float SLOWDOWN = 2f;
     // Update is called once per frame
     protected override void PausibleUpdate()
     {
