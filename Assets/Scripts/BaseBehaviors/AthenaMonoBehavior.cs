@@ -66,6 +66,13 @@ public  class AthenaMonoBehavior : MonoBehaviour
         }
         return obj;
     }
-    
+
+    protected void SafeAssigned<T>(T obj)
+    {
+        if (obj == null)
+        {
+            throw new System.Exception($"{typeof(T).Name} not assigned in editor");
+        }
+    }
 
 }
