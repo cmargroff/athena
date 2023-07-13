@@ -5,10 +5,10 @@ using UnityEngine;
 public  class AthenaMonoBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
-    private GameManager _gameManager;
+    private GameManagerBehavior _gameManager;
     protected virtual void Start()
     {
-        _gameManager = FindObjectOfType<GameManager>();
+        _gameManager = FindObjectOfType<GameManagerBehavior>();
     }
 
     // Update is called once per frame
@@ -37,27 +37,35 @@ public  class AthenaMonoBehavior : MonoBehaviour
         }
     }
 
-    public virtual void ContinuousUpdate()
+    protected virtual void ContinuousUpdate()
     { 
     }
-    public virtual void PausibleUpdate()
+    protected virtual void PausibleUpdate()
     {
     }
-    public virtual void WhenPausedUpdate()
+    protected virtual void WhenPausedUpdate()
     {
     }
-    public virtual void ContinuousFixedUpdate()
+    protected virtual void ContinuousFixedUpdate()
     {
     }
-    public virtual void PausibleFixedUpdate()
+    protected virtual void PausibleFixedUpdate()
     {
     }
-    public virtual void WhenPausedFixedUpdate()
+    protected virtual void WhenPausedFixedUpdate()
     {
     }
-     
-    
-        
+
+
+    protected T SafeGetComponent<T>()
+    {
+        T obj = this.GetComponent<T>();
+        if (obj == null)
+        {
+            throw new System.Exception($"{typeof(T).Name} not found");
+        }
+        return obj;
+    }
     
 
 }

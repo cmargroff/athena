@@ -11,7 +11,7 @@ public class TestBehavior : AthenaMonoBehavior
         _rb=GetComponent<Rigidbody>();
     }
     // Start is called before the first frame update
-    public override void PausibleUpdate()
+    protected  override void PausibleUpdate()
     {
         _rb.MovePosition(_rb.position + transform.forward * 10*Time.deltaTime);
         base.PausibleUpdate();
