@@ -6,10 +6,13 @@ using UnityEngine;
 public class FlyingBehavior : AthenaMonoBehavior
 {
     private Rigidbody _rigidBody;
-    private GameManagerBehavior _gameManager;
 
 
     public Vector2 MoveAngle;
+    
+    public bool FacesRight=true;
+    
+    
     private  Collider _bounds;
     
 
@@ -37,7 +40,7 @@ public class FlyingBehavior : AthenaMonoBehavior
 
         var deltaSpeed=speed*Time.deltaTime;
 
-        var moveDir = new Vector3(MoveAngle.x*-1, 0f, MoveAngle.y*-1);
+        var moveDir = new Vector3(MoveAngle.x, 0f, MoveAngle.y);
         var newPosition=_rigidBody.position+(moveDir * deltaSpeed);
         if (ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
         {
@@ -61,6 +64,16 @@ public class FlyingBehavior : AthenaMonoBehavior
                 }
             }
         }
+
+        if (moveDir.x <= 0 == FacesRight)
+        {
+            transform.rotation = Quaternion.LookRotation(Vector3.zero);
+        }
+        else
+        {
+            transform.rotation = Quaternion.EulerRotation(new Vector3(0, 180, 0));
+        }
+
     }
 
 

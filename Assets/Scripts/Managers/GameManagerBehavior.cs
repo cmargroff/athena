@@ -7,6 +7,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public bool Paused;
 
     public Collider Bounds;
+    public Rigidbody Player;
+
 
     // Start is called before the first frame update
     protected override void Start()

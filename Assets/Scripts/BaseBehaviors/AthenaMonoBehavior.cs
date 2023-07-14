@@ -5,7 +5,7 @@ using UnityEngine;
 public  class AthenaMonoBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
-    private GameManagerBehavior _gameManager;
+    protected GameManagerBehavior _gameManager;
     protected virtual void Start()
     {
         _gameManager = FindObjectOfType<GameManagerBehavior>();
