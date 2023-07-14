@@ -13,6 +13,9 @@ public class PlayerInputDriverBehavior : AthenaMonoBehavior
     protected override void Start()
     {
         base.Start();
+ 
+
+        
         _controls = new @PlayerInputActions();
         _flying = GetComponent<FlyingBehavior>();
         _controls.Game.Enable();

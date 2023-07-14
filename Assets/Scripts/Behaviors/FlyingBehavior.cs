@@ -5,10 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FlyingBehavior : AthenaMonoBehavior
 {
-    Rigidbody _rigidBody;
+    private Rigidbody _rigidBody;
+    private GameManagerBehavior _gameManager;
+
 
     public Vector2 MoveAngle;
-    public Collider Collider;
+    private  Collider _bounds;
+    
 
     [SerializeField]
     private float speed;
@@ -17,7 +20,9 @@ public class FlyingBehavior : AthenaMonoBehavior
     {
         base.Start();
         _rigidBody = GetComponent<Rigidbody>();
-        SafeAssigned(Collider);
+        _gameManager = FindObjectOfType<GameManagerBehavior>();
+        SafeAssigned(_gameManager);
+        _bounds = _gameManager.Bounds;
     }
 
     [SerializeField]
@@ -34,7 +39,7 @@ public class FlyingBehavior : AthenaMonoBehavior
 
         var moveDir = new Vector3(MoveAngle.x*-1, 0f, MoveAngle.y*-1);
         var newPosition=_rigidBody.position+(moveDir * deltaSpeed);
-        if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
+        if (ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
         {
             _rigidBody.position = newPosition;
         }
@@ -42,7 +47,7 @@ public class FlyingBehavior : AthenaMonoBehavior
         {
             //moveDir = new Vector3(MoveAngle.x * -1, 0f, 0f);
             newPosition = _rigidBody.position + (Quaternion.AngleAxis(-OFFSET_ANGLE, Vector3.up) *moveDir * deltaSpeed / SLOWDOWN);
-            if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
+            if (ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
             {
                 _rigidBody.position = newPosition;
             }
@@ -50,7 +55,7 @@ public class FlyingBehavior : AthenaMonoBehavior
             {
                 //moveDir = new Vector3(0f * -1, 0f, MoveAngle.y * -1);
                 newPosition = _rigidBody.position + (Quaternion.AngleAxis(OFFSET_ANGLE, Vector3.up) * moveDir * deltaSpeed / SLOWDOWN);
-                if (ColliderUtils.IsPointInsideCollider(Collider, newPosition))
+                if (ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
                 {
                     _rigidBody.position = newPosition;
                 }
