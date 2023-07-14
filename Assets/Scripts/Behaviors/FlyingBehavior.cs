@@ -23,7 +23,6 @@ public class FlyingBehavior : AthenaMonoBehavior
     {
         base.Start();
         _rigidBody = GetComponent<Rigidbody>();
-        _gameManager = FindObjectOfType<GameManagerBehavior>();
         SafeAssigned(_gameManager);
         _bounds = _gameManager.Bounds;
     }
