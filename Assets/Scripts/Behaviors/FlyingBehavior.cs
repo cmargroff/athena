@@ -71,7 +71,7 @@ public class FlyingBehavior : AthenaMonoBehavior
         }
         else
         {
-            transform.rotation = Quaternion.EulerRotation(new Vector3(0, 180, 0));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
 
     }
