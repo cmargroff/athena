@@ -10,7 +10,6 @@ public class  ChaseBehavior: AthenaMonoBehavior
     {
         base.Start();
         _flying = GetComponent<FlyingBehavior>();
-        _gameManager = FindObjectOfType<GameManagerBehavior>();
         SafeAssigned(_gameManager);
     }
 
