@@ -244,8 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveAngle: {x: 0, y: 0}
   FacesRight: 1
-  speed: 3
-  bumpsInto:
+  _speed: 3
+  _bumpsInto:
     serializedVersion: 2
     m_Bits: 128
   OFFSET_ANGLE: 90

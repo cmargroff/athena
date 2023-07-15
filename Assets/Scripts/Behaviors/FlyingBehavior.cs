@@ -17,10 +17,10 @@ public class FlyingBehavior : AthenaMonoBehavior
 
 
     [SerializeField]
-    private float speed;
+    private float _speed;
 
     [SerializeField]
-    private LayerMask bumpsInto;
+    private LayerMask _bumpsInto;
 
     protected override void Start()
     {
@@ -40,12 +40,12 @@ public class FlyingBehavior : AthenaMonoBehavior
     {
         MoveAngle = MoveAngle.normalized;
 
-        var deltaSpeed = speed * Time.deltaTime;
+        var deltaSpeed = _speed * Time.deltaTime;
 
         var moveDir = new Vector3(MoveAngle.x, 0f, MoveAngle.y);
         var newPosition = _rigidBody.position + (moveDir * deltaSpeed);
 
-        if (Physics.Raycast(origin: _rigidBody.position, direction: moveDir, out RaycastHit hit, maxDistance: speed * deltaSpeed, layerMask: bumpsInto.value))
+        if (Physics.Raycast(origin: _rigidBody.position, direction: moveDir, out RaycastHit hit, maxDistance: _speed * deltaSpeed, layerMask: _bumpsInto.value))
         {
             var target = _rigidBody.position - hit.transform.position;
             var moveAngle = new Vector2(target.x, target.z);
@@ -70,14 +70,15 @@ public class FlyingBehavior : AthenaMonoBehavior
         }
         _rigidBody.position = newPosition;
 
-        if (moveDir.x <= 0 == FacesRight)
+        if (moveDir.x < 0 == FacesRight)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); ;
         }
-        else
+        else if (moveDir.x > 0 == FacesRight)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
+ 
 
     }
 
