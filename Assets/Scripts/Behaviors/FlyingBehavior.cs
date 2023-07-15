@@ -1,6 +1,4 @@
 using Assets.Scripts.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FlyingBehavior : AthenaMonoBehavior
@@ -45,7 +43,15 @@ public class FlyingBehavior : AthenaMonoBehavior
         var moveDir = new Vector3(MoveAngle.x, 0f, MoveAngle.y);
         var newPosition = _rigidBody.position + (moveDir * deltaSpeed);
 
-        if (Physics.Raycast(origin: _rigidBody.position, direction: moveDir, out RaycastHit hit, maxDistance: _speed * deltaSpeed, layerMask: _bumpsInto.value))
+        if (
+            Physics.Raycast(
+                origin: _rigidBody.position,
+                direction: moveDir,
+                out RaycastHit hit,
+                maxDistance: _speed * deltaSpeed,
+                layerMask: _bumpsInto.value
+            )
+        )
         {
             var target = _rigidBody.position - hit.transform.position;
             var moveAngle = new Vector2(target.x, target.z);
@@ -57,11 +63,17 @@ public class FlyingBehavior : AthenaMonoBehavior
         if (!ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
         {
             //moveDir = new Vector3(MoveAngle.x * -1, 0f, 0f);
-            newPosition = _rigidBody.position + (Quaternion.AngleAxis(-OFFSET_ANGLE, Vector3.up) * moveDir * deltaSpeed / SLOWDOWN);
+            newPosition = _rigidBody.position + (
+                Quaternion.AngleAxis(-OFFSET_ANGLE, Vector3.up)
+                * moveDir * deltaSpeed / SLOWDOWN
+            );
             if (!ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
             {
                 //moveDir = new Vector3(0f * -1, 0f, MoveAngle.y * -1);
-                newPosition = _rigidBody.position + (Quaternion.AngleAxis(OFFSET_ANGLE, Vector3.up) * moveDir * deltaSpeed / SLOWDOWN);
+                newPosition = _rigidBody.position + (
+                    Quaternion.AngleAxis(OFFSET_ANGLE, Vector3.up)
+                    * moveDir * deltaSpeed / SLOWDOWN
+                );
                 if (!ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
                 {
                     newPosition = _rigidBody.position;
@@ -72,7 +84,7 @@ public class FlyingBehavior : AthenaMonoBehavior
 
         if (moveDir.x < 0 == FacesRight)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); ;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
         else if (moveDir.x > 0 == FacesRight)
         {
