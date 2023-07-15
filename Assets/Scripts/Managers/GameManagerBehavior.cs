@@ -6,7 +6,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
 {
     public bool Paused;
 
-    public Collider Bounds;
+    public Collider2D Bounds;
     public GameObject Player;
 
 

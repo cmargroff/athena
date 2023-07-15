@@ -10,7 +10,7 @@ public class FlyingBehavior : AthenaMonoBehavior
     public bool FacesRight = true;
 
 
-    private Collider _bounds;
+    private Collider2D _bounds;
 
 
     [SerializeField]
@@ -41,29 +41,23 @@ public class FlyingBehavior : AthenaMonoBehavior
         var moveDir = new Vector3(MoveAngle.x, MoveAngle.y,0f);
         var newPosition = transform.position + (moveDir * deltaSpeed);
 
-        //if (Physics.Raycast(origin: _rigidBody.position, direction: moveDir, out RaycastHit hit, maxDistance: _speed * deltaSpeed, layerMask: _bumpsInto.value))
-        //{
-        //    var target = _rigidBody.position - hit.transform.position;
-        //    var moveAngle = new Vector2(target.x, target.z);
-        //    moveDir = new Vector3(moveAngle.x, 0f, moveAngle.y);
-        //    newPosition = _rigidBody.position + (moveDir * deltaSpeed * SLOWDOWN);
-        //}
 
 
-        if (!ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
+        if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
         {
             //moveDir = new Vector3(MoveAngle.x * -1, 0f, 0f);
-            newPosition = transform.position + (Quaternion.AngleAxis(-OFFSET_ANGLE, Vector3.up) * moveDir * deltaSpeed / SLOWDOWN);
-            if (!ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
+            newPosition = transform.position + (Quaternion.Euler(new Vector3(0, 0, -OFFSET_ANGLE)) * moveDir * deltaSpeed / SLOWDOWN);
+            if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
             {
                 //moveDir = new Vector3(0f * -1, 0f, MoveAngle.y * -1);
-                newPosition = transform.position + (Quaternion.AngleAxis(OFFSET_ANGLE, Vector3.up) * moveDir * deltaSpeed / SLOWDOWN);
-                if (!ColliderUtils.IsPointInsideCollider(_bounds, newPosition))
+                newPosition = transform.position + (Quaternion.Euler(new Vector3(0, 0, OFFSET_ANGLE)) * moveDir * deltaSpeed / SLOWDOWN);
+                if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
                 {
                     newPosition = transform.position;
                 }
             }
         }
+
         transform.position = newPosition;
 
         if (moveDir.x < 0 == FacesRight)
@@ -79,7 +73,6 @@ public class FlyingBehavior : AthenaMonoBehavior
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Collided");
 
         // Calculate the separation distance based on the size of the objects
         float separationDistance = _speed * Time.deltaTime * .25f;  // (boundsThis.extents.magnitude + boundsOther.extents.magnitude) * 1.2f;
