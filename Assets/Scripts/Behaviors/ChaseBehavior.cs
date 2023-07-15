@@ -17,6 +17,6 @@ public class  ChaseBehavior: AthenaMonoBehavior
     protected override void PausibleUpdate()
     {
         var target =  _gameManager.Player.transform.position - _flying.transform.position;
-        _flying.MoveAngle = new Vector2(target.x, target.z );
+        _flying.MoveAngle = new Vector2(target.x, target.y );
     }
 }

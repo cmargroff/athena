@@ -38,7 +38,7 @@ public class FlyingBehavior : AthenaMonoBehavior
 
         var deltaSpeed = _speed * Time.deltaTime;
 
-        var moveDir = new Vector3(MoveAngle.x, 0f, MoveAngle.y);
+        var moveDir = new Vector3(MoveAngle.x, MoveAngle.y,0f);
         var newPosition = transform.position + (moveDir * deltaSpeed);
 
         //if (Physics.Raycast(origin: _rigidBody.position, direction: moveDir, out RaycastHit hit, maxDistance: _speed * deltaSpeed, layerMask: _bumpsInto.value))
@@ -72,7 +72,7 @@ public class FlyingBehavior : AthenaMonoBehavior
         }
         else if (moveDir.x > 0 == FacesRight)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
         }
 
     }

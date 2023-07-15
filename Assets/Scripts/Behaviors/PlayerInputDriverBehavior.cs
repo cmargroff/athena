@@ -25,7 +25,7 @@ public class PlayerInputDriverBehavior : AthenaMonoBehavior
 
     protected override void PausibleFixedUpdate()
     {
-        _flying.MoveAngle = _controls.Game.Move.ReadValue<Vector2>()*-1;
+        _flying.MoveAngle = _controls.Game.Move.ReadValue<Vector2>()*new Vector2(-1,1);
 
     }
 }
