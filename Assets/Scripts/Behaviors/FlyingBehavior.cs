@@ -66,7 +66,7 @@ public class FlyingBehavior : AthenaMonoBehavior
 
         if (moveDir.x <= 0 == FacesRight)
         {
-            transform.rotation = Quaternion.LookRotation(Vector3.zero);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); ;
         }
         else
         {
