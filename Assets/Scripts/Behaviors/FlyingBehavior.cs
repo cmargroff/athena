@@ -77,9 +77,9 @@ public class FlyingBehavior : AthenaMonoBehavior
 
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-
+        Debug.Log("Collided");
 
         // Calculate the separation distance based on the size of the objects
         float separationDistance = _speed * Time.deltaTime * .25f;  // (boundsThis.extents.magnitude + boundsOther.extents.magnitude) * 1.2f;
