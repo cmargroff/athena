@@ -10,7 +10,7 @@ public class  ChaseBehavior: AthenaMonoBehavior
     {
         base.Start();
         _flying = GetComponent<FlyingBehavior>();
-        SafeAssigned(_gameManager);
+        // SafeAssigned(_gameManager);
     }
 
     // Update is called once per frame
