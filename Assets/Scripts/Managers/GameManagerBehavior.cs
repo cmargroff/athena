@@ -67,7 +67,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     {
         public void SetFramesInSeconds(float seconds)
         {
-            Frames = (int)Math.Floor(seconds / Time.fixedDeltaTime);
+            Frames = (int)Math.Ceiling(seconds / Time.fixedDeltaTime);
         }
 
         public Guid Id;
