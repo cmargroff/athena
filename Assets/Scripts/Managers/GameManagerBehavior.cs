@@ -11,6 +11,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public Collider2D Bounds;
     public GameObject Player;
 
+    public PoolBehavior Pool;
+
 
     [SerializeField]
     private Dictionary<Guid,TimedEvent> _timedEvents= new Dictionary<Guid, TimedEvent>();

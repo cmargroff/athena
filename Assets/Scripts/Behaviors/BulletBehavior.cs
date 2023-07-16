@@ -23,12 +23,16 @@ public class BulletBehavior : AthenaMonoBehavior
         var moveDir = new Vector3(MoveAngle.x, MoveAngle.y, 0f);
         var newPosition = transform.position + (moveDir * deltaSpeed);
 
+
         if (!ColliderUtils.IsPointInsideCollider2D(_gameManager.Bounds, transform.position))
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
-
-        transform.position = newPosition;
+        else
+        {
+            transform.position = newPosition;
+        }
+        
 
 
     }
