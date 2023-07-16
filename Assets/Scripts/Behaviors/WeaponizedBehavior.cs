@@ -7,17 +7,32 @@ using UnityEngine;
 public class WeaponizedBehavior : AthenaMonoBehavior
 {
     public GameObject BulletPrefab;
+    [SerializeField]
+    private float _fireRate;
+
+    private GameManagerBehavior.TimedEvent _timedEvent;
+
     protected override void Start()
     {
         base.Start();
-        _gameManager.AddTimedEvent(1, () =>
-        {
-            var bullet = _gameManager.Pool.GetPooledObject(BulletPrefab, transform.position, Quaternion.identity);
-            var behavior = bullet.GetComponent<BulletBehavior>();
-            behavior.Speed = 15f;
-            behavior.MoveAngle = Random.insideUnitCircle.normalized;
-
-        });
+        SetFire(_fireRate);
     }
+    public void SetFire(float fireRate )
+    {
+        if (_timedEvent == null)
+        {
+            _timedEvent = _gameManager.AddTimedEvent(fireRate, () =>
+            {
+                var bullet = _gameManager.Pool.GetPooledObject(BulletPrefab, transform.position, Quaternion.identity);
+                var behavior = bullet.GetComponent<BulletBehavior>();
+                behavior.Speed = 15f;
+                behavior.MoveAngle = Random.insideUnitCircle.normalized;
 
+            });
+        }
+        else
+        { 
+            _timedEvent.SetFramesInSeconds(fireRate);
+        }
+    }
 }

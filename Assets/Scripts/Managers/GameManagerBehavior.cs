@@ -35,9 +35,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
     { 
         var te= new TimedEvent() { 
             Id=Guid.NewGuid(),
-            Action= action,
-            Frames=(int)Math.Floor(seconds/Time.fixedDeltaTime)
+            Action= action
         };
+        te.SetFramesInSeconds(seconds);
         _timedEvents.Add(te.Id, te);
         return te;
     }
@@ -61,6 +61,11 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     public class TimedEvent
     {
+        public void SetFramesInSeconds(float seconds)
+        {
+            Frames = (int)Math.Floor(seconds / Time.fixedDeltaTime);
+        }
+
         public Guid Id;
         public int Frames;
         public Action Action;
