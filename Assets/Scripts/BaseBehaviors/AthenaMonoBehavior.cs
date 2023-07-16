@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,21 +11,51 @@ public  class AthenaMonoBehavior : MonoBehaviour
     protected virtual void Start()
     {
         _gameManager = FindObjectOfType<GameManagerBehavior>();
+        OnActive();
     }
-
+    protected virtual void OnEnable()
+    {
+        OnActive();
+    }
     // Update is called once per frame
+
+    private bool _lastPauseState;
     void Update()
     {
+        if (_lastPauseState && !_gameManager.Paused)
+        {
+            OnUnPaused();
+            
+        }
+        else if (!_lastPauseState && _gameManager.Paused)
+        {
+            OnPaused();
+        }
+        _lastPauseState = _gameManager.Paused;
         ContinuousUpdate();
         if (_gameManager.Paused)
         {
             WhenPausedUpdate();
+            
         }
         else
         {
             PausibleUpdate();
+            
         }
     }
+    protected virtual void OnActive()
+    { 
+    
+    }
+    protected virtual void OnPaused()
+    {
+    }
+
+    protected virtual void OnUnPaused()
+    {
+    }
+
     void FixedUpdate()
     {
         ContinuousFixedUpdate();

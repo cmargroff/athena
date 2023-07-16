@@ -2,39 +2,30 @@ using Assets.Scripts.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
+using DG.Tweening.Core;
 public class BulletBehavior : AthenaMonoBehavior
 {
     // Start is called before the first frame update
     public Vector2 MoveAngle;
     public float Speed;
-    protected override void Start()
+
+    TweenerCore<Vector3, Vector3, DG.Tweening.Plugins.Options.VectorOptions> _bulletTween;
+    protected override void OnActive()
     {
-        base.Start();
+        _bulletTween = transform.DOMove(transform.position + new Vector3(MoveAngle.x, MoveAngle.y, 0f) * 10, 1).OnComplete(() => {
+            //Destroy(this.gameObject);
+
+            gameObject.SetActive(false);
+        }
+        ).SetUpdate(UpdateType.Manual).SetEase(Ease.Linear);
+
     }
 
-    // Update is called once per frame
-    protected override void PausibleUpdate()
+    protected override void PausibleFixedUpdate()
     {
-        MoveAngle = MoveAngle.normalized;
-
-        var deltaSpeed = Speed * Time.deltaTime;
-
-        var moveDir = new Vector3(MoveAngle.x, MoveAngle.y, 0f);
-        var newPosition = transform.position + (moveDir * deltaSpeed);
-
-
-        if (!ColliderUtils.IsPointInsideCollider2D(_gameManager.Bounds, transform.position))
-        {
-            this.gameObject.SetActive(false);
-        }
-        else
-        {
-            transform.position = newPosition;
-        }
-        
-
-
+        base.PausibleFixedUpdate();
+        _bulletTween.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
 
 }

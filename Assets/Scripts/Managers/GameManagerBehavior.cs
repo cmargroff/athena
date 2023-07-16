@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using DG.Tweening;
 public class GameManagerBehavior : AthenaMonoBehavior
 {
     public bool Paused;
@@ -23,6 +23,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     protected override void Start()
     {
         base.Start();
+        DOTween.SetTweensCapacity(1000, 1000);
+
         SafeAssigned(Bounds);
 
 

@@ -24,6 +24,7 @@ public class WeaponizedBehavior : AthenaMonoBehavior
             _timedEvent = _gameManager.AddTimedEvent(fireRate, () =>
             {
                 var bullet = _gameManager.Pool.GetPooledObject(BulletPrefab, transform.position, Quaternion.identity);
+                //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
                 var behavior = bullet.GetComponent<BulletBehavior>();
                 behavior.Speed = 15f;
                 behavior.MoveAngle = Random.insideUnitCircle.normalized;
