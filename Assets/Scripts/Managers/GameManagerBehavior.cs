@@ -31,11 +31,12 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     // Update is called once per frame
 
-    public TimedEvent AddTimedEvent(float seconds, Action action)
-    { 
-        var te= new TimedEvent() { 
-            Id=Guid.NewGuid(),
-            Action= action
+    public TimedEvent AddTimedEvent(float seconds, Action action, GameObject owner)
+    {
+        var te = new TimedEvent() {
+            Id = Guid.NewGuid(),
+            Action = action,
+            Owner = owner
         };
         te.SetFramesInSeconds(seconds);
         _timedEvents.Add(te.Id, te);
@@ -51,9 +52,12 @@ public class GameManagerBehavior : AthenaMonoBehavior
     {
         foreach (var kv in _timedEvents)
         {
-            if (_frameCount % kv.Value.Frames == 0)
+            if (kv.Value.Owner.activeInHierarchy)
             {
-                kv.Value.Action();
+                if (_frameCount % kv.Value.Frames == 0)
+                {
+                    kv.Value.Action();
+                }
             }
         }
         _frameCount++;
@@ -69,6 +73,6 @@ public class GameManagerBehavior : AthenaMonoBehavior
         public Guid Id;
         public int Frames;
         public Action Action;
-
+        public GameObject Owner;
     }
 }

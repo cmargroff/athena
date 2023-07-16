@@ -28,7 +28,7 @@ public class WeaponizedBehavior : AthenaMonoBehavior
                 behavior.Speed = 15f;
                 behavior.MoveAngle = Random.insideUnitCircle.normalized;
 
-            });
+            }, gameObject);
         }
         else
         { 
