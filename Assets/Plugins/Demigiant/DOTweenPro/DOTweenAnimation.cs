@@ -8,7 +8,7 @@ using UnityEngine;
 #if true // UI_MARKER
 using UnityEngine.UI;
 #endif
-#if true // TEXTMESHPRO_MARKER
+#if false // TEXTMESHPRO_MARKER
 using TMPro;
 #endif
 
@@ -258,7 +258,7 @@ namespace DG.Tweening
 #endif
                     break;
                 case TargetType.Rigidbody:
-#if true // PHYSICS_MARKER
+#if false // PHYSICS_MARKER
                     tween = ((Rigidbody)target).DOMove(endValueV3, duration, optionalBool0);
 #else
                     tween = ((Transform)target).DOMove(endValueV3, duration, optionalBool0);
@@ -282,7 +282,7 @@ namespace DG.Tweening
                     tween = ((Transform)target).DORotate(endValueV3, duration, optionalRotationMode);
                     break;
                 case TargetType.Rigidbody:
-#if true // PHYSICS_MARKER
+#if false // PHYSICS_MARKER
                     tween = ((Rigidbody)target).DORotate(endValueV3, duration, optionalRotationMode);
 #else
                     tween = ((Transform)target).DORotate(endValueV3, duration, optionalRotationMode);
@@ -350,7 +350,7 @@ namespace DG.Tweening
                     tween = ((tk2dBaseSprite)target).DOColor(endValueColor, duration);
                     break;
 #endif
-#if true // TEXTMESHPRO_MARKER
+#if false // TEXTMESHPRO_MARKER
                 case TargetType.TextMeshProUGUI:
                     tween = ((TextMeshProUGUI)target).DOColor(endValueColor, duration);
                     break;
@@ -393,7 +393,7 @@ namespace DG.Tweening
                     tween = ((tk2dBaseSprite)target).DOFade(endValueFloat, duration);
                     break;
 #endif
-#if true // TEXTMESHPRO_MARKER
+#if false // TEXTMESHPRO_MARKER
                 case TargetType.TextMeshProUGUI:
                     tween = ((TextMeshProUGUI)target).DOFade(endValueFloat, duration);
                     break;
@@ -418,7 +418,7 @@ namespace DG.Tweening
                     break;
                 }
 #endif
-#if true // TEXTMESHPRO_MARKER
+#if false // TEXTMESHPRO_MARKER
                 switch (targetType) {
                 case TargetType.TextMeshProUGUI:
                     tween = ((TextMeshProUGUI)target).DOText(endValueString, duration, optionalBool0, optionalScrambleMode, optionalString);

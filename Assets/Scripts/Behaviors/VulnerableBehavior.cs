@@ -20,7 +20,10 @@ public class VulnerableBehavior : AthenaMonoBehavior
     {
 
     }
-
+    private void OnParticleTrigger()
+    { 
+    
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.TryGetComponent<DamagingBehavior>(out var damaging))
