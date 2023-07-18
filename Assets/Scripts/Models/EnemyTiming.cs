@@ -6,5 +6,5 @@ public class EnemyTiming {
   public int time;
   [Header("Should the enemy spawn as a boss?")]
   public bool bossSpawn = false;
-  public List<Enemy> enemies;
+  public List<EnemySO> enemies;
 }

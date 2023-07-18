@@ -9,10 +9,11 @@ public class FlyingBehavior : AthenaMonoBehavior
 
     public bool FacesRight = true;
 
-
     private Collider2D _bounds;
-
-
+    
+    [SerializeField]
+    private GameObject _visual;
+    
     [SerializeField]
     private float _speed;
 
@@ -22,7 +23,6 @@ public class FlyingBehavior : AthenaMonoBehavior
     protected override void Start()
     {
         base.Start();
-        SafeAssigned(_gameManager);
         _bounds = _gameManager.Bounds;
     }
 
@@ -62,11 +62,26 @@ public class FlyingBehavior : AthenaMonoBehavior
 
         if (moveDir.x < 0 == FacesRight)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); ;
+            if (_visual == null)
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
+            else
+            {
+                _visual.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
         }
         else if (moveDir.x > 0 == FacesRight)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            if (_visual == null)
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            }
+            else
+            {
+                _visual.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            }
+           
         }
 
     }

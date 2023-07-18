@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40327d8f2426ff418fad21b4adc6e2f, type: 3}
+  m_Name: Flamethrower
+  m_EditorClassIdentifier: 
+  FriendlyName: Flamer
+  Icon: {fileID: 0}
+  Color: {r: 1, g: 0.5227602, b: 0, a: 0}
+  Damage: 50
+  Speed: 0
+  Range: 0
+  Duration: 2
+  Scatter: 0
+  Number: 1
+  Rate: 0.25
+  Bullet: {fileID: 2764312794773541965, guid: 5d89e26d220c080479c717dd93141059, type: 3}
+  ParentedToPlayer: 1

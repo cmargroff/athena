@@ -11,6 +11,7 @@ public  class AthenaMonoBehavior : MonoBehaviour
     protected virtual void Start()
     {
         _gameManager = FindObjectOfType<GameManagerBehavior>();
+        //todo:add safe find
         OnActive();
     }
     protected virtual void OnEnable()

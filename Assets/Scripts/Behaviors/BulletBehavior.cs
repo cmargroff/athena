@@ -9,17 +9,21 @@ public class BulletBehavior : AthenaMonoBehavior
     // Start is called before the first frame update
     public Vector2 MoveAngle;
     public float Speed;
+    public float Duration;
 
     TweenerCore<Vector3, Vector3, DG.Tweening.Plugins.Options.VectorOptions> _bulletTween;
     protected override void OnActive()
     {
-        _bulletTween = transform.DOMove(transform.position + new Vector3(MoveAngle.x, MoveAngle.y, 0f) * 10, 1).OnComplete(() => {
-            //Destroy(this.gameObject);
-
-            gameObject.SetActive(false);
+        if (Speed > 0)
+            _bulletTween = transform.DOMove(transform.position + new Vector3(MoveAngle.x, MoveAngle.y, 0f) * Speed, Duration).OnComplete(() =>
+                gameObject.SetActive(false)
+            ).SetUpdate(UpdateType.Manual).SetEase(Ease.Linear);
+        else
+        {
+            var seq = DOTween.Sequence(); //new Sequence()
+            seq.AppendInterval(Duration);
+            seq.AppendCallback(() => gameObject.SetActive(false));       
         }
-        ).SetUpdate(UpdateType.Manual).SetEase(Ease.Linear);
-
     }
 
     protected override void PausibleFixedUpdate()
