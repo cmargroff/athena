@@ -53,8 +53,8 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         Vector2 halfExtents = size * 0.5f;
         float cosRotation = Mathf.Cos(rotation * Mathf.Deg2Rad);
         float sinRotation = Mathf.Sin(rotation * Mathf.Deg2Rad);
-        float halfWidth = halfExtents.x * Mathf.Abs(cosRotation) + halfExtents.y * Mathf.Abs(sinRotation);
-        float halfHeight = halfExtents.y * Mathf.Abs(cosRotation) + halfExtents.x * Mathf.Abs(sinRotation);
+        float halfWidth = halfExtents.x;
+        float halfHeight = halfExtents.y;
 
         // Get a random point on the border of the BoxCollider2D
         Vector2 randomPointLocal = Vector2.zero;
@@ -82,11 +82,10 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
             randomPointLocal.x * cosRotation - randomPointLocal.y * sinRotation,
             randomPointLocal.x * sinRotation + randomPointLocal.y * cosRotation
         );
-
         // Transform the rotated point back to world space
         Vector2 randomPointWorld = position + randomPointRotated;
 
-        return randomPointWorld*.70f;
+        return randomPointWorld;
     }
 }
 
