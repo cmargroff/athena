@@ -1,9 +1,5 @@
-using Assets.Scripts.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using DG.Tweening.Core;
 public class BulletBehavior : AthenaMonoBehavior
 {
   // Start is called before the first frame update
@@ -18,12 +14,15 @@ public class BulletBehavior : AthenaMonoBehavior
     _seq.SetUpdate(UpdateType.Manual);
     if (Speed > 0)
     {
-      var tween = transform.DOMove(
-          transform.position + new Vector3(MoveAngle.x, MoveAngle.y, 0f) * Speed,
-          Duration
+      var tween = DOTween.To(
+        (t) =>
+        {
+          transform.position += new Vector3(MoveAngle.x, MoveAngle.y, 0f) * Speed;
+        },
+        0, 1, Duration
       )
-      .OnComplete(() => gameObject.SetActive(false))
-      .SetEase(Ease.Linear);
+        .OnComplete(() => gameObject.SetActive(false))
+        .SetEase(Ease.Linear);
       _seq.Append(tween);
     }
     else

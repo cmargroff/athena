@@ -10,7 +10,7 @@ public class WeaponSO : ScriptableObject
     public Sprite Icon;
     public Color Color;
     public int Damage;
-    public int Speed;
+    public float Speed;
     public int Range;
     public int Duration;
     public int Scatter;
