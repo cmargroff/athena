@@ -8,15 +8,20 @@ public  class AthenaMonoBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
     protected GameManagerBehavior _gameManager;
+    private bool _started;
     protected virtual void Start()
     {
         _gameManager = FindObjectOfType<GameManagerBehavior>();
         //todo:add safe find
         OnActive();
+        _started=true;
     }
     protected virtual void OnEnable()
     {
-        OnActive();
+        if (_started)
+        {
+            OnActive();
+        }
     }
     // Update is called once per frame
 

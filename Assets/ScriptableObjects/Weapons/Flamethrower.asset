@@ -15,12 +15,12 @@ MonoBehaviour:
   FriendlyName: Flamer
   Icon: {fileID: 0}
   Color: {r: 1, g: 0.5227602, b: 0, a: 0}
-  Damage: 50
+  Damage: 300
   Speed: 0
   Range: 0
-  Duration: 2
+  Duration: 4
   Scatter: 0
   Number: 1
-  Rate: 4
+  Rate: 8
   Bullet: {fileID: 2764312794773541965, guid: 5d89e26d220c080479c717dd93141059, type: 3}
   ParentedToPlayer: 1

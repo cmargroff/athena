@@ -12,13 +12,13 @@ public class WeaponBehavior : AthenaMonoBehavior
     {
         base.Start();
         SafeAssigned(_weaponConfig);
-
+        SetFireRate(_weaponConfig.Rate);
 
     }
 
     protected override void PausibleFixedUpdate()
     {
-        SetFireRate(_weaponConfig.Rate);
+        
     }
     public void SetFireRate(float fireRate)
     {

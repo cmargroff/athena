@@ -37,7 +37,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
             _timedEvent = _gameManager.AddTimedEvent(rate, () =>
             {
                 var newPosition = GetRandomPointOnBorder(_spawnBoundry);
-                Instantiate(_enemy, newPosition, Quaternion.identity);
+                _gameManager.Pool.GetPooledObject(_enemy, newPosition, Quaternion.identity);
             }, gameObject);
         } 
     }
