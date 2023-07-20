@@ -13,8 +13,11 @@ public class VulnerableBehavior : AthenaMonoBehavior
 
     [SerializeField]
     private float _ITime=1f/3f;
-
     private float _hitLast =0;
+
+    [SerializeField]
+    private LayerMask _damagingLayers;
+
 
     protected override void Start()
     {
@@ -48,19 +51,22 @@ public class VulnerableBehavior : AthenaMonoBehavior
     {
         if (other.gameObject.TryGetComponent<DamagingBehavior>(out var damaging))
         {
-          if (_hitLast + _ITime < Time.realtimeSinceStartup)
+            if ((_damagingLayers.value & (1 << other.gameObject.layer)) != 0)
             {
-                _hitLast = Time.realtimeSinceStartup;
-                _health -= damaging.Damage;
-
-                if (_lifebar != null)
+                if (_hitLast + _ITime < Time.realtimeSinceStartup)
                 {
-                    _lifebar.SetHealthPercent(_health / _maxHealth);
-                }
+                    _hitLast = Time.realtimeSinceStartup;
+                    _health -= damaging.Damage;
 
-                if (_health < 1)
-                {
-                    gameObject.SetActive(false);
+                    if (_lifebar != null)
+                    {
+                        _lifebar.SetHealthPercent(_health / _maxHealth);
+                    }
+
+                    if (_health < 1)
+                    {
+                        gameObject.SetActive(false);
+                    }
                 }
             }
         }

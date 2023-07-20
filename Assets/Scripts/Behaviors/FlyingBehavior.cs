@@ -88,18 +88,19 @@ public class FlyingBehavior : AthenaMonoBehavior
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if ((_bumpsInto.value & (1 << other.gameObject.layer)) != 0)
+        {
+            // Calculate the separation distance based on the size of the objects
+            float separationDistance = _speed * Time.deltaTime * .25f;  // (boundsThis.extents.magnitude + boundsOther.extents.magnitude) * 1.2f;
 
-        // Calculate the separation distance based on the size of the objects
-        float separationDistance = _speed * Time.deltaTime * .25f;  // (boundsThis.extents.magnitude + boundsOther.extents.magnitude) * 1.2f;
+            // Calculate the separation direction
+            Vector3 separationDirection = transform.position - other.transform.position;
+            separationDirection.Normalize();
 
-        // Calculate the separation direction
-        Vector3 separationDirection = transform.position - other.transform.position;
-        separationDirection.Normalize();
-
-        // Move both objects away from each other
-        transform.position += separationDirection * separationDistance * 0.5f;
-        other.transform.position -= separationDirection * separationDistance * 0.5f;
-
+            // Move both objects away from each other
+            transform.position += separationDirection * separationDistance * 0.5f;
+            other.transform.position -= separationDirection * separationDistance * 0.5f;
+        }
     }
 }
 
