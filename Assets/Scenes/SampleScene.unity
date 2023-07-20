@@ -347,7 +347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnBoundry: {fileID: 85562257}
   _spawnRate: 0.5
-  _enemy: {fileID: 8309618888134430957, guid: a98663e7bd9fcc9458af8d5cde9372e1, type: 3}
+  _enemies:
+  - {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+  - {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
 --- !u!1 &585523091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1283,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: a98663e7bd9fcc9458af8d5cde9372e1, type: 3}
 --- !u!4 &1257118182 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8107876078775051637, guid: a98663e7bd9fcc9458af8d5cde9372e1, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6593964131255471453, guid: a98663e7bd9fcc9458af8d5cde9372e1, type: 3}
   m_PrefabInstance: {fileID: 1257118181}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1376124667
@@ -1421,7 +1423,7 @@ MonoBehaviour:
   MoveAngle: {x: 0, y: 0}
   FacesRight: 1
   _visual: {fileID: 2132133401}
-  _speed: 5
+  Speed: 5
   _bumpsInto:
     serializedVersion: 2
     m_Bits: 0
@@ -1439,10 +1441,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ff5b821900d294da7289b8f6707121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 1000
+  MaxHealth: 1
   _health: 0
   _lifebar: {fileID: 2134869071}
   _ITime: 1
+  _damagingLayers:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!58 &1523056421
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
     [SerializeField]
     private float _spawnRate;
     [SerializeField]
-    private GameObject _enemy;
+    private List<EnemySO> _enemies;
 
     private GameManagerBehavior.TimedEvent _timedEvent;
     //private Vector3 _trueBoundingScale=Vector3.one;
@@ -36,10 +36,25 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         {
             _timedEvent = _gameManager.AddTimedEvent(rate, () =>
             {
-                var newPosition = GetRandomPointOnBorder(_spawnBoundry);
-                _gameManager.Pool.GetPooledObject(_enemy, newPosition, Quaternion.identity);
+                var enemy = _enemies[Random.Range(0,_enemies.Count)];
+
+                SpawnEnemy(enemy);
+
             }, gameObject);
         } 
+    }
+
+    private void SpawnEnemy(EnemySO _enemy)
+    {
+        var newPosition = GetRandomPointOnBorder(_spawnBoundry);
+        var enemy = _gameManager.Pool.GetPooledObject(_enemy.Prefab, newPosition, Quaternion.identity);
+        var flying = enemy.GetComponent<FlyingBehavior>();
+        var damaging = enemy.GetComponent<DamagingBehavior>();
+        var vulnerable = enemy.GetComponent<VulnerableBehavior>();
+
+        flying.Speed = _enemy.Speed;
+        damaging.Damage = _enemy.TouchDamage;
+        vulnerable.MaxHealth = _enemy.Health;
     }
 
     private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider)

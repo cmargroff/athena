@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0593f97ef5280a74bb47936f303fa7fb, type: 3}
-  m_Name: Drone
+  m_Name: Scout
   m_EditorClassIdentifier: 
-  FriendlyName: Drone
+  FriendlyName: Scout
   Speed: 3
   Health: 1000
-  floatDamage: 1000
-  prefab: {fileID: 8309618888134430957, guid: a98663e7bd9fcc9458af8d5cde9372e1, type: 3}
+  TouchDamage: 100
+  Prefab: {fileID: 6365613209222740165, guid: a98663e7bd9fcc9458af8d5cde9372e1, type: 3}
+  CoinDrop: 1
+  BrickDrop: 1

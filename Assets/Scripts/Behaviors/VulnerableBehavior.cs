@@ -5,7 +5,7 @@ using UnityEngine;
 public class VulnerableBehavior : AthenaMonoBehavior
 {
     [SerializeField]
-    private float _maxHealth = 1;
+    public float MaxHealth = 1;
     [SerializeField]
     private float _health = 0;
     [SerializeField]
@@ -22,15 +22,15 @@ public class VulnerableBehavior : AthenaMonoBehavior
     protected override void Start()
     {
         base.Start();
-        _health = _maxHealth;
+        _health = MaxHealth;
         
     }
 
     protected override void OnActive()
     {
         base.OnActive();
-        _health = _maxHealth;
-        _lifebar.SetHealthPercent(_health / _maxHealth);
+        _health = MaxHealth;
+        _lifebar.SetHealthPercent(_health / MaxHealth);
     }
     // Update is called once per frame
     protected override void PausibleUpdate()
@@ -60,7 +60,7 @@ public class VulnerableBehavior : AthenaMonoBehavior
 
                     if (_lifebar != null)
                     {
-                        _lifebar.SetHealthPercent(_health / _maxHealth);
+                        _lifebar.SetHealthPercent(_health / MaxHealth);
                     }
 
                     if (_health < 1)

@@ -15,7 +15,7 @@ public class FlyingBehavior : AthenaMonoBehavior
     private GameObject _visual;
     
     [SerializeField]
-    private float _speed;
+    public  float Speed;
 
     [SerializeField]
     private LayerMask _bumpsInto;
@@ -36,7 +36,7 @@ public class FlyingBehavior : AthenaMonoBehavior
     {
         MoveAngle = MoveAngle.normalized;
 
-        var deltaSpeed = _speed * Time.deltaTime;
+        var deltaSpeed = Speed * Time.deltaTime;
 
         var moveDir = new Vector3(MoveAngle.x, MoveAngle.y,0f);
         var newPosition = transform.position + (moveDir * deltaSpeed);
@@ -91,7 +91,7 @@ public class FlyingBehavior : AthenaMonoBehavior
         if ((_bumpsInto.value & (1 << other.gameObject.layer)) != 0)
         {
             // Calculate the separation distance based on the size of the objects
-            float separationDistance = _speed * Time.deltaTime * .25f;  // (boundsThis.extents.magnitude + boundsOther.extents.magnitude) * 1.2f;
+            float separationDistance = Speed * Time.deltaTime * .25f;  // (boundsThis.extents.magnitude + boundsOther.extents.magnitude) * 1.2f;
 
             // Calculate the separation direction
             Vector3 separationDirection = transform.position - other.transform.position;
