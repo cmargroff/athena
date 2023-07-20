@@ -6,31 +6,37 @@ using DG.Tweening;
 using DG.Tweening.Core;
 public class BulletBehavior : AthenaMonoBehavior
 {
-    // Start is called before the first frame update
-    public Vector2 MoveAngle;
-    public float Speed;
-    public float Duration;
+  // Start is called before the first frame update
+  public Vector2 MoveAngle;
+  public float Speed;
+  public float Duration;
 
-    TweenerCore<Vector3, Vector3, DG.Tweening.Plugins.Options.VectorOptions> _bulletTween;
-    protected override void OnActive()
+  Sequence _seq;
+  protected override void OnActive()
+  {
+    _seq = DOTween.Sequence(); //new Sequence()
+    _seq.SetUpdate(UpdateType.Manual);
+    if (Speed > 0)
     {
-        if (Speed > 0)
-            _bulletTween = transform.DOMove(transform.position + new Vector3(MoveAngle.x, MoveAngle.y, 0f) * Speed, Duration).OnComplete(() =>
-                gameObject.SetActive(false)
-            ).SetUpdate(UpdateType.Manual).SetEase(Ease.Linear);
-        else
-        {
-            var seq = DOTween.Sequence(); //new Sequence()
-            seq.AppendInterval(Duration);
-            seq.AppendCallback(() => gameObject.SetActive(false));       
-        }
+      var tween = transform.DOMove(
+          transform.position + new Vector3(MoveAngle.x, MoveAngle.y, 0f) * Speed,
+          Duration
+      )
+      .OnComplete(() => gameObject.SetActive(false))
+      .SetEase(Ease.Linear);
+      _seq.Append(tween);
     }
-
-    protected override void PausibleFixedUpdate()
+    else
     {
-        base.PausibleFixedUpdate();
-        _bulletTween.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
+      _seq
+      .AppendInterval(Duration)
+      .AppendCallback(() => gameObject.SetActive(false));
     }
-
+  }
+  protected override void PausibleFixedUpdate()
+  {
+    base.PausibleFixedUpdate();
+    _seq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
+  }
 }
 
