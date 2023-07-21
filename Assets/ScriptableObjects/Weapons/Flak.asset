@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a40327d8f2426ff418fad21b4adc6e2f, type: 3}
-  m_Name: Gun
+  m_Name: Flak
   m_EditorClassIdentifier: 
   FriendlyName: Vulcan
   Icon: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 0}
-  Damage: 1000
+  Damage: 200
   Speed: 0.1
   Range: 1
-  Duration: 3
-  Scatter: 0
-  Number: 1
-  Rate: 0.1
-  Bullet: {fileID: 1451932744883786014, guid: e79799dc3f099e846ad33b69287add82, type: 3}
+  Duration: 2
+  Scatter: 22
+  Number: 50
+  Rate: 1
+  Bullet: {fileID: 1451932744883786014, guid: 1d9e713897cec294587ab37603511736, type: 3}
   ParentedToPlayer: 0

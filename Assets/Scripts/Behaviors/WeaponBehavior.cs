@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Utils;
 using UnityEngine;
 
 public class WeaponBehavior : AthenaMonoBehavior
@@ -27,26 +28,41 @@ public class WeaponBehavior : AthenaMonoBehavior
             _timedEvent = _gameManager.AddTimedEvent(fireRate, () =>
             {
                 var fireAngle= Random.insideUnitCircle.normalized;
-                float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);
+                for (var i = 0; i <= _weaponConfig.Number; i++)
+                {
 
-                var bullet = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg));
-                if (_weaponConfig.ParentedToPlayer)
-                { 
-                    bullet.transform.SetParent(transform, true);
+                    var random = Random.value * _weaponConfig.Scatter;
+                    
+                    var newAngle=fireAngle.Rotate(random- _weaponConfig.Scatter);
+
+                    CreateBullet(newAngle);
                 }
-                var damaging = bullet.GetComponent<DamagingBehavior>();
-                damaging.Damage=_weaponConfig.Damage;
-                //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
-                var behavior = bullet.GetComponent<BulletBehavior>();
-                behavior.Speed = _weaponConfig.Speed;
-                behavior.MoveAngle = fireAngle;
-                behavior.Duration=_weaponConfig.Duration;
 
+                
             }, gameObject);
         }
         else
         {
             _timedEvent.SetFramesInSeconds(fireRate);
         }
+    }
+
+    private void CreateBullet(Vector2 fireAngle)
+    {
+        float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);
+        var bullet = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position,
+            Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg));
+        if (_weaponConfig.ParentedToPlayer)
+        {
+            bullet.transform.SetParent(transform, true);
+        }
+
+        var damaging = bullet.GetComponent<DamagingBehavior>();
+        damaging.Damage = _weaponConfig.Damage;
+        //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+        var behavior = bullet.GetComponent<BulletBehavior>();
+        behavior.Speed = _weaponConfig.Speed;
+        behavior.MoveAngle = fireAngle;
+        behavior.Duration = _weaponConfig.Duration;
     }
 }
