@@ -6,6 +6,8 @@ public class EnemySO : ScriptableObject
     public string FriendlyName;
     public float Speed;
     public int Health;
+    public int Weight;
+    public int Friction;
     public int TouchDamage;   
     public GameObject Prefab;
     public int CoinDrop;

@@ -55,6 +55,8 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         flying.Speed = _enemy.Speed;
         damaging.Damage = _enemy.TouchDamage;
         vulnerable.MaxHealth = _enemy.Health;
+        vulnerable.Weight = _enemy.Weight;
+        vulnerable.Friction = _enemy.Friction;
     }
 
     private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider)

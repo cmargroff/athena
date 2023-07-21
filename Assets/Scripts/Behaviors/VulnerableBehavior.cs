@@ -6,24 +6,28 @@ public class VulnerableBehavior : AthenaMonoBehavior
 {
     [SerializeField]
     public float MaxHealth = 1;
+    public int Weight = 1;
+    public int Friction = 1;
     [SerializeField]
     private float _health = 0;
     [SerializeField]
     private LifebarBehavior _lifebar;
 
     [SerializeField]
-    private float _ITime=1f/3f;
-    private float _hitLast =0;
+    private float _ITime = 1f / 3f;
+    private float _hitLast = 0;
 
     [SerializeField]
     private LayerMask _damagingLayers;
-
+    private bool _hitstun = false;
+    private Vector3 _knockbackVector = Vector3.zero;
+    private float _knockback = 0;
 
     protected override void Start()
     {
         base.Start();
         _health = MaxHealth;
-        
+
     }
 
     protected override void OnActive()
@@ -35,7 +39,15 @@ public class VulnerableBehavior : AthenaMonoBehavior
     // Update is called once per frame
     protected override void PausibleUpdate()
     {
-
+        if (_hitstun)
+        {
+            transform.position += new Vector3(_knockbackVector.x * _knockback, _knockbackVector.y * _knockback, 0);
+            _knockback -= 0.01f; // friction
+            if (_knockback < 0)
+            {
+                _hitstun = false;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,6 +57,23 @@ public class VulnerableBehavior : AthenaMonoBehavior
     private void OnTriggerStay2D(Collider2D other)
     {
         Damage(other);
+    }
+    private float CalculateKnockback(float damage, float bkb, float kbs)
+    {
+        damage/=100;
+        kbs/=100;
+        float p = 20;
+        return (
+            (
+                (
+                    (
+                        ((p/10) + ((p * damage) / 20))
+                        * (200 / (Weight + 100))
+                        * 1.4f
+                    ) + 18
+                ) * kbs
+            ) + bkb
+        ) * 0.005f;
     }
 
     private void Damage(Collider2D other)
@@ -67,6 +96,9 @@ public class VulnerableBehavior : AthenaMonoBehavior
                     {
                         gameObject.SetActive(false);
                     }
+                    _knockbackVector = new Vector3(Mathf.Cos(damaging.KnockbackAngle), Mathf.Sin(damaging.KnockbackAngle), 0);
+                    _knockback = CalculateKnockback(damaging.Damage, damaging.BaseKnockback, damaging.KnockbackScaling);
+                    _hitstun = true;
                 }
             }
         }

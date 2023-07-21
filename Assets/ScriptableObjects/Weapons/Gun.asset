@@ -19,12 +19,14 @@ MonoBehaviour:
   Speed:
     min: 0.1
     max: 0.1
-  Range: 1
+  Range: 0
   Duration:
     min: 10
     max: 10
   Scatter: 0
   Number: 1
   Rate: 0.1
+  BaseKnockback: 10
+  KnockbackScaling: 100
   Bullet: {fileID: 1451932744883786014, guid: e79799dc3f099e846ad33b69287add82, type: 3}
   ParentedToPlayer: 0

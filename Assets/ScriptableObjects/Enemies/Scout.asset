@@ -15,6 +15,8 @@ MonoBehaviour:
   FriendlyName: Scout
   Speed: 3
   Health: 1000
+  Weight: 70
+  Friction: 1
   TouchDamage: 100
   Prefab: {fileID: 6365613209222740165, guid: a98663e7bd9fcc9458af8d5cde9372e1, type: 3}
   CoinDrop: 1

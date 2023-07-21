@@ -15,6 +15,8 @@ MonoBehaviour:
   FriendlyName: Worker
   Speed: 1
   Health: 5000
+  Weight: 100
+  Friction: 1
   TouchDamage: 100
   Prefab: {fileID: 1641400220716531286, guid: 34e51435affef874187e22ba213b7767, type: 3}
   CoinDrop: 2
