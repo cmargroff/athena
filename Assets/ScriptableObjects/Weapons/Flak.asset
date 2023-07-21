@@ -16,9 +16,13 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 0}
   Damage: 200
-  Speed: 0.1
+  Speed:
+    min: 0.1
+    max: 0.2
   Range: 1
-  Duration: 2
+  Duration:
+    min: 10
+    max: 10
   Scatter: 22
   Number: 50
   Rate: 1
