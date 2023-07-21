@@ -18,7 +18,7 @@ public class WeaponBehavior : AthenaMonoBehavior
 
     protected override void PausibleFixedUpdate()
     {
-        
+
     }
     public void SetFireRate(float fireRate)
     {
@@ -26,21 +26,21 @@ public class WeaponBehavior : AthenaMonoBehavior
         {
             _timedEvent = _gameManager.AddTimedEvent(fireRate, () =>
             {
-                var fireAngle= Random.insideUnitCircle.normalized;
+                var fireAngle = Random.insideUnitCircle.normalized;
                 float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);
 
                 var bullet = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg));
                 if (_weaponConfig.ParentedToPlayer)
-                { 
+                {
                     bullet.transform.SetParent(transform, true);
                 }
                 var damaging = bullet.GetComponent<DamagingBehavior>();
-                damaging.Damage=_weaponConfig.Damage;
+                damaging.Damage = _weaponConfig.Damage;
                 //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
                 var behavior = bullet.GetComponent<BulletBehavior>();
-                behavior.Speed = _weaponConfig.Speed;
+                behavior.Speed = _weaponConfig.Speed.GetRandomValue();
                 behavior.MoveAngle = fireAngle;
-                behavior.Duration=_weaponConfig.Duration;
+                behavior.Duration = _weaponConfig.Duration.GetRandomValue();
 
             }, gameObject);
         }
