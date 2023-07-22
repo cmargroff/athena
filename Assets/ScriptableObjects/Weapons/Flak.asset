@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FriendlyName: Flak
   Icon: {fileID: 0}
-  Color: {r: 1, g: 0, b: 0, a: 0}
+  Color: {r: 0, g: 0.735849, b: 0.14977618, a: 0}
   Damage: 200
   Speed:
     min: 0.1
