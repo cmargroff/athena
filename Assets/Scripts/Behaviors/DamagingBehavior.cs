@@ -1,4 +1,5 @@
 
+using Assets.Scripts.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -13,6 +14,9 @@ public class DamagingBehavior : AthenaMonoBehavior
 
     private FlyingBehavior _parent;
     private BulletBehavior _bullet;
+
+    [HideInInspector]
+    public GameSound HitSound;
 
     protected override void Start()
     {

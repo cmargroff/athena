@@ -32,5 +32,8 @@ MonoBehaviour:
   ParentedToPlayer: 1
   Orbit: 0
   FireSound:
-    FireSound: {fileID: 8300000, guid: bae6b62ce85ede4459a68ea87632d9f5, type: 3}
+    Sound: {fileID: 8300000, guid: bae6b62ce85ede4459a68ea87632d9f5, type: 3}
+    Volume: 1
+  HitSound:
+    Sound: {fileID: 8300000, guid: 55a66d2c8b7e83c4ca87605e489c6705, type: 3}
     Volume: 1

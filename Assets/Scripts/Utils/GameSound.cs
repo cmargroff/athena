@@ -10,12 +10,17 @@ namespace Assets.Scripts.Utils
     [Serializable]
     public  class GameSound
     {
-        public AudioClip FireSound;
+        public AudioClip Sound;
         [Range(0f, 1f)]
         public float Volume=1;
         public void Play(AudioSource source)
         {
-            source.PlayOneShot(FireSound, Volume);
+
+            source.PlayOneShot(Sound, Volume);
+
+            
         }
+
+        
     }
 }

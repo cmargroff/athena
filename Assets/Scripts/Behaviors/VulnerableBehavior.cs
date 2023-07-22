@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(AudioSource))]
 public class VulnerableBehavior : AthenaMonoBehavior
 {
     [SerializeField]
@@ -23,18 +23,18 @@ public class VulnerableBehavior : AthenaMonoBehavior
     private Vector3 _knockbackVector = Vector3.zero;
     private float _knockback = 0;
 
-
+    private AudioSource _audioSource;
 
     protected override void Start()
     {
         base.Start();
-        _health = MaxHealth;
-
+        
     }
 
     protected override void OnActive()
     {
         base.OnActive();
+        _audioSource = GetComponent<AudioSource>();
         _health = MaxHealth;
         _lifebar.SetHealthPercent(_health / MaxHealth);
         _knockback = 0;
@@ -53,21 +53,7 @@ public class VulnerableBehavior : AthenaMonoBehavior
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Damage(other);
-    }
     private void OnTriggerStay2D(Collider2D other)
-    {
-        Damage(other);
-    }
-    private float CalculateKnockback(float knockback)
-    {
-
-        return knockback / Weight * _gameManager.KnockbackFactor;
-    }
-
-    private void Damage(Collider2D other)
     {
         if (other.gameObject.TryGetComponent<DamagingBehavior>(out var damaging))
         {
@@ -84,6 +70,19 @@ public class VulnerableBehavior : AthenaMonoBehavior
 
                     }
 
+                    //if (_health >=0)
+                    //{
+                    if (_audioSource != null)
+                    {
+                        damaging.HitSound.Play(_audioSource);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Empty _audioSource tried to play sound");
+                    }
+                    //}
+
+
                     if (_health < 1)
                     {
                         gameObject.SetActive(false);
@@ -99,4 +98,14 @@ public class VulnerableBehavior : AthenaMonoBehavior
             }
         }
     }
+    private float CalculateKnockback(float knockback)
+    {
+
+        return knockback / Weight * _gameManager.KnockbackFactor;
+    }
+    private void Damage(Collider2D other)
+    {
+       
+    }
+
 }

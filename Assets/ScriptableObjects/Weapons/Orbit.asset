@@ -31,4 +31,9 @@ MonoBehaviour:
   Bullet: {fileID: 1451932744883786014, guid: e79799dc3f099e846ad33b69287add82, type: 3}
   ParentedToPlayer: 0
   Orbit: 1
-  FireSound: {fileID: 0}
+  FireSound:
+    Sound: {fileID: 0}
+    Volume: 1
+  HitSound:
+    Sound: {fileID: 8300000, guid: 55a66d2c8b7e83c4ca87605e489c6705, type: 3}
+    Volume: 1

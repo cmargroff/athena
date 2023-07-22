@@ -32,31 +32,7 @@ public class WeaponBehavior : AthenaMonoBehavior
     {
 
     }
-    public void CreateOrbits()
-    {
-        for (var i = 0; i < _weaponConfig.Number; i++)
-        {
-            var orbit = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.identity);
-            orbit.transform.parent = transform;
-            orbit.transform.localScale = Vector3.one * _weaponConfig.Scale;
-            var damaging = orbit.GetComponent<DamagingBehavior>();
-            damaging.Damage = _weaponConfig.Damage;
-            damaging.Knockback = _weaponConfig.Knockback;
-            var behavior = orbit.GetComponent<BulletBehavior>();
-            behavior.Duration = 1f / (float)_weaponConfig.Speed.min;
-            behavior.IsLooped = _weaponConfig.Duration.min == 0;
-            behavior.TimeOffset = i / (float)_weaponConfig.Number * behavior.Duration;
-            float offset = (i / (float)_weaponConfig.Number);
-
-            behavior.customTravelMode = (t) =>
-            {
-                var angle = Mathf.Lerp(0, Mathf.PI * 2, t);
-                var x = Mathf.Cos(angle) * _weaponConfig.Range;
-                var y = Mathf.Sin(angle) * _weaponConfig.Range;
-                orbit.transform.localPosition = new Vector3(x, y, 0f);
-            };
-        }
-    }
+ 
     public void SetFireRate(float fireRate)
     {
         if (_timedEvent == null)
@@ -98,10 +74,37 @@ public class WeaponBehavior : AthenaMonoBehavior
         var damaging = bullet.GetComponent<DamagingBehavior>();
         damaging.Damage = _weaponConfig.Damage;
         damaging.Knockback = _weaponConfig.Knockback;
+        damaging.HitSound = _weaponConfig.HitSound;
         //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         var behavior = bullet.GetComponent<BulletBehavior>();
         behavior.Speed = _weaponConfig.Speed.GetRandomValue();
         behavior.MoveAngle = fireAngle;
         behavior.Duration = _weaponConfig.Duration.GetRandomValue();
+    }
+    private void CreateOrbits()
+    {
+        for (var i = 0; i < _weaponConfig.Number; i++)
+        {
+            var orbit = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.identity);
+            orbit.transform.parent = transform;
+            orbit.transform.localScale = Vector3.one * _weaponConfig.Scale;
+            var damaging = orbit.GetComponent<DamagingBehavior>();
+            damaging.Damage = _weaponConfig.Damage;
+            damaging.Knockback = _weaponConfig.Knockback;
+            damaging.HitSound = _weaponConfig.HitSound;
+            var behavior = orbit.GetComponent<BulletBehavior>();
+            behavior.Duration = 1f / (float)_weaponConfig.Speed.min;
+            behavior.IsLooped = _weaponConfig.Duration.min == 0;
+            behavior.TimeOffset = i / (float)_weaponConfig.Number * behavior.Duration;
+            float offset = (i / (float)_weaponConfig.Number);
+
+            behavior.customTravelMode = (t) =>
+            {
+                var angle = Mathf.Lerp(0, Mathf.PI * 2, t);
+                var x = Mathf.Cos(angle) * _weaponConfig.Range;
+                var y = Mathf.Sin(angle) * _weaponConfig.Range;
+                orbit.transform.localPosition = new Vector3(x, y, 0f);
+            };
+        }
     }
 }

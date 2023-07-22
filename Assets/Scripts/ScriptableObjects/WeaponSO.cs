@@ -26,4 +26,6 @@ public class WeaponSO : ScriptableObject
 
     public GameSound FireSound;
 
+    public GameSound HitSound;
+
 }
