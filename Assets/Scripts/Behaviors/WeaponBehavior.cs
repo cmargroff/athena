@@ -34,6 +34,7 @@ public class WeaponBehavior : AthenaMonoBehavior
     {
       var orbit = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.identity);
       orbit.transform.parent = transform;
+      orbit.transform.localScale = Vector3.one * _weaponConfig.Scale;
       var damaging = orbit.GetComponent<DamagingBehavior>();
       damaging.Damage = _weaponConfig.Damage;
       damaging.Knockback = _weaponConfig.Knockback;
@@ -87,6 +88,7 @@ public class WeaponBehavior : AthenaMonoBehavior
     {
       bullet.transform.SetParent(transform, true);
     }
+    bullet.transform.localScale = Vector3.one * _weaponConfig.Scale;
     var damaging = bullet.GetComponent<DamagingBehavior>();
     damaging.Damage = _weaponConfig.Damage;
     damaging.Knockback = _weaponConfig.Knockback;

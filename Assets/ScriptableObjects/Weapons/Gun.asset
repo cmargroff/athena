@@ -27,5 +27,7 @@ MonoBehaviour:
   Number: 1
   Rate: 0.1
   Knockback: 500
+  Scale: 1
   Bullet: {fileID: 1451932744883786014, guid: e79799dc3f099e846ad33b69287add82, type: 3}
   ParentedToPlayer: 0
+  Orbit: 0
