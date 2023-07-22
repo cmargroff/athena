@@ -20,4 +20,5 @@ public class WeaponSO : ScriptableObject
 
     public GameObject Bullet;
     public bool ParentedToPlayer;
+    public bool Orbit;
 }
