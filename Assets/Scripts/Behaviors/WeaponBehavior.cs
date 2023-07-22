@@ -5,10 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class WeaponBehavior : AthenaMonoBehavior
 {
-  [SerializeField]
-  private WeaponSO _weaponConfig;
+    [SerializeField]
+    private WeaponSO _weaponConfig;
 
     private GameManagerBehavior.TimedEvent _timedEvent;
+    
+    private AudioSource _audioSource;
+
     protected override void Start()
     {
         base.Start();
@@ -22,81 +25,83 @@ public class WeaponBehavior : AthenaMonoBehavior
             SetFireRate(_weaponConfig.Rate);
         }
 
-        _audioSource=GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     protected override void PausibleFixedUpdate()
-  {
-
-  }
-  public void CreateOrbits()
-  {
-    for (var i = 0; i < _weaponConfig.Number; i++)
     {
-      var orbit = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.identity);
-      orbit.transform.parent = transform;
-      orbit.transform.localScale = Vector3.one * _weaponConfig.Scale;
-      var damaging = orbit.GetComponent<DamagingBehavior>();
-      damaging.Damage = _weaponConfig.Damage;
-      damaging.Knockback = _weaponConfig.Knockback;
-      var behavior = orbit.GetComponent<BulletBehavior>();
-      behavior.Duration = 1f / (float)_weaponConfig.Speed.min;
-      behavior.IsLooped = _weaponConfig.Duration.min == 0;
-      behavior.TimeOffset = i / (float)_weaponConfig.Number * behavior.Duration;
-      float offset = (i / (float)_weaponConfig.Number);
 
-      behavior.customTravelMode = (t) =>
-      {
-        var angle = Mathf.Lerp(0, Mathf.PI * 2, t);
-        var x = Mathf.Cos(angle) * _weaponConfig.Range;
-        var y = Mathf.Sin(angle) * _weaponConfig.Range;
-        orbit.transform.localPosition = new Vector3(x, y, 0f);
-      };
     }
-  }
-  public void SetFireRate(float fireRate)
-  {
-    if (_timedEvent == null)
+    public void CreateOrbits()
     {
-      _timedEvent = _gameManager.AddTimedEvent(fireRate, () =>
-      {
-        var fireAngle = Random.insideUnitCircle.normalized;
-        for (var i = 0; i <= _weaponConfig.Number; i++)
+        for (var i = 0; i < _weaponConfig.Number; i++)
         {
+            var orbit = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.identity);
+            orbit.transform.parent = transform;
+            orbit.transform.localScale = Vector3.one * _weaponConfig.Scale;
+            var damaging = orbit.GetComponent<DamagingBehavior>();
+            damaging.Damage = _weaponConfig.Damage;
+            damaging.Knockback = _weaponConfig.Knockback;
+            var behavior = orbit.GetComponent<BulletBehavior>();
+            behavior.Duration = 1f / (float)_weaponConfig.Speed.min;
+            behavior.IsLooped = _weaponConfig.Duration.min == 0;
+            behavior.TimeOffset = i / (float)_weaponConfig.Number * behavior.Duration;
+            float offset = (i / (float)_weaponConfig.Number);
 
-          var random = Random.value * _weaponConfig.Scatter;
-
-          var newAngle = fireAngle.Rotate(random - _weaponConfig.Scatter);
-
-          CreateBullet(newAngle);
+            behavior.customTravelMode = (t) =>
+            {
+                var angle = Mathf.Lerp(0, Mathf.PI * 2, t);
+                var x = Mathf.Cos(angle) * _weaponConfig.Range;
+                var y = Mathf.Sin(angle) * _weaponConfig.Range;
+                orbit.transform.localPosition = new Vector3(x, y, 0f);
+            };
         }
-
-          _audioSource.PlayOneShot(_weaponConfig.FireSound);
-      }, gameObject);
     }
-    else
+    public void SetFireRate(float fireRate)
     {
-      _timedEvent.SetFramesInSeconds(fireRate);
+        if (_timedEvent == null)
+        {
+            _timedEvent = _gameManager.AddTimedEvent(fireRate, () =>
+            {
+                var fireAngle = Random.insideUnitCircle.normalized;
+                for (var i = 0; i <= _weaponConfig.Number; i++)
+                {
+
+                    var random = Random.value * _weaponConfig.Scatter;
+
+                    var newAngle = fireAngle.Rotate(random - _weaponConfig.Scatter);
+
+                    CreateBullet(newAngle);
+                }
+                if (_weaponConfig.FireSound != null)
+                {
+                    _weaponConfig.FireSound.Play(_audioSource);
+                }
+            }, gameObject);
+        }
+        else
+        {
+            _timedEvent.SetFramesInSeconds(fireRate);
+        }
     }
-  }
 
-  private void CreateBullet(Vector2 fireAngle)
-  {
-    float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);
-
-    var bullet = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg));
-    if (_weaponConfig.ParentedToPlayer)
+    private void CreateBullet(Vector2 fireAngle)
     {
-      bullet.transform.SetParent(transform, true);
+        float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);
+
+        var bullet = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg));
+        if (_weaponConfig.ParentedToPlayer)
+        {
+            bullet.transform.SetParent(transform, true);
+        }
+        bullet.transform.localScale = Vector3.one * _weaponConfig.Scale;
+        var damaging = bullet.GetComponent<DamagingBehavior>();
+        damaging.Damage = _weaponConfig.Damage;
+        damaging.Knockback = _weaponConfig.Knockback;
+        //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+        var behavior = bullet.GetComponent<BulletBehavior>();
+        behavior.Speed = _weaponConfig.Speed.GetRandomValue();
+        behavior.MoveAngle = fireAngle;
+        behavior.Duration = _weaponConfig.Duration.GetRandomValue();
     }
-    bullet.transform.localScale = Vector3.one * _weaponConfig.Scale;
-    var damaging = bullet.GetComponent<DamagingBehavior>();
-    damaging.Damage = _weaponConfig.Damage;
-    damaging.Knockback = _weaponConfig.Knockback;
-    //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
-    var behavior = bullet.GetComponent<BulletBehavior>();
-    behavior.Speed = _weaponConfig.Speed.GetRandomValue();
-    behavior.MoveAngle = fireAngle;
-    behavior.Duration = _weaponConfig.Duration.GetRandomValue();
-  }
 }

@@ -1,3 +1,4 @@
+using Assets.Scripts.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,6 @@ public class WeaponSO : ScriptableObject
     public bool ParentedToPlayer;
     public bool Orbit;
 
-    public AudioClip FireSound;
+    public GameSound FireSound;
 
 }
