@@ -93,7 +93,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4799812864958688007, guid: ff41b82fc418804489197ecf77734092, type: 3}
       propertyPath: m_Name
-      value: Bullet Variant
+      value: Bullet
       objectReference: {fileID: 0}
     - target: {fileID: 5733650597878516753, guid: ff41b82fc418804489197ecf77734092, type: 3}
       propertyPath: m_RootOrder
@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5733650597878516753, guid: ff41b82fc418804489197ecf77734092, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5733650597878516753, guid: ff41b82fc418804489197ecf77734092, type: 3}
       propertyPath: m_LocalPosition.y

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FriendlyName: Flak
   Icon: {fileID: 0}
-  Color: {r: 1, g: 0, b: 0, a: 0}
+  Color: {r: 0, g: 0.735849, b: 0.14977618, a: 0}
   Damage: 200
   Speed:
     min: 0.1
@@ -27,6 +27,8 @@ MonoBehaviour:
   Number: 50
   Rate: 1
   Knockback: 500
+  Scale: 1
   Bullet: {fileID: 1451932744883786014, guid: 1d9e713897cec294587ab37603511736, type: 3}
   ParentedToPlayer: 0
+  Orbit: 0
   FireSound: {fileID: 8300000, guid: c9a73efd26253e649aaef23eec2a6ea4, type: 3}

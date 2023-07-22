@@ -17,9 +17,11 @@ public class WeaponSO : ScriptableObject
     public int Number;
     public float Rate;
     public float Knockback;
+    public float Scale;
 
     public GameObject Bullet;
     public bool ParentedToPlayer;
+    public bool Orbit;
 
     public AudioClip FireSound;
 

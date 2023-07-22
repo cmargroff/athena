@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18360172, g: 0.22910838, b: 0.30537552, a: 1}
+  m_IndirectSpecularColor: {r: 0.18360172, g: 0.22910835, b: 0.30537552, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35aacc248c1c81c42ad446ddc707f0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _spawnBoundry: {fileID: 85562257}
   _spawnRate: 0.5
   _enemies:
@@ -1334,6 +1335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5cc7f80e8cf0a4cb6f5b4b4a296aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
 --- !u!114 &1376124670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1341,11 +1343,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376124667}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _weaponConfig: {fileID: 11400000, guid: 228f558bed915e34bbbacf4060ef672d, type: 2}
 --- !u!114 &1376124671
 MonoBehaviour:
@@ -1354,13 +1357,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376124667}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _weaponConfig: {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}
 --- !u!114 &1376124672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376124667}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
+  _weaponConfig: {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
+--- !u!114 &1376124673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1372,103 +1390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponConfig: {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
---- !u!82 &1376124673
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376124667}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _gameManager: {fileID: 0}
+  _weaponConfig: {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
 --- !u!1 &1523056415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0c823e37b081244a4a4aeb5fc454d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
 --- !u!114 &1523056419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,6 +1455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bef6d4550f33f4a9372a5669407ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   MoveAngle: {x: 0, y: 0}
   FacesRight: 1
   _visual: {fileID: 2132133401}
@@ -1552,6 +1477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ff5b821900d294da7289b8f6707121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   MaxHealth: 1000
   Weight: 10000
   Friction: 1
@@ -1625,6 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae76a67dbbd9a7a4288cb9fac828b433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   Paused: 0
   Bounds: {fileID: 85562257}
   Player: {fileID: 1523056415}
@@ -1711,6 +1638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed6e5ec04ea10a4fbd607e98f119203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
 --- !u!64 &2134869072
 MeshCollider:
   m_ObjectHideFlags: 0

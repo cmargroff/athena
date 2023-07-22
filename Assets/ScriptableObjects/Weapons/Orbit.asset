@@ -10,25 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a40327d8f2426ff418fad21b4adc6e2f, type: 3}
-  m_Name: Gun
+  m_Name: Orbit
   m_EditorClassIdentifier: 
-  FriendlyName: Vulcan
+  FriendlyName: Orbital
   Icon: {fileID: 0}
-  Color: {r: 1, g: 0, b: 0, a: 0}
-  Damage: 500
+  Color: {r: 0, g: 0.63820505, b: 1, a: 0}
+  Damage: 200
   Speed:
-    min: 0.1
-    max: 0.1
-  Range: 0
+    min: 0.5
+    max: 1
+  Range: 3
   Duration:
-    min: 10
-    max: 10
+    min: 0
+    max: 0
   Scatter: 0
-  Number: 1
-  Rate: 0.1
-  Knockback: 500
-  Scale: 1
+  Number: 3
+  Rate: 0
+  Knockback: 100
+  Scale: 2
   Bullet: {fileID: 1451932744883786014, guid: e79799dc3f099e846ad33b69287add82, type: 3}
   ParentedToPlayer: 0
-  Orbit: 0
-  FireSound: {fileID: 8300000, guid: e661232542fc7734bac5e117da1a0c4a, type: 3}
+  Orbit: 1
