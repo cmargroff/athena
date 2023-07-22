@@ -29,3 +29,4 @@ MonoBehaviour:
   Knockback: 500
   Bullet: {fileID: 1451932744883786014, guid: 1d9e713897cec294587ab37603511736, type: 3}
   ParentedToPlayer: 0
+  FireSound: {fileID: 8300000, guid: c9a73efd26253e649aaef23eec2a6ea4, type: 3}

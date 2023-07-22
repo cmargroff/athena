@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Utils;
 using UnityEngine;
-
+[RequireComponent(typeof(AudioSource))]
 public class WeaponBehavior : AthenaMonoBehavior
 {
     [SerializeField]
     private WeaponSO _weaponConfig;
 
     private GameManagerBehavior.TimedEvent _timedEvent;
+    private AudioSource _audioSource;
     protected override void Start()
     {
         base.Start();
         SafeAssigned(_weaponConfig);
         SetFireRate(_weaponConfig.Rate);
 
+        _audioSource=GetComponent<AudioSource>();
     }
 
     protected override void PausibleFixedUpdate()
@@ -38,7 +40,9 @@ public class WeaponBehavior : AthenaMonoBehavior
                     CreateBullet(newAngle);
                 }
 
-                
+                _audioSource.PlayOneShot(_weaponConfig.FireSound);
+
+
             }, gameObject);
         }
         else

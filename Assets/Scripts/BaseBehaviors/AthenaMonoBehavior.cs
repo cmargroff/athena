@@ -7,7 +7,6 @@ using UnityEngine;
 public  class AthenaMonoBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
     protected GameManagerBehavior _gameManager;
     private bool _started;
     protected virtual void Start()

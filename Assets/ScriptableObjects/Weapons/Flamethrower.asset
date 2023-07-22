@@ -26,7 +26,7 @@ MonoBehaviour:
   Scatter: 0
   Number: 1
   Rate: 8
-  BaseKnockback: 1
-  KnockbackScaling: 100
+  Knockback: 0
   Bullet: {fileID: 2764312794773541965, guid: 5d89e26d220c080479c717dd93141059, type: 3}
   ParentedToPlayer: 1
+  FireSound: {fileID: 8300000, guid: bae6b62ce85ede4459a68ea87632d9f5, type: 3}
