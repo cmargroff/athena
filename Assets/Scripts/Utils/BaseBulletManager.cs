@@ -62,6 +62,7 @@ public class StandardBulletManager : BaseBulletManager
         damaging.Damage = weaponConfig.Damage;
         damaging.Knockback = weaponConfig.Knockback;
         damaging.HitSound = weaponConfig.HitSound;
+        damaging.Pierce = weaponConfig.Pierce;
         //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         var behavior = bullet.GetComponent<BulletBehavior>();
         behavior.Speed = weaponConfig.Speed.GetRandomValue();
@@ -83,6 +84,7 @@ public class OrbitingBulletManager : BaseBulletManager
             damaging.Damage = weaponConfig.Damage;
             damaging.Knockback = weaponConfig.Knockback;
             damaging.HitSound = weaponConfig.HitSound;
+            damaging.Pierce = weaponConfig.Pierce;
             var behavior = orbit.GetComponent<BulletBehavior>();
             behavior.Duration = 1f / (float)weaponConfig.Speed.min;
             behavior.IsLooped = weaponConfig.Duration.min == 0;
