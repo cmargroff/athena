@@ -37,6 +37,7 @@ public class VulnerableBehavior : AthenaMonoBehavior
         base.OnActive();
         _health = MaxHealth;
         _lifebar.SetHealthPercent(_health / MaxHealth);
+        _knockback = 0;
     }
     // Update is called once per frame
     protected override void PausibleUpdate()
@@ -80,15 +81,20 @@ public class VulnerableBehavior : AthenaMonoBehavior
                     if (_lifebar != null)
                     {
                         _lifebar.SetHealthPercent(_health / MaxHealth);
+
                     }
 
                     if (_health < 1)
                     {
                         gameObject.SetActive(false);
                     }
-                    _knockbackVector = damaging.GetKnockbackAngle();
-                    _knockback = CalculateKnockback(damaging.Knockback);
-                    _hitstun = true;
+                    else
+                    {
+                        _knockbackVector = damaging.GetKnockbackAngle();
+                        _knockback = CalculateKnockback(damaging.Knockback);
+                        _hitstun = true;
+                    }
+
                 }
             }
         }

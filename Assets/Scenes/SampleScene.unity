@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35aacc248c1c81c42ad446ddc707f0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _spawnBoundry: {fileID: 85562257}
   _spawnRate: 0.5
   _enemies:
@@ -1333,6 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5cc7f80e8cf0a4cb6f5b4b4a296aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
 --- !u!114 &1376124670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _weaponConfig: {fileID: 11400000, guid: 228f558bed915e34bbbacf4060ef672d, type: 2}
 --- !u!114 &1376124671
 MonoBehaviour:
@@ -1353,11 +1356,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376124667}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _weaponConfig: {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}
 --- !u!114 &1376124672
 MonoBehaviour:
@@ -1366,11 +1370,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376124667}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _weaponConfig: {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
 --- !u!1 &1523056415
 GameObject:
@@ -1422,6 +1427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0c823e37b081244a4a4aeb5fc454d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
 --- !u!114 &1523056419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,6 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bef6d4550f33f4a9372a5669407ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   MoveAngle: {x: 0, y: 0}
   FacesRight: 1
   _visual: {fileID: 2132133401}
@@ -1455,6 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ff5b821900d294da7289b8f6707121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   MaxHealth: 1000
   Weight: 10000
   Friction: 1
@@ -1528,6 +1536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae76a67dbbd9a7a4288cb9fac828b433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   Paused: 0
   Bounds: {fileID: 85562257}
   Player: {fileID: 1523056415}
@@ -1614,6 +1623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed6e5ec04ea10a4fbd607e98f119203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
 --- !u!64 &2134869072
 MeshCollider:
   m_ObjectHideFlags: 0
