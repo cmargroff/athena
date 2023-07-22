@@ -8,7 +8,10 @@ public class BulletBehavior : AthenaMonoBehavior
   public float Duration;
 
   Sequence _seq;
-  protected override void OnActive()
+
+
+
+    protected override void OnActive()
   {
     _seq = DOTween.Sequence(); //new Sequence()
     _seq.SetUpdate(UpdateType.Manual);
@@ -37,5 +40,7 @@ public class BulletBehavior : AthenaMonoBehavior
     base.PausibleFixedUpdate();
     _seq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
   }
+
+
 }
 

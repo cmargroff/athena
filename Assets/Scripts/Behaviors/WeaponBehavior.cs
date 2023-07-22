@@ -58,9 +58,7 @@ public class WeaponBehavior : AthenaMonoBehavior
         }
         var damaging = bullet.GetComponent<DamagingBehavior>();
         damaging.Damage = _weaponConfig.Damage;
-        damaging.BaseKnockback = _weaponConfig.BaseKnockback;
-        damaging.KnockbackScaling = _weaponConfig.KnockbackScaling;
-        damaging.KnockbackAngle = angle;
+        damaging.Knockback = _weaponConfig.Knockback;
         //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         var behavior = bullet.GetComponent<BulletBehavior>();
         behavior.Speed = _weaponConfig.Speed.GetRandomValue();

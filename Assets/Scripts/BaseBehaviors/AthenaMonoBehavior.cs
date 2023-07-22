@@ -7,11 +7,12 @@ using UnityEngine;
 public  class AthenaMonoBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]
     protected GameManagerBehavior _gameManager;
     private bool _started;
     protected virtual void Start()
     {
-        _gameManager = FindObjectOfType<GameManagerBehavior>();
+        _gameManager = SafeFindObjectOfType<GameManagerBehavior>();
         //todo:add safe find
         OnActive();
         _started=true;
@@ -111,6 +112,17 @@ public  class AthenaMonoBehavior : MonoBehaviour
         {
             throw new System.Exception($"{typeof(T).Name} not assigned in editor");
         }
+    }
+
+
+    protected T SafeFindObjectOfType<T>() where T : UnityEngine.Object
+    {
+        var obj = FindObjectOfType<T>();
+        if (obj == null || obj.ToString() == "null")
+        {
+            throw new System.Exception($"{typeof(T).Name} not found in world");
+        }
+        return obj;
     }
 
 }

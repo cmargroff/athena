@@ -26,7 +26,6 @@ MonoBehaviour:
   Scatter: 22
   Number: 50
   Rate: 1
-  BaseKnockback: 10
-  KnockbackScaling: 100
+  Knockback: 50
   Bullet: {fileID: 1451932744883786014, guid: 1d9e713897cec294587ab37603511736, type: 3}
   ParentedToPlayer: 0

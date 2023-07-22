@@ -15,7 +15,7 @@ MonoBehaviour:
   FriendlyName: Vulcan
   Icon: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 0}
-  Damage: 1000
+  Damage: 500
   Speed:
     min: 0.1
     max: 0.1
@@ -26,7 +26,6 @@ MonoBehaviour:
   Scatter: 0
   Number: 1
   Rate: 0.1
-  BaseKnockback: 10
-  KnockbackScaling: 100
+  Knockback: 500
   Bullet: {fileID: 1451932744883786014, guid: e79799dc3f099e846ad33b69287add82, type: 3}
   ParentedToPlayer: 0

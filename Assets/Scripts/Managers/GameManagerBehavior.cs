@@ -19,11 +19,15 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     private Int64 _frameCount = 0;
 
+
+    public float KnockbackFriction = 0.1f;
+    public float KnockbackFactor = 1f;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        DOTween.SetTweensCapacity(1000, 1000);
+        DOTween.SetTweensCapacity(10000, 10000);
 
         SafeAssigned(Bounds);
 

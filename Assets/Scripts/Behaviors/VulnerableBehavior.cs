@@ -23,6 +23,8 @@ public class VulnerableBehavior : AthenaMonoBehavior
     private Vector3 _knockbackVector = Vector3.zero;
     private float _knockback = 0;
 
+
+
     protected override void Start()
     {
         base.Start();
@@ -42,7 +44,7 @@ public class VulnerableBehavior : AthenaMonoBehavior
         if (_hitstun)
         {
             transform.position += new Vector3(_knockbackVector.x * _knockback, _knockbackVector.y * _knockback, 0);
-            _knockback -= 0.01f; // friction
+            _knockback -= _gameManager.KnockbackFriction; // friction
             if (_knockback < 0)
             {
                 _hitstun = false;
@@ -58,22 +60,10 @@ public class VulnerableBehavior : AthenaMonoBehavior
     {
         Damage(other);
     }
-    private float CalculateKnockback(float damage, float bkb, float kbs)
+    private float CalculateKnockback(float knockback)
     {
-        damage/=100;
-        kbs/=100;
-        float p = 20;
-        return (
-            (
-                (
-                    (
-                        ((p/10) + ((p * damage) / 20))
-                        * (200 / (Weight + 100))
-                        * 1.4f
-                    ) + 18
-                ) * kbs
-            ) + bkb
-        ) * 0.005f;
+
+        return knockback / Weight * _gameManager.KnockbackFactor;
     }
 
     private void Damage(Collider2D other)
@@ -96,8 +86,8 @@ public class VulnerableBehavior : AthenaMonoBehavior
                     {
                         gameObject.SetActive(false);
                     }
-                    _knockbackVector = new Vector3(Mathf.Cos(damaging.KnockbackAngle), Mathf.Sin(damaging.KnockbackAngle), 0);
-                    _knockback = CalculateKnockback(damaging.Damage, damaging.BaseKnockback, damaging.KnockbackScaling);
+                    _knockbackVector = damaging.GetKnockbackAngle();
+                    _knockback = CalculateKnockback(damaging.Knockback);
                     _hitstun = true;
                 }
             }
