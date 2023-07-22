@@ -75,6 +75,7 @@ public class WeaponBehavior : AthenaMonoBehavior
         damaging.Damage = _weaponConfig.Damage;
         damaging.Knockback = _weaponConfig.Knockback;
         damaging.HitSound = _weaponConfig.HitSound;
+        damaging.Pierce = _weaponConfig.Pierce;
         //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         var behavior = bullet.GetComponent<BulletBehavior>();
         behavior.Speed = _weaponConfig.Speed.GetRandomValue();

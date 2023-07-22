@@ -16,6 +16,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Color: {r: 1, g: 0.5227602, b: 0, a: 0}
   Damage: 300
+  Pierce: Infinity
   Speed:
     min: 0
     max: 0

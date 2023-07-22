@@ -11,6 +11,7 @@ public class WeaponSO : ScriptableObject
     public Sprite Icon;
     public Color Color;
     public int Damage;
+    public float Pierce;
     public MinMax Speed;
     public int Range;
     public MinMax Duration;
