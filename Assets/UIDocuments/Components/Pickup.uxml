@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement class="pickup-wrap" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-self: auto; align-items: center; justify-content: center; flex-direction: row;">
+        <ui:VisualElement class="pickup-icon" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); width: 32px; height: 32px; justify-content: center;" />
+        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" class="pickup-count" style="color: rgb(255, 255, 255);" />
+    </ui:VisualElement>
+</ui:UXML>

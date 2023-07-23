@@ -51,12 +51,14 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         var flying = enemy.GetComponent<FlyingBehavior>();
         var damaging = enemy.GetComponent<DamagingBehavior>();
         var vulnerable = enemy.GetComponent<VulnerableBehavior>();
+        var rewardDrop = enemy.GetComponent<RewardDropBehavior>();
 
         flying.Speed = _enemy.Speed;
         damaging.Damage = _enemy.TouchDamage;
         vulnerable.MaxHealth = _enemy.Health;
         vulnerable.Weight = _enemy.Weight;
         vulnerable.Friction = _enemy.Friction;
+        rewardDrop.Rewards = _enemy.Rewards;
     }
 
     private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider)

@@ -58,7 +58,6 @@ public class BulletBehavior : AthenaMonoBehavior
     }
     if (TimeOffset > 0)
     {
-      Debug.Log((_seq.Duration(false), Duration, TimeOffset));
       _seq.Goto(TimeOffset, true);
     }
   }

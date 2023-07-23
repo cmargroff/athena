@@ -24,11 +24,12 @@ public class VulnerableBehavior : AthenaMonoBehavior
     private float _knockback = 0;
 
     private AudioSource _audioSource;
+    private RewardDropBehavior _rewards;
 
     protected override void Start()
     {
         base.Start();
-        
+        _rewards = GetComponent<RewardDropBehavior>();
     }
 
     protected override void OnActive()
@@ -85,6 +86,10 @@ public class VulnerableBehavior : AthenaMonoBehavior
 
                     if (_health < 1)
                     {
+                        if (_rewards != null)
+                        {
+                            _rewards.DropRewards();
+                        }
                         gameObject.SetActive(false);
                     }
                     else

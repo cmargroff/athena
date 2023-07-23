@@ -1,11 +1,8 @@
 
 using Assets.Scripts.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
-using System;
-
+[RequireComponent(typeof(Collider2D))]
 public class DamagingBehavior : AthenaMonoBehavior
 {
   [SerializeField]
