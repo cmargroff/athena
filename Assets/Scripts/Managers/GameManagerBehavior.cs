@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using DG.Tweening;
 public class GameManagerBehavior : AthenaMonoBehavior
 {
@@ -10,6 +9,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     public Collider2D Bounds;
     public GameObject Player;
+    public GameObject Pickup;
 
     public PoolBehavior Pool;
 
@@ -22,6 +22,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
+    public Dictionary<PickupType, int> Pickups = new Dictionary<PickupType, int>();
+    public event Action<PickupType, int> OnPickupCollected;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -80,5 +82,24 @@ public class GameManagerBehavior : AthenaMonoBehavior
         public int Frames;
         public Action Action;
         public GameObject Owner;
+    }
+    public void SpawnPickup(PickupType type, int Amount, Vector3 position, Quaternion rotation)
+    {
+        var pickup = Pool.GetPooledObject(Pickup, position, rotation);
+        var pickupBehavior = pickup.GetComponent<PickupBehavior>();
+        pickupBehavior.Type = type;
+    }
+    public void CollectPickup(PickupBehavior pickup)
+    {
+        if (Pickups.ContainsKey(pickup.Type))
+        {
+            Pickups[pickup.Type] += pickup.Amount;
+        }
+        else
+        {
+            Pickups.Add(pickup.Type, pickup.Amount);
+        }
+        OnPickupCollected?.Invoke(pickup.Type, Pickups[pickup.Type]);
+        pickup.gameObject.SetActive(false);
     }
 }
