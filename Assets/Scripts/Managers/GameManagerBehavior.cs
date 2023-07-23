@@ -17,7 +17,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     [SerializeField]
     private Dictionary<Guid,TimedEvent> _timedEvents= new Dictionary<Guid, TimedEvent>();
 
-    private Int64 _frameCount = 0;
+    private Int64 _frameCount = 1;
 
 
     public float KnockbackFriction = 0.1f;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18360136, g: 0.22910792, b: 0.30537453, a: 1}
+  m_IndirectSpecularColor: {r: 0.18360172, g: 0.22910835, b: 0.30537552, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1629,7 +1629,7 @@ GameObject:
   - component: {fileID: 1376124670}
   - component: {fileID: 1376124671}
   - component: {fileID: 1376124672}
-  - component: {fileID: 1376124673}
+  - component: {fileID: 1376124675}
   - component: {fileID: 1376124674}
   m_Layer: 6
   m_Name: Weapons
@@ -1704,19 +1704,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponConfig: {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
---- !u!114 &1376124673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376124667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponConfig: {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
 --- !u!82 &1376124674
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1813,6 +1800,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1376124675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376124667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef553e767db7e1418458cc0260d51ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponConfig: {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
 --- !u!1 &1523056415
 GameObject:
   m_ObjectHideFlags: 0
