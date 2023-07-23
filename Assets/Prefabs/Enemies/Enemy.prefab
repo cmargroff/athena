@@ -285,6 +285,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 50
   Knockback: 1
+  Pierce: Infinity
+  HitSound:
+    Sound: {fileID: 8300000, guid: 75d509a23c2089946b06a899013a01f9, type: 3}
+    Volume: 1
 --- !u!82 &9207616830554243919
 AudioSource:
   m_ObjectHideFlags: 0

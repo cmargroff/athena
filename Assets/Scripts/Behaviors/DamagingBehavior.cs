@@ -17,7 +17,6 @@ public class DamagingBehavior : AthenaMonoBehavior
   private FlyingBehavior _parent;
   private BulletBehavior _bullet;
 
-  [HideInInspector]
   public GameSound HitSound;
 
   protected override void Start()
