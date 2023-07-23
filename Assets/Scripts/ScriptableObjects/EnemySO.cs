@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "Enemy", menuName = "athena/Enemy", order = 0)]
 public class EnemySO : ScriptableObject
@@ -10,6 +11,5 @@ public class EnemySO : ScriptableObject
     public int Friction;
     public int TouchDamage;   
     public GameObject Prefab;
-    public int CoinDrop;
-    public int BrickDrop;
+    public List<Reward> Rewards;
 }
