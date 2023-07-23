@@ -124,6 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7784989386747506924}
+  - component: {fileID: -277273881098256683}
   - component: {fileID: 3895767873684850898}
   - component: {fileID: 2107813326715175333}
   - component: {fileID: 4900701588729609274}
@@ -155,6 +156,19 @@ Transform:
   - {fileID: 2950912858793292569}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-277273881098256683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060478605645464948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb62960cce45a3847a8f297d0849d9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rewards: []
 --- !u!114 &3895767873684850898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +299,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 50
   Knockback: 1
+  Pierce: Infinity
+  HitSound:
+    Sound: {fileID: 0}
+    Volume: 1
 --- !u!82 &9207616830554243919
 AudioSource:
   m_ObjectHideFlags: 0
