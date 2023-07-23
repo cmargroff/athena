@@ -16,7 +16,8 @@ public class PickupBehavior : AthenaMonoBehavior
   public int Amount = 1;
   public PickupType Type = PickupType.Coin;
   
-  private void OnEnable() {
+  protected override void OnActive() {
+    base.OnActive();
     var Material = GetComponentInChildren<SpriteRenderer>().material;
     // clean up this switch statement to something more readable
     switch (Type)

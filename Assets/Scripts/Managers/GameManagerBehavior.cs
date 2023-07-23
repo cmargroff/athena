@@ -22,6 +22,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
+    public Dictionary<PickupType, int> Pickups = new Dictionary<PickupType, int>();
 
     // Start is called before the first frame update
     protected override void Start()
@@ -86,5 +87,17 @@ public class GameManagerBehavior : AthenaMonoBehavior
         var pickup = Pool.GetPooledObject(Pickup, position, rotation);
         var pickupBehavior = pickup.GetComponent<PickupBehavior>();
         pickupBehavior.Type = type;
+    }
+    public void CollectPickup(PickupBehavior pickup)
+    {
+        if (Pickups.ContainsKey(pickup.Type))
+        {
+            Pickups[pickup.Type] += pickup.Amount;
+        }
+        else
+        {
+            Pickups.Add(pickup.Type, pickup.Amount);
+        }
+        pickup.gameObject.SetActive(false);
     }
 }
