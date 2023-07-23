@@ -156,6 +156,120 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menues"",
+            ""id"": ""5e4ee098-ad28-49ce-afcf-3ee7b6686e91"",
+            ""actions"": [
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""2884b6f8-0d73-473b-92bb-0423128aa9ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""0425a618-b23a-4bf3-98d8-a95d3878466a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9b506525-833d-46dd-bf38-8648866a4eb6"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""359bb085-eb10-4be3-ad00-5e5b1dece120"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""59108651-66f9-4288-a925-9f5415f0fc4e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""516750de-7fa2-4198-adfa-b69d302ba998"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5c5cf2b9-fec3-49b9-83ab-d058830ebfce"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a213285d-04c8-4758-8e3e-7db4cb90d374"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e6717f2b-7a01-473d-bf6b-94023f39127b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bb10ecc-80a7-4599-993f-a315b0668a70"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -165,6 +279,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
         m_Game_Select = m_Game.FindAction("Select", throwIfNotFound: true);
         m_Game_Start = m_Game.FindAction("Start", throwIfNotFound: true);
+        // Menues
+        m_Menues = asset.FindActionMap("Menues", throwIfNotFound: true);
+        m_Menues_Submit = m_Menues.FindAction("Submit", throwIfNotFound: true);
+        m_Menues_Move = m_Menues.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,10 +402,69 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public GameActions @Game => new GameActions(this);
+
+    // Menues
+    private readonly InputActionMap m_Menues;
+    private List<IMenuesActions> m_MenuesActionsCallbackInterfaces = new List<IMenuesActions>();
+    private readonly InputAction m_Menues_Submit;
+    private readonly InputAction m_Menues_Move;
+    public struct MenuesActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public MenuesActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Submit => m_Wrapper.m_Menues_Submit;
+        public InputAction @Move => m_Wrapper.m_Menues_Move;
+        public InputActionMap Get() { return m_Wrapper.m_Menues; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuesActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuesActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuesActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuesActionsCallbackInterfaces.Add(instance);
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+        }
+
+        private void UnregisterCallbacks(IMenuesActions instance)
+        {
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+        }
+
+        public void RemoveCallbacks(IMenuesActions instance)
+        {
+            if (m_Wrapper.m_MenuesActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuesActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuesActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuesActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuesActions @Menues => new MenuesActions(this);
     public interface IGameActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+    }
+    public interface IMenuesActions
+    {
+        void OnSubmit(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }
