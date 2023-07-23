@@ -11,8 +11,10 @@ public class RewardDropBehavior : AthenaMonoBehavior
     // spawn rewards from list
     foreach (var reward in Rewards)
     {
-      if(UnityEngine.Random.value > reward.Chance) continue;
-      _gameManager.SpawnPickup(reward.Type, 1, transform.position, Quaternion.identity);
+            if (Random.value < reward.Chance)
+            {
+                _gameManager.SpawnPickup(reward.Type, 1, transform.position, Quaternion.identity);
+            }
     }
   }
 }

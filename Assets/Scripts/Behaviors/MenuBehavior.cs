@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 [RequireComponent(typeof(UIDocument))]
 public class MenuBehavior : MonoBehaviour
@@ -17,21 +18,24 @@ public class MenuBehavior : MonoBehaviour
         _controls.Menues.Enable();
         _uiDocument =GetComponent<UIDocument>();
         var button=_uiDocument.rootVisualElement.Q<Button>("StartButton");
-
-        button.clicked += () => OnStartLabelClick();
-        button.RegisterCallback<NavigationSubmitEvent>(OnStartButtonClick);
+        button.RegisterCallback<ClickEvent>(OnStartButtonClick);
+        button.RegisterCallback<NavigationSubmitEvent>(OnStartButtonSubmit);
     }
 
-    private void OnStartButtonClick(NavigationSubmitEvent evt)
+    private void OnStartButtonSubmit(NavigationSubmitEvent evt)
     {
-        Debug.Log("Button clicked");
+        StartGame();
     }
 
-    private void OnStartLabelClick()
+    private void OnStartButtonClick(ClickEvent evt)
     {
-        Debug.Log("Label clicked");
+        StartGame();
     }
 
+    private void StartGame()
+    {
+        SceneManager.LoadSceneAsync("SampleScene", LoadSceneMode.Single);
+    }
     // Update is called once per frame
     void Update()
     {
