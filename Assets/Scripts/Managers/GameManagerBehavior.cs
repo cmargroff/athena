@@ -23,6 +23,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
     public Dictionary<PickupType, int> Pickups = new Dictionary<PickupType, int>();
+    public event Action<PickupType, int> OnPickupCollected;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -98,6 +99,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         {
             Pickups.Add(pickup.Type, pickup.Amount);
         }
+        OnPickupCollected?.Invoke(pickup.Type, Pickups[pickup.Type]);
         pickup.gameObject.SetActive(false);
     }
 }
