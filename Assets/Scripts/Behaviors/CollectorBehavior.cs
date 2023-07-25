@@ -9,7 +9,7 @@ public class CollectorBehavior : AthenaMonoBehavior
         var pickup = other.GetComponent<PickupBehavior>();
         if (pickup != null)
         {
-            _gameManager.CollectPickup(pickup);
+           pickup.Pickup();
 
 
         }

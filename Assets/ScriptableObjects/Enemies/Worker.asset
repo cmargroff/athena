@@ -20,5 +20,5 @@ MonoBehaviour:
   TouchDamage: 100
   Prefab: {fileID: 1641400220716531286, guid: 34e51435affef874187e22ba213b7767, type: 3}
   Rewards:
-  - Type: 4
+  - Pickup: {fileID: 11400000, guid: 003fa6927ac7a5040a3998395eacd4d7, type: 2}
     Chance: 100
