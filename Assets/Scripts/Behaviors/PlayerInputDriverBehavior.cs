@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(FlyingBehavior))]
-public class PlayerInputDriverBehavior : AthenaMonoBehavior
+public class PlayerInputDriverBehavior : AthenaMonoBehavior, IAlive
 {
     private @PlayerInputActions _controls;
     private FlyingBehavior _flying;

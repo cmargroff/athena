@@ -3,8 +3,9 @@ using Assets.Scripts.Utils;
 using Unity.Collections;
 using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
-public class DamagingBehavior : AthenaMonoBehavior
+public class DamagingBehavior : AthenaMonoBehavior, IAlive
 {
+
   [SerializeField]
   [ReadOnly]
   public float Damage = 1;

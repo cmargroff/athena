@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(FlyingBehavior))]
-public class  ChaseBehavior: AthenaMonoBehavior
+public class  ChaseBehavior: AthenaMonoBehavior, IAlive
 {
     private FlyingBehavior _flying;
     // Start is called before the first frame update

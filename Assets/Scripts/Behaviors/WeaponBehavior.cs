@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Utils;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
-public class WeaponBehavior : AthenaMonoBehavior
+public class WeaponBehavior : AthenaMonoBehavior, IAlive
 {
     [SerializeField]
     private WeaponSO _weaponConfig;

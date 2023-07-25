@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrbitalBehavior : AthenaMonoBehavior
+public class OrbitalBehavior : AthenaMonoBehavior, IAlive
 {
     [SerializeField]
     private WeaponSO _weaponConfig;

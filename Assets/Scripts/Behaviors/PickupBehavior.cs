@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public enum PickupType
 {
   Health,
@@ -11,8 +12,14 @@ public enum PickupType
 }
 
 [RequireComponent(typeof(Collider2D))]
-public class PickupBehavior : AthenaMonoBehavior
+public class PickupBehavior : AthenaMonoBehavior, IAlive
 {
+    public PickupBehavior():base(new LifeAndDeathStateMachine())
+    {
+            
+    }
+
+
   public int Amount = 1;
   public PickupType Type = PickupType.Coin;
   

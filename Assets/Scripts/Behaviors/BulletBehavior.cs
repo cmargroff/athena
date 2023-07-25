@@ -12,10 +12,11 @@ public class BulletBehavior : AthenaMonoBehavior
   public float TimeOffset;
   public DOSetter<float> customTravelMode;
 
-  Sequence _seq;
+  protected Sequence _seq;
 
   protected override void OnActive()
   {
+    base.OnActive();
     _seq = DOTween.Sequence(); //new Sequence()
     _seq.SetUpdate(UpdateType.Manual);
     if (customTravelMode is not null)

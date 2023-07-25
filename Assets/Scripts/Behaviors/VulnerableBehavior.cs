@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
-public class VulnerableBehavior : AthenaMonoBehavior
+public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 {
     [SerializeField]
     public float MaxHealth = 1;
@@ -88,7 +88,7 @@ public class VulnerableBehavior : AthenaMonoBehavior
                     {
                         if (_rewards != null)
                         {
-                            _rewards.DropRewards();
+a                            _rewards.DropRewards();
                         }
                         gameObject.SetActive(false);
                     }

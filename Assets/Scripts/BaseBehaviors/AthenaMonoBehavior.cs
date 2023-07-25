@@ -9,6 +9,19 @@ public  class AthenaMonoBehavior : MonoBehaviour
     // Start is called before the first frame update
     protected GameManagerBehavior _gameManager;
     private bool _started;
+
+    private IStateMachine _stateMachine;
+
+    public AthenaMonoBehavior()
+    {
+            
+    }
+    public AthenaMonoBehavior(IStateMachine stateMachine):base()
+    {
+        _stateMachine= stateMachine;
+    }
+
+
     protected virtual void Start()
     {
         _gameManager = SafeFindObjectOfType<GameManagerBehavior>();
@@ -51,9 +64,14 @@ public  class AthenaMonoBehavior : MonoBehaviour
         }
     }
     protected virtual void OnActive()
-    { 
-    
+    {
+        if (_stateMachine != null)
+        {
+            _stateMachine.SetInitialState(gameObject);
+        }
     }
+    
+
     protected virtual void OnPaused()
     {
     }
