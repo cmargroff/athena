@@ -12,6 +12,8 @@ public interface IStateMachine
 }
 public abstract class BaseStateMachine: IStateMachine
 {
+    protected Type _currentState;
+
     public void SetInitialState(GameObject gameObject)
     {
         SetState(gameObject,GetInitialState());
@@ -19,14 +21,18 @@ public abstract class BaseStateMachine: IStateMachine
 
     public void SetState(GameObject gameObject, Type stateType)
     {
-        var components = gameObject.GetComponentsInChildren<MonoBehaviour>();
-        foreach (var component in components)
+        if (_currentState != stateType)
         {
-            if (component is IState)
+            var components = gameObject.GetComponentsInChildren<MonoBehaviour>();
+            foreach (var component in components)
             {
-                component.enabled = component.GetType().GetInterface(stateType.Name) != null;
+                if (component is IState)
+                {
+                    component.enabled = component.GetType().GetInterface(stateType.Name) != null;
+                }
             }
         }
+        _currentState = stateType;
     }
     protected abstract Type GetInitialState();
 }

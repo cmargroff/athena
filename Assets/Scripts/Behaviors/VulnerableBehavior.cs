@@ -88,7 +88,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                     {
                         if (_rewards != null)
                         {
-a                            _rewards.DropRewards();
+                            _rewards.DropRewards();
                         }
                         gameObject.SetActive(false);
                     }

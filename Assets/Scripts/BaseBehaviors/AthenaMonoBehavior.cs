@@ -10,7 +10,7 @@ public  class AthenaMonoBehavior : MonoBehaviour
     protected GameManagerBehavior _gameManager;
     private bool _started;
 
-    private IStateMachine _stateMachine;
+    protected IStateMachine _stateMachine;
 
     public AthenaMonoBehavior()
     {

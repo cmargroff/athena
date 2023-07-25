@@ -4,6 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(FlyingBehavior))]
 public class  ChaseBehavior: AthenaMonoBehavior, IAlive
 {
+    public ChaseBehavior() : base(new LifeAndDeathStateMachine())
+    {
+
+    }
     private FlyingBehavior _flying;
     // Start is called before the first frame update
     protected override void Start()

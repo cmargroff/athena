@@ -12,6 +12,7 @@ public  class Death: AthenaMonoBehavior
     protected override void OnActive()
     {
         base.OnActive();
+        _seq = DOTween.Sequence();
         _seq.SetUpdate(UpdateType.Manual);
         _seq.Append(transform.DOScale(0, 1));
         _seq.AppendCallback(() => gameObject.SetActive(false));
