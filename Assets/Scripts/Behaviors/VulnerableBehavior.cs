@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 {
+
     [SerializeField]
     public float MaxHealth = 1;
     public int Weight = 1;
@@ -32,7 +33,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         _rewards = GetComponent<RewardDropBehavior>();
     }
 
-    protected override void OnActive()
+    public override void OnActive()
     {
         base.OnActive();
         _audioSource = GetComponent<AudioSource>();
@@ -90,7 +91,14 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         {
                             _rewards.DropRewards();
                         }
-                        gameObject.SetActive(false);
+                        if (_stateMachine != null)
+                        {
+                            _stateMachine.SetState(gameObject, typeof(IDeath));
+                        }
+                        else
+                        { 
+                        
+                        }
                     }
                     else
                     {

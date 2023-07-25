@@ -10,21 +10,17 @@ public  class AthenaMonoBehavior : MonoBehaviour
     protected GameManagerBehavior _gameManager;
     private bool _started;
 
-    protected IStateMachine _stateMachine;
+    protected BaseStateMachineBehavior _stateMachine;
 
-    public AthenaMonoBehavior()
-    {
-            
-    }
-    public AthenaMonoBehavior(IStateMachine stateMachine):base()
-    {
-        _stateMachine= stateMachine;
-    }
+
 
 
     protected virtual void Start()
     {
         _gameManager = SafeFindObjectOfType<GameManagerBehavior>();
+
+        _stateMachine = GetComponent<BaseStateMachineBehavior>();
+            
         //todo:add safe find
         OnActive();
         _started=true;
@@ -63,7 +59,7 @@ public  class AthenaMonoBehavior : MonoBehaviour
             
         }
     }
-    protected virtual void OnActive()
+    public virtual void OnActive()
     {
         if (_stateMachine != null)
         {

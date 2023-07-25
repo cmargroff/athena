@@ -14,7 +14,7 @@ public class BulletBehavior : AthenaMonoBehavior
 
   protected Sequence _seq;
 
-  protected override void OnActive()
+    public override void OnActive()
   {
     base.OnActive();
     _seq = DOTween.Sequence(); //new Sequence()

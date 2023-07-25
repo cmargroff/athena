@@ -14,16 +14,18 @@ public enum PickupType
 [RequireComponent(typeof(Collider2D))]
 public class PickupBehavior : AthenaMonoBehavior, IAlive
 {
-    public PickupBehavior():base(new LifeAndDeathStateMachine())
-    {
-            
-    }
+
 
 
   public int Amount = 1;
   public PickupType Type = PickupType.Coin;
-  
-  protected override void OnActive() {
+
+    public void Kill()
+    {
+        _stateMachine.SetState(gameObject, typeof(IDeath));
+    }
+
+  public  override void OnActive() {
     base.OnActive();
     var Material = GetComponentInChildren<SpriteRenderer>().material;
     // clean up this switch statement to something more readable
@@ -48,5 +50,7 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
         Material.color = Color.blue;
         break;
     }
+
+
   }
 }

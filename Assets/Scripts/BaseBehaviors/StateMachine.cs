@@ -5,42 +5,45 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public interface IStateMachine
-{
-    void SetInitialState(GameObject gameObject);
-    void SetState(GameObject gameObject, Type stateType);
-}
-public abstract class BaseStateMachine: IStateMachine
+public abstract class BaseStateMachineBehavior:MonoBehaviour
 {
     protected Type _currentState;
 
     public void SetInitialState(GameObject gameObject)
     {
-        SetState(gameObject,GetInitialState());
+        if (_currentState == null)
+        {
+            SetState(gameObject, GetInitialState());
+        }
     }
 
     public void SetState(GameObject gameObject, Type stateType)
     {
         if (_currentState != stateType)
         {
-            var components = gameObject.GetComponentsInChildren<MonoBehaviour>();
+            var components = gameObject.GetComponentsInChildren<MonoBehaviour>(true);
             foreach (var component in components)
             {
+                _currentState = stateType;
                 if (component is IState)
                 {
-                    component.enabled = component.GetType().GetInterface(stateType.Name) != null;
+                    if (component.GetType().GetInterface(stateType.Name) != null)
+                    {
+                        component.enabled = true;
+
+
+
+                    }
+                    else
+                    {
+                        component.enabled = false;
+                    }
                 }
             }
+           
         }
-        _currentState = stateType;
+
     }
     protected abstract Type GetInitialState();
-}
-
-public class LifeAndDeathStateMachine : BaseStateMachine
-{
-    protected override Type GetInitialState() {
-        return typeof(ISpawn);
-    }
 }
 

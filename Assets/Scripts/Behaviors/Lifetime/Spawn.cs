@@ -5,22 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-
-internal class Spawn : AthenaMonoBehavior
+[RequireComponent(typeof(BaseStateMachineBehavior))]
+internal class Spawn : AthenaMonoBehavior, ISpawn
 {
-    public Spawn() : base(new LifeAndDeathStateMachine())
-    {
 
-    }
     private Sequence _seq;
-    protected override void OnActive()
+    public override void OnActive()
     {
         base.OnActive();
         _seq = DOTween.Sequence();
         transform.localScale = Vector3.zero;
 
         _seq.SetUpdate(UpdateType.Manual);
-        _seq.Append(transform.DOScale(1, 1));
+        _seq.Append(transform.DOScale(1, .5f));
         _seq.AppendCallback(() => 
             _stateMachine.SetState(gameObject,typeof(IAlive))
         );
