@@ -7,8 +7,8 @@ public class CollectedUIBehavior : AthenaMonoBehavior
 {
     private VisualElement _pickupsContainer;
     public VisualTreeAsset PickupTemplate;
-    private Dictionary<PickupType, VisualElement> _pickups
-        = new Dictionary<PickupType, VisualElement>();
+    private Dictionary<string, VisualElement> _pickups
+        = new Dictionary<string, VisualElement>();
     protected override void Start()
     {
         base.Start();
@@ -17,7 +17,7 @@ public class CollectedUIBehavior : AthenaMonoBehavior
         Debug.Log(_pickupsContainer);
         _gameManager.OnPickupCollected += OnPickupCollected;
     }
-    private void OnPickupCollected(PickupType type, int count)
+    private void OnPickupCollected(string type, int count)
     {
         // this is not how you do this,
         // there is a way to map data into a visual tree

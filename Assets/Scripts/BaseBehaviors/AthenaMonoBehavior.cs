@@ -20,8 +20,7 @@ public  class AthenaMonoBehavior : MonoBehaviour
         _gameManager = SafeFindObjectOfType<GameManagerBehavior>();
 
         _stateMachine = GetComponent<BaseStateMachineBehavior>();
-            
-        //todo:add safe find
+        
         OnActive();
         _started=true;
     }

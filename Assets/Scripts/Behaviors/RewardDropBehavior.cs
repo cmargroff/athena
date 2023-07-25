@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class RewardDropBehavior : AthenaMonoBehavior
 {
   [SerializeField]
-  public List<Reward> Rewards = new List<Reward>();
+  public List<Reward> Rewards = new();
 
   public void DropRewards()
   {
@@ -13,7 +13,10 @@ public class RewardDropBehavior : AthenaMonoBehavior
     {
             if (Random.value < reward.Chance)
             {
-                _gameManager.SpawnPickup(reward.Type, 1, transform.position, Quaternion.identity);
+                var pickup = _gameManager.Pool.GetPooledObject(reward.Pickup.PreFab, transform.position, Quaternion.identity);
+                var pickupBehavior = pickup.GetComponent<PickupBehavior>();
+                pickupBehavior.Color = reward.Pickup.Color;
+                pickupBehavior.Name = reward.Pickup.name;
             }
     }
   }
