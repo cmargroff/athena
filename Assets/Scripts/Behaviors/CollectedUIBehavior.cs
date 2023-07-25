@@ -12,8 +12,8 @@ public class CollectedUIBehavior : AthenaMonoBehavior
     protected override void Start()
     {
         base.Start();
-        var _uiDocument = GetComponent<UIDocument>();
-        _pickupsContainer = _uiDocument.rootVisualElement.Q("pickups");
+        var uiDocument = GetComponent<UIDocument>();
+        _pickupsContainer = uiDocument.rootVisualElement.Q("pickups");
         Debug.Log(_pickupsContainer);
         _gameManager.OnPickupCollected += OnPickupCollected;
     }
