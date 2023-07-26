@@ -5,35 +5,52 @@ using UnityEngine;
 
 public class PoolBehavior : MonoBehaviour
 {
+    
+
     [SerializeField]
-    private Dictionary<string, List<GameObject>> _pool= new Dictionary<string, List<GameObject>>();
+    private readonly Dictionary<string, PoolContainer> _pool= new ();
     public GameObject GetPooledObject(GameObject prefab, Vector3 position, Quaternion rotation)
     {
-        var name = prefab.name;
+        var poolName = prefab.name;
 
-        if (!_pool.TryGetValue(name, out var list))
+        if (!_pool.TryGetValue(poolName, out var pool))
         { 
-            list= new List<GameObject>();
-            _pool.Add(name, list);
+            pool= new PoolContainer
+            {
+                Container = new GameObject(poolName)
+                {
+                    transform =
+                    {
+                        parent = transform
+                    }
+                }
+            };
+            _pool.Add(poolName, pool);
         }
         
-        var item = list.FirstOrDefault(x => x.activeInHierarchy==false);
+        var item = pool.GameObjects.FirstOrDefault(x => x.activeInHierarchy==false);
 
         if (item == null)
         {
             var obj = Instantiate(prefab, position, rotation);
-            obj.transform.parent = transform;
-            list.Add(obj);
+            obj.transform.parent = pool.Container.transform;
+            pool.GameObjects.Add(obj);
             return obj;
         }
         else
         {
-            item.transform.position = position;
-            item.transform.rotation = rotation;
+            item.transform.SetPositionAndRotation(position, rotation);
             item.SetActive(true);
             return item;
         }
-
-        
     }
+
+    private class PoolContainer
+    {
+        public GameObject Container;
+        public readonly List<GameObject> GameObjects= new ();
+
+    }
+
+
 }
