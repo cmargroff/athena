@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FriendlyName: Coin
   Description: 
-  Color: {r: 1, g: 0.9837446, b: 0, a: 0}
+  Color: {r: 1, g: 1, b: 0, a: 1}
   PreFab: {fileID: 5084446526900982690, guid: 161d1f5681a289b43bce3df50394de2e, type: 3}

@@ -20,8 +20,8 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
         var material = GetComponentInChildren<SpriteRenderer>().material;
         // clean up this switch statement to something more readable
         material.color = Color;
-        var material2 = GetComponentInChildren<MeshRenderer>().material;
-        material2.color = Color;
+        // var material2 = GetComponentInChildren<MeshRenderer>().material;
+        // material2.color = Color;
     }
 
     public void Pickup()
