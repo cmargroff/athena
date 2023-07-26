@@ -11,21 +11,28 @@ public class PoolBehavior : AthenaMonoBehavior
         base.Start();
         _gameManager.AddTimedEvent(5, new Action(()=>
         {
-            foreach (var poolSection in _pool.Values)
-            {
-                if (poolSection.GameObjects.Count(x => x.activeInHierarchy == false) > poolSection.GameObjects.Count*3f/4f)
-                {
-                    int numEnabledItemsToRemove =(int)Math.Floor(poolSection.GameObjects.Count/2f);
-                    if (numEnabledItemsToRemove > 0)
-                    {
+            StartCoroutine(CleanPools());
+        }), gameObject);
+    }
 
-                        poolSection.GameObjects.RemoveAll(item => 
-                            item.activeInHierarchy==false && numEnabledItemsToRemove -- > 0 && (DestroyBool(item)
-                            ));
-                    }
+    private IEnumerator CleanPools()
+    {
+        foreach (var poolSection in _pool.Values)
+        {
+            if (poolSection.GameObjects.Count(x => x.activeInHierarchy == false) > poolSection.GameObjects.Count * 3f / 4f)
+            {
+                int numEnabledItemsToRemove = (int)Math.Floor(poolSection.GameObjects.Count / 2f);
+                if (numEnabledItemsToRemove > 0)
+                {
+
+                    poolSection.GameObjects.RemoveAll(item =>
+                        item.activeInHierarchy == false && numEnabledItemsToRemove-- > 0 && (DestroyBool(item)
+                        ));
                 }
             }
-        }), gameObject);
+
+            yield return null;
+        }
     }
 
     private bool DestroyBool(GameObject go)
