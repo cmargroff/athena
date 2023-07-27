@@ -59,7 +59,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
                     Debug.Log($"starting {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].StartTime} game time {Time.realtimeSinceStartup }");
                     Level.EnemyTimings[pos].Timer = _gameManager.AddTimedEvent(Level.EnemyTimings[pos].Rate, () =>
                     {
-                        SpawnEnemy(Level.EnemyTimings[pos].Enemy);
+                        SpawnEnemy(Level.EnemyTimings[pos].Enemy, Level.EnemyTimings[pos].Aggressiveness, Level.EnemyTimings[pos].Sides);
                       
                     }, gameObject);
                 });
@@ -88,24 +88,24 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
 
 
 
-    private void SpawnEnemy(EnemySO _enemy)
+    private void SpawnEnemy(EnemySO enemySO, float aggressiveness, EnemyTiming.SidesEnum side)
     {
-        var newPosition = GetRandomPointOnBorder(_spawnBoundry);
-        var enemy = _gameManager.Pool.GetPooledObject(_enemy.Prefab, newPosition, Quaternion.identity);
+        var newPosition = GetRandomPointOnBorder(_spawnBoundry, aggressiveness, side);
+        var enemy = _gameManager.Pool.GetPooledObject(enemySO.Prefab, newPosition, Quaternion.identity);
         var flying = enemy.GetComponent<FlyingBehavior>();
         var damaging = enemy.GetComponent<DamagingBehavior>();
         var vulnerable = enemy.GetComponent<VulnerableBehavior>();
         var rewardDrop = enemy.GetComponent<RewardDropBehavior>();
 
-        flying.Speed = _enemy.Speed;
-        damaging.Damage = _enemy.TouchDamage;
-        vulnerable.MaxHealth = _enemy.Health;
-        vulnerable.Weight = _enemy.Weight;
-        vulnerable.Friction = _enemy.Friction;
-        rewardDrop.Rewards = _enemy.Rewards;
+        flying.Speed = enemySO.Speed;
+        damaging.Damage = enemySO.TouchDamage;
+        vulnerable.MaxHealth = enemySO.Health;
+        vulnerable.Weight = enemySO.Weight;
+        vulnerable.Friction = enemySO.Friction;
+        rewardDrop.Rewards = enemySO.Rewards;
     }
 
-    private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider)
+    private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider, float aggressiveness, EnemyTiming.SidesEnum side)
     {
         // Get the BoxCollider2D's position, size, and rotation
         Vector2 position = boxCollider.transform.position;
@@ -122,20 +122,24 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         // Get a random point on the border of the BoxCollider2D
         Vector2 randomPointLocal = Vector2.zero;
 
-        float side = Random.Range(0, 4); // Randomly select a side of the box
+        if (side == EnemyTiming.SidesEnum.Random)
+        {
+            side = (EnemyTiming.SidesEnum)Random.Range(1, 5); // Randomly select a side of the box
+        }
+        
 
         switch (side)
         {
-            case 0: // Top side
+            case EnemyTiming.SidesEnum.Top: // Top side
                 randomPointLocal = new Vector2(Random.Range(-halfWidth, halfWidth), halfHeight);
                 break;
-            case 1: // Bottom side
+            case EnemyTiming.SidesEnum.Bottom: // Bottom side
                 randomPointLocal = new Vector2(Random.Range(-halfWidth, halfWidth), -halfHeight);
                 break;
-            case 2: // Left side
+            case EnemyTiming.SidesEnum.Left: // Left side
                 randomPointLocal = new Vector2(-halfWidth, Random.Range(-halfHeight, halfHeight));
                 break;
-            case 3: // Right side
+            case EnemyTiming.SidesEnum.Right: // Right side
                 randomPointLocal = new Vector2(halfWidth, Random.Range(-halfHeight, halfHeight));
                 break;
         }
@@ -148,7 +152,9 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         // Transform the rotated point back to world space
         Vector2 randomPointWorld = position + randomPointRotated;
 
-        return randomPointWorld;
+        var playerPosition=_gameManager.Player.transform.position;
+
+        return Vector2.Lerp(randomPointWorld, playerPosition, aggressiveness);
     }
 }
 

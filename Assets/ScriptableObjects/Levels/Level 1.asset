@@ -18,40 +18,40 @@ MonoBehaviour:
     EndTime: 5
     Rate: 1
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    SingleSide: 0
+    Sides: 1
     Aggressiveness: 0
   - Name: Heavy scouts
     StartTime: 5
     EndTime: 10
     Rate: 0.5
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    SingleSide: 0
-    Aggressiveness: 0
+    Sides: 0
+    Aggressiveness: 0.865
   - Name: Scout Worker mix S
     StartTime: 10
     EndTime: 12
     Rate: 0.5
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
-    SingleSide: 0
+    Sides: 0
     Aggressiveness: 0
   - Name: Scout Worker mix B
     StartTime: 12
     EndTime: 15
     Rate: 1
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    SingleSide: 0
+    Sides: 0
     Aggressiveness: 0
   - Name: More Workers
     StartTime: 12
     EndTime: 15
     Rate: 1
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
-    SingleSide: 0
+    Sides: 0
     Aggressiveness: 0
   - Name: Supervisors show up
     StartTime: 15
     EndTime: 20
     Rate: 0.5
     Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
-    SingleSide: 0
+    Sides: 0
     Aggressiveness: 0
