@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using Assets.Scripts.Utils;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
@@ -22,20 +23,27 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
         {
             _timedEvent = _gameManager.AddTimedEvent(_weaponConfig.Rate, () =>
             {
-                var fireAngle = Random.insideUnitCircle.normalized;
+                var flying = _gameManager.Player.GetComponent<FlyingBehavior>();
+                Vector2 fireAngle;
+                if (_weaponConfig.FireAngle == WeaponSO.FireAngleEnum.MovementDirection && flying.MoveAngle != Vector2.zero)
+                {
+                    fireAngle = flying.MoveAngle;
+                }
+                else
+                {
+                    fireAngle = Random.insideUnitCircle.normalized;
+                }
+
                 for (var i = 0; i <= _weaponConfig.Number; i++)
                 {
-
                     var random = Random.value * _weaponConfig.Scatter;
 
-                    var newAngle = fireAngle.Rotate(random - _weaponConfig.Scatter);
+                    var newAngle = fireAngle.Rotate(random - _weaponConfig.Scatter/2f);
 
                     CreateBullet(newAngle);
                 }
-                if (_weaponConfig.FireSound != null)
-                {
-                    _weaponConfig.FireSound.Play(_audioSource);
-                }
+
+                _weaponConfig.FireSound?.Play(_audioSource);
 
             }, gameObject);
 
