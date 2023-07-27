@@ -25,10 +25,11 @@ MonoBehaviour:
     min: 0
     max: 0
   Scatter: 0
-  Number: 3
+  Number: 2
   Rate: 0
   Knockback: 1000
   Scale: 2
+  FireAngle: 0
   Bullet: {fileID: 1451932744883786014, guid: e79799dc3f099e846ad33b69287add82, type: 3}
   ParentedToPlayer: 0
   Orbit: 1

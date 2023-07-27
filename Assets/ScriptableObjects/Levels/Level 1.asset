@@ -78,21 +78,21 @@ MonoBehaviour:
     Aggressiveness: 0.489
   - Name: All Out attack A
     StartTime: 35
-    EndTime: 45
+    EndTime: 60
     Rate: 0.5
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 1
     Aggressiveness: 0
   - Name: All Out attack B
     StartTime: 35
-    EndTime: 45
+    EndTime: 60
     Rate: 0.5
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 2
     Aggressiveness: 0
   - Name: All Out attack C
     StartTime: 35
-    EndTime: 50
+    EndTime: 60
     Rate: 1
     Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
     Sides: 0
