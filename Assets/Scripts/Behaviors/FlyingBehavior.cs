@@ -7,6 +7,8 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
 {
 
     public Vector2 MoveAngle;
+    
+    public Vector2 LastMoveAngle;
 
     public bool FacesRight = true;
 
@@ -36,6 +38,11 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
     protected override void PausibleUpdate()
     {
         MoveAngle = MoveAngle.normalized;
+        if (MoveAngle != Vector2.zero)
+        {
+            LastMoveAngle = MoveAngle;
+        }
+
 
         var deltaSpeed = Speed * Time.deltaTime;
 

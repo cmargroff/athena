@@ -13,6 +13,7 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
 
     private AudioSource _audioSource;
 
+
     protected override void Start()
     {
         base.Start();
@@ -24,33 +25,37 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
             _timedEvent = _gameManager.AddTimedEvent(_weaponConfig.Rate, () =>
             {
                 var flying = _gameManager.Player.GetComponent<FlyingBehavior>();
-                Vector2 fireAngle;
-                if (_weaponConfig.FireAngle == WeaponSO.FireAngleEnum.MovementDirection && flying.MoveAngle != Vector2.zero)
+                Vector2? fireAngle=null;
+                switch (_weaponConfig.FireAngle)
                 {
-                    fireAngle = flying.MoveAngle;
-                }
-                else if(_weaponConfig.FireAngle == WeaponSO.FireAngleEnum.ClosestEnemy)
-                {
-                    var closest = FindClosestEnemy(_gameManager.Player.transform.position);
-                    if (closest != null)
+                    case WeaponSO.FireAngleEnum.MovementDirection:
                     {
-                        fireAngle= (closest.transform.position-_gameManager.Player.transform.position).normalized;
-                    }
-                    else
-                    {
-                        fireAngle = Random.insideUnitCircle.normalized;
-                    }
-                }
-                else
-                {
-                    fireAngle = Random.insideUnitCircle.normalized;
-                }
+                        if (flying.LastMoveAngle != Vector2.zero)
+                        {
+                            fireAngle = flying.LastMoveAngle;
+                        }
 
-                for (var i = 0; i <= _weaponConfig.Number; i++)
+                        break;
+                    }
+                    case WeaponSO.FireAngleEnum.ClosestEnemy:
+                    {
+                        var closest = FindClosestEnemy(_gameManager.Player.transform.position);
+                        if (closest != null)
+                        {
+                            fireAngle= (closest.transform.position-_gameManager.Player.transform.position).normalized;
+                            
+                        }
+
+                        break;
+                    }
+                }
+                fireAngle ??= Random.insideUnitCircle.normalized;
+
+                for (var i = 0; i < _weaponConfig.Number; i++)
                 {
                     var random = Random.value * _weaponConfig.Scatter;
 
-                    var newAngle = fireAngle.Rotate(random - _weaponConfig.Scatter/2f);
+                    var newAngle = fireAngle.Value.Rotate(random - _weaponConfig.Scatter/2f);
 
                     CreateBullet(newAngle);
                 }
@@ -70,9 +75,9 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
     private Collider2D FindClosestEnemy(Vector2 point)
     {
         Collider2D[] result= new Collider2D[1];
-        for (int i = 1; i <= 32; i *= 2)
+        for (float f = 1; f <= 32; f +=1 )
         {
-            Physics2D.OverlapCircleNonAlloc(point, i, result, 1 << 7);
+            Physics2D.OverlapCircleNonAlloc(point, f, result, _gameManager.Enemies);
             if (result[0] != null)
             {
                 return result[0];
