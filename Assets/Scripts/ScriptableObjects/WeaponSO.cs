@@ -36,7 +36,8 @@ public class WeaponSO : ScriptableObject
     public enum FireAngleEnum
     {
         Random=0,
-        MovementDirection=1
+        MovementDirection=1,
+        ClosestEnemy=2
     }
 
 }

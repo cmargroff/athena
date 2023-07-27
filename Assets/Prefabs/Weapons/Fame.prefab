@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8550590131684301909}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.47, z: 0}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 3.47, y: 0, z: 0}
   m_LocalScale: {x: 3.02, y: 3.02, z: 3.02}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3121723924664841051}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &7292303262126331902
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -204,9 +204,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -3.46}
-  m_Size: {x: 3.03, y: 5.93}
-  m_Direction: 0
+  m_Offset: {x: 3.46, y: 0}
+  m_Size: {x: 6.06, y: 3.03}
+  m_Direction: 1
 --- !u!4 &3121723924664841051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5733650597878516753, guid: ff41b82fc418804489197ecf77734092, type: 3}

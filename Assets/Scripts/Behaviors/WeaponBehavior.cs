@@ -29,6 +29,18 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
                 {
                     fireAngle = flying.MoveAngle;
                 }
+                else if(_weaponConfig.FireAngle == WeaponSO.FireAngleEnum.ClosestEnemy)
+                {
+                    var closest = FindClosestEnemy(_gameManager.Player.transform.position);
+                    if (closest != null)
+                    {
+                        fireAngle= (closest.transform.position-_gameManager.Player.transform.position).normalized;
+                    }
+                    else
+                    {
+                        fireAngle = Random.insideUnitCircle.normalized;
+                    }
+                }
                 else
                 {
                     fireAngle = Random.insideUnitCircle.normalized;
@@ -54,6 +66,21 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
         }
 
     }
+
+    private Collider2D FindClosestEnemy(Vector2 point)
+    {
+        Collider2D[] result= new Collider2D[1];
+        for (int i = 1; i <= 32; i *= 2)
+        {
+            Physics2D.OverlapCircleNonAlloc(point, i, result, 1 << 7);
+            if (result[0] != null)
+            {
+                return result[0];
+            }
+        }
+        return null;
+    }
+
     private void CreateBullet(Vector2 fireAngle)
     {
         float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);
