@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using Random = UnityEngine.Random;
 
 public class EnemySpawnerBehavior : AthenaMonoBehavior
 {
     [SerializeField]
     private BoxCollider2D _spawnBoundry;
-    [SerializeField]
-    private float _spawnRate;
-    [SerializeField]
-    private List<EnemySO> _enemies;
+    public LevelSO Level;
 
-    private GameManagerBehavior.TimedEvent _timedEvent;
     //private Vector3 _trueBoundingScale=Vector3.one;
+
+    private Sequence _sequence;
 
     protected override void Start()
     {
@@ -27,22 +29,64 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
 
         SafeAssigned(_spawnBoundry);
 
-        SetSpawnRate(_spawnRate);
+
+        BuildSpawnTriggers();
     }
 
-    private void SetSpawnRate(float rate)
+    protected override void PausibleFixedUpdate()
     {
-        if (_timedEvent == null)
-        {
-            _timedEvent = _gameManager.AddTimedEvent(rate, () =>
-            {
-                var enemy = _enemies[Random.Range(0,_enemies.Count)];
-
-                SpawnEnemy(enemy);
-
-            }, gameObject);
-        } 
+        base.PausibleFixedUpdate();
+        _sequence.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
+
+
+    private void BuildSpawnTriggers()
+    {
+        int startPos = 0;
+        int endPos = 0;
+
+        float timelineTime=0f;
+        _sequence = DOTween.Sequence();
+        _sequence.SetUpdate(UpdateType.Manual);
+        while (startPos < Level.EnemyTimings.Count || endPos < Level.EnemyTimings.Count)
+        {
+            if ((Level.EnemyTimings.GetValueOrDefault(startPos)?.StartTime??float.PositiveInfinity) <= (Level.EnemyTimings.GetValueOrDefault(endPos)?.StartTime ?? float.PositiveInfinity))
+            {
+                _sequence.AppendInterval(Level.EnemyTimings[startPos].StartTime - timelineTime);
+                var pos = startPos;
+                _sequence.AppendCallback(() =>
+                {
+                    Debug.Log($"starting {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].StartTime} game time {Time.realtimeSinceStartup }");
+                    Level.EnemyTimings[pos].Timer = _gameManager.AddTimedEvent(Level.EnemyTimings[pos].Rate, () =>
+                    {
+                        SpawnEnemy(Level.EnemyTimings[pos].Enemy);
+                      
+                    }, gameObject);
+                });
+
+
+
+                timelineTime = Level.EnemyTimings[startPos].StartTime;
+                startPos++;
+            }
+            else
+            {
+                _sequence.AppendInterval(Level.EnemyTimings[endPos].EndTime - timelineTime);
+                var pos = endPos;
+                _sequence.AppendCallback(() =>
+                {
+                    Debug.Log($"stopping {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].EndTime} game time {Time.realtimeSinceStartup }");
+                    _gameManager.RemoveTimedEvent(Level.EnemyTimings[pos].Timer);
+                });
+                timelineTime = Level.EnemyTimings[endPos].EndTime;
+                endPos++;
+            }
+        }
+    }
+
+
+
+
 
     private void SpawnEnemy(EnemySO _enemy)
     {

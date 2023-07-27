@@ -19,6 +19,7 @@ public class BulletBehavior : AthenaMonoBehavior
     base.OnActive();
     _seq = DOTween.Sequence(); //new Sequence()
     _seq.SetUpdate(UpdateType.Manual);
+    
     if (customTravelMode is not null)
     {
       var tween = DOTween.To(

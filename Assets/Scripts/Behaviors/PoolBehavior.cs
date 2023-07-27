@@ -9,31 +9,31 @@ public class PoolBehavior : AthenaMonoBehavior
     protected override  void Start()
     {
         base.Start();
-        _gameManager.AddTimedEvent(5, new Action(()=>
-        {
-            StartCoroutine(CleanPools());
-        }), gameObject);
+        //_gameManager.AddTimedEvent(5, new Action(()=>
+        //{
+        //    StartCoroutine(CleanPools());
+        //}), gameObject);
     }
 
-    private IEnumerator CleanPools()
-    {
-        foreach (var poolSection in _pool.Values)
-        {
-            if (poolSection.GameObjects.Count(x => x.activeInHierarchy == false) > poolSection.GameObjects.Count * 3f / 4f)
-            {
-                int numEnabledItemsToRemove = (int)Math.Floor(poolSection.GameObjects.Count / 2f);
-                if (numEnabledItemsToRemove > 0)
-                {
+    //private IEnumerator CleanPools()
+    //{
+    //    foreach (var poolSection in _pool.Values)
+    //    {
+    //        if (poolSection.GameObjects.Count(x => x.activeInHierarchy == false) > poolSection.GameObjects.Count * 3f / 4f)
+    //        {
+    //            int numEnabledItemsToRemove = (int)Math.Floor(poolSection.GameObjects.Count / 2f);
+    //            if (numEnabledItemsToRemove > 0)
+    //            {
 
-                    poolSection.GameObjects.RemoveAll(item =>
-                        item.activeInHierarchy == false && numEnabledItemsToRemove-- > 0 && (DestroyBool(item)
-                        ));
-                }
-            }
+    //                poolSection.GameObjects.RemoveAll(item =>
+    //                    item.activeInHierarchy == false && numEnabledItemsToRemove-- > 0 && (DestroyBool(item)
+    //                    ));
+    //            }
+    //        }
 
-            yield return null;
-        }
-    }
+    //        yield return null;
+    //    }
+    //}
 
     private bool DestroyBool(GameObject go)
     {
