@@ -97,8 +97,8 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
         }
         bullet.transform.localScale = Vector3.one * _weaponConfig.Scale;
         var damaging = bullet.GetComponent<DamagingBehavior>();
-        damaging.Damage = _weaponConfig.Damage;
-        damaging.Knockback = _weaponConfig.Knockback;
+        damaging.Damage = _weaponConfig.Damage*_gameManager.PlayerCharacterBehavior.Damage;
+        damaging.Knockback = _weaponConfig.Knockback * _gameManager.PlayerCharacterBehavior.Knockback;
         //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         var behavior = bullet.GetComponent<BulletBehavior>();
         behavior.Speed = _weaponConfig.Speed.GetRandomValue();

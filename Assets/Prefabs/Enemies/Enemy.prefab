@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 7784989386747506924}
   - component: {fileID: -277273881098256683}
   - component: {fileID: 3895767873684850898}
+  - component: {fileID: 3652317025378235360}
   - component: {fileID: 2107813326715175333}
   - component: {fileID: 4900701588729609274}
   - component: {fileID: 7815017008115401332}
@@ -135,6 +136,7 @@ GameObject:
   - component: {fileID: 6015745990105677278}
   - component: {fileID: 906492549889035485}
   - component: {fileID: 733054444367215155}
+  - component: {fileID: 3455050444948480799}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -185,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveAngle: {x: 0, y: 0}
+  LastMoveAngle: {x: 0, y: 0}
   FacesRight: 1
   _visual: {fileID: 3437757695758333263}
   Speed: 0
@@ -193,6 +196,18 @@ MonoBehaviour:
     m_Bits: 128
   OFFSET_ANGLE: 90
   SLOWDOWN: 2
+--- !u!114 &3652317025378235360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060478605645464948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4adbb173405d2c419c4e49c8a595e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2107813326715175333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +451,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e064bf3b086d8b4b9fa860c0e206c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3455050444948480799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060478605645464948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a6b4de2e8ba2a4ba5f76f7f06a4ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8582749745100800679

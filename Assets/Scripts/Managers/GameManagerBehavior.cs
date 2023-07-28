@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+
+[RequireComponent(typeof(PlayerCharacterBehavior))]
 public class GameManagerBehavior : AthenaMonoBehavior
 {
     public bool Paused;
@@ -24,6 +26,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public Dictionary<string, int> Pickups = new Dictionary<string, int>();
     public event Action<string, int> OnPickupCollected;
 
+    public PlayerCharacterBehavior PlayerCharacterBehavior;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -31,7 +35,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         DOTween.SetTweensCapacity(10000, 10000);
 
         SafeAssigned(Bounds);
-
+        PlayerCharacterBehavior = GetComponent<PlayerCharacterBehavior>();
 
         //AddTimedEvent(1f,()=>Debug.Log($"Timed event {Time.timeSinceLevelLoad}"));
     }
