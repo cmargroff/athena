@@ -14,7 +14,7 @@ public class EnemyTiming
     public float Aggressiveness;
 
     [HideInInspector]
-    public GameManagerBehavior.TimedEvent Timer;
+    public TimedEvent Timer;
 
 
     public enum SidesEnum

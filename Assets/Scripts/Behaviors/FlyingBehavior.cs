@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(FlyingStatAdjust))]
+[RequireComponent(typeof(StatAdjust))]
 public class FlyingBehavior : AthenaMonoBehavior, IAlive
 {
-    private FlyingStatAdjust _flyingStatAdjust;
+    private StatAdjust _statAdjust;
 
     public Vector2 MoveAngle;
     
@@ -30,7 +30,7 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
     {
         base.Start();
         _bounds = _gameManager.Bounds;
-        _flyingStatAdjust = GetComponent<FlyingStatAdjust>();
+        _statAdjust = GetComponent<StatAdjust>();
     }
 
     [SerializeField]
@@ -48,7 +48,7 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
         }
 
 
-        var deltaSpeed = Speed * _flyingStatAdjust.GetSpeedAdjust()* Time.deltaTime;
+        var deltaSpeed = Speed * _statAdjust.GetSpeedAdjust()* Time.deltaTime;
 
         var moveDir = new Vector3(MoveAngle.x, MoveAngle.y,0f);
         var newPosition = transform.position + (moveDir * deltaSpeed);

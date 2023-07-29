@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(StatAdjust))]
 public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 {
-
+    private StatAdjust _statAdjust;
     [SerializeField]
     public float MaxHealth = 1;
     public int Weight = 1;
@@ -31,6 +32,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
     {
         base.Start();
         _rewards = GetComponent<RewardDropBehavior>();
+        _statAdjust = GetComponent<StatAdjust>();
     }
 
     public override void OnActive()
@@ -64,7 +66,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                 if (_hitLast + _ITime < Time.realtimeSinceStartup)
                 {
                     _hitLast = Time.realtimeSinceStartup;
-                    _health -= damaging.Damage;
+                    _health -= damaging.Damage/ _statAdjust?.GetArmorAdjust()??1f;//todo:this is a hack, to tiered to fix right now
 
                     if (_lifebar != null)
                     {

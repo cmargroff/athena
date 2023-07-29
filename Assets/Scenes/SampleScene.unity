@@ -1690,6 +1690,7 @@ GameObject:
   - component: {fileID: 1376124672}
   - component: {fileID: 1376124675}
   - component: {fileID: 1376124674}
+  - component: {fileID: 1376124676}
   m_Layer: 6
   m_Name: Weapons
   m_TagString: Untagged
@@ -1860,6 +1861,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponConfig: {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
+--- !u!114 &1376124676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376124667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5754c5cb304c2664f8f4e4d0d9266781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStatsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1523056415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5754c5cb304c2664f8f4e4d0d9266781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStatsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1797170644
 GameObject:
   m_ObjectHideFlags: 0
@@ -2178,7 +2197,7 @@ MonoBehaviour:
     m_Bits: 128
   KnockbackFriction: 0.01
   KnockbackFactor: 0.2
-  PlayerCharacterBehavior: {fileID: 0}
+  PlayerCharacter: {fileID: 0}
 --- !u!4 &1797170646
 Transform:
   m_ObjectHideFlags: 0
@@ -2307,9 +2326,10 @@ MonoBehaviour:
   Knockback: 1
   Speed: 1
   Armor: 1
-  AttackSpeed: 1
-  AttackDuration: 1
   AttackFrequency: 1
+  OnStatsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1983952868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2640357145786065855, guid: 161d1f5681a289b43bce3df50394de2e, type: 3}

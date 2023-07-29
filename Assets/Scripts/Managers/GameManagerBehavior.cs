@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerCharacterBehavior))]
 public class GameManagerBehavior : AthenaMonoBehavior
@@ -16,17 +17,24 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public LayerMask Enemies;
 
     [SerializeField]
-    private Dictionary<Guid,TimedEvent> _timedEvents= new Dictionary<Guid, TimedEvent>();
+    private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
 
     private Int64 _frameCount = 1;
 
 
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
-    public Dictionary<string, int> Pickups = new Dictionary<string, int>();
+    public Dictionary<string, int> Pickups = new ();
     public event Action<string, int> OnPickupCollected;
 
-    public PlayerCharacterBehavior PlayerCharacterBehavior;
+    [FormerlySerializedAs("PlayerCharacterBehavior")] 
+    public PlayerCharacterBehavior PlayerCharacter;
+
+    protected void Awake()
+    {
+        PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
+    }
+
 
     // Start is called before the first frame update
     protected override void Start()
@@ -35,7 +43,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         DOTween.SetTweensCapacity(10000, 10000);
 
         SafeAssigned(Bounds);
-        PlayerCharacterBehavior = GetComponent<PlayerCharacterBehavior>();
+      
 
         //AddTimedEvent(1f,()=>Debug.Log($"Timed event {Time.timeSinceLevelLoad}"));
     }
@@ -58,7 +66,6 @@ public class GameManagerBehavior : AthenaMonoBehavior
         _timedEvents.Remove(te.Id);
     }
 
-
     protected override void PausibleFixedUpdate()
     {
         foreach (var kv in _timedEvents)
@@ -74,18 +81,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         _frameCount++;
     }
 
-    public class TimedEvent
-    {
-        public void SetFramesInSeconds(float seconds)
-        {
-            Frames = (int)Math.Ceiling(seconds / Time.fixedDeltaTime);
-        }
 
-        public Guid Id;
-        public int Frames;
-        public Action Action;
-        public GameObject Owner;
-    }
 
     public void CollectPickup(PickupBehavior pickup)
     {
