@@ -49,28 +49,34 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
 
 
         var deltaSpeed = Speed * _statAdjust.GetSpeedAdjust()* Time.deltaTime;
-
-        var moveDir = new Vector3(MoveAngle.x, MoveAngle.y,0f);
-        var newPosition = transform.position + (moveDir * deltaSpeed);
-
-
-
-        if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
+        var moveDir = new Vector3(MoveAngle.x, MoveAngle.y, 0f);
+        if (ColliderUtils.IsPointInsideCollider2D(_bounds, transform.position)) //if we are inside the bounds, do normal movement
         {
-            //moveDir = new Vector3(MoveAngle.x * -1, 0f, 0f);
-            newPosition = transform.position + (Quaternion.Euler(new Vector3(0, 0, -OFFSET_ANGLE)) * moveDir * deltaSpeed / SLOWDOWN);
+            var newPosition = transform.position + (moveDir * deltaSpeed);
             if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
             {
-                //moveDir = new Vector3(0f * -1, 0f, MoveAngle.y * -1);
-                newPosition = transform.position + (Quaternion.Euler(new Vector3(0, 0, OFFSET_ANGLE)) * moveDir * deltaSpeed / SLOWDOWN);
+                //moveDir = new Vector3(MoveAngle.x * -1, 0f, 0f);
+                newPosition = transform.position +
+                              (Quaternion.Euler(new Vector3(0, 0, -OFFSET_ANGLE)) * moveDir * deltaSpeed / SLOWDOWN);
                 if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
                 {
-                    newPosition = transform.position;
+                    //moveDir = new Vector3(0f * -1, 0f, MoveAngle.y * -1);
+                    newPosition = transform.position + (Quaternion.Euler(new Vector3(0, 0, OFFSET_ANGLE)) * moveDir *
+                        deltaSpeed / SLOWDOWN);
+                    if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
+                    {
+                        newPosition = transform.position;
+                    }
                 }
             }
-        }
 
-        transform.position = newPosition;
+            transform.position = newPosition;
+        }
+        else //otherwise push the object into bounds
+        {
+            moveDir=(_bounds.transform.position- transform.position).normalized;
+            transform.position += moveDir * deltaSpeed ;
+        }
 
         if (moveDir.x < 0 == FacesRight)
         {

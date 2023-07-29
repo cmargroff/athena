@@ -30,8 +30,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
     [FormerlySerializedAs("PlayerCharacterBehavior")] 
     public PlayerCharacterBehavior PlayerCharacter;
 
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
     }
 

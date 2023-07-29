@@ -7,8 +7,9 @@ public class LifebarBehavior : AthenaMonoBehavior
     private Material _material;
 
     // Start is called before the first frame update
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _material = GetComponent<MeshRenderer>().material;
     }
     protected override void Start()
