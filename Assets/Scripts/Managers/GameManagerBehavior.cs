@@ -66,7 +66,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         _timedEvents.Remove(te.Id);
     }
 
-    protected override void PausibleFixedUpdate()
+    protected override void PlausibleFixedUpdate()
     {
         foreach (var kv in _timedEvents)
         {

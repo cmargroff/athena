@@ -22,9 +22,9 @@ internal class Spawn : AthenaMonoBehavior, ISpawn
             _stateMachine.SetState(gameObject,typeof(IAlive))
         );
     }
-    protected override void PausibleFixedUpdate()
+    protected override void PlausibleFixedUpdate()
     {
-        base.PausibleFixedUpdate();
+        base.PlausibleFixedUpdate();
         _seq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
 }

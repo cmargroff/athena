@@ -8,9 +8,9 @@ public class GrowBehavior : AthenaMonoBehavior
     {
         base.Start();
     }
-    protected override void PausibleUpdate()
+    protected override void PlausibleUpdate()
     {
-        base.PausibleUpdate();
+        base.PlausibleUpdate();
         this.transform.localScale *= 1f+(0.1f*Time.deltaTime);
     }
 

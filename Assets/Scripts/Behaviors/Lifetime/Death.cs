@@ -19,9 +19,9 @@ public  class Death: AthenaMonoBehavior,IDeath
             () => gameObject.SetActive(false)
         );
     }
-    protected override void PausibleFixedUpdate()
+    protected override void PlausibleFixedUpdate()
     {
-        base.PausibleFixedUpdate();
+        base.PlausibleFixedUpdate();
         _seq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
 }

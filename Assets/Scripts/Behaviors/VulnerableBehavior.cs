@@ -44,7 +44,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         _knockback = 0;
     }
     // Update is called once per frame
-    protected override void PausibleUpdate()
+    protected override void PlausibleUpdate()
     {
         if (_hitstun)
         {

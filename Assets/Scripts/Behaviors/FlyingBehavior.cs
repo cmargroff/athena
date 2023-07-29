@@ -39,7 +39,7 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
     [SerializeField]
     private float SLOWDOWN = 2f;
     // Update is called once per frame
-    protected override void PausibleUpdate()
+    protected override void PlausibleUpdate()
     {
         MoveAngle = MoveAngle.normalized;
         if (MoveAngle != Vector2.zero)

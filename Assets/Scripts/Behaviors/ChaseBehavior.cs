@@ -15,7 +15,7 @@ public class  ChaseBehavior: AthenaMonoBehavior, IAlive
     }
 
     // Update is called once per frame
-    protected override void PausibleUpdate()
+    protected override void PlausibleUpdate()
     {
         var target =  _gameManager.Player.transform.position - _flying.transform.position;
         _flying.MoveAngle = new Vector2(target.x, target.y );

@@ -54,7 +54,7 @@ public  class AthenaMonoBehavior : MonoBehaviour
         }
         else
         {
-            PausibleUpdate();
+            PlausibleUpdate();
             
         }
     }
@@ -84,14 +84,14 @@ public  class AthenaMonoBehavior : MonoBehaviour
         }
         else
         {
-            PausibleFixedUpdate();
+            PlausibleFixedUpdate();
         }
     }
 
     protected virtual void ContinuousUpdate()
     { 
     }
-    protected virtual void PausibleUpdate()
+    protected virtual void PlausibleUpdate()
     {
     }
     protected virtual void WhenPausedUpdate()
@@ -100,7 +100,7 @@ public  class AthenaMonoBehavior : MonoBehaviour
     protected virtual void ContinuousFixedUpdate()
     {
     }
-    protected virtual void PausibleFixedUpdate()
+    protected virtual void PlausibleFixedUpdate()
     {
     }
     protected virtual void WhenPausedFixedUpdate()

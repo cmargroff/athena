@@ -33,9 +33,9 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         BuildSpawnTriggers();
     }
 
-    protected override void PausibleFixedUpdate()
+    protected override void PlausibleFixedUpdate()
     {
-        base.PausibleFixedUpdate();
+        base.PlausibleFixedUpdate();
         _sequence.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
 

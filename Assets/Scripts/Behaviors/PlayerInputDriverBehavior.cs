@@ -23,7 +23,7 @@ public class PlayerInputDriverBehavior : AthenaMonoBehavior, IAlive
 
     // Start is called before the first frame update
 
-    protected override void PausibleFixedUpdate()
+    protected override void PlausibleFixedUpdate()
     {
         _flying.MoveAngle = _controls.Game.Move.ReadValue<Vector2>()*new Vector2(-1,1);
 
