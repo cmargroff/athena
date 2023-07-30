@@ -15,6 +15,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     public PoolBehavior Pool;
     public LayerMask Enemies;
+    public LayerMask Buildings;
 
     [SerializeField]
     private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
