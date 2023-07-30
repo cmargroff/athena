@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
-public  class FieldInteractBehavior : AthenaMonoBehavior
+public class FieldInteractBehavior : AthenaMonoBehavior
 {
     private @PlayerInputActions _controls;
     protected override void Start()
@@ -19,23 +19,34 @@ public  class FieldInteractBehavior : AthenaMonoBehavior
         _controls.Game.Enable();
     }
 
+    private BuildingHoverBehaviour _lastBuildingTouched;
     protected override void PlausibleFixedUpdate()
     {
-        if (_controls.Game.Interact.ReadValue<float>()>0)
+
+        Collider2D[] result = new Collider2D[1];
+        Physics2D.OverlapCircleNonAlloc(transform.position, transform.localScale.magnitude, result, _gameManager.Buildings);
         {
-            Collider2D[] result = new Collider2D[1];
-            Physics2D.OverlapCircleNonAlloc(transform.position, transform.localScale.magnitude, result, _gameManager.Buildings);
-            if (result[0] != null) 
+            var building = result[0]?.GetComponent<BuildingInteractBehaviour>();
+            if (building != null)
             {
-                var building = result[0].GetComponent<BuildingInteractBehaviour>();
-                if (building != null)
+                building.BuildingHover.EnableHoverIndicator();
+                _lastBuildingTouched=building.BuildingHover;
+                if (_controls.Game.Interact.ReadValue<float>() > 0)
                 {
                     building.Interact();
                 }
+
+            }
+            else
+            {
+                _lastBuildingTouched?.DisableHoverIndicator();
             }
 
 
         }
+
+
+
 
     }
 }

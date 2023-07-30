@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class ShopBuildingBehavior:BuildingInteractBehaviour
+public class ShopBuildingBehavior: BuildingInteractBehaviour
 {
     public override void Interact()
     {
