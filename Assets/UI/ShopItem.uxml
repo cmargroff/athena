@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgb(195, 195, 195); margin-left: 60px; margin-right: 60px; margin-top: 30px; -unity-background-scale-mode: stretch-to-fill; margin-bottom: 30px;">
+        <ui:Label tabindex="-1" text="Sample Item" display-tooltip-when-elided="true" name="Name" style="-unity-text-align: upper-center; font-size: 24px; -unity-font-style: bold;" />
+        <ui:VisualElement name="Picture" style="flex-grow: 1; background-color: rgb(137, 93, 255); height: 68px; margin-bottom: 0; padding-bottom: 0;" />
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+            <ui:Label tabindex="-1" text="This item is realy interesting and everyone would want to buy it" display-tooltip-when-elided="true" name="Description" style="overflow: visible; white-space: normal;" />
+            <ui:Label tabindex="-1" text="5" display-tooltip-when-elided="true" name="Cost" style="padding-right: 0; margin-right: 0; -unity-text-align: middle-center; align-self: center; align-items: stretch; -unity-background-scale-mode: stretch-to-fill; width: 25%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

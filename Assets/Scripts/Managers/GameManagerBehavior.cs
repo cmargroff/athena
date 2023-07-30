@@ -17,6 +17,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public LayerMask Enemies;
     public LayerMask Buildings;
 
+    public ShopBehavior Shop;
+
     [SerializeField]
     private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
 
@@ -45,7 +47,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         DOTween.SetTweensCapacity(10000, 10000);
 
         SafeAssigned(Bounds);
-      
+        SafeAssigned(Shop);
 
         //AddTimedEvent(1f,()=>Debug.Log($"Timed event {Time.timeSinceLevelLoad}"));
     }
