@@ -12,8 +12,11 @@ public class WeaponVM: UIVM
     public string Name;
     [VisualElementBind]
     public string Description;
-    public string Cost;
+    [VisualElementBind]
+    public int Cost;
 
+    [VisualElementEventAttribute] 
+    public Action Buy;
 
 }
 

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor.Experimental.GraphView;
 
 namespace Assets.Scripts.UIViewModels.Attributes
 {
+    [AttributeUsage(AttributeTargets.Field)]
     public class VisualElementBindAttribute:Attribute
     {
         public string ControlName { get; }
@@ -15,6 +17,17 @@ namespace Assets.Scripts.UIViewModels.Attributes
         {
             ControlName = controlName;
             FieldName = fieldName;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Field)]
+    public class VisualElementEventAttribute : Attribute
+    {
+        public string ControlName { get; }
+        public VisualElementEventAttribute(string controlName = null)
+        {
+            ControlName = controlName;
+            
         }
     }
     //public class LabelBindAttribute : VisualElementBindAttribute
