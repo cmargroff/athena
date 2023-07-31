@@ -31,9 +31,16 @@ public class ShopBehavior:AthenaMonoBehavior
 
         var itemContainer = _shopUI.rootVisualElement.Q<ScrollView>("ItemsContainer");
         itemContainer.contentContainer.Clear();
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 3; i++)
         {
             var item = _shopItemAsset.Instantiate();
+            var vm = new WeaponVM()
+            {
+                Name = "Test",
+                Description = $"This is test number {i}"
+            };
+            vm.Bind(item);
+
             itemContainer.contentContainer.Add(item);
         }
 
