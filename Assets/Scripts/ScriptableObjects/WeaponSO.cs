@@ -1,3 +1,4 @@
+using System;
 using Assets.Scripts.Utils;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,9 @@ public class WeaponSO : ScriptableObject
     public float Scale;
 
     public FireAngleEnum FireAngle = FireAngleEnum.Random;
-    public BehaviorEnum Behavior= BehaviorEnum.Weapon;
+    public BehaviorEnum Behavior= BehaviorEnum.WeaponBehavior;
+
+
 
     public GameObject Bullet;
     public bool ParentedToPlayer;
@@ -46,8 +49,8 @@ public class WeaponSO : ScriptableObject
 
     public enum BehaviorEnum
     {
-        Weapon,
-        Orbital
+        WeaponBehavior,
+        OrbitalBehavior
     }
 
 

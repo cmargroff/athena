@@ -62,15 +62,7 @@ public class ShopBehavior:AthenaMonoBehavior
     private void BuyWeapon(WeaponSO weapon)
     {
         _gameManager.Pickups["Coin"]-=weapon.Cost;
-        BaseWeaponBehavior weaponBehavior;
-        if (weapon.Behavior == WeaponSO.BehaviorEnum.Weapon)
-        {
-            weaponBehavior = _gameManager.Weapons.AddComponent<WeaponBehavior>();
-        }
-        else
-        {
-            weaponBehavior = _gameManager.Weapons.AddComponent<OrbitalBehavior>();
-        }
+        var weaponBehavior = (BaseWeaponBehavior) _gameManager.Weapons.AddComponent(Type.GetType(weapon.Behavior.ToString()));
         weaponBehavior.WeaponConfig=weapon;
         weaponBehavior.enabled = true;
         Weapons.Remove(weapon);
