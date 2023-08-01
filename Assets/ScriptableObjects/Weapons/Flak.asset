@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Flak
   m_EditorClassIdentifier: 
   FriendlyName: Flak
-  Icon: {fileID: 0}
+  Description: Aiming is hard, burst fire is easy
+  Cost: 5
+  Icon: {fileID: 21300000, guid: d943c0921a72cee4fb0c4fcac074e869, type: 3}
   Color: {r: 0, g: 0.735849, b: 0.14977618, a: 0}
   Damage: 200
   Pierce: 1

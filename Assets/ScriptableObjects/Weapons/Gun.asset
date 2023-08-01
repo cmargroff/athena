@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   FriendlyName: Vulcan
-  Icon: {fileID: 0}
+  Description: This is your basic gun. Doesn't mean it won't kill things
+  Cost: 5
+  Icon: {fileID: 21300000, guid: 2fe9a5a12a7d2e5448bb9f9a8cdb1bc4, type: 3}
   Color: {r: 1, g: 0, b: 0, a: 0}
   Damage: 500
   Pierce: 1

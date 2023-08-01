@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 34158029}
   - component: {fileID: 34158028}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HudCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1760,9 +1760,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1376124668}
   - component: {fileID: 1376124670}
-  - component: {fileID: 1376124671}
-  - component: {fileID: 1376124672}
-  - component: {fileID: 1376124675}
   - component: {fileID: 1376124674}
   - component: {fileID: 1376124676}
   m_Layer: 6
@@ -1799,33 +1796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponConfig: {fileID: 11400000, guid: 228f558bed915e34bbbacf4060ef672d, type: 2}
---- !u!114 &1376124671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376124667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponConfig: {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}
---- !u!114 &1376124672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376124667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535fe668cb1db47488787a8015bdd23f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponConfig: {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
+  WeaponConfig: {fileID: 11400000, guid: 228f558bed915e34bbbacf4060ef672d, type: 2}
 --- !u!82 &1376124674
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1922,19 +1893,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1376124675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376124667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cef553e767db7e1418458cc0260d51ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponConfig: {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
 --- !u!114 &1376124676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2278,6 +2236,7 @@ MonoBehaviour:
   Paused: 0
   Bounds: {fileID: 85562257}
   Player: {fileID: 1523056415}
+  Weapons: {fileID: 1376124667}
   Pool: {fileID: 1164677807}
   Enemies:
     serializedVersion: 2
@@ -2441,7 +2400,7 @@ GameObject:
   - component: {fileID: 2012974774}
   - component: {fileID: 2012974779}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ShopCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2558,6 +2517,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shopItemAsset: {fileID: 9197481963319205126, guid: 3aa6d90e43415ca45a77923f5a4cb29c, type: 3}
+  Weapons:
+  - {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
+  - {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}
+  - {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
 --- !u!1 &2132133401
 GameObject:
   m_ObjectHideFlags: 0

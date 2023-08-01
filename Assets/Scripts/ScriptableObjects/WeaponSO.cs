@@ -8,7 +8,11 @@ using UnityEngine;
 public class WeaponSO : ScriptableObject
 {
     public string FriendlyName;
+    [Multiline]
+    public string Description;
+    public int Cost;
     public Sprite Icon;
+
     public Color Color;
     public int Damage;
     public float Pierce;

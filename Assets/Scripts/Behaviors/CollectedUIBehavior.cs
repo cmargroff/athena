@@ -7,8 +7,7 @@ public class CollectedUIBehavior : AthenaMonoBehavior
 {
     private VisualElement _pickupsContainer;
     public VisualTreeAsset PickupTemplate;
-    private Dictionary<string, VisualElement> _pickups
-        = new Dictionary<string, VisualElement>();
+    private readonly Dictionary<string, VisualElement> _pickups = new();
     protected override void Start()
     {
         base.Start();

@@ -12,6 +12,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     public Collider2D Bounds;
     public GameObject Player;
+    public GameObject Weapons;
 
     public PoolBehavior Pool;
     public LayerMask Enemies;
@@ -48,6 +49,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
         SafeAssigned(Bounds);
         SafeAssigned(Shop);
+        SafeAssigned(Player);
+        SafeAssigned(Weapons);
 
         //AddTimedEvent(1f,()=>Debug.Log($"Timed event {Time.timeSinceLevelLoad}"));
     }

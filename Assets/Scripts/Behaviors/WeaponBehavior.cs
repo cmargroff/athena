@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using Assets.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatAdjust))]
 public class WeaponBehavior : AthenaMonoBehavior, IAlive
 {
     private StatAdjust _statAdjust;
-    [SerializeField]
-    private WeaponSO _weaponConfig;
+    [FormerlySerializedAs("_weaponConfig")] [SerializeField]
+    public WeaponSO WeaponConfig;
 
     private TimedEvent _timedEvent;
 
@@ -23,14 +25,14 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
         _statAdjust.OnStatsChanged.AddListener(StatsChanged);
 
         _audioSource = GetComponent<AudioSource>();
-        SafeAssigned(_weaponConfig);
+        SafeAssigned(WeaponConfig);
 
 
-        _timedEvent = _gameManager.AddTimedEvent(_weaponConfig.Rate / _statAdjust.GetAttackFrequency(), () =>
+        _timedEvent = _gameManager.AddTimedEvent(WeaponConfig.Rate / _statAdjust.GetAttackFrequency(), () =>
         {
             var flying = _gameManager.Player.GetComponent<FlyingBehavior>();
             Vector2? fireAngle = null;
-            switch (_weaponConfig.FireAngle)
+            switch (WeaponConfig.FireAngle)
             {
                 case WeaponSO.FireAngleEnum.MovementDirection:
                     {
@@ -55,16 +57,16 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
             }
             fireAngle ??= Random.insideUnitCircle.normalized;
 
-            for (var i = 0; i < _weaponConfig.Number; i++)
+            for (var i = 0; i < WeaponConfig.Number; i++)
             {
-                var random = Random.value * _weaponConfig.Scatter;
+                var random = Random.value * WeaponConfig.Scatter;
 
-                var newAngle = fireAngle.Value.Rotate(random - _weaponConfig.Scatter / 2f);
+                var newAngle = fireAngle.Value.Rotate(random - WeaponConfig.Scatter / 2f);
 
                 CreateBullet(newAngle);
             }
 
-            _weaponConfig.FireSound?.Play(_audioSource);
+            WeaponConfig.FireSound?.Play(_audioSource);
 
         }, gameObject);
 
@@ -74,7 +76,7 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
 
     private void StatsChanged()
     {
-        _timedEvent?.SetFramesInSeconds(_weaponConfig.Rate / _statAdjust.GetAttackFrequency());
+        _timedEvent?.SetFramesInSeconds(WeaponConfig.Rate / _statAdjust.GetAttackFrequency());
     }
 
 
@@ -96,19 +98,19 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
     {
         float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);
 
-        var bullet = _gameManager.Pool.GetPooledObject(_weaponConfig.Bullet, transform.position, Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg));
-        if (_weaponConfig.ParentedToPlayer)
+        var bullet = _gameManager.Pool.GetPooledObject(WeaponConfig.Bullet, transform.position, Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg));
+        if (WeaponConfig.ParentedToPlayer)
         {
             bullet.transform.SetParent(transform, true);
         }
-        bullet.transform.localScale = Vector3.one * _weaponConfig.Scale;
+        bullet.transform.localScale = Vector3.one * WeaponConfig.Scale;
         var damaging = bullet.GetComponent<DamagingBehavior>();
-        damaging.Damage = _weaponConfig.Damage * _gameManager.PlayerCharacter.Damage;
-        damaging.Knockback = _weaponConfig.Knockback * _gameManager.PlayerCharacter.Knockback;
+        damaging.Damage = WeaponConfig.Damage * _gameManager.PlayerCharacter.Damage;
+        damaging.Knockback = WeaponConfig.Knockback * _gameManager.PlayerCharacter.Knockback;
         //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         var behavior = bullet.GetComponent<BulletBehavior>();
-        behavior.Speed = _weaponConfig.Speed.GetRandomValue();
+        behavior.Speed = WeaponConfig.Speed.GetRandomValue();
         behavior.MoveAngle = fireAngle;
-        behavior.Duration = _weaponConfig.Duration.GetRandomValue();
+        behavior.Duration = WeaponConfig.Duration.GetRandomValue();
     }
 }

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.UIViewModels;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
+
 public class ShopBehavior:AthenaMonoBehavior
 {
     private UIDocument _shopUI;
@@ -19,50 +21,52 @@ public class ShopBehavior:AthenaMonoBehavior
 
     }
 
+    public List<WeaponSO> Weapons;
+
+
     public override void  OnActive()
     {
         base.OnActive();
 
         _shopUI = GetComponent<UIDocument>();
         SafeAssigned(_shopItemAsset);
-        var doneButton = _shopUI.rootVisualElement.Q<Button>("DoneButton");
-        doneButton.RegisterCallback<ClickEvent>(OnDoneButtonClick);
-        doneButton.RegisterCallback<NavigationSubmitEvent>(OnDoneButtonNavigationSubmit);
+        var shopVM = new ShopVM()
+        {
+            Done = () =>
+            {
+                _gameManager.Shop.gameObject.SetActive(false);
+                _gameManager.Paused = false;
+            },
+            Coins = _gameManager.Pickups.GetValueOrDefault("Coin")
+        };
+        shopVM.Bind(_shopUI.rootVisualElement);
 
         var itemContainer = _shopUI.rootVisualElement.Q<ScrollView>("ItemsContainer");
         itemContainer.contentContainer.Clear();
-        for (int i = 1; i <= 3; i++)
+        foreach (var weapon in Weapons)
         {
             var item = _shopItemAsset.Instantiate();
             var vm = new WeaponVM()
             {
-                Name = "Test",
-                Description = $"This is test number {i}",
-                Cost=5*i,
-                Buy = () => Debug.Log("Buy")
+                Name = weapon.FriendlyName,
+                Description = weapon.Description,
+                Cost=weapon.Cost,
+                Buy = () => AddWeapon(weapon),
             };
             vm.Bind(item);
 
             itemContainer.contentContainer.Add(item);
         }
-
-
     }
 
-    private void OnDoneButtonNavigationSubmit(NavigationSubmitEvent evt)
+    private void AddWeapon(WeaponSO weapon)
     {
-        OnDone();
+        var weaponBehavior = _gameManager.Weapons.AddComponent<WeaponBehavior>();
+        weaponBehavior.WeaponConfig=weapon;
+        weaponBehavior.enabled = true;
     }
 
-    private void OnDoneButtonClick(ClickEvent evt)
-    {
-        OnDone();
-    }
 
-    private void OnDone()
-    {
-        _gameManager.Shop.gameObject.SetActive(false);
-        _gameManager.Paused=false;
-    }
+
 }
 

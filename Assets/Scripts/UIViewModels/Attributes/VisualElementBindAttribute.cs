@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor.Experimental.GraphView;
 
-namespace Assets.Scripts.UIViewModels.Attributes
-{
+
     [AttributeUsage(AttributeTargets.Field)]
     public class VisualElementBindAttribute:Attribute
     {
@@ -38,4 +37,4 @@ namespace Assets.Scripts.UIViewModels.Attributes
     //    }
 
     //}
-}
+
