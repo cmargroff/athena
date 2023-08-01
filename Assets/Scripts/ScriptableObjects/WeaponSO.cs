@@ -2,6 +2,7 @@ using System;
 using Assets.Scripts.Utils;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 
@@ -27,7 +28,8 @@ public class WeaponSO : ScriptableObject
     public float Scale;
 
     public FireAngleEnum FireAngle = FireAngleEnum.Random;
-    public BehaviorEnum Behavior= BehaviorEnum.WeaponBehavior;
+    [Dropdown("GetBehaviorValues")]
+    public string Behavior;
 
 
 
@@ -47,11 +49,14 @@ public class WeaponSO : ScriptableObject
         ClosestEnemy = 2
     }
 
-    public enum BehaviorEnum
-    {
-        WeaponBehavior,
-        OrbitalBehavior
-    }
 
+    private DropdownList<string> GetBehaviorValues()
+    {
+        return new DropdownList<string>()
+        {
+            { "Weapon",   nameof(WeaponBehavior) },
+            { "Orbital",  nameof(OrbitalBehavior)},
+        };
+    }
 
 }
