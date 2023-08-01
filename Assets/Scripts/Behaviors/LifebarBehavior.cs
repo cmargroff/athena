@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class LifebarBehavior : AthenaMonoBehavior
 {
     private Material _material;
+    private static readonly int LifePercentage = Shader.PropertyToID("_LifePercentage");
 
     // Start is called before the first frame update
     protected override void Awake()
@@ -12,15 +11,10 @@ public class LifebarBehavior : AthenaMonoBehavior
         base.Awake();
         _material = GetComponent<MeshRenderer>().material;
     }
-    protected override void Start()
-    {
-        base.Start();
-    
-    }
 
     public void SetHealthPercent(float percent)
     {
-        _material.SetFloat("_LifePercentage", percent);
+        _material.SetFloat(LifePercentage, percent);
     }
 
     protected override void  ContinuousUpdate()

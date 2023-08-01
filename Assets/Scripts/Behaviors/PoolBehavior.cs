@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,7 +11,6 @@ public class PoolBehavior : AthenaMonoBehavior
     }
 
 
-    [SerializeField]
     private readonly Dictionary<string, PoolContainer> _pool= new ();
     public GameObject GetPooledObject(GameObject prefab, Vector3 position, Quaternion rotation)
     {

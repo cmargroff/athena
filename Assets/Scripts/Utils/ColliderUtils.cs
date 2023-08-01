@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
@@ -11,17 +6,17 @@ namespace Assets.Scripts.Utils
     {
         public static bool IsPointInsideCollider2D(Collider2D collider, Vector2 point)
         {
-            if (collider is BoxCollider2D)
+            if (collider is BoxCollider2D collider2D)
             {
-                return IsPointInsideBoxCollider2D((BoxCollider2D)collider, point);
+                return IsPointInsideBoxCollider2D(collider2D, point);
             }
-            else if (collider is CircleCollider2D)
+            else if (collider is CircleCollider2D circleCollider2D)
             {
-                return IsPointInsideCircleCollider2D((CircleCollider2D)collider, point);
+                return IsPointInsideCircleCollider2D(circleCollider2D, point);
             }
-            else if (collider is CapsuleCollider2D)
+            else if (collider is CapsuleCollider2D capsuleCollider2D)
             {
-                return IsPointInsideCapsuleCollider2D((CapsuleCollider2D)collider, point);
+                return IsPointInsideCapsuleCollider2D(capsuleCollider2D, point);
             }
             // Handle other collider types here (e.g., PolygonCollider2D, EdgeCollider2D, etc.)
 
@@ -79,17 +74,17 @@ namespace Assets.Scripts.Utils
         }
         public static bool IsPointInsideCollider(Collider collider, Vector3 point)
         {
-            if (collider is BoxCollider)
+            if (collider is BoxCollider boxCollider)
             {
-                return IsPointInsideBoxCollider((BoxCollider)collider, point);
+                return IsPointInsideBoxCollider(boxCollider, point);
             }
-            else if (collider is SphereCollider)
+            else if (collider is SphereCollider sphereCollider)
             {
-                return IsPointInsideSphereCollider((SphereCollider)collider, point);
+                return IsPointInsideSphereCollider(sphereCollider, point);
             }
-            else if (collider is CapsuleCollider)
+            else if (collider is CapsuleCollider capsuleCollider)
             {
-                return IsPointInsideCapsuleCollider((CapsuleCollider)collider, point);
+                return IsPointInsideCapsuleCollider(capsuleCollider, point);
             }
             // Handle other collider types here (e.g., MeshCollider, TerrainCollider, etc.)
 

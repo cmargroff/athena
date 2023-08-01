@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(FlyingBehavior))]
 public class PlayerInputDriverBehavior : AthenaMonoBehavior, IAlive
@@ -13,10 +10,7 @@ public class PlayerInputDriverBehavior : AthenaMonoBehavior, IAlive
     protected override void Start()
     {
         base.Start();
- 
-
-        
-        _controls = new @PlayerInputActions();
+        _controls = new ();
         _flying = GetComponent<FlyingBehavior>();
         _controls.Game.Enable();
     }

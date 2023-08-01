@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class OrbitalBehavior : BaseWeaponBehavior, IAlive
 {
@@ -21,7 +18,7 @@ public class OrbitalBehavior : BaseWeaponBehavior, IAlive
             damaging.Damage = WeaponConfig.Damage;
             damaging.Knockback = WeaponConfig.Knockback;
             var behavior = orbit.GetComponent<BulletBehavior>();
-            behavior.Duration = 1f / (float)WeaponConfig.Speed.min;
+            behavior.Duration = 1f / WeaponConfig.Speed.min;
             behavior.IsLooped = WeaponConfig.Duration.min == 0;
             behavior.TimeOffset = i / (float)WeaponConfig.Number * behavior.Duration;
             float offset = (i / (float)WeaponConfig.Number);

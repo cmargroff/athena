@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerCharacterBehavior))]
 public class GameManagerBehavior : AthenaMonoBehavior
@@ -20,7 +18,6 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     public ShopBehavior Shop;
 
-    [SerializeField]
     private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
 
     private Int64 _frameCount = 1;
@@ -31,7 +28,6 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public Dictionary<string, int> Pickups = new ();
     public event Action<string, int> OnPickupCollected;
 
-    [FormerlySerializedAs("PlayerCharacterBehavior")] 
     public PlayerCharacterBehavior PlayerCharacter;
 
     protected override void Awake()

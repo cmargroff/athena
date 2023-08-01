@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
 using Random = UnityEngine.Random;
 
 public class EnemySpawnerBehavior : AthenaMonoBehavior
 {
     [SerializeField]
-    private BoxCollider2D _spawnBoundry;
+    private BoxCollider2D _spawnBoundary;
     public LevelSO Level;
 
     //private Vector3 _trueBoundingScale=Vector3.one;
@@ -20,14 +16,8 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
     {
         base.Start();
 
-        //var obj = _spawnBoundry.transform;
-        //do
-        //{
-        //    _trueBoundingScale = new  Vector3(_trueBoundingScale.x * obj.localScale.x, _trueBoundingScale.y * obj.localScale.y, _trueBoundingScale.z * obj.localScale.z);
-        //    obj = obj.parent;
-        //} while (obj.parent != null);
 
-        SafeAssigned(_spawnBoundry);
+        SafeAssigned(_spawnBoundary);
 
 
         BuildSpawnTriggers();
@@ -90,7 +80,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
 
     private void SpawnEnemy(EnemySO enemySO, float aggressiveness, EnemyTiming.SidesEnum side)
     {
-        var newPosition = GetRandomPointOnBorder(_spawnBoundry, aggressiveness, side);
+        var newPosition = GetRandomPointOnBorder(_spawnBoundary, aggressiveness, side);
         var enemy = _gameManager.Pool.GetPooledObject(enemySO.Prefab, newPosition, Quaternion.identity);
         var flying = enemy.GetComponent<FlyingBehavior>();
         var damaging = enemy.GetComponent<DamagingBehavior>();

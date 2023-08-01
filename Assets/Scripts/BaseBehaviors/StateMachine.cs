@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public abstract class BaseStateMachineBehavior : MonoBehaviour
@@ -32,17 +28,7 @@ public abstract class BaseStateMachineBehavior : MonoBehaviour
                 _currentState = stateType;
                 if (component is IState)
                 {
-                    if (component.GetType().GetInterface(stateType.Name) != null)
-                    {
-                        component.enabled = true;
-
-
-
-                    }
-                    else
-                    {
-                        component.enabled = false;
-                    }
+                    component.enabled = component.GetType().GetInterface(stateType.Name) != null;
                 }
             }
 

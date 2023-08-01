@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class FieldInteractBehavior : AthenaMonoBehavior
@@ -15,7 +10,7 @@ public class FieldInteractBehavior : AthenaMonoBehavior
 
 
 
-        _controls = new @PlayerInputActions();
+        _controls = new ();
         _controls.Game.Enable();
     }
 

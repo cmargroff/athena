@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
 using Assets.Scripts.Utils;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatAdjust))]

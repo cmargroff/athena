@@ -1,7 +1,5 @@
-using System;
 using Assets.Scripts.Utils;
-using System.Collections;
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -50,6 +48,7 @@ public class WeaponSO : ScriptableObject
     }
 
 
+    [UsedImplicitly]
     private DropdownList<string> GetBehaviorValues()
     {
         return new DropdownList<string>()

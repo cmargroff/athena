@@ -1,7 +1,5 @@
 
 using Assets.Scripts.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(StatAdjust))]
@@ -33,11 +31,11 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
         _statAdjust = GetComponent<StatAdjust>();
     }
 
-    [SerializeField]
-    private float OFFSET_ANGLE = 90;
 
-    [SerializeField]
-    private float SLOWDOWN = 2f;
+    private float OffsetAngle = 90;
+
+
+    private float Slowdown = 2f;
     // Update is called once per frame
     protected override void PlausibleUpdate()
     {
@@ -57,12 +55,12 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
             {
                 //moveDir = new Vector3(MoveAngle.x * -1, 0f, 0f);
                 newPosition = transform.position +
-                              (Quaternion.Euler(new Vector3(0, 0, -OFFSET_ANGLE)) * moveDir * deltaSpeed / SLOWDOWN);
+                              (Quaternion.Euler(new Vector3(0, 0, -OffsetAngle)) * moveDir * deltaSpeed / Slowdown);
                 if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
                 {
                     //moveDir = new Vector3(0f * -1, 0f, MoveAngle.y * -1);
-                    newPosition = transform.position + (Quaternion.Euler(new Vector3(0, 0, OFFSET_ANGLE)) * moveDir *
-                        deltaSpeed / SLOWDOWN);
+                    newPosition = transform.position + (Quaternion.Euler(new Vector3(0, 0, OffsetAngle)) * moveDir *
+                        deltaSpeed / Slowdown);
                     if (!ColliderUtils.IsPointInsideCollider2D(_bounds, newPosition))
                     {
                         newPosition = transform.position;

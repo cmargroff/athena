@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -14,7 +11,7 @@ public class MenuBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _controls = new @PlayerInputActions();
+        _controls = new ();
         _controls.Menues.Enable();
         _uiDocument =GetComponent<UIDocument>();
         var button=_uiDocument.rootVisualElement.Q<Button>("StartButton");
@@ -36,9 +33,5 @@ public class MenuBehavior : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("SampleScene", LoadSceneMode.Single);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
