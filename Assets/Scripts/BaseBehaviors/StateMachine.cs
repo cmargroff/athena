@@ -5,19 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class BaseStateMachineBehavior:MonoBehaviour
+public abstract class BaseStateMachineBehavior : MonoBehaviour
 {
     protected Type _currentState;
 
-    public void SetInitialState(GameObject gameObject)
+    public void SetInitialState()
     {
         if (_currentState == null)
         {
-            SetState(gameObject, GetInitialState());
+            SetState(GetInitialState());
         }
     }
+    public void ResetInitialState()
+    {
 
-    public void SetState(GameObject gameObject, Type stateType)
+        SetState(GetInitialState());
+
+    }
+    public void SetState(Type stateType)
     {
         if (_currentState != stateType)
         {
@@ -40,7 +45,7 @@ public abstract class BaseStateMachineBehavior:MonoBehaviour
                     }
                 }
             }
-           
+
         }
 
     }

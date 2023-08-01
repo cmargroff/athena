@@ -12,10 +12,12 @@ public class WeaponVM: UIVM
     [VisualElementBind]
     public string Description;
     [VisualElementBind]
-    public int Cost;
+    public string Cost;
 
-    [VisualElementEventAttribute] 
+    [VisualElementEvent] 
     public Action Buy;
 
+    [VisualElementBind(controlName:"Buy", "enabled")]
+    public bool CanBuy;
 }
 

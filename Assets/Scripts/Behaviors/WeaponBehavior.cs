@@ -7,11 +7,10 @@ using UnityEngine.Serialization;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatAdjust))]
-public class WeaponBehavior : AthenaMonoBehavior, IAlive
+public class WeaponBehavior : BaseWeaponBehavior, IAlive
 {
     private StatAdjust _statAdjust;
-    [FormerlySerializedAs("_weaponConfig")] [SerializeField]
-    public WeaponSO WeaponConfig;
+
 
     private TimedEvent _timedEvent;
 

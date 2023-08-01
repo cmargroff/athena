@@ -15,7 +15,7 @@ public abstract class UIVM
             {
                 var controlName = attribute.ControlName?? field.Name;
                 var control = element.Q(controlName);
-                control.SetPropertyValue(attribute.FieldName, field.GetValue(this).ToString());
+                control.SetPropertyValue(attribute.FieldName,Convert.ChangeType(field.GetValue(this), field.FieldType));
             }
             foreach (VisualElementEventAttribute attribute in field.GetCustomAttributes(typeof(VisualElementEventAttribute), true))
             {

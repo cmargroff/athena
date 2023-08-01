@@ -19,7 +19,7 @@ internal class Spawn : AthenaMonoBehavior, ISpawn
         _seq.SetUpdate(UpdateType.Manual);
         _seq.Append(transform.DOScale(1, .5f));
         _seq.AppendCallback(() => 
-            _stateMachine.SetState(gameObject,typeof(IAlive))
+            _stateMachine.SetState(typeof(IAlive))
         );
     }
     protected override void PlausibleFixedUpdate()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FriendlyName: Orbital
   Description: Sometimes you just need to bring everyone in for a hug
-  Cost: 0
+  Cost: 5
   Icon: {fileID: 21300000, guid: 8d5c27b3f2f353446a5becf220f1bf0d, type: 3}
   Color: {r: 0, g: 0.63820505, b: 1, a: 0}
   Damage: 200
@@ -32,6 +32,7 @@ MonoBehaviour:
   Knockback: 1000
   Scale: 2
   FireAngle: 0
+  Behavior: 1
   Bullet: {fileID: 1451932744883786014, guid: e79799dc3f099e846ad33b69287add82, type: 3}
   ParentedToPlayer: 0
   Orbit: 1

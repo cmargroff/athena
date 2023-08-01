@@ -65,7 +65,7 @@ public  class AthenaMonoBehavior : MonoBehaviour
     {
         if (_stateMachine != null)
         {
-            _stateMachine.SetInitialState(gameObject);
+            _stateMachine.SetInitialState();
         }
     }
     
@@ -110,16 +110,6 @@ public  class AthenaMonoBehavior : MonoBehaviour
     {
     }
 
-
-    //protected T SafeGetComponent<T>()
-    //{
-    //    T obj = this.GetComponent<T>();
-    //    if (obj == null|| obj.ToString()=="null")
-    //    {
-    //        throw new System.Exception($"{typeof(T).Name} not found");
-    //    }
-    //    return obj;
-    //}
 
     protected void SafeAssigned<T>(T obj)
     {

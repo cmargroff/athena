@@ -10,7 +10,7 @@ namespace Assets.Scripts.UIViewModels
     public  class ShopVM : UIVM
     {
         [VisualElementBind]
-        public int Coins;
+        public string Coins;
         [VisualElementEventAttribute]
         public Action Done;
 

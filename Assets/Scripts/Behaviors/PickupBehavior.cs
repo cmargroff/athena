@@ -11,7 +11,7 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
 
     public void Kill()
     {
-        _stateMachine.SetState(gameObject, typeof(IDeath));
+        _stateMachine.SetState(typeof(IDeath));
     }
 
     public override void OnActive()

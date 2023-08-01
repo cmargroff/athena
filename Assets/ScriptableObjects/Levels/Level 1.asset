@@ -13,87 +13,10 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   EnemyTimings:
-  - Name: Light scounts
-    StartTime: 0
-    EndTime: 5
-    Rate: 1
-    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    Sides: 1
-    Aggressiveness: 0
-  - Name: Heavy scouts
-    StartTime: 5
-    EndTime: 10
-    Rate: 0.5
-    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    Sides: 0
-    Aggressiveness: 0
   - Name: Scout Worker mix S
-    StartTime: 10
-    EndTime: 12
-    Rate: 0.5
-    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
-    Sides: 0
-    Aggressiveness: 0
-  - Name: Scout Worker mix B
-    StartTime: 12
-    EndTime: 15
-    Rate: 1
-    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    Sides: 0
-    Aggressiveness: 0
-  - Name: More Workers
-    StartTime: 12
-    EndTime: 15
-    Rate: 1
-    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
-    Sides: 0
-    Aggressiveness: 0.7
-  - Name: Supervisors show up
-    StartTime: 15
-    EndTime: 20
-    Rate: 0.5
-    Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
-    Sides: 0
-    Aggressiveness: 0
-  - Name: More Workers
-    StartTime: 20
-    EndTime: 25
-    Rate: 1
-    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
-    Sides: 0
-    Aggressiveness: 0.7
-  - Name: 'Scout raid '
-    StartTime: 35
-    EndTime: 40
-    Rate: 0.3
-    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    Sides: 0
-    Aggressiveness: 0
-  - Name: Scout raid closer
-    StartTime: 25
-    EndTime: 35
-    Rate: 0.3
-    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    Sides: 0
-    Aggressiveness: 0.489
-  - Name: All Out attack A
-    StartTime: 35
-    EndTime: 60
+    StartTime: 0
+    EndTime: 600
     Rate: 0.5
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    Sides: 1
-    Aggressiveness: 0
-  - Name: All Out attack B
-    StartTime: 35
-    EndTime: 60
-    Rate: 0.5
-    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
-    Sides: 2
-    Aggressiveness: 0
-  - Name: All Out attack C
-    StartTime: 35
-    EndTime: 60
-    Rate: 1
-    Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
     Sides: 0
     Aggressiveness: 0

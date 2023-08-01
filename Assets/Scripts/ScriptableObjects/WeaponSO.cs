@@ -25,8 +25,8 @@ public class WeaponSO : ScriptableObject
     public float Knockback;
     public float Scale;
 
-    public FireAngleEnum FireAngle=FireAngleEnum.Random;
-
+    public FireAngleEnum FireAngle = FireAngleEnum.Random;
+    public BehaviorEnum Behavior= BehaviorEnum.Weapon;
 
     public GameObject Bullet;
     public bool ParentedToPlayer;
@@ -39,9 +39,16 @@ public class WeaponSO : ScriptableObject
 
     public enum FireAngleEnum
     {
-        Random=0,
-        MovementDirection=1,
-        ClosestEnemy=2
+        Random = 0,
+        MovementDirection = 1,
+        ClosestEnemy = 2
     }
+
+    public enum BehaviorEnum
+    {
+        Weapon,
+        Orbital
+    }
+
 
 }

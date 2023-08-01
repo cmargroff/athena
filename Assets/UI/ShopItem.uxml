@@ -5,9 +5,9 @@
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
             <ui:Label tabindex="-1" text="This item is realy interesting and everyone would want to buy it" display-tooltip-when-elided="true" name="Description" style="overflow: visible; white-space: normal;" />
         </ui:VisualElement>
-        <ui:Button display-tooltip-when-elided="true" name="Buy" style="background-color: rgb(253, 255, 143); flex-direction: row; align-items: stretch; justify-content: center;">
+        <AthenaButton display-tooltip-when-elided="true" name="Buy" enabled="true" style="background-color: rgb(253, 255, 143); flex-direction: row; align-items: stretch; justify-content: center;">
             <ui:Label tabindex="-1" text="Buy" display-tooltip-when-elided="true" name="BuyLabel" />
             <ui:Label tabindex="-1" text="10" display-tooltip-when-elided="true" name="Cost" />
-        </ui:Button>
+        </AthenaButton>
     </ui:VisualElement>
 </ui:UXML>

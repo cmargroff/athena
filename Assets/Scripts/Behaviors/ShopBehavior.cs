@@ -15,12 +15,6 @@ public class ShopBehavior:AthenaMonoBehavior
 
     [SerializeField]
     private VisualTreeAsset _shopItemAsset;
-    protected override void Start()
-    {
-        base.Start();
-
-    }
-
     public List<WeaponSO> Weapons;
 
 
@@ -30,6 +24,11 @@ public class ShopBehavior:AthenaMonoBehavior
 
         _shopUI = GetComponent<UIDocument>();
         SafeAssigned(_shopItemAsset);
+        BuildShop();
+    }
+
+    private void BuildShop()
+    {
         var shopVM = new ShopVM()
         {
             Done = () =>
@@ -37,7 +36,7 @@ public class ShopBehavior:AthenaMonoBehavior
                 _gameManager.Shop.gameObject.SetActive(false);
                 _gameManager.Paused = false;
             },
-            Coins = _gameManager.Pickups.GetValueOrDefault("Coin")
+            Coins = _gameManager.Pickups.GetValueOrDefault("Coin").ToString()
         };
         shopVM.Bind(_shopUI.rootVisualElement);
 
@@ -50,8 +49,9 @@ public class ShopBehavior:AthenaMonoBehavior
             {
                 Name = weapon.FriendlyName,
                 Description = weapon.Description,
-                Cost=weapon.Cost,
-                Buy = () => AddWeapon(weapon),
+                Cost = weapon.Cost.ToString(),
+                Buy = () => BuyWeapon(weapon),
+                CanBuy = weapon.Cost <= _gameManager.Pickups.GetValueOrDefault("Coin")
             };
             vm.Bind(item);
 
@@ -59,11 +59,22 @@ public class ShopBehavior:AthenaMonoBehavior
         }
     }
 
-    private void AddWeapon(WeaponSO weapon)
+    private void BuyWeapon(WeaponSO weapon)
     {
-        var weaponBehavior = _gameManager.Weapons.AddComponent<WeaponBehavior>();
+        _gameManager.Pickups["Coin"]-=weapon.Cost;
+        BaseWeaponBehavior weaponBehavior;
+        if (weapon.Behavior == WeaponSO.BehaviorEnum.Weapon)
+        {
+            weaponBehavior = _gameManager.Weapons.AddComponent<WeaponBehavior>();
+        }
+        else
+        {
+            weaponBehavior = _gameManager.Weapons.AddComponent<OrbitalBehavior>();
+        }
         weaponBehavior.WeaponConfig=weapon;
         weaponBehavior.enabled = true;
+        Weapons.Remove(weapon);
+        BuildShop();
     }
 
 

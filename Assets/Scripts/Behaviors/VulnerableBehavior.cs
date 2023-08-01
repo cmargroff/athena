@@ -95,11 +95,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         }
                         if (_stateMachine != null)
                         {
-                            _stateMachine.SetState(gameObject, typeof(IDeath));
-                        }
-                        else
-                        { 
-                        
+                            _stateMachine.SetState(typeof(IDeath));
                         }
                     }
                     else
