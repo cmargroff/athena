@@ -4,7 +4,7 @@
     {
         base.Interact();
         _gameManager.Paused=true;
-        _gameManager.Shop.gameObject.SetActive(true);
+        _gameManager.WeaponShop.gameObject.SetActive(true);
     }
 }
 

@@ -6,13 +6,13 @@ using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
 
-public class ShopBehavior:AthenaMonoBehavior
+public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : BaseShopItemSO
 {
     private UIDocument _shopUI;
 
     [SerializeField]
     private VisualTreeAsset _shopItemAsset;
-    public List<WeaponSO> Weapons;
+    public List<TAsset> Items;
 
 
     public override void  OnActive()
@@ -24,13 +24,13 @@ public class ShopBehavior:AthenaMonoBehavior
         BuildShop();
     }
 
-    private void BuildShop()
+    protected void BuildShop()
     {
         var shopVM = new ShopVM()
         {
             Done = () =>
             {
-                _gameManager.Shop.gameObject.SetActive(false);
+                _gameManager.WeaponShop.gameObject.SetActive(false);
                 _gameManager.Paused = false;
             },
             Coins = _gameManager.Pickups.GetValueOrDefault("Coin").ToString()
@@ -39,32 +39,25 @@ public class ShopBehavior:AthenaMonoBehavior
 
         var itemContainer = _shopUI.rootVisualElement.Q<ScrollView>("ItemsContainer");
         itemContainer.contentContainer.Clear();
-        foreach (var weapon in Weapons)
+        foreach (var item in Items)
         {
-            var item = _shopItemAsset.Instantiate();
+            var shopItem = _shopItemAsset.Instantiate();
             var vm = new WeaponVM()
             {
-                Name = weapon.FriendlyName,
-                Description = weapon.Description,
-                Cost = weapon.Cost.ToString(),
-                Buy = () => BuyWeapon(weapon),
-                CanBuy = weapon.Cost <= _gameManager.Pickups.GetValueOrDefault("Coin")
+                Name = item.FriendlyName,
+                Description = item.Description,
+                Cost = item.Cost.ToString(),
+                Buy = () => Buy(item),
+                CanBuy = item.Cost <= _gameManager.Pickups.GetValueOrDefault("Coin")
             };
-            vm.Bind(item);
+            vm.Bind(shopItem);
 
-            itemContainer.contentContainer.Add(item);
+            itemContainer.contentContainer.Add(shopItem);
         }
     }
 
-    private void BuyWeapon(WeaponSO weapon)
-    {
-        _gameManager.Pickups["Coin"]-=weapon.Cost;
-        var weaponBehavior = (BaseWeaponBehavior) _gameManager.Weapons.AddComponent(Type.GetType(weapon.Behavior));
-        weaponBehavior.WeaponConfig=weapon;
-        weaponBehavior.enabled = true;
-        Weapons.Remove(weapon);
-        BuildShop();
-    }
+
+    protected abstract void Buy(TAsset weapon);
 
 
 

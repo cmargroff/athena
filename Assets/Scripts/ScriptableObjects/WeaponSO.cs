@@ -5,13 +5,9 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "athena/Weapon", order = 0)]
-public class WeaponSO : ScriptableObject
+public class WeaponSO : BaseShopItemSO
 {
-    public string FriendlyName;
-    [Multiline]
-    public string Description;
-    public int Cost;
-    public Sprite Icon;
+
 
     public Color Color;
     public int Damage;
@@ -26,12 +22,13 @@ public class WeaponSO : ScriptableObject
     public float Scale;
 
     public FireAngleEnum FireAngle = FireAngleEnum.Random;
-    [Dropdown("GetBehaviorValues")]
-    public string Behavior;
+    //[Dropdown("GetBehaviorValues")]
+    //public string Behavior;
+    public BehaviorEnum Behavior=BehaviorEnum.WeaponBehavior;
+    
 
 
-
-    public GameObject Bullet;
+        public GameObject Bullet;
     public bool ParentedToPlayer;
     public bool Orbit;
 
@@ -48,14 +45,20 @@ public class WeaponSO : ScriptableObject
     }
 
 
-    [UsedImplicitly]
-    private DropdownList<string> GetBehaviorValues()
+    public  enum BehaviorEnum
     {
-        return new DropdownList<string>()
-        {
-            { "Weapon",   nameof(WeaponBehavior) },
-            { "Orbital",  nameof(OrbitalBehavior)},
-        };
+        WeaponBehavior,
+        OrbitalBehavior
     }
+
+    //[UsedImplicitly]
+    //private DropdownList<string> GetBehaviorValues()
+    //{
+    //    return new DropdownList<string>()
+    //    {
+    //        { "Weapon",   nameof(WeaponBehavior) },
+    //        { "Orbital",  nameof(OrbitalBehavior)},
+    //    };
+    //}
 
 }

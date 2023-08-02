@@ -16,7 +16,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public LayerMask Enemies;
     public LayerMask Buildings;
 
-    public ShopBehavior Shop;
+    public WeaponShopBehavior WeaponShop;
 
     private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
 
@@ -44,7 +44,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         DOTween.SetTweensCapacity(10000, 10000);
 
         SafeAssigned(Bounds);
-        SafeAssigned(Shop);
+        SafeAssigned(WeaponShop);
         SafeAssigned(Player);
         SafeAssigned(Weapons);
 
