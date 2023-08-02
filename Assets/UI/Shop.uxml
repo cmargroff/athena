@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="ShopItem" src="project://database/Assets/UI/ShopItem.uxml?fileID=9197481963319205126&amp;guid=3aa6d90e43415ca45a77923f5a4cb29c&amp;type=3#ShopItem" />
     <ui:VisualElement style="flex-grow: 1; background-color: rgba(152, 152, 152, 0.56); margin-left: 10%; margin-right: 10%; margin-top: 5%; margin-bottom: 5%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-        <ui:Label tabindex="-1" text="Mech Hangar" display-tooltip-when-elided="true" name="MechHangar" style="align-self: center; font-size: 105px;" />
+        <ui:Label tabindex="-1" text="Mech Hangar" display-tooltip-when-elided="true" name="Title" style="align-self: center; font-size: 105px;" />
         <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="Coins" style="overflow: visible; position: absolute; top: 0; left: auto; font-size: 60px; align-self: auto; align-items: auto; flex-direction: column; right: 0; color: rgb(255, 227, 0);" />
         <ui:ScrollView name="ItemsContainer" mode="Horizontal" style="height: 100%;">
             <ui:Instance template="ShopItem" name="ShopItem" />

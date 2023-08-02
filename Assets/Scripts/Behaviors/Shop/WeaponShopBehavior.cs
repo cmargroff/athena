@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 public  class WeaponShopBehavior : ShopBehavior<WeaponSO>
 {
-    protected override void Buy(WeaponSO weapon)
+    protected override string GetTitle()
     {
-        _gameManager.Pickups["Coin"] -= weapon.Cost;
-        var weaponBehavior = (BaseWeaponBehavior)_gameManager.Weapons.AddComponent(Type.GetType(weapon.Behavior.ToString()));
-        weaponBehavior.WeaponConfig = weapon;
+        return "Mech Hangar";
+    }
+
+    protected override void Buy(WeaponSO item)
+    {
+        base.Buy(item);
+        var weaponBehavior = (BaseWeaponBehavior)_gameManager.Weapons.AddComponent(Type.GetType(item.Behavior.ToString()));
+        weaponBehavior.WeaponConfig = item;
         weaponBehavior.enabled = true;
-        Items.Remove(weapon);
-        BuildShop();
     }
 }

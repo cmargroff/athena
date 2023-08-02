@@ -17,6 +17,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public LayerMask Buildings;
 
     public WeaponShopBehavior WeaponShop;
+    public PowerUpShopBehavior PowerUpShop;
 
     private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
 

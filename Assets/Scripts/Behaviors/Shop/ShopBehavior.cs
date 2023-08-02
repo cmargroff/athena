@@ -14,18 +14,21 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
     private VisualTreeAsset _shopItemAsset;
     public List<TAsset> Items;
 
+    protected abstract string GetTitle();
 
-    public override void  OnActive()
+    //public override void  OnActive()
+    //{
+    //    base.OnActive();
+
+    //    _shopUI = GetComponent<UIDocument>();
+    //    SafeAssigned(_shopItemAsset);
+        
+    //}
+
+    public void BuildShop()
     {
-        base.OnActive();
-
         _shopUI = GetComponent<UIDocument>();
         SafeAssigned(_shopItemAsset);
-        BuildShop();
-    }
-
-    protected void BuildShop()
-    {
         var shopVM = new ShopVM()
         {
             Done = () =>
@@ -33,7 +36,9 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
                 _gameManager.WeaponShop.gameObject.SetActive(false);
                 _gameManager.Paused = false;
             },
-            Coins = _gameManager.Pickups.GetValueOrDefault("Coin").ToString()
+            Coins = _gameManager.Pickups.GetValueOrDefault("Coin").ToString(),
+            Title = GetTitle()
+
         };
         shopVM.Bind(_shopUI.rootVisualElement);
 
@@ -57,7 +62,12 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
     }
 
 
-    protected abstract void Buy(TAsset weapon);
+    protected virtual void Buy(TAsset item)
+    {
+        _gameManager.Pickups["Coin"] -= item.Cost;
+        Items.Remove(item);
+        BuildShop();
+    }
 
 
 
