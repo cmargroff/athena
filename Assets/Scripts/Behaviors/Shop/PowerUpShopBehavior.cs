@@ -18,7 +18,12 @@ public class PowerUpShopBehavior : ShopBehavior<PowerUpSO>
         _gameManager.PlayerCharacter.Knockback += item.Knockback;
         _gameManager.PlayerCharacter.Speed += item.Speed;
         _gameManager.PlayerCharacter.Damage += item.Damage;
-        _gameManager.PlayerCharacter.AttackFrequency += item.AttackFrequency;
+
+        if (item.AttackFrequency > 0)
+        {
+            _gameManager.PlayerCharacter.AttackFrequency += item.AttackFrequency;
+            _gameManager.PlayerCharacter.OnStatsChanged?.Invoke();
+        }
     }
 }
 

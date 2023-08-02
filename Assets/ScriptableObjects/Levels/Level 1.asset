@@ -15,8 +15,43 @@ MonoBehaviour:
   EnemyTimings:
   - Name: Scout Worker mix S
     StartTime: 0
-    EndTime: 600
+    EndTime: 30
     Rate: 0.5
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: Scout Worker mix S
+    StartTime: 30
+    EndTime: 50
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: Scout Worker mix S
+    StartTime: 30
+    EndTime: 60
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: Scout Worker mix S
+    StartTime: 60
+    EndTime: 120
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: Scout Worker mix S
+    StartTime: 80
+    EndTime: 120
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: Scout Worker mix S
+    StartTime: 80
+    EndTime: 120
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0

@@ -2244,6 +2244,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   WeaponShop: {fileID: 2012974779}
+  PowerUpShop: {fileID: 2012974780}
   KnockbackFriction: 0.01
   KnockbackFactor: 0.2
   PlayerCharacter: {fileID: 0}
@@ -2398,6 +2399,7 @@ GameObject:
   - component: {fileID: 2012974775}
   - component: {fileID: 2012974774}
   - component: {fileID: 2012974779}
+  - component: {fileID: 2012974780}
   m_Layer: 5
   m_Name: ShopCanvas
   m_TagString: Untagged
@@ -2520,6 +2522,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
   - {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}
   - {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
+--- !u!114 &2012974780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012974773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e346fad9b95304db59df806720c6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shopItemAsset: {fileID: 9197481963319205126, guid: 3aa6d90e43415ca45a77923f5a4cb29c, type: 3}
+  Items:
+  - {fileID: 11400000, guid: 6bb8d89cf3dae6545a0ccee7ed048515, type: 2}
+  - {fileID: 11400000, guid: 706df4f7dd9d89145a044d1e107146a8, type: 2}
+  - {fileID: 11400000, guid: 87f193900c52d2c42bdae71065c183d3, type: 2}
+  - {fileID: 11400000, guid: 6bb2662e5c141e34696ba8dd871e103d, type: 2}
+  - {fileID: 11400000, guid: 775007c5bede7994bbf78d75eb7a5c42, type: 2}
 --- !u!1 &2132133401
 GameObject:
   m_ObjectHideFlags: 0

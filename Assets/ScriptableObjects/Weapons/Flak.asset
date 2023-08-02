@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FriendlyName: Flak
   Description: Aiming is hard, burst fire is easy
-  Cost: 5
+  Cost: 10
   Icon: {fileID: 21300000, guid: d943c0921a72cee4fb0c4fcac074e869, type: 3}
   Color: {r: 0, g: 0.735849, b: 0.14977618, a: 0}
   Damage: 200
@@ -32,7 +32,7 @@ MonoBehaviour:
   Knockback: 500
   Scale: 1
   FireAngle: 1
-  Behavior: 1
+  Behavior: 0
   Bullet: {fileID: 1451932744883786014, guid: 1d9e713897cec294587ab37603511736, type: 3}
   ParentedToPlayer: 0
   Orbit: 0

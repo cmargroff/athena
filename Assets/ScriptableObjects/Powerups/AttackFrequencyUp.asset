@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f8be12844459b4eba6411b9ea08519, type: 3}
   m_Name: AttackFrequencyUp
   m_EditorClassIdentifier: 
-  FriendlyName: Shoot Speed Up
+  FriendlyName: Rate Up
   Description: More pew for every trigger pull or your money back
   Cost: 5
   Icon: {fileID: 0}

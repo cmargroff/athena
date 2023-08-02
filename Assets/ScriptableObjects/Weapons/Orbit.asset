@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FriendlyName: Orbital
   Description: Sometimes you just need to bring everyone in for a hug
-  Cost: 5
+  Cost: 10
   Icon: {fileID: 21300000, guid: 8d5c27b3f2f353446a5becf220f1bf0d, type: 3}
   Color: {r: 0, g: 0.63820505, b: 1, a: 0}
   Damage: 200
