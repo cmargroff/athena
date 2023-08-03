@@ -19,7 +19,7 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
 
     private int _numberOfItemsSold;
     private readonly Dictionary<string, int> _itemsSold= new();
-
+    private @PlayerInputActions _controls;
     protected abstract string GetTitle();
 
     //public override void  OnActive()
@@ -28,8 +28,13 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
 
     //    _shopUI = GetComponent<UIDocument>();
     //    SafeAssigned(_shopItemAsset);
-        
+
     //}
+    protected  override void Start()
+    {
+        _controls = new();
+        _controls.Menues.Enable();
+    }
 
     public void BuildShop()
     {
