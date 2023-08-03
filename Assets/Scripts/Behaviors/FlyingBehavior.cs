@@ -24,6 +24,8 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
     [SerializeField]
     private LayerMask _bumpsInto;
 
+    [SerializeField] private Vector3 _flipVector3 = new Vector3(0, 0, 180);
+
     protected override void Start()
     {
         base.Start();
@@ -80,22 +82,22 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
         {
             if (_visual == null)
             {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                transform.rotation = Quaternion.Euler(Vector3.zero);
             }
             else
             {
-                _visual.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                _visual.transform.rotation = Quaternion.Euler(Vector3.zero);
             }
         }
         else if (moveDir.x > 0 == FacesRight)
         {
             if (_visual == null)
             {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                transform.rotation = Quaternion.Euler(_flipVector3);
             }
             else
             {
-                _visual.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                _visual.transform.rotation = Quaternion.Euler(_flipVector3);
             }
            
         }

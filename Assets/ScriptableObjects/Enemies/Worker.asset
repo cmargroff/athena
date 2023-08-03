@@ -18,7 +18,7 @@ MonoBehaviour:
   Weight: 2000
   Friction: 1
   TouchDamage: 100
-  Prefab: {fileID: 1641400220716531286, guid: 34e51435affef874187e22ba213b7767, type: 3}
+  Prefab: {fileID: 8751017660885092088, guid: 65269aac58f141546a1d78a6beabef9d, type: 3}
   Rewards:
   - Pickup: {fileID: 11400000, guid: 40aaf77af6d3e4f49b080e09cc029171, type: 2}
     Chance: 0.5
