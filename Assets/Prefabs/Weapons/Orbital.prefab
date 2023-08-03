@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e9bff34385f79de48b71ecfebde5e2b9, type: 2}
+  - {fileID: 2100000, guid: 73326436bf872a14296ebe509bf027cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4799812864958688007, guid: ff41b82fc418804489197ecf77734092, type: 3}
       propertyPath: m_Name
-      value: Bullet
+      value: Orbital
       objectReference: {fileID: 0}
     - target: {fileID: 5733650597878516753, guid: ff41b82fc418804489197ecf77734092, type: 3}
       propertyPath: m_RootOrder
