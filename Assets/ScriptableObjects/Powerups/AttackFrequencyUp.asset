@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: More pew for every trigger pull or your money back
   Cost: 5
   Icon: {fileID: 0}
+  NumberInStore: 99
   Damage: 0
   Knockback: 0
   Speed: 0

@@ -13,5 +13,7 @@ public class BaseShopItemSO : ScriptableObject
     public string Description;
     public int Cost;
     public Sprite Icon;
+
+    public int NumberInStore = 1;
 }
 

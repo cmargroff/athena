@@ -2522,6 +2522,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
   - {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}
   - {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
+  GlobalMarkup: 10
+  RepeatItemMarkup: 0
 --- !u!114 &2012974780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2541,6 +2543,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87f193900c52d2c42bdae71065c183d3, type: 2}
   - {fileID: 11400000, guid: 6bb2662e5c141e34696ba8dd871e103d, type: 2}
   - {fileID: 11400000, guid: 775007c5bede7994bbf78d75eb7a5c42, type: 2}
+  GlobalMarkup: 1
+  RepeatItemMarkup: 5
 --- !u!1 &2132133401
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: For the loner in you
   Cost: 5
   Icon: {fileID: 0}
+  NumberInStore: 99
   Damage: 0
   Knockback: 0.5
   Speed: 0

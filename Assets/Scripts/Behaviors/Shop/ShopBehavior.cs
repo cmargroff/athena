@@ -14,6 +14,12 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
     private VisualTreeAsset _shopItemAsset;
     public List<TAsset> Items;
 
+    public int GlobalMarkup;
+    public int RepeatItemMarkup;
+
+    private int _numberOfItemsSold;
+    private readonly Dictionary<string, int> _itemsSold= new();
+
     protected abstract string GetTitle();
 
     //public override void  OnActive()
@@ -47,13 +53,14 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
         foreach (var item in Items)
         {
             var shopItem = _shopItemAsset.Instantiate();
+            var cost = ComputeCost(item);
             var vm = new WeaponVM()
             {
                 Name = item.FriendlyName,
                 Description = item.Description,
-                Cost = item.Cost.ToString(),
+                Cost = cost.ToString(),
                 Buy = () => Buy(item),
-                CanBuy = item.Cost <= _gameManager.Pickups.GetValueOrDefault("Coin")
+                CanBuy = cost <= _gameManager.Pickups.GetValueOrDefault("Coin")
             };
             vm.Bind(shopItem);
 
@@ -61,11 +68,25 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
         }
     }
 
-
+    private int ComputeCost(TAsset asset)
+    {
+        var cost = asset.Cost;
+        cost += _numberOfItemsSold * GlobalMarkup;
+        cost+=_itemsSold.GetValueOrDefault(asset.name)* RepeatItemMarkup;
+        return cost;
+    }
+   
     protected virtual void Buy(TAsset item)
     {
-        _gameManager.Pickups["Coin"] -= item.Cost;
-        Items.Remove(item);
+        _gameManager.Pickups["Coin"] -= ComputeCost(item);
+        _numberOfItemsSold++;
+        _itemsSold[item.name] = _itemsSold.GetValueOrDefault(item.name) + 1;
+        if (item.NumberInStore < _itemsSold[item.name])
+        {
+            Items.Remove(item);
+        }
+
+
         BuildShop();
     }
 

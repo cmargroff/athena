@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: Be tough, like POTATOE!
   Cost: 5
   Icon: {fileID: 0}
+  NumberInStore: 99
   Damage: 0
   Knockback: 0
   Speed: 0
