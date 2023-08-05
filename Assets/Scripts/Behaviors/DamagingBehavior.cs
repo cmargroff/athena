@@ -21,8 +21,8 @@ public class DamagingBehavior : AthenaMonoBehavior, IAlive
   {
     base.Start();
 
-    _parent = GetComponentInParent<FlyingBehavior>();
-    _bullet = GetComponentInParent<BulletBehavior>();
+    _parent = GetComponentInParent<FlyingBehavior>()??GetComponent<FlyingBehavior>();
+    _bullet = GetComponentInParent<BulletBehavior>()??GetComponent<BulletBehavior>();
 
 
   }

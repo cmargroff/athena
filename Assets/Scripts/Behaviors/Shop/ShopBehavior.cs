@@ -86,7 +86,7 @@ public abstract class ShopBehavior<TAsset>:AthenaMonoBehavior where TAsset : Bas
         _gameManager.Pickups["Coin"] -= ComputeCost(item);
         _numberOfItemsSold++;
         _itemsSold[item.name] = _itemsSold.GetValueOrDefault(item.name) + 1;
-        if (item.NumberInStore < _itemsSold[item.name])
+        if (item.NumberInStore <= _itemsSold[item.name])
         {
             Items.Remove(item);
         }

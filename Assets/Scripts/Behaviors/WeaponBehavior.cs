@@ -102,6 +102,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         var damaging = bullet.GetComponent<DamagingBehavior>();
         damaging.Damage = WeaponConfig.Damage * _gameManager.PlayerCharacter.Damage;
         damaging.Knockback = WeaponConfig.Knockback * _gameManager.PlayerCharacter.Knockback;
+        damaging.Pierce = WeaponConfig.Pierce;
         //var bullet = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         var behavior = bullet.GetComponent<BulletBehavior>();
         behavior.Speed = WeaponConfig.Speed.GetRandomValue();
