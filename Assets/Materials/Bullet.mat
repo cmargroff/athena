@@ -76,6 +76,10 @@ Material:
     - _Noise: 0.1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _RadiousRate: 5
+    - _Radius: 0.5
+    - _RadiusMax: 1
+    - _RadiusMin: 0.502
     - _Scale: 1.04
     - _Sides: 10
     - _SmoothnessTextureChannel: 0

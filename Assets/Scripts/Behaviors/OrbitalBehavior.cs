@@ -5,9 +5,9 @@ public class OrbitalBehavior : BaseWeaponBehavior, IAlive
     
 
 
-    protected override void Start()
+    public override void OnActive()
     {
-        base.Start();
+        base.OnActive();
 
         for (var i = 0; i < WeaponConfig.Number; i++)
         {
