@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7891500125286449387
 Transform:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3106628124774556597, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.59
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3106628124774556597, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
       propertyPath: m_LocalPosition.y
@@ -263,8 +263,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9058140562795579314, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154757669276490419, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25c1e7803118fd64dab82c3a6fdbff1d, type: 2}
     m_RemovedComponents:
     - {fileID: 919436344462600720, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
+    - {fileID: 9058140562795579314, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8087923949588697040, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
