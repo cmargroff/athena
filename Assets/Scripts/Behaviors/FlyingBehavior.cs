@@ -8,18 +8,18 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
     private StatAdjust _statAdjust;
 
     public Vector2 MoveAngle;
-    
+
     public Vector2 LastMoveAngle;
 
     public bool FacesRight = true;
 
     private Collider2D _bounds;
-    
+
     [SerializeField]
-    private GameObject _visual;
-    
+    private Renderer _visual;
+
     [SerializeField]
-    public  float Speed;
+    public float Speed;
 
     [SerializeField]
     private LayerMask _bumpsInto;
@@ -31,6 +31,8 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
         base.Start();
         _bounds = _gameManager.Bounds;
         _statAdjust = GetComponent<StatAdjust>();
+
+        
     }
 
 
@@ -38,6 +40,9 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
 
 
     private float Slowdown = 2f;
+
+    private static readonly int Flip = Shader.PropertyToID("_Flip");
+
     // Update is called once per frame
     protected override void PlausibleUpdate()
     {
@@ -48,7 +53,7 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
         }
 
 
-        var deltaSpeed = Speed * _statAdjust.GetSpeedAdjust()* Time.deltaTime;
+        var deltaSpeed = Speed * _statAdjust.GetSpeedAdjust() * Time.deltaTime;
         var moveDir = new Vector3(MoveAngle.x, MoveAngle.y, 0f);
         if (ColliderUtils.IsPointInsideCollider2D(_bounds, transform.position)) //if we are inside the bounds, do normal movement
         {
@@ -74,33 +79,15 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
         }
         else //otherwise push the object into bounds
         {
-            moveDir=(_bounds.transform.position- transform.position).normalized;
-            transform.position += moveDir * deltaSpeed ;
+            moveDir = (_bounds.transform.position - transform.position).normalized;
+            transform.position += moveDir * deltaSpeed;
         }
 
-        if (moveDir.x < 0 == FacesRight)
-        {
-            if (_visual == null)
-            {
-                transform.rotation = Quaternion.Euler(Vector3.zero);
-            }
-            else
-            {
-                _visual.transform.rotation = Quaternion.Euler(Vector3.zero);
-            }
-        }
-        else if (moveDir.x > 0 == FacesRight)
-        {
-            if (_visual == null)
-            {
-                transform.rotation = Quaternion.Euler(_flipVector3);
-            }
-            else
-            {
-                _visual.transform.rotation = Quaternion.Euler(_flipVector3);
-            }
-           
-        }
+
+
+        _visual.material.SetFloat(Flip, moveDir.x < 0 == FacesRight?0f:1f);
+
+
 
     }
 
@@ -123,4 +110,4 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
 }
 
 
-    
+
