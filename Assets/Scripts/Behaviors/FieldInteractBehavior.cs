@@ -19,7 +19,7 @@ public class FieldInteractBehavior : AthenaMonoBehavior
     {
 
         Collider2D[] result = new Collider2D[1];
-        Physics2D.OverlapCircleNonAlloc(transform.position, transform.localScale.magnitude, result, _gameManager.Buildings);
+        Physics2D.OverlapCircleNonAlloc(transform.position, transform.localScale.x, result, _gameManager.Buildings);//using x here, magnitude is giving an odd result
         {
             var building = result[0]?.GetComponent<BuildingInteractBehaviour>();
             if (building != null)

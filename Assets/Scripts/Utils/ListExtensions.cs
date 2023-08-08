@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 
 
 public static  class ListExtensions
@@ -27,5 +28,11 @@ public static  class ListExtensions
         }
 
     }
+    public static TValue GetRandom<TValue>(this List<TValue> list)
+    {
+        return list[UnityEngine.Random.Range(0, list.Count)];
+
+    }
+
 }
 

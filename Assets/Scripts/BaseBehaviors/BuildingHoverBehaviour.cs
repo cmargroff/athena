@@ -3,7 +3,9 @@
 public  class BuildingHoverBehaviour:AthenaMonoBehavior
 {
     [SerializeField]
-    private GameObject _hoverIndicator;
+    private Renderer _hoverIndicator;
+
+    private static readonly int Highlight = Shader.PropertyToID("_Highlight");
 
     protected override void Start()
     {
@@ -13,11 +15,11 @@ public  class BuildingHoverBehaviour:AthenaMonoBehavior
 
     public void EnableHoverIndicator()
     {
-        _hoverIndicator.SetActive(true);
+        _hoverIndicator.material.SetFloat(Highlight, 1);
     }
     public void DisableHoverIndicator()
     {
-        _hoverIndicator.SetActive(false);
+        _hoverIndicator.material.SetFloat(Highlight, 0);
     }
 
 }
