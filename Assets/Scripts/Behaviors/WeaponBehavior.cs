@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using Assets.Scripts.Utils;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
-public class WeaponBehavior : AthenaMonoBehavior, IAlive
+public class WeaponBehavior : AthenaMonoBehavior, IAlive, IWeapon
 {
     [SerializeField]
     private WeaponSO _weaponConfig;
@@ -104,5 +104,9 @@ public class WeaponBehavior : AthenaMonoBehavior, IAlive
         behavior.Speed = _weaponConfig.Speed.GetRandomValue();
         behavior.MoveAngle = fireAngle;
         behavior.Duration = _weaponConfig.Duration.GetRandomValue();
+    }
+    private void OnDisable() {
+        // _timedEvent?.Cancel();
+        Debug.Log("Weapon disabled");
     }
 }

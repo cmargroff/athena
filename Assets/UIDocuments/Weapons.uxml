@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="WeaponVE" src="project://database/Assets/Scripts/VisualElements/WeaponVE/WeaponVE.uxml?fileID=9197481963319205126&amp;guid=4793e7b0e7cbc544d95395680c4e78f2&amp;type=3#WeaponVE" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-items: flex-end; justify-content: flex-end;">
+        <ui:Instance template="WeaponVE" name="WeaponVE" style="background-image: none;" />
+        <ui:Instance template="WeaponVE" name="WeaponVE" />
+        <ui:Instance template="WeaponVE" name="WeaponVE" />
+    </ui:VisualElement>
+</ui:UXML>
