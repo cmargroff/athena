@@ -52,8 +52,4 @@ public abstract class ShopCanvasBehavior<TAsset> : AthenaMonoBehavior where TAss
       i++;
     }
   }
-  void Update()
-  {
-
-  }
 }
