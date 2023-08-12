@@ -6,22 +6,30 @@
     {
         base.Interact();
         _gameManager.Paused=true;
-        if (ShopType == ShopTypeEnum.Weapon)
+        switch (ShopType)
         {
-            _gameManager.WeaponShop.gameObject.SetActive(true);
-            _gameManager.WeaponShop.BuildShop();
+            case ShopTypeEnum.Weapon:
+                _gameManager.WeaponShop.gameObject.SetActive(true);
+                _gameManager.WeaponShop.BuildShop();
+                break;
+            case ShopTypeEnum.Military:
+                _gameManager.MilitaryShop.gameObject.SetActive(true);
+                _gameManager.MilitaryShop.BuildShop();
+                break;
+            default:
+                _gameManager.PowerUpShop.gameObject.SetActive(true);
+                _gameManager.PowerUpShop.BuildShop();
+                break;
         }
-        else
-        {
-            _gameManager.PowerUpShop.gameObject.SetActive(true);
-            _gameManager.PowerUpShop.BuildShop();
-        }
+
+        
     }
 
     public enum ShopTypeEnum
     {
         Weapon,
-        Powerup
+        Powerup,
+        Military
     }
 }
 

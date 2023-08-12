@@ -18,6 +18,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     public WeaponShopBehavior WeaponShop;
     public PowerUpShopBehavior PowerUpShop;
+    public MilitaryShopBehavior MilitaryShop;
 
     private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
 
@@ -30,11 +31,12 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public event Action<string, int> OnPickupCollected;
 
     public PlayerCharacterBehavior PlayerCharacter;
-
+    public BuildingCharacterBehavior BuildingCharacter;
     protected override void Awake()
     {
         base.Awake();
         PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
+        BuildingCharacter = GetComponent<BuildingCharacterBehavior>();
     }
 
 
@@ -46,6 +48,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
         SafeAssigned(Bounds);
         SafeAssigned(WeaponShop);
+        SafeAssigned(PowerUpShop);
+        SafeAssigned(MilitaryShop);
+
         SafeAssigned(Player);
         SafeAssigned(Weapons);
 
