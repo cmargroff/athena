@@ -15,7 +15,8 @@ MonoBehaviour:
   FriendlyName: 'Speed Up '
   Description: Got to go fast
   Cost: 5
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: ddd391b1fef0f7645b90ea447403e885, type: 3}
+  Color: {r: 0.16509432, g: 0.16732137, b: 1, a: 0}
   NumberInStore: 99
   Damage: 0
   Knockback: 0

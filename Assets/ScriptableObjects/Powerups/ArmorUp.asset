@@ -15,7 +15,8 @@ MonoBehaviour:
   FriendlyName: Armor Up
   Description: Be tough, like POTATOE!
   Cost: 5
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: bba223ea1018c654eb914cac83327892, type: 3}
+  Color: {r: 0.35730112, g: 0, b: 0.8113208, a: 0}
   NumberInStore: 99
   Damage: 0
   Knockback: 0
