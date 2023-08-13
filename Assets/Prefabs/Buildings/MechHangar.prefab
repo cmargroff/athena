@@ -423,5 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b37a28cce4c594b8ab3747dbc23c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _indicatorTemplate: {fileID: 6899680089020460783, guid: 8273bde622da706408a13c333691daa8, type: 3}
   BuildingHover: {fileID: 0}
   ShopType: 0
+  MinimumCost: 5
