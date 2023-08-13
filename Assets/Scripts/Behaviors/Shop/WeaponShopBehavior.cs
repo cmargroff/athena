@@ -11,7 +11,7 @@ public  class WeaponShopBehavior : ShopBehavior<WeaponSO>
         return "Mech Hangar";
     }
 
-    protected override void Buy(WeaponSO item)
+    public override void Buy(WeaponSO item)
     {
         base.Buy(item);
         var weaponBehavior = (BaseWeaponBehavior)_gameManager.Weapons.AddComponent(Type.GetType(item.Behavior.ToString()));

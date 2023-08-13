@@ -2674,6 +2674,9 @@ MonoBehaviour:
   KnockbackFactor: 0.2
   PlayerCharacter: {fileID: 0}
   BuildingCharacter: {fileID: 0}
+  OnCoinsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1797170646
 Transform:
   m_ObjectHideFlags: 0
@@ -2851,7 +2854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2012974774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2962,6 +2965,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a5f5cff6db945458cc43bb51d8e819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinCost: 0
+  OnMinCostChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _shopItemAsset: {fileID: 9197481963319205126, guid: 3aa6d90e43415ca45a77923f5a4cb29c, type: 3}
   Items:
   - {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
@@ -2981,6 +2988,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e346fad9b95304db59df806720c6e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinCost: 0
+  OnMinCostChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _shopItemAsset: {fileID: 9197481963319205126, guid: 3aa6d90e43415ca45a77923f5a4cb29c, type: 3}
   Items:
   - {fileID: 11400000, guid: 6bb8d89cf3dae6545a0ccee7ed048515, type: 2}
@@ -3002,6 +3013,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b981ec22fc003c469af731dede261f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinCost: 0
+  OnMinCostChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _shopItemAsset: {fileID: 9197481963319205126, guid: 3aa6d90e43415ca45a77923f5a4cb29c, type: 3}
   Items:
   - {fileID: 11400000, guid: 706df4f7dd9d89145a044d1e107146a8, type: 2}

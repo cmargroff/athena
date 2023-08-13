@@ -29,5 +29,10 @@ public class CollectedUIBehavior : AthenaMonoBehavior
         _pickups.TryGetValue(type, out var pickup);
         var label = (Label)pickup.Q(className: "pickup-count");
         label.text = count.ToString();
+
+        if (type == "Coin")
+        {
+            _gameManager.OnCoinsChanged?.Invoke();
+        }
     }
 }

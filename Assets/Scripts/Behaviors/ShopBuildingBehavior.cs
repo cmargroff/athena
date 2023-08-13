@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-
+[RequireComponent(typeof(BuildingUsableIndicator))]
 public class ShopBuildingBehavior: BuildingInteractBehaviour
 {
     public ShopTypeEnum ShopType;
+    public ShopBehavior Shop;
+
 
     public int MinimumCost=5;//todo:set this value for real
 
@@ -13,10 +15,27 @@ public class ShopBuildingBehavior: BuildingInteractBehaviour
     {
         base.Start();
         SetupIndicator();
-        _buildingUsableIndicator = GetComponent<BuildingUsableIndicator>();//todo: add required
+        _buildingUsableIndicator = GetComponent<BuildingUsableIndicator>();
+
+        _gameManager.OnCoinsChanged.AddListener(CoinsChanged);
+
+        switch (ShopType)
+        {
+            case ShopTypeEnum.Weapon:
+                Shop= _gameManager.WeaponShop;
+                break;
+            case ShopTypeEnum.Military:
+                Shop = _gameManager.MilitaryShop;
+                break;
+            default:
+                Shop = _gameManager.PowerUpShop;
+                break;
+        }
+
+        Shop.OnMinCostChanged.AddListener(() => MinimumCost=Shop.MinCost);
     }
 
-    protected override void PlausibleUpdate()//todo: this should be only checked on events
+    private void  CoinsChanged()
     {
         if (_gameManager.Pickups.GetValueOrDefault("Coin") >= MinimumCost)
         {
@@ -37,18 +56,18 @@ public class ShopBuildingBehavior: BuildingInteractBehaviour
         switch (ShopType)
         {
             case ShopTypeEnum.Weapon:
-                _gameManager.WeaponShop.gameObject.SetActive(true);
-                _gameManager.WeaponShop.BuildShop();
+                Shop.gameObject.SetActive(true);
+            
                 break;
             case ShopTypeEnum.Military:
-                _gameManager.MilitaryShop.gameObject.SetActive(true);
-                _gameManager.MilitaryShop.BuildShop();
+                Shop.gameObject.SetActive(true);
+
                 break;
             default:
-                _gameManager.PowerUpShop.gameObject.SetActive(true);
-                _gameManager.PowerUpShop.BuildShop();
+                Shop.gameObject.SetActive(true);
                 break;
         }
+        Shop.BuildShop();
     }
 
     private void SetupIndicator()

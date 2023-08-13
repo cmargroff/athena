@@ -25,7 +25,8 @@ public class MilitaryShopBehavior : ShopBehavior<PowerUpSO>
     {
         return "Research Lab";
     }
-    protected override void Buy(PowerUpSO item)
+
+    public override void Buy(PowerUpSO item)
     {
         base.Buy(item);
 

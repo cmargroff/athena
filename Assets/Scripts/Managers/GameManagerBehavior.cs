@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerCharacterBehavior))]
 public class GameManagerBehavior : AthenaMonoBehavior
@@ -28,10 +29,15 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
     public Dictionary<string, int> Pickups = new ();
-    public event Action<string, int> OnPickupCollected;
+    
 
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
+
+    public event Action<string, int> OnPickupCollected;
+    public UnityEvent OnCoinsChanged;
+
+
     protected override void Awake()
     {
         base.Awake();

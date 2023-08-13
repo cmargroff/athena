@@ -16,7 +16,7 @@ public class BuildingUsableIndicator : AthenaMonoBehavior
 
     public void EnableHoverIndicator()
     {
-        _plane.material.SetFloat(Border, 1);
+        _plane.material.SetFloat(Border, 2);
     }
     public void DisableHoverIndicator()
     {
