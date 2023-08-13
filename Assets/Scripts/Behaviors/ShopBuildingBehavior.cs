@@ -4,14 +4,30 @@ public class ShopBuildingBehavior: BuildingInteractBehaviour
 {
     public ShopTypeEnum ShopType;
 
-    public int MinimumCost=5;
+    public int MinimumCost=5;//todo:set this value for real
 
-    private GameObject _indicator;
+    private IndicatorBehavior _indicator;
 
+    private BuildingUsableIndicator _buildingUsableIndicator;
     protected override void Start()
     {
         base.Start();
         SetupIndicator();
+        _buildingUsableIndicator = GetComponent<BuildingUsableIndicator>();//todo: add required
+    }
+
+    protected override void PlausibleUpdate()//todo: this should be only checked on events
+    {
+        if (_gameManager.Pickups.GetValueOrDefault("Coin") >= MinimumCost)
+        {
+            _buildingUsableIndicator.EnableHoverIndicator();
+            _indicator.On=true;
+        }
+        else
+        {
+            _buildingUsableIndicator.DisableHoverIndicator();
+            _indicator.On = false;
+        }
     }
 
     public override void Interact()
@@ -37,11 +53,11 @@ public class ShopBuildingBehavior: BuildingInteractBehaviour
 
     private void SetupIndicator()
     {
-        _indicator = Instantiate(_indicatorTemplate, Vector3.zero, Quaternion.identity);
-        _indicator.name = $"{name} warning";
-        _indicator.transform.parent=transform;
-        var behavior = _indicator.GetComponent<IndicatorBehavior>();
-        behavior.Target = transform;
+        var obj = Instantiate(_indicatorTemplate, Vector3.zero, Quaternion.identity);
+        obj.name = $"{name} warning";
+        obj.transform.parent=transform;
+        _indicator = obj.GetComponent<IndicatorBehavior>();
+        _indicator.Target = transform;
 
         //Warning.transform.parent = gameObject.transform;
 
