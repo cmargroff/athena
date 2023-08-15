@@ -17,16 +17,22 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
     public override void OnActive()
     {
         base.OnActive();
-        var material = GetComponentInChildren<SpriteRenderer>().material;
+        var spriteMat = GetComponentInChildren<SpriteRenderer>().material;
         // clean up this switch statement to something more readable
-        material.color = Color;
-        // var material2 = GetComponentInChildren<MeshRenderer>().material;
-        // material2.color = Color;
+        spriteMat.color = Color;
+        var trail = GetComponentInChildren<TrailRenderer>();
+        trail.colorGradient = new Gradient()
+        {
+            colorKeys = new GradientColorKey[]
+            {
+                new GradientColorKey(Color,0),
+                new GradientColorKey(Color,1)
+            }
+        };
     }
 
     public void Pickup()
     {
-        if(enabled) //I kind of hate having this exception here but I don't know a better solution right now
-            _gameManager.CollectPickup(this);
+        GetComponent<PickupAnimationBehavior>().Run();
     }
 }
