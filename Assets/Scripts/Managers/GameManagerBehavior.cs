@@ -65,8 +65,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
         SafeAssigned(Player);
         SafeAssigned(Weapons);
-
-        //AddTimedEvent(1f,()=>Debug.Log($"Timed event {Time.timeSinceLevelLoad}"));
+        
+        RunDisabledStarts();
+        
     }
 
     // Update is called once per frame
@@ -115,5 +116,18 @@ public class GameManagerBehavior : AthenaMonoBehavior
             Pickups.Add(pickup.Name, pickup.Amount);
         }
         OnPickupCollected?.Invoke(pickup.Name, Pickups[pickup.Name]);
+    }
+
+    private void RunDisabledStarts()
+    {
+        var objects = FindObjectsOfType<AthenaMonoBehavior>(true);
+        foreach (var obj in objects)
+        {
+            if (obj.gameObject.activeInHierarchy== false)
+            {
+                obj.DisabledStart();
+            }
+        }
+
     }
 }

@@ -49,24 +49,31 @@ public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShop
     {
         _controls = new();
         _controls.Menues.Enable();
-        ComputeMinCost();
-        gameObject.GetComponent<UIDocument>().enabled = false;//todo:this is all kind of dumb Make it less dumb
-        StartCoroutine(StartOff());
-
-    }
-    private IEnumerator StartOff()
-    {
-
-        //returning 0 will make it wait 1 frame
         
-        yield return 0;
-        gameObject.GetComponent<UIDocument>().enabled=true;
-        gameObject.SetActive(false);
-
-        //code goes here
-
+        //gameObject.GetComponent<UIDocument>().enabled = false;//todo:this is all kind of dumb Make it less dumb
+        //StartCoroutine(StartOff());
 
     }
+
+    public override void DisabledStart()
+    {
+        base.DisabledStart();
+        ComputeMinCost();
+    }
+
+    //private IEnumerator StartOff()
+    //{
+
+    //    //returning 0 will make it wait 1 frame
+        
+    //    yield return 0;
+    //    gameObject.GetComponent<UIDocument>().enabled=true;
+    //    gameObject.SetActive(false);
+
+    //    //code goes here
+
+
+    //}
 
     public void ComputeMinCost()
     {
