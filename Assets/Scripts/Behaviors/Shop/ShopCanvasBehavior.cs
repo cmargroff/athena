@@ -11,11 +11,13 @@ public abstract class ShopCanvasBehavior<TAsset> : AthenaMonoBehavior where TAss
   private List<GameObject> _shopItems;
   private Button _leaveButton;
   protected abstract string GetTitle();
-  protected override void Start()
+  private @PlayerInputActions _controls;
+    protected override void Start()
   {
     base.Start();
-
-    _leaveButton = GetComponentInChildren<Button>();
+    _controls = new();
+    _controls.Menues.Enable();
+        _leaveButton = GetComponentInChildren<Button>();
     _shopItems = new List<GameObject>();
 
     var title = transform.Find("ShopTitle").gameObject.GetComponent<TextMeshProUGUI>();
