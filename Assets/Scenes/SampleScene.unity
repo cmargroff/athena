@@ -2254,7 +2254,7 @@ MonoBehaviour:
   MaxHealth: 1000
   Weight: 10000
   Friction: 1
-  _health: 0
+  Health: 0
   _lifebar: {fileID: 2134869071}
   _ITime: 1
   _damagingLayers:
@@ -2637,6 +2637,7 @@ GameObject:
   - component: {fileID: 1797170647}
   - component: {fileID: 1797170648}
   - component: {fileID: 1797170649}
+  - component: {fileID: 1797170650}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2675,6 +2676,9 @@ MonoBehaviour:
   PlayerCharacter: {fileID: 0}
   BuildingCharacter: {fileID: 0}
   OnCoinsChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1797170646
@@ -2827,6 +2831,19 @@ MonoBehaviour:
   OnStatsChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1797170650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797170644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c327c5042aa7e468fcab97b131a1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalEnemyHealth: 0
 --- !u!4 &1983952868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2640357145786065855, guid: 161d1f5681a289b43bce3df50394de2e, type: 3}

@@ -37,6 +37,11 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public event Action<string, int> OnPickupCollected;
     public UnityEvent OnCoinsChanged;
 
+    //debug events
+    public UnityEvent<VulnerableBehavior> OnEnemyChanged;
+    //end debug events
+
+
 
     protected override void Awake()
     {
