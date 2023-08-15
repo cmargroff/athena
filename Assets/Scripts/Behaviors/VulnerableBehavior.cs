@@ -66,8 +66,9 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                 if (_hitLast + _ITime < Time.realtimeSinceStartup)
                 {
                     _hitLast = Time.realtimeSinceStartup;
-                    Health -= damaging.Damage/ _statAdjust?.GetArmorAdjust()??1f;//todo:this is a hack, to tiered to fix right now
-
+                    var damage = damaging.Damage / _statAdjust?.GetArmorAdjust() ?? 1f;
+                    Health -= damage;//todo:this is a hack, to tiered to fix right now
+                    _gameManager.OnEnemyDamaged.Invoke(damage);
                     if (_lifebar != null)
                     {
                         _lifebar.SetHealthPercent(Health / MaxHealth);

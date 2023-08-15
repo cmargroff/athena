@@ -39,6 +39,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
 
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
+    public UnityEvent<float> OnEnemyDamaged;
     //end debug events
 
 
