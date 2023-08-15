@@ -7,6 +7,7 @@ using UnityEngine;
 public class MonitorBehavior:AthenaMonoBehavior
 {
     [SerializeField]
+    [DebugGUIGraph(min: 0, max: 10000, r: 0, g: 1, b: 0, autoScale: true)]
     private float _totalEnemyHealth;
 
     private readonly Dictionary<int, float> _enemyHealths=new ();
