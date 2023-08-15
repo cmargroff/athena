@@ -9,7 +9,10 @@ public class MonitorBehavior:AthenaMonoBehavior
     [SerializeField]
     [DebugGUIGraph(min: 0, max: 10000, r: 0, g: 1, b: 0, autoScale: true)]
     private float _totalEnemyHealth;
-
+    [SerializeField]
+    [DebugGUIGraph(min: 0, max: 10000, r: 0, g: 1, b: 1, autoScale: true)]
+    private float FooBar = 2f;
+        
     private readonly Dictionary<int, float> _enemyHealths=new ();
 
     protected override void Start()

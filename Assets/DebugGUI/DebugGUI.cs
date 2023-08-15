@@ -26,8 +26,8 @@ public class DebugGUI : MonoBehaviour
         }
     }
 
-    const int graphWidth = 1200;
-    const int graphHeight =400;
+    const int graphWidth = 800;
+    const int graphHeight =300;
     const float temporaryLogLifetime = 5f;
 
     // Show logs and graphs in build?
@@ -216,7 +216,7 @@ public class DebugGUI : MonoBehaviour
         RegisterAttributes();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Clean up attributes of deleted monobehaviours
         if (LogsEnabled || GraphsEnabled)
@@ -224,7 +224,7 @@ public class DebugGUI : MonoBehaviour
             CleanUpDeletedAtributes();
         }
 
-        if (LogsEnabled)
+        if (LogsEnabled && Time.frameCount%10==0)
         {
             // Clean up expired logs
             while (transientLogs.Count > 0 && transientLogs.Peek().expiryTime <= Time.realtimeSinceStartup)
@@ -232,7 +232,7 @@ public class DebugGUI : MonoBehaviour
                 transientLogs.Dequeue();
             }
         }
-        if (GraphsEnabled)
+        if (LogsEnabled && Time.frameCount % 10 == 0)
         {
             if (freezeGraphs) return;
 
@@ -281,8 +281,9 @@ public class DebugGUI : MonoBehaviour
     void InitializeGUIStyles()
     {
         minMaxTextStyle = new GUIStyle();
-        minMaxTextStyle.fontSize = 16;
+        minMaxTextStyle.fontSize = 26;
         minMaxTextStyle.fontStyle = FontStyle.Bold;
+
 
         Color[] pix = new Color[4];
         for (int i = 0; i < pix.Length; ++i)
@@ -297,8 +298,8 @@ public class DebugGUI : MonoBehaviour
         boxStyle.normal.background = boxTexture;
     }
 
-    const float minMaxTextHeight = 8f;
-    const float nextLineHeight = 15f;
+    const float minMaxTextHeight = 26f;
+    const float nextLineHeight = 26f;
     GUIContent labelGuiContent = new GUIContent();
     float textWidth;
     Rect textRect;
@@ -433,11 +434,11 @@ public class DebugGUI : MonoBehaviour
                     GUI.color = graph.color;
                     // Name
                     labelGuiContent.text = graph.name;
-                    float xOffset = GUIStyle.none.CalcSize(labelGuiContent).x + 5;
+                    float xOffset = GUIStyle.none.CalcSize(labelGuiContent).x*2 + 5;
 
                     graphLabelWidth = Mathf.Max(xOffset, graphLabelWidth, minMaxXOffset);
 
-                    GUI.Label(new Rect(Screen.width - graphWidth - xOffset, yOffset, xOffset, graphHeight), labelGuiContent);
+                    GUI.Label(new Rect(Screen.width - graphWidth - xOffset, yOffset, xOffset, graphHeight), labelGuiContent, minMaxTextStyle);
                     yOffset += nextLineHeight;
                 }
             }
@@ -482,7 +483,7 @@ public class DebugGUI : MonoBehaviour
                         GUI.color = Color.white;
                         labelGuiContent.text = graph.GetValue(graphMousePos).ToString("F3");
                         GUI.Label(new Rect(mousePos.x + -55, group * graphBlockHeight + yOffset, 45, 50), labelGuiContent, minMaxTextStyle);
-                        yOffset += 8f;
+                        yOffset += 26f;
                     }
                 }
                 break;
