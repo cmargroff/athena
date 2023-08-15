@@ -9,11 +9,6 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
     public Color Color;
     public string Name;
 
-    public void Kill()
-    {
-        _stateMachine.SetState(typeof(IDeath));
-    }
-
     public override void OnActive()
     {
         base.OnActive();
@@ -33,6 +28,6 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
 
     public void Pickup()
     {
-        GetComponent<PickupAnimationBehavior>().Run();
+        _stateMachine.SetState(typeof(IDeath));
     }
 }

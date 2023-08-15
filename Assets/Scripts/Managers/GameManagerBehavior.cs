@@ -114,8 +114,5 @@ public class GameManagerBehavior : AthenaMonoBehavior
             Pickups.Add(pickup.Name, pickup.Amount);
         }
         OnPickupCollected?.Invoke(pickup.Name, Pickups[pickup.Name]);
-
-
-        pickup.Kill();
     }
 }
