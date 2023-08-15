@@ -39,17 +39,6 @@ public abstract class ShopCanvasBehavior<TAsset> : AthenaMonoBehavior where TAss
       shopItem.transform.localScale = Vector3.one;
       _shopItems.Add(shopItem);
     }
-    UpdateItemPositions();
-  }
-  private void UpdateItemPositions()
-  {
-    var increment = 1f / (Items.Count-1);
-    var i = 0;
-    foreach (var item in _shopItems)
-    {
-      var pos = new Vector2(increment * i, 0.5f);
-      item.GetComponent<RectTransform>().SetAnchor(pos);
-      i++;
-    }
+    (_shopItemsContainer.transform as RectTransform).ArrangeChildrenAnchorsEvenly();
   }
 }
