@@ -9,11 +9,13 @@ public abstract class ShopCanvasBehavior<TAsset> : AthenaMonoBehavior where TAss
   public List<TAsset> Items;
   private GameObject _shopItemsContainer;
   private List<GameObject> _shopItems;
+  private Button _leaveButton;
   protected abstract string GetTitle();
   protected override void Start()
   {
     base.Start();
 
+    _leaveButton = GetComponentInChildren<Button>();
     _shopItems = new List<GameObject>();
 
     var title = transform.Find("ShopTitle").gameObject.GetComponent<TextMeshProUGUI>();
@@ -40,5 +42,17 @@ public abstract class ShopCanvasBehavior<TAsset> : AthenaMonoBehavior where TAss
       _shopItems.Add(shopItem);
     }
     (_shopItemsContainer.transform as RectTransform).ArrangeChildrenAnchorsEvenly();
+  }
+  public void HoverLeave() {
+    Debug.Log("HoverLeave");
+    // _leaveButton.Select();
+  }
+  public void BlurLeave() {
+    Debug.Log("BlurLeave");
+    // _leaveButton.OnDeselect(null);
+  }
+  public void Leave() {
+    Debug.Log("Leave");
+    gameObject.SetActive(false);
   }
 }

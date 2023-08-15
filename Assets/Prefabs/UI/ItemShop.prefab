@@ -12,6 +12,62 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4919604487979673524}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4919604487979673524}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HoverLeave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BlurLeave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopCanvasBehavior`1[[PowerUpSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopCanvasBehavior`1[[PowerUpSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4141644230794905830, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
