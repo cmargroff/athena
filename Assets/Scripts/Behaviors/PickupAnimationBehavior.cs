@@ -44,12 +44,5 @@ public class PickupAnimationBehavior : AthenaMonoBehavior, IDeath
       _travelDuration = Mathf.Clamp01(_travelDuration + Time.deltaTime);
     }
   }
-  private void OnDrawGizmos()
-  {
-    if (_running)
-    {
-      Handles.color = Color.cyan;
-      Handles.ArrowHandleCap(0, transform.position, Quaternion.LookRotation(_direction), _direction.magnitude, EventType.Repaint);
-    }
-  }
+  
 }
