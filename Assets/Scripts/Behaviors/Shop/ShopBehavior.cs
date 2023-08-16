@@ -44,7 +44,7 @@ public abstract class ShopBehavior<TAsset> : AthenaMonoBehavior where TAsset : B
     {
       Done = () =>
       {
-        _gameManager.WeaponShop.gameObject.SetActive(false);
+        _gameManager.HideShop(ShopBuildingBehavior.ShopTypeEnum.Weapon);
         _gameManager.Paused = false;
       },
       Coins = _gameManager.Pickups.GetValueOrDefault("Coin").ToString(),

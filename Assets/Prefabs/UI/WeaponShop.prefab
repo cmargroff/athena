@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Delegates.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -148,6 +148,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2677900316427909212}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopCanvasBehavior`1[[WeaponSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4727580651559165644, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Name
       value: WeaponShop
@@ -177,7 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d588ac35552c0984b87498c768572511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShopItemPrefab: {fileID: 2968028278564148400, guid: cf6d01d80ac9b4a4094b2ab05eea63fb, type: 3}
+  ShopType: 0
+  ShopItemPrefab: {fileID: 4627359993382493365, guid: 92790850cd9cb42459b893109decce5d, type: 3}
   Items:
   - {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
   - {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}

@@ -12,6 +12,7 @@ public class CollectedUIBehavior : AthenaMonoBehavior
     {
         base.Start();
         var uiDocument = GetComponent<UIDocument>();
+        uiDocument.useGUILayout = false;
         _pickupsContainer = uiDocument.rootVisualElement.Q("pickups");
         Debug.Log(_pickupsContainer);
         _gameManager.OnPickupCollected += OnPickupCollected;

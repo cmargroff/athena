@@ -5,17 +5,7 @@
     public override void Interact()
     {
         base.Interact();
-        _gameManager.Paused=true;
-        if (ShopType == ShopTypeEnum.Weapon)
-        {
-            _gameManager.WeaponShop.gameObject.SetActive(true);
-            _gameManager.WeaponShop.BuildShop();
-        }
-        else
-        {
-            _gameManager.PowerUpShop.gameObject.SetActive(true);
-            _gameManager.PowerUpShop.BuildShop();
-        }
+        _gameManager.ShowShop(ShopTypeEnum.Weapon);
     }
 
     public enum ShopTypeEnum

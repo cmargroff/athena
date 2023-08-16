@@ -148,6 +148,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4919604487979673524}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Leave
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopCanvasBehavior`1[[PowerUpSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4727580651559165644, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Name
       value: ItemShop
@@ -177,7 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3decdd03888ff9743b089ebee2fd6455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShopItemPrefab: {fileID: 2968028278564148400, guid: 4567f9250be2ffe49a6eba5266a7d2da, type: 3}
+  ShopType: 1
+  ShopItemPrefab: {fileID: 2494432396409834772, guid: 4567f9250be2ffe49a6eba5266a7d2da, type: 3}
   Items:
   - {fileID: 11400000, guid: 6bb8d89cf3dae6545a0ccee7ed048515, type: 2}
   - {fileID: 11400000, guid: 706df4f7dd9d89145a044d1e107146a8, type: 2}
