@@ -211,3 +211,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
   - {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}
   - {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
+  ItemAnimationDuration: 0.7
