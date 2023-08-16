@@ -81,8 +81,12 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
 
     // animate the remaining items to fill the space
     // need to move the calculation of the new positions to the rect transform extension
-    var increment = 1f / (_shopItems.Count+1);
-    var i = 1;
+    var increment = 1f / (_shopItems.Count - 1);
+    if(_shopItems.Count == 1)
+    {
+      increment = 0f;
+    }
+    var i = 0;
     foreach (var item in _shopItems)
     {
       var (count, shopItem) = item.Value;
@@ -98,6 +102,16 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
       );
       i++;
     }
+    var containerRect = _shopItemsContainer.transform as RectTransform;
+    var scale = (1f - (1f / (_shopItems.Count + 1f)));
+    var newWidth = containerRect.rect.width * scale;
+    if (_shopItems.Count == 1){
+      newWidth = 0f;
+    }
+    seq.Insert(0f, DOTween.To((float w) =>
+    {
+      containerRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w);
+    }, containerRect.rect.width, newWidth, ItemAnimationDuration));
     seq.Play();
   }
   public override void Show()
