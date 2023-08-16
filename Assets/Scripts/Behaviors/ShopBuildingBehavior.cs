@@ -5,7 +5,7 @@
     public override void Interact()
     {
         base.Interact();
-        _gameManager.ShowShop(ShopTypeEnum.Weapon);
+        _gameManager.ShowShop(ShopType);
     }
 
     public enum ShopTypeEnum
