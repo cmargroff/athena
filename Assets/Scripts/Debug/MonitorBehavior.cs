@@ -11,8 +11,11 @@ public class MonitorBehavior:AthenaMonoBehavior
     public float TotalEnemyHealth;
     [SerializeField]
     [DebugGUIGraph(min: 0, max: 10000, r: 0, g: 1, b: 1, autoScale: true)]
-    public float DPS = 2f;
-        
+    public float DPS1 = 2f;
+
+    [DebugGUIGraph(min: 0, max: 10000, r: 0, g: 1, b: 1, autoScale: true)]
+    public float DPS10;
+
     private readonly Dictionary<int, float> _enemyHealths=new ();
     private readonly Dictionary<float, float> _playerDPS = new();
 
@@ -24,8 +27,8 @@ public class MonitorBehavior:AthenaMonoBehavior
         _gameManager.AddTimedEvent(1, () =>
         {
             TotalEnemyHealth = _enemyHealths.Sum(x => x.Value);
-            DPS = _playerDPS.Where(x => x.Key > Time.realtimeSinceStartup - 1).Sum(x=>x.Value);
-
+            DPS1 = _playerDPS.Where(x => x.Key > Time.realtimeSinceStartup - 1).Sum(x=>x.Value);
+            DPS10 = _playerDPS.Where(x => x.Key > Time.realtimeSinceStartup - 10).Sum(x => x.Value)/Math.Min(10, Time.realtimeSinceStartup);
 
         }, this.gameObject);
     }
