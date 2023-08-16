@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 812493998457103931}
   - component: {fileID: 5190271842545561644}
   - component: {fileID: 7614942012503051162}
+  - component: {fileID: 1669294122311980516}
   m_Layer: 0
   m_Name: ShopTitle
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TITLE
+  m_text: '{{ShopTitle}}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e4c6d48db4c4f264fa79c324614f828b, type: 2}
   m_sharedMaterial: {fileID: 104106060505798158, guid: e4c6d48db4c4f264fa79c324614f828b, type: 2}
@@ -134,6 +135,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1669294122311980516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913260949660811230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: ShopTitle
+  Component: {fileID: 7614942012503051162}
+  Property: text
 --- !u!1 &4727580651559165644
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,25 +29,29 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     _leaveButton = GetComponentInChildren<Button>();
     _shopItems = new();
 
-    var title = transform.Find("ShopTitle").gameObject.GetComponent<TextMeshProUGUI>();
-    if (title)
-    {
-      title.text = GetTitle();
-    }
+    var rect = GetComponent<RectTransform>();
+
+    rect.Bind(new { ShopTitle = GetTitle() });
 
     _shopItemsContainer = transform.Find("ShopItems")?.gameObject;
     foreach (var item in Items)
     {
       var shopItem = Instantiate(ShopItemPrefab);
-      shopItem.FindObjectByName("ItemTitle").GetComponent<TextMeshProUGUI>().text = item.FriendlyName;
-      shopItem.FindObjectByName("ItemDescription").GetComponent<TextMeshProUGUI>().text = item.Description;
+      var itemRect = shopItem.GetComponent<RectTransform>();
       var btn = shopItem.GetComponentInChildren<Button>();
-      btn.onClick.AddListener(() => Buy(item));
+
+      //  need to make copy of material to set individual properties per item
       var img = shopItem.FindObjectByName("Icon").GetComponent<Image>();
-      img.material = new Material(img.material); // make a copy of the material otherwise changing the values will update all items
-      var mat = img.material;
-      mat.color = item.Color;
-      mat.SetTexture("_Icon", item.Icon);
+      img.material = new Material(img.material);
+
+      itemRect.Bind(new {
+        ItemTitle = item.FriendlyName,
+        ItemDescription = item.Description,
+        Icon = item.Icon,
+        Color = item.Color,
+        Cost = item.Cost.ToString(),
+        // Buy = Buy(item)
+      });
       shopItem.transform.parent = _shopItemsContainer.transform;
       shopItem.transform.localRotation = Quaternion.identity;
       shopItem.transform.localPosition = Vector3.zero;

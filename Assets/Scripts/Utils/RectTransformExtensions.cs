@@ -21,4 +21,13 @@ public static class RectTransformExtensions
       child.GetComponent<RectTransform>().SetAnchor(new Vector2(increment * i, 0.5f));
     }
   }
+  public static void Bind(this RectTransform rectTransform, object obj)
+  {
+    var go = rectTransform.gameObject;
+    var elements = go.GetComponentsInChildren<CanvasBindPath>();
+    foreach (var element in elements)
+    {
+      element.Bind(obj);
+    }
+  }
 }

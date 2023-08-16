@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2187417608855941344}
   - component: {fileID: 8614274991645926130}
   - component: {fileID: 6613942814995075177}
+  - component: {fileID: 3831041350155754491}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Buy - 10
+  m_text: Buy - {{Cost}}
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -134,6 +135,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3831041350155754491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430955761046981978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: Cost
+  Component: {fileID: 6613942814995075177}
+  Property: text
 --- !u!1 &2968028278564148400
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +214,7 @@ GameObject:
   - component: {fileID: 6136980400644062690}
   - component: {fileID: 1414311063562989588}
   - component: {fileID: 3938389930175731567}
+  - component: {fileID: 7065400410267334320}
   m_Layer: 5
   m_Name: ItemTitle
   m_TagString: Untagged
@@ -252,7 +269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WEAPON
+  m_text: '{{ ItemTitle }}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -321,6 +338,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7065400410267334320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157762695005381877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: ItemTitle
+  Component: {fileID: 3938389930175731567}
+  Property: text
 --- !u!1 &4954382972207193723
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +560,7 @@ GameObject:
   - component: {fileID: 3436462109116423445}
   - component: {fileID: 6579762027023063458}
   - component: {fileID: 796023740932417836}
+  - component: {fileID: 559791009625169997}
   m_Layer: 5
   m_Name: ItemDescription
   m_TagString: Untagged
@@ -582,7 +615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Weapon description
+  m_text: '{{ ItemDescription }}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -651,6 +684,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &559791009625169997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6694152959201761070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: ItemDescription
+  Component: {fileID: 796023740932417836}
+  Property: text
 --- !u!1 &8170227740614401088
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +710,8 @@ GameObject:
   - component: {fileID: 2072476079807984623}
   - component: {fileID: 666860758812364757}
   - component: {fileID: 5572154738061557002}
+  - component: {fileID: 5906913059784907843}
+  - component: {fileID: 6319805371251898224}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -716,7 +766,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2fe9a5a12a7d2e5448bb9f9a8cdb1bc4, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -726,3 +776,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5906913059784907843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170227740614401088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: Icon
+  Component: {fileID: 5572154738061557002}
+  Property: material
+--- !u!114 &6319805371251898224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170227740614401088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: Color
+  Component: {fileID: 5572154738061557002}
+  Property: material
