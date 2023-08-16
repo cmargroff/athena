@@ -4,4 +4,8 @@ public  class ItemShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
     {
         return "Items";
     }
+  public override void Buy(PowerUpSO item)
+  {
+    throw new System.NotImplementedException();
+  }
 }

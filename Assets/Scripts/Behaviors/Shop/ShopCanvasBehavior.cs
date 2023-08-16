@@ -56,8 +56,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     }
     (_shopItemsContainer.transform as RectTransform).ArrangeChildrenAnchorsEvenly();
   }
-  private void Buy(TAsset item)
-  {
+  protected void Spend(TAsset item){
     var (count, shopItem) = _shopItems[item.name];
     count++;
     _shopItems[item.name] = (count, shopItem);
@@ -67,6 +66,8 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
       AnimateRemoveItem(item.name);
     }
   }
+  public abstract void Buy(TAsset item);
+  
   public void AnimateRemoveItem(string name)
   {
     var seq = DOTween.Sequence();
