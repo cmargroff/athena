@@ -1,11 +1,21 @@
-public  class ItemShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
+public class ItemShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
 {
-    protected override string GetTitle()
-    {
-        return "Items";
-    }
+  protected override string GetTitle()
+  {
+    return "Items";
+  }
   public override void Buy(PowerUpSO item)
   {
-    throw new System.NotImplementedException();
+    Spend(item);
+    _gameManager.PlayerCharacter.Armor += item.Armor;
+    _gameManager.PlayerCharacter.Knockback += item.Knockback;
+    _gameManager.PlayerCharacter.Speed += item.Speed;
+    _gameManager.PlayerCharacter.Damage += item.Damage;
+    _gameManager.PlayerCharacter.AttackFrequency += item.AttackFrequency;
+
+    if (item.AttackFrequency > 0)
+    {
+      _gameManager.PlayerCharacter.OnStatsChanged?.Invoke();
+    }
   }
 }
