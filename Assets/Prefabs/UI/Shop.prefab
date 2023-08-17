@@ -147,9 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: ShopTitle
   Component: {fileID: 7614942012503051162}
   Property: text
+  Path: ShopTitle
 --- !u!1 &4727580651559165644
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +159,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4141644230794905830}
-  - component: {fileID: 1093801346142997671}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -190,18 +189,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1093801346142997671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4727580651559165644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e064bf3b086d8b4b9fa860c0e206c31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4985275206695224311
 GameObject:
   m_ObjectHideFlags: 0
