@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerCharacterBehavior))]
 public class GameManagerBehavior : AthenaMonoBehavior
@@ -26,14 +27,26 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
     public Dictionary<string, int> Pickups = new ();
-    public event Action<string, int> OnPickupCollected;
+    
 
     public PlayerCharacterBehavior PlayerCharacter;
+    public BuildingCharacterBehavior BuildingCharacter;
+
+    public event Action<string, int> OnPickupCollected;
+    public UnityEvent OnCoinsChanged;
+
+    //debug events
+    public UnityEvent<VulnerableBehavior> OnEnemyChanged;
+    public UnityEvent<float> OnEnemyDamaged;
+    //end debug events
+
+
 
     protected override void Awake()
     {
         base.Awake();
         PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
+        BuildingCharacter = GetComponent<BuildingCharacterBehavior>();
     }
 
 
@@ -48,6 +61,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         SafeAssigned(Weapons);
 
         CreateShops();
+        RunDisabledStarts();
     }
 
     private void CreateShops(){
@@ -130,8 +144,18 @@ public class GameManagerBehavior : AthenaMonoBehavior
             Pickups.Add(pickup.Name, pickup.Amount);
         }
         OnPickupCollected?.Invoke(pickup.Name, Pickups[pickup.Name]);
+    }
 
+    private void RunDisabledStarts()
+    {
+        var objects = FindObjectsOfType<AthenaMonoBehavior>(true);
+        foreach (var obj in objects)
+        {
+            if (obj.gameObject.activeInHierarchy== false)
+            {
+                obj.DisabledStart();
+            }
+        }
 
-        pickup.Kill();
     }
 }

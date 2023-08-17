@@ -2,6 +2,8 @@
 [RequireComponent(typeof(BuildingHoverBehaviour))]
 public  class BuildingInteractBehaviour:AthenaMonoBehavior
 {
+    [SerializeField]
+    protected GameObject _indicatorTemplate;
     [HideInInspector]
     public BuildingHoverBehaviour BuildingHover;
     protected override void Start()

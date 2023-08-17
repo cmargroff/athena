@@ -8,8 +8,8 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
     public float MaxHealth = 1;
     public int Weight = 1;
     public int Friction = 1;
-    [SerializeField]
-    private float _health = 0;
+    
+    public  float Health = 0;
     [SerializeField]
     private LifebarBehavior _lifebar;
 
@@ -37,9 +37,11 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
     {
         base.OnActive();
         _audioSource = GetComponent<AudioSource>();
-        _health = MaxHealth;
-        _lifebar.SetHealthPercent(_health / MaxHealth);
+        Health = MaxHealth;
+        _lifebar.SetHealthPercent(Health / MaxHealth);
         _knockback = 0;
+
+        _gameManager.OnEnemyChanged?.Invoke(this);
     }
     // Update is called once per frame
     protected override void PlausibleUpdate()
@@ -64,11 +66,12 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                 if (_hitLast + _ITime < Time.realtimeSinceStartup)
                 {
                     _hitLast = Time.realtimeSinceStartup;
-                    _health -= damaging.Damage/ _statAdjust?.GetArmorAdjust()??1f;//todo:this is a hack, to tiered to fix right now
-
+                    var damage = damaging.Damage / _statAdjust?.GetArmorAdjust() ?? 1f;
+                    Health -= damage;//todo:this is a hack, to tiered to fix right now
+                    _gameManager.OnEnemyDamaged.Invoke(damage);
                     if (_lifebar != null)
                     {
-                        _lifebar.SetHealthPercent(_health / MaxHealth);
+                        _lifebar.SetHealthPercent(Health / MaxHealth);
 
                     }
 
@@ -85,7 +88,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                     //}
 
 
-                    if (_health < 1)
+                    if (Health < 1)
                     {
                         if (_rewards != null)
                         {
@@ -103,6 +106,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         _hitstun = true;
                     }
 
+                    _gameManager.OnEnemyChanged?.Invoke(this);
                 }
             }
         }
@@ -112,9 +116,9 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 
         return knockback / Weight * _gameManager.KnockbackFactor;
     }
-    private void Damage(Collider2D other)
-    {
+    //private void Damage(Collider2D other)
+    //{
        
-    }
+    //}
 
 }

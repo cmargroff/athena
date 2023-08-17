@@ -22,14 +22,15 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         _audioSource = GetComponent<AudioSource>();
         SafeAssigned(WeaponConfig);
 
-
-        _timedEvent = _gameManager.AddTimedEvent(WeaponConfig.Rate / _statAdjust.GetAttackFrequency(), () =>
+        if(_statAdjust.GetAttackFrequency()>0)
         {
-            var flying = _gameManager.Player.GetComponent<FlyingBehavior>();
-            Vector2? fireAngle = null;
-            switch (WeaponConfig.FireAngle)
+            _timedEvent = _gameManager.AddTimedEvent(WeaponConfig.Rate / _statAdjust.GetAttackFrequency(), () =>
             {
-                case WeaponSO.FireAngleEnum.MovementDirection:
+                var flying = _gameManager.Player.GetComponent<FlyingBehavior>();
+                Vector2? fireAngle = null;
+                switch (WeaponConfig.FireAngle)
+                {
+                    case WeaponSO.FireAngleEnum.MovementDirection:
                     {
                         if (flying.LastMoveAngle != Vector2.zero)
                         {
@@ -38,40 +39,52 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
 
                         break;
                     }
-                case WeaponSO.FireAngleEnum.ClosestEnemy:
+                    case WeaponSO.FireAngleEnum.ClosestEnemy:
                     {
                         var closest = FindClosestEnemy(_gameManager.Player.transform.position);
                         if (closest != null)
                         {
-                            fireAngle = (closest.transform.position - _gameManager.Player.transform.position).normalized;
+                            fireAngle = (closest.transform.position - _gameManager.Player.transform.position)
+                                .normalized;
 
                         }
 
                         break;
                     }
-            }
-            fireAngle ??= Random.insideUnitCircle.normalized;
+                }
 
-            for (var i = 0; i < WeaponConfig.Number; i++)
-            {
-                var random = Random.value * WeaponConfig.Scatter;
+                fireAngle ??= Random.insideUnitCircle.normalized;
 
-                var newAngle = fireAngle.Value.Rotate(random - WeaponConfig.Scatter / 2f);
+                for (var i = 0; i < WeaponConfig.Number; i++)
+                {
+                    var random = Random.value * WeaponConfig.Scatter;
 
-                CreateBullet(newAngle);
-            }
+                    var newAngle = fireAngle.Value.Rotate(random - WeaponConfig.Scatter / 2f);
 
-            WeaponConfig.FireSound?.Play(_audioSource);
+                    CreateBullet(newAngle);
+                }
 
-        }, gameObject);
+                WeaponConfig.FireSound?.Play(_audioSource);
 
+            }, gameObject);
 
+        }
 
     }
 
     private void StatsChanged()
     {
-        _timedEvent?.SetFramesInSeconds(WeaponConfig.Rate / _statAdjust.GetAttackFrequency());
+        if (_statAdjust.GetAttackFrequency() > 0)
+        {
+            _timedEvent?.SetFramesInSeconds(WeaponConfig.Rate / _statAdjust.GetAttackFrequency());
+        }
+        else
+        {
+            if (_timedEvent!= null)
+            {
+                _gameManager.RemoveTimedEvent(_timedEvent);
+            }
+        }
     }
 
 

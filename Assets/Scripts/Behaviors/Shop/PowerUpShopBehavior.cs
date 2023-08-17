@@ -11,7 +11,8 @@ public class PowerUpShopBehavior : ShopBehavior<PowerUpSO>
     {
         return "Research Lab";
     }
-    protected override void Buy(PowerUpSO item)
+
+    public override void Buy(PowerUpSO item)
     {
         base.Buy(item);
         _gameManager.PlayerCharacter.Armor += item.Armor;

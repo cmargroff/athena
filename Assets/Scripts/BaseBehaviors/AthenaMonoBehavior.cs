@@ -23,6 +23,11 @@ public  class AthenaMonoBehavior : MonoBehaviour
         OnActive();
         _started=true;
     }
+
+    public virtual void DisabledStart()
+    {
+    }
+
     protected virtual void OnEnable()
     {
         if (_started)
