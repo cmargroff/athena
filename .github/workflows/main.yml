@@ -13,7 +13,7 @@ env:
 jobs:         
  buildWebGL:
    name: Build for WebGL 🖥️
-   runs-on: 2021.2.8f1-base-1.0.0
+   runs-on: ubuntu-latest
    strategy:
      fail-fast: false
    steps:
