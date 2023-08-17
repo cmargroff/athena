@@ -17,6 +17,12 @@ jobs:
    strategy:
      fail-fast: false
    steps:
+     - name: list env
+       run: |
+           echo $UNITY_LICENSE
+           echo $UNITY_EMAIL
+           echo $UNITY_PASSWORD
+    
      - name: Checkout code
        uses: actions/checkout@v3
 
