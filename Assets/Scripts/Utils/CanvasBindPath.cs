@@ -14,8 +14,6 @@ public class CanvasBindPath : MonoBehaviour
   private bool _isBound = false;
   public void Bind(object obj)
   {
-
-    
     var destProp = Component.GetType().GetProperty(Property);
     if (destProp == null)
     {
@@ -23,12 +21,11 @@ public class CanvasBindPath : MonoBehaviour
       return;
     }
     var srcProp = obj.GetProp(Path);
-    if (srcProp == null &&  destProp.PropertyType != typeof(string))
+    if (srcProp == null && destProp.PropertyType != typeof(string))
     {
       // bind was not found on input object
       return;
     }
-    var value = srcProp.GetValue(obj);
 
     if (_originalValue == null)
     {
@@ -41,29 +38,38 @@ public class CanvasBindPath : MonoBehaviour
     }
     else if (destProp.PropertyType == typeof(Material))
     {
-      AssignMaterialValue(_originalValue as Material, value);
+      AssignMaterialValue(_originalValue as Material, srcProp.GetValue(obj));
     }
     else if (destProp.PropertyType.IsSubclassOf(typeof(UnityEvent)))
     {
-      AssignUnityEventValue(value as Action, srcProp, destProp);
+      AssignUnityEventValue(srcProp.GetValue(obj) as Action, destProp);
+    }
+    else
+    {
+      // default to assigning value as is
+      destProp.SetValue(Component, srcProp.GetValue(obj));
     }
     _isBound = true;
   }
-  public void AssignStringValue(string orig, object obj, PropertyInfo destProp)
+  private void AssignStringValue(string orig, object obj, PropertyInfo destProp)
   {
+    // needs to be updated to handle updating only a portion of the string
     var matches = tagReg.Matches(orig);
     var text = orig;
+    var updated = false;
     foreach (Match match in matches)
     {
       var srcProp = obj.GetProp(match.Groups[1].Value);
       if (srcProp == null) continue;
       var value = srcProp.GetValue(obj);
       if (value == null) continue;
+      updated = true;
       text = text.Replace(match.Groups[0].Value, value.ToString());
     }
-    destProp.SetValue(Component, text);
+    if (updated)
+      destProp.SetValue(Component, text);
   }
-  public void AssignMaterialValue(Material mat, object value)
+  private void AssignMaterialValue(Material mat, object value)
   {
     if (value is Color)
     {
@@ -74,7 +80,7 @@ public class CanvasBindPath : MonoBehaviour
       mat.mainTexture = (Texture)value;
     }
   }
-  public void AssignUnityEventValue(Action value, PropertyInfo srcProp, PropertyInfo destProp)
+  private void AssignUnityEventValue(Action value, PropertyInfo destProp)
   {
     if (_isBound) return;
     var unityEvent = destProp.GetValue(Component) as UnityEvent;

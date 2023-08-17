@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public abstract class ShopCanvasBehavior : AthenaMonoBehavior
 {
+  public int GlobalMarkup;
+  public int RepeatItemMarkup;
   public ShopBuildingBehavior.ShopTypeEnum ShopType;
   public GameObject ShopItemPrefab;
   public abstract void Show();
@@ -22,6 +24,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
   protected abstract string GetTitle();
   private @PlayerInputActions _controls;
   protected GameObject _shopItemsContainer;
+  private int _numberOfItemsSold;
   public override void Build()
   {
     _controls = new();
@@ -30,15 +33,18 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     _shopItems = new();
 
     var rect = GetComponent<RectTransform>();
-
     rect.Bind(new { ShopTitle = GetTitle() });
 
-    _shopItemsContainer = transform.Find("ShopItems")?.gameObject;
+    _shopItemsContainer = transform.Find("ShopItems").gameObject;
+    if (_shopItemsContainer == null)
+    {
+      Debug.LogError("ShopItems container not found");
+      return;
+    }
     foreach (var item in Items)
     {
       var shopItem = Instantiate(ShopItemPrefab);
       var itemRect = shopItem.GetComponent<RectTransform>();
-
       //  need to make copy of material to set individual properties per item
       var img = shopItem.FindObjectByName("Icon").GetComponent<Image>();
       img.material = new Material(img.material);
@@ -55,9 +61,33 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
       shopItem.transform.ResetLocal();
       _shopItems[item.name] = (0, shopItem);
     }
+    UpdateBinds();
     (_shopItemsContainer.transform as RectTransform).ArrangeChildrenAnchorsEvenly();
   }
-  protected void Spend(TAsset item){
+  private void UpdateBinds()
+  {
+    var currentCoins = _gameManager.Pickups.GetValueOrDefault("Coin");
+    foreach (var item in _shopItems)
+    {
+      var (count, shopItem) = item.Value;
+      var so = Items.Find(i => i.name == item.Key);
+      var cost = ComputeCost(count, so);
+      var itemRect = shopItem.GetComponent<RectTransform>();
+      itemRect.Bind(new
+      {
+        Cost = ComputeCost(count, so).ToString(),
+        CanBuy = cost <= currentCoins
+      });
+    }
+  }
+  public override void OnActive()
+  {
+    base.OnActive();
+    UpdateBinds();
+  }
+  protected void Spend(TAsset item)
+  {
+    _numberOfItemsSold++;
     var (count, shopItem) = _shopItems[item.name];
     count++;
     _shopItems[item.name] = (count, shopItem);
@@ -65,10 +95,12 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     if (count >= item.NumberInStore)
     {
       AnimateRemoveItem(item.name);
+      return;
     }
+    UpdateBinds();
   }
   public abstract void Buy(TAsset item);
-  
+
   public void AnimateRemoveItem(string name)
   {
     var seq = DOTween.Sequence();
@@ -84,7 +116,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     // animate the remaining items to fill the space
     // need to move the calculation of the new positions to the rect transform extension
     var increment = 1f / (_shopItems.Count - 1);
-    if(_shopItems.Count == 1)
+    if (_shopItems.Count == 1)
     {
       increment = 0f;
     }
@@ -107,7 +139,8 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     var containerRect = _shopItemsContainer.transform as RectTransform;
     var scale = (1f - (1f / (_shopItems.Count + 1f)));
     var newWidth = containerRect.rect.width * scale;
-    if (_shopItems.Count == 1){
+    if (_shopItems.Count == 1)
+    {
       newWidth = 0f;
     }
     seq.Insert(0f, DOTween.To((float w) =>
@@ -136,5 +169,12 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
   {
     Debug.Log("Leave");
     _gameManager.HideShop(ShopType);
+  }
+  private int ComputeCost(int sold, TAsset item)
+  {
+    var cost = item.Cost;
+    cost += _numberOfItemsSold * GlobalMarkup;
+    cost += sold * RepeatItemMarkup;
+    return cost;
   }
 }

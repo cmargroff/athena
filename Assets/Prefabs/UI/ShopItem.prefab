@@ -147,9 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: Cost
   Component: {fileID: 6613942814995075177}
   Property: text
+  Path: Cost
 --- !u!1 &2968028278564148400
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,9 +350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: ItemTitle
   Component: {fileID: 3938389930175731567}
   Property: text
+  Path: ItemTitle
 --- !u!1 &4954382972207193723
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 1337920844047329780}
   - component: {fileID: 9011288387839819004}
   - component: {fileID: 9115619001970601509}
+  - component: {fileID: 1873081007768339910}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -531,7 +532,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0, g: 0.7830189, b: 0.047103554, a: 1}
     m_PressedColor: {r: 0, g: 0.4528302, b: 0.012279294, a: 1}
     m_SelectedColor: {r: 0, g: 0.7843138, b: 0.04705883, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -562,9 +563,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: Buy
   Component: {fileID: 9011288387839819004}
   Property: onClick
+  Path: Buy
+--- !u!114 &1873081007768339910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123644891201097695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Component: {fileID: 9011288387839819004}
+  Property: enabled
+  Path: CanBuy
 --- !u!1 &6694152959201761070
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,9 +728,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: ItemDescription
   Component: {fileID: 796023740932417836}
   Property: text
+  Path: ItemDescription
 --- !u!1 &8170227740614401088
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,9 +820,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: Icon
   Component: {fileID: 5572154738061557002}
   Property: material
+  Path: Icon
 --- !u!114 &6319805371251898224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b023a8f7f81207a4ba51d8442dee7195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: Color
   Component: {fileID: 5572154738061557002}
   Property: material
+  Path: Color
