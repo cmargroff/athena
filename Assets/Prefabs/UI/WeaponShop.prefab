@@ -205,6 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d588ac35552c0984b87498c768572511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GlobalMarkup: 10
+  RepeatItemMarkup: 0
   ShopType: 0
   ShopItemPrefab: {fileID: 4627359993382493365, guid: 92790850cd9cb42459b893109decce5d, type: 3}
   Items:
