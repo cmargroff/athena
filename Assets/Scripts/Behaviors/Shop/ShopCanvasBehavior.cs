@@ -13,6 +13,11 @@ public abstract class ShopCanvasBehavior : AthenaMonoBehavior
   public abstract void Show();
   public abstract void Hide();
   public abstract void Build();
+  public event Action<int> MinCostChanged;
+  protected void OnMinCostChanged(int min)
+  {
+    MinCostChanged?.Invoke(min);
+  }
 }
 
 public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAsset : BaseShopItemSO
@@ -29,7 +34,6 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
   {
     _controls = new();
     _controls.Menues.Enable();
-    _leaveButton = GetComponentInChildren<Button>();
     _shopItems = new();
 
     var rect = GetComponent<RectTransform>();
@@ -62,6 +66,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
       _shopItems[item.name] = (0, shopItem);
     }
     UpdateBinds();
+    UpdateMinCost();
     (_shopItemsContainer.transform as RectTransform).ArrangeChildrenAnchorsEvenly();
   }
   private void UpdateBinds()
@@ -95,9 +100,9 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     if (count >= item.NumberInStore)
     {
       AnimateRemoveItem(item.name);
-      return;
     }
     UpdateBinds();
+    UpdateMinCost();
   }
   public abstract void Buy(TAsset item);
 
@@ -176,5 +181,17 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     cost += _numberOfItemsSold * GlobalMarkup;
     cost += sold * RepeatItemMarkup;
     return cost;
+  }
+  private void UpdateMinCost(){
+    var min = int.MaxValue;
+    foreach(var item in _shopItems){
+      var (count, shopItem) = item.Value;
+      var so = Items.Find(i => i.name == item.Key);
+      var cost = ComputeCost(count, so);
+      if(cost < min){
+        min = cost;
+      }
+    }
+    OnMinCostChanged(min);
   }
 }

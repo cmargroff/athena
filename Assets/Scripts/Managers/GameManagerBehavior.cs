@@ -32,8 +32,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
 
-    public event Action<string, int> OnPickupCollected;
-    public UnityEvent OnCoinsChanged;
+    public event Action<string, int> OnInventoryChanged;
 
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
@@ -81,6 +80,11 @@ public class GameManagerBehavior : AthenaMonoBehavior
                 _shops.Add(shopBehavior.ShopType, b);
             }
         }
+    }
+
+    public ShopCanvasBehavior GetShop(ShopBuildingBehavior.ShopTypeEnum shopType){
+        _shops.TryGetValue(shopType, out var shop);
+        return shop;
     }
 
     public void ShowShop(ShopBuildingBehavior.ShopTypeEnum shopType){
@@ -131,7 +135,14 @@ public class GameManagerBehavior : AthenaMonoBehavior
         _frameCount++;
     }
 
-
+    public void UseInvtentoryItem(string name, int amount)
+    {
+        if (Pickups.ContainsKey(name))
+        {
+            Pickups[name] -= amount;
+            OnInventoryChanged?.Invoke(name, Pickups[name]);
+        }
+    }
 
     public void CollectPickup(PickupBehavior pickup)
     {
@@ -143,7 +154,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         {
             Pickups.Add(pickup.Name, pickup.Amount);
         }
-        OnPickupCollected?.Invoke(pickup.Name, Pickups[pickup.Name]);
+        OnInventoryChanged?.Invoke(pickup.Name, Pickups[pickup.Name]);
     }
 
     private void RunDisabledStarts()
