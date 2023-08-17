@@ -52,9 +52,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         Buy = (Action)(() => Buy(item))
       });
       shopItem.transform.parent = _shopItemsContainer.transform;
-      shopItem.transform.localRotation = Quaternion.identity;
-      shopItem.transform.localPosition = Vector3.zero;
-      shopItem.transform.localScale = Vector3.one;
+      shopItem.transform.ResetLocal();
       _shopItems[item.name] = (0, shopItem);
     }
     (_shopItemsContainer.transform as RectTransform).ArrangeChildrenAnchorsEvenly();
