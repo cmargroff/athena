@@ -90,7 +90,7 @@ public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShop
         {
             Done = () =>
             {
-                _gameManager.WeaponShop.gameObject.SetActive(false);
+                // _gameManager.WeaponShop.gameObject.SetActive(false);
                 _gameManager.Paused = false;
             },
             Coins = _gameManager.Pickups.GetValueOrDefault("Coin").ToString(),
@@ -129,8 +129,9 @@ public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShop
 
     public virtual void Buy(TAsset item)
     {
-        _gameManager.Pickups["Coin"] -= ComputeCost(item);
-        _gameManager.OnCoinsChanged?.Invoke();
+        // _gameManager.Pickups["Coin"] -= ComputeCost(item);
+        // _gameManager.OnCoinsChanged?.Invoke();
+        _gameManager.UseInvtentoryItem("Coin", ComputeCost(item));
 
         _numberOfItemsSold++;
         _itemsSold[item.name] = _itemsSold.GetValueOrDefault(item.name) + 1;
@@ -146,4 +147,3 @@ public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShop
 
 
 }
-

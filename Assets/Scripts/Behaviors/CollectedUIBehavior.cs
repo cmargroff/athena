@@ -12,9 +12,10 @@ public class CollectedUIBehavior : AthenaMonoBehavior
     {
         base.Start();
         var uiDocument = GetComponent<UIDocument>();
+        uiDocument.useGUILayout = false;
         _pickupsContainer = uiDocument.rootVisualElement.Q("pickups");
         Debug.Log(_pickupsContainer);
-        _gameManager.OnPickupCollected += OnPickupCollected;
+        _gameManager.OnInventoryChanged += OnPickupCollected;
     }
     private void OnPickupCollected(string type, int count)
     {
@@ -29,10 +30,5 @@ public class CollectedUIBehavior : AthenaMonoBehavior
         _pickups.TryGetValue(type, out var pickup);
         var label = (Label)pickup.Q(className: "pickup-count");
         label.text = count.ToString();
-
-        if (type == "Coin")
-        {
-            _gameManager.OnCoinsChanged?.Invoke();
-        }
     }
 }

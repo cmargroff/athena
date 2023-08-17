@@ -7,9 +7,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "athena/Weapon", order = 0)]
 public class WeaponSO : BaseShopItemSO
 {
-
-
-    public Color Color;
     public int Damage;
     public float Pierce;
     public MinMax Speed;

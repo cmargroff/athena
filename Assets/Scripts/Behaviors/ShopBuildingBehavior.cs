@@ -3,10 +3,10 @@
 public class ShopBuildingBehavior: BuildingInteractBehaviour
 {
     public ShopTypeEnum ShopType;
-    public ShopBehavior Shop;
+    public ShopCanvasBehavior Shop;
 
 
-    public int MinimumCost=5;//todo:set this value for real
+    public int MinimumCost = 5; // todo:set this value for real
 
     private IndicatorBehavior _indicator;
 
@@ -17,27 +17,26 @@ public class ShopBuildingBehavior: BuildingInteractBehaviour
         SetupIndicator();
         _buildingUsableIndicator = GetComponent<BuildingUsableIndicator>();
 
-        _gameManager.OnCoinsChanged.AddListener(CoinsChanged);
-
-        switch (ShopType)
+        _gameManager.OnInventoryChanged += (key, amount) => {
+            if (key == "Coin")
+            {
+                CoinsChanged(amount);
+            }
+        };
+        Shop = _gameManager.GetShop(ShopType);
+        if(Shop == null)
         {
-            case ShopTypeEnum.Weapon:
-                Shop= _gameManager.WeaponShop;
-                break;
-            case ShopTypeEnum.Military:
-                Shop = _gameManager.MilitaryShop;
-                break;
-            default:
-                Shop = _gameManager.PowerUpShop;
-                break;
+            Debug.LogError($"Shop not found for {ShopType}");
+            return;
         }
-
-        Shop.OnMinCostChanged.AddListener(() => MinimumCost=Shop.MinCost);
+        Shop.MinCostChanged += (min) => {
+            MinimumCost = min;
+        };
     }
 
-    private void  CoinsChanged()
+    private void  CoinsChanged(int amount = 0)
     {
-        if (_gameManager.Pickups.GetValueOrDefault("Coin") >= MinimumCost)
+        if (amount >= MinimumCost)
         {
             _buildingUsableIndicator.EnableHoverIndicator();
             _indicator.On=true;
@@ -52,24 +51,8 @@ public class ShopBuildingBehavior: BuildingInteractBehaviour
     public override void Interact()
     {
         base.Interact();
-        _gameManager.Paused=true;
-        switch (ShopType)
-        {
-            case ShopTypeEnum.Weapon:
-                Shop.gameObject.SetActive(true);
-            
-                break;
-            case ShopTypeEnum.Military:
-                Shop.gameObject.SetActive(true);
-
-                break;
-            default:
-                Shop.gameObject.SetActive(true);
-                break;
-        }
-        Shop.BuildShop();
+        _gameManager.ShowShop(ShopType);
     }
-
     private void SetupIndicator()
     {
         var obj = Instantiate(_indicatorTemplate, Vector3.zero, Quaternion.identity);
@@ -77,10 +60,6 @@ public class ShopBuildingBehavior: BuildingInteractBehaviour
         obj.transform.parent=transform;
         _indicator = obj.GetComponent<IndicatorBehavior>();
         _indicator.Target = transform;
-
-        //Warning.transform.parent = gameObject.transform;
-
-
         _indicator.gameObject.SetActive(true);
     }
 

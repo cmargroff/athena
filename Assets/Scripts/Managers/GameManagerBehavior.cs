@@ -16,10 +16,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public PoolBehavior Pool;
     public LayerMask Enemies;
     public LayerMask Buildings;
-
-    public WeaponShopBehavior WeaponShop;
-    public PowerUpShopBehavior PowerUpShop;
-    public MilitaryShopBehavior MilitaryShop;
+    public List<GameObject> Shops;
+    private Dictionary<ShopBuildingBehavior.ShopTypeEnum, ShopCanvasBehavior> _shops = new ();
 
     private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
 
@@ -34,8 +32,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
 
-    public event Action<string, int> OnPickupCollected;
-    public UnityEvent OnCoinsChanged;
+    public event Action<string, int> OnInventoryChanged;
 
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
@@ -59,15 +56,50 @@ public class GameManagerBehavior : AthenaMonoBehavior
         DOTween.SetTweensCapacity(10000, 10000);
 
         SafeAssigned(Bounds);
-        SafeAssigned(WeaponShop);
-        SafeAssigned(PowerUpShop);
-        SafeAssigned(MilitaryShop);
-
         SafeAssigned(Player);
         SafeAssigned(Weapons);
-        
+
+        CreateShops();
         RunDisabledStarts();
-        
+    }
+
+    private void CreateShops(){
+        var ShopCanvas = GameObject.Find("ShopCanvas");
+        foreach(var shop in Shops){
+            var shopBehavior = shop.GetComponent<ShopCanvasBehavior>();
+            Debug.Log(shopBehavior.ShopType);
+            if(shopBehavior){
+                var obj = Instantiate(shop);
+                obj.SetActive(false);
+                obj.transform.parent = ShopCanvas.transform;
+                obj.transform.localPosition = Vector3.zero;
+                obj.transform.localScale = Vector3.one;
+                obj.transform.localRotation = Quaternion.identity;
+                var b = obj.GetComponent<ShopCanvasBehavior>();
+                b.Build();
+                _shops.Add(shopBehavior.ShopType, b);
+            }
+        }
+    }
+
+    public ShopCanvasBehavior GetShop(ShopBuildingBehavior.ShopTypeEnum shopType){
+        _shops.TryGetValue(shopType, out var shop);
+        return shop;
+    }
+
+    public void ShowShop(ShopBuildingBehavior.ShopTypeEnum shopType){
+        Paused = true;
+        _shops.TryGetValue(shopType, out var shop);
+        if(shop){
+            shop.Show();
+        }
+    }
+    public void HideShop(ShopBuildingBehavior.ShopTypeEnum shopType){
+        Paused = false;
+        _shops.TryGetValue(shopType, out var shop);
+        if(shop){
+            shop.Hide();
+        }
     }
 
     // Update is called once per frame
@@ -103,7 +135,14 @@ public class GameManagerBehavior : AthenaMonoBehavior
         _frameCount++;
     }
 
-
+    public void UseInvtentoryItem(string name, int amount)
+    {
+        if (Pickups.ContainsKey(name))
+        {
+            Pickups[name] -= amount;
+            OnInventoryChanged?.Invoke(name, Pickups[name]);
+        }
+    }
 
     public void CollectPickup(PickupBehavior pickup)
     {
@@ -115,7 +154,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         {
             Pickups.Add(pickup.Name, pickup.Amount);
         }
-        OnPickupCollected?.Invoke(pickup.Name, Pickups[pickup.Name]);
+        OnInventoryChanged?.Invoke(pickup.Name, Pickups[pickup.Name]);
     }
 
     private void RunDisabledStarts()

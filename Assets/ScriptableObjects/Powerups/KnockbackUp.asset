@@ -15,7 +15,8 @@ MonoBehaviour:
   FriendlyName: Knockback Up
   Description: For the loner in you
   Cost: 5
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: cd41d2856f03a8d4e9dc277b16b89e27, type: 3}
+  Color: {r: 0.0047774436, g: 0.745283, b: 0, a: 1}
   NumberInStore: 99
   Damage: 0
   Knockback: 0.5

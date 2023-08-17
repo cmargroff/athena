@@ -15,7 +15,8 @@ MonoBehaviour:
   FriendlyName: Rate Up
   Description: More pew for every trigger pull or your money back
   Cost: 5
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: d14c8958a64328945abdc8c672dcd219, type: 3}
+  Color: {r: 1, g: 0.86508846, b: 0, a: 0}
   NumberInStore: 99
   Damage: 0
   Knockback: 0

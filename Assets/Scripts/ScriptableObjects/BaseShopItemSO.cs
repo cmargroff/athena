@@ -12,8 +12,8 @@ public class BaseShopItemSO : ScriptableObject
     [Multiline]
     public string Description;
     public int Cost;
-    public Sprite Icon;
-
+    public Texture2D Icon;
+    public Color Color;
     public int NumberInStore = 1;
 }
 
