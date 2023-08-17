@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,7 +39,6 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     {
       var shopItem = Instantiate(ShopItemPrefab);
       var itemRect = shopItem.GetComponent<RectTransform>();
-      var btn = shopItem.GetComponentInChildren<Button>();
 
       //  need to make copy of material to set individual properties per item
       var img = shopItem.FindObjectByName("Icon").GetComponent<Image>();
@@ -50,7 +50,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         Icon = item.Icon,
         Color = item.Color,
         Cost = item.Cost.ToString(),
-        // Buy = Buy(item)
+        Buy = (Action)(() => Buy(item))
       });
       shopItem.transform.parent = _shopItemsContainer.transform;
       shopItem.transform.localRotation = Quaternion.identity;
