@@ -52,5 +52,13 @@
         "temp/":true,
         "Temp/":true
     },
+    "files.associations": {
+        "*.asset": "yaml",
+        "*.meta": "yaml",
+        "*.prefab": "yaml",
+        "*.unity": "yaml",
+        "*.shadergraph": "json",
+        "*.shadersubgraph": "json"
+    },
     "dotnet.defaultSolution": "athena.sln"
 }
