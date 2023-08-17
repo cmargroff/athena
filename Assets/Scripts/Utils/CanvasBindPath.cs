@@ -7,26 +7,28 @@ using UnityEngine.Events;
 public class CanvasBindPath : MonoBehaviour
 {
   public static Regex tagReg = new Regex(@"\{\{\s*?([^\s{}]+)\s*?\}\}");
-  public string Path;
   public Component Component; //target component of the bind
   public string Property;
+  public string Path;
   private object _originalValue;
   private bool _isBound = false;
   public void Bind(object obj)
   {
-    var srcProp = obj.GetProp(Path);
-    if (srcProp == null)
-    {
-      // bind was not found on input object
-      return;
-    }
-    var value = srcProp.GetValue(obj);
+
+    
     var destProp = Component.GetType().GetProperty(Property);
     if (destProp == null)
     {
       // skipping destination property not found
       return;
     }
+    var srcProp = obj.GetProp(Path);
+    if (srcProp == null &&  destProp.PropertyType != typeof(string))
+    {
+      // bind was not found on input object
+      return;
+    }
+    var value = srcProp.GetValue(obj);
 
     if (_originalValue == null)
     {
@@ -35,7 +37,7 @@ public class CanvasBindPath : MonoBehaviour
 
     if (destProp.PropertyType == typeof(string))
     {
-      AssignStringValue(_originalValue.ToString(), value, srcProp, destProp);
+      AssignStringValue(_originalValue.ToString(), obj, destProp);
     }
     else if (destProp.PropertyType == typeof(Material))
     {
@@ -47,15 +49,19 @@ public class CanvasBindPath : MonoBehaviour
     }
     _isBound = true;
   }
-  public void AssignStringValue(string orig, object value, PropertyInfo srcProp, PropertyInfo destProp)
+  public void AssignStringValue(string orig, object obj, PropertyInfo destProp)
   {
-    var match = tagReg.Match(orig);
-    if (match.Success && match.Groups[1].Value == srcProp.Name)
+    var matches = tagReg.Matches(orig);
+    var text = orig;
+    foreach (Match match in matches)
     {
-      // replace the tag
-      var text = tagReg.Replace(_originalValue.ToString(), value.ToString());
-      destProp.SetValue(Component, text);
+      var srcProp = obj.GetProp(match.Groups[1].Value);
+      if (srcProp == null) continue;
+      var value = srcProp.GetValue(obj);
+      if (value == null) continue;
+      text = text.Replace(match.Groups[0].Value, value.ToString());
     }
+    destProp.SetValue(Component, text);
   }
   public void AssignMaterialValue(Material mat, object value)
   {
