@@ -7,7 +7,7 @@ public class WeaponShopCanvasBehavior : ShopCanvasBehavior<WeaponSO>
     }
     public override void Buy(WeaponSO item)
     {
-        Spend(item);
+        base.Buy(item);
         var weaponBehavior = (BaseWeaponBehavior)_gameManager.Weapons.AddComponent(
             Type.GetType(item.Behavior.ToString())
         );

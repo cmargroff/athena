@@ -6,7 +6,7 @@ public class ItemShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
     }
     public override void Buy(PowerUpSO item)
     {
-        Spend(item);
+        base.Buy(item);
         _gameManager.PlayerCharacter.Armor += item.Armor;
         _gameManager.PlayerCharacter.Knockback += item.Knockback;
         _gameManager.PlayerCharacter.Speed += item.Speed;

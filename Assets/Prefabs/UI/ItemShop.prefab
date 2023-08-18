@@ -209,6 +209,11 @@ MonoBehaviour:
   RepeatItemMarkup: 5
   ShopType: 1
   ShopItemPrefab: {fileID: 2494432396409834772, guid: 4567f9250be2ffe49a6eba5266a7d2da, type: 3}
+  Damage: 0
+  Weight: 0
+  Speed: 0.1
+  Health: 0
+  SpawnFrequency: 0
   Items:
   - {fileID: 11400000, guid: 6bb8d89cf3dae6545a0ccee7ed048515, type: 2}
   - {fileID: 11400000, guid: 706df4f7dd9d89145a044d1e107146a8, type: 2}
