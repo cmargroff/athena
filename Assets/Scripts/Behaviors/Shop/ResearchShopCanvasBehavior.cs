@@ -1,41 +1,23 @@
-
-using UnityEngine;
 public class ResearchShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
 {
-    [SerializeField]
-    private WeaponSO _buildingTurretConfig;
-    private ShopBuildingBehavior[] _buildings;
-    protected override void Start()
-    {
-        base.Start();
-        _buildings = FindObjectsByType<ShopBuildingBehavior>(FindObjectsSortMode.None);
-        SafeAssigned(_buildingTurretConfig);
-    }
     protected override string GetTitle()
     {
-        return "Research Lab";
+        return "Research";
     }
     public override void Buy(PowerUpSO item)
     {
-        Spend(item);
+        base.Buy(item);
+        _gameManager.PlayerCharacter.Armor += item.Armor;
+        _gameManager.PlayerCharacter.Knockback += item.Knockback;
+        _gameManager.PlayerCharacter.Speed += item.Speed;
+        _gameManager.PlayerCharacter.Damage += item.Damage;
+        _gameManager.PlayerCharacter.BulletSize += item.BulletSize;
 
-        foreach (var building in _buildings)
-        {
-            if (building.GetComponent<WeaponBehavior>() == null)
-            {
-                building.gameObject.AddComponent(typeof(BuildingStatAdjust));
-                var weaponBehavior = (BaseWeaponBehavior)building.gameObject.AddComponent(typeof(WeaponBehavior));
-                weaponBehavior.WeaponConfig = _buildingTurretConfig;
-                weaponBehavior.enabled = true;
-            }
-        }
-        _gameManager.BuildingCharacter.Knockback += item.Knockback;
-        _gameManager.BuildingCharacter.Damage += item.Damage;
+        _gameManager.PlayerCharacter.AttackFrequency += item.AttackFrequency;
 
         if (item.AttackFrequency > 0)
         {
-            _gameManager.BuildingCharacter.AttackFrequency += item.AttackFrequency;
-            _gameManager.BuildingCharacter.OnStatsChanged?.Invoke();
+            _gameManager.PlayerCharacter.OnStatsChanged?.Invoke();
         }
     }
 }

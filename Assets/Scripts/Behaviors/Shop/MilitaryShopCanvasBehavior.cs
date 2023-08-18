@@ -1,6 +1,6 @@
-﻿using UnityEngine;
 
-public class MilitaryShopBehavior : ShopBehavior<PowerUpSO>
+using UnityEngine;
+public class MilitaryShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
 {
     [SerializeField]
     private WeaponSO _buildingTurretConfig;
@@ -17,7 +17,7 @@ public class MilitaryShopBehavior : ShopBehavior<PowerUpSO>
     }
     public override void Buy(PowerUpSO item)
     {
-        base.Buy(item);
+        Spend(item);
 
         foreach (var building in _buildings)
         {
@@ -31,6 +31,7 @@ public class MilitaryShopBehavior : ShopBehavior<PowerUpSO>
         }
         _gameManager.BuildingCharacter.Knockback += item.Knockback;
         _gameManager.BuildingCharacter.Damage += item.Damage;
+
         if (item.AttackFrequency > 0)
         {
             _gameManager.BuildingCharacter.AttackFrequency += item.AttackFrequency;

@@ -1,4 +1,4 @@
-public class ItemShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
+public class ResearchShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
 {
     protected override string GetTitle()
     {
