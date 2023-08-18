@@ -15,7 +15,6 @@ public class EnemyCharacterBehaviour : AthenaMonoBehavior
     public float Weight = 1f;
     [Range(0.1f, 10)]
     public float Speed = 1f;
-
     [Range(0.1f, 10)] 
     public float Health=1f;
     [Range(0.1f, 10)]

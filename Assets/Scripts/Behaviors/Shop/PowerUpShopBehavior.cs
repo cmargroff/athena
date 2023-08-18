@@ -5,6 +5,7 @@
         return "Research Lab";
     }
 
+
     public override void Buy(PowerUpSO item)
     {
         base.Buy(item);
