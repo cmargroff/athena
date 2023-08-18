@@ -14,6 +14,8 @@ public class PowerUpSO : BaseShopItemSO
     public float Speed;
     [Range(0f, 10)]
     public float Armor;
+    [Range(0.1f, 10)]
+    public float BulletSize;
     //public float AttackSpeed = 1f;
     //public float AttackDuration = 1f;
     [Range(0f, 10)]

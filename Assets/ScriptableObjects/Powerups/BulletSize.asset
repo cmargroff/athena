@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8f8be12844459b4eba6411b9ea08519, type: 3}
-  m_Name: ArmorUp
+  m_Name: BulletSize
   m_EditorClassIdentifier: 
-  FriendlyName: Armor Up
-  Description: Be tough, like POTATOE!
+  FriendlyName: Bullet Size
+  Description: 
   Cost: 5
-  Icon: {fileID: 2800000, guid: bba223ea1018c654eb914cac83327892, type: 3}
-  Color: {r: 0.5529597, g: 0.2028302, b: 1, a: 1}
-  NumberInStore: 99
+  Icon: {fileID: 0}
+  Color: {r: 0, g: 0, b: 0, a: 0}
+  NumberInStore: 1
   Damage: 0
   Knockback: 0
   Speed: 0
-  Armor: 0.5
-  BulletSize: 0.1
+  Armor: 0
+  BulletSize: 1
   AttackFrequency: 0
