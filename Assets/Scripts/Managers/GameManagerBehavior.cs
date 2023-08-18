@@ -23,6 +23,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public Dictionary<string, int> Pickups = new();
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
+    public EnemyCharacterBehaviour EnemyCharacter;
     public event Action<string, int> OnInventoryChanged;
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
@@ -33,6 +34,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         base.Awake();
         PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
         BuildingCharacter = GetComponent<BuildingCharacterBehavior>();
+        EnemyCharacter = GetComponent<EnemyCharacterBehaviour>();
     }
     protected override void Start()
     {

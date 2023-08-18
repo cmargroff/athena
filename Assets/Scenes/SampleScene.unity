@@ -2508,6 +2508,7 @@ GameObject:
   - component: {fileID: 1797170649}
   - component: {fileID: 1797170650}
   - component: {fileID: 1797170651}
+  - component: {fileID: 1797170652}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2546,6 +2547,7 @@ MonoBehaviour:
   KnockbackFactor: 0.2
   PlayerCharacter: {fileID: 0}
   BuildingCharacter: {fileID: 0}
+  EnemyCharacter: {fileID: 0}
   OnEnemyChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2734,6 +2736,26 @@ MonoBehaviour:
   displayLogs: 1
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.7}
   graphs: []
+--- !u!114 &1797170652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797170644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69eb6d10f887fa342bd3c970913b4fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  Weight: 1
+  Speed: 1
+  Health: 1
+  SpawnFrequency: 1
+  OnStatsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1983952868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2640357145786065855, guid: 161d1f5681a289b43bce3df50394de2e, type: 3}

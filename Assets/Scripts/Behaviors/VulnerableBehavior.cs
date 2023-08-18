@@ -7,8 +7,8 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
     private StatAdjust _statAdjust;
     [SerializeField]
     public float MaxHealth = 1;
-    public int Weight = 1;
-    public int Friction = 1;
+    public float Weight = 1;
+    public float Friction = 1;
 
     public float Health = 0;
     [SerializeField]
