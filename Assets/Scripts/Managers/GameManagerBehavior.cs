@@ -8,48 +8,32 @@ using UnityEngine.Events;
 public class GameManagerBehavior : AthenaMonoBehavior
 {
     public bool Paused;
-
     public Collider2D Bounds;
     public GameObject Player;
     public GameObject Weapons;
-
     public PoolBehavior Pool;
     public LayerMask Enemies;
     public LayerMask Buildings;
     public List<GameObject> Shops;
-    private Dictionary<ShopBuildingBehavior.ShopTypeEnum, ShopCanvasBehavior> _shops = new ();
-
-    private readonly Dictionary<Guid,TimedEvent> _timedEvents= new ();
-
+    private Dictionary<ShopBuildingBehavior.ShopTypeEnum, ShopCanvasBehavior> _shops = new();
+    private readonly Dictionary<Guid, TimedEvent> _timedEvents = new();
     private Int64 _frameCount = 1;
-
-
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
-    public Dictionary<string, int> Pickups = new ();
-    
-
+    public Dictionary<string, int> Pickups = new();
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
-
     public event Action<string, int> OnInventoryChanged;
-
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
     public UnityEvent<float> OnEnemyDamaged;
     //end debug events
-
-
-
     protected override void Awake()
     {
         base.Awake();
         PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
         BuildingCharacter = GetComponent<BuildingCharacterBehavior>();
     }
-
-
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -62,13 +46,15 @@ public class GameManagerBehavior : AthenaMonoBehavior
         CreateShops();
         RunDisabledStarts();
     }
-
-    private void CreateShops(){
+    private void CreateShops()
+    {
         var ShopCanvas = GameObject.Find("ShopCanvas");
-        foreach(var shop in Shops){
+        foreach (var shop in Shops)
+        {
             var shopBehavior = shop.GetComponent<ShopCanvasBehavior>();
             Debug.Log(shopBehavior.ShopType);
-            if(shopBehavior){
+            if (shopBehavior)
+            {
                 var obj = Instantiate(shop);
                 obj.SetActive(false);
                 obj.transform.parent = ShopCanvas.transform;
@@ -81,32 +67,33 @@ public class GameManagerBehavior : AthenaMonoBehavior
             }
         }
     }
-
-    public ShopCanvasBehavior GetShop(ShopBuildingBehavior.ShopTypeEnum shopType){
+    public ShopCanvasBehavior GetShop(ShopBuildingBehavior.ShopTypeEnum shopType)
+    {
         _shops.TryGetValue(shopType, out var shop);
         return shop;
     }
-
-    public void ShowShop(ShopBuildingBehavior.ShopTypeEnum shopType){
+    public void ShowShop(ShopBuildingBehavior.ShopTypeEnum shopType)
+    {
         Paused = true;
         _shops.TryGetValue(shopType, out var shop);
-        if(shop){
+        if (shop)
+        {
             shop.Show();
         }
     }
-    public void HideShop(ShopBuildingBehavior.ShopTypeEnum shopType){
+    public void HideShop(ShopBuildingBehavior.ShopTypeEnum shopType)
+    {
         Paused = false;
         _shops.TryGetValue(shopType, out var shop);
-        if(shop){
+        if (shop)
+        {
             shop.Hide();
         }
     }
-
-    // Update is called once per frame
-
     public TimedEvent AddTimedEvent(float seconds, Action action, GameObject owner)
     {
-        var te = new TimedEvent() {
+        var te = new TimedEvent()
+        {
             Id = Guid.NewGuid(),
             Action = action,
             Owner = owner
@@ -134,7 +121,6 @@ public class GameManagerBehavior : AthenaMonoBehavior
         }
         _frameCount++;
     }
-
     public void UseInvtentoryItem(string name, int amount)
     {
         if (Pickups.ContainsKey(name))
@@ -143,7 +129,6 @@ public class GameManagerBehavior : AthenaMonoBehavior
             OnInventoryChanged?.Invoke(name, Pickups[name]);
         }
     }
-
     public void CollectPickup(PickupBehavior pickup)
     {
         if (Pickups.ContainsKey(pickup.Name))
@@ -156,17 +141,15 @@ public class GameManagerBehavior : AthenaMonoBehavior
         }
         OnInventoryChanged?.Invoke(pickup.Name, Pickups[pickup.Name]);
     }
-
     private void RunDisabledStarts()
     {
         var objects = FindObjectsOfType<AthenaMonoBehavior>(true);
         foreach (var obj in objects)
         {
-            if (obj.gameObject.activeInHierarchy== false)
+            if (obj.gameObject.activeInHierarchy == false)
             {
                 obj.DisabledStart();
             }
         }
-
     }
 }

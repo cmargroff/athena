@@ -1,9 +1,8 @@
 ﻿using System;
 
-
 namespace Assets.Scripts.UIViewModels
 {
-    public  class ShopVM : UIVM
+    public class ShopVM : UIVM
     {
         [VisualElementBind]
         public string Title;
@@ -12,6 +11,5 @@ namespace Assets.Scripts.UIViewModels
         public string Coins;
         [VisualElementEvent]
         public Action Done;
-
     }
 }

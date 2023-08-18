@@ -1,5 +1,5 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
+
 [RequireComponent(typeof(BaseStateMachineBehavior))]
 internal class SimpleSpawn : AthenaMonoBehavior, ISpawn
 {

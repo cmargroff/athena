@@ -1,13 +1,11 @@
-﻿
-using UnityEngine;
-public  class IndicatorBehavior:AthenaMonoBehavior
+﻿using UnityEngine;
+
+public class IndicatorBehavior : AthenaMonoBehavior
 {
     public Transform Target;
-
     private MeshRenderer _renderer;
     private readonly float _activeWarningScale = 0.1f;
-
-    public bool On=false;
+    public bool On = false;
     protected override void Start()
     {
         base.Start();
@@ -21,7 +19,6 @@ public  class IndicatorBehavior:AthenaMonoBehavior
             var mainCamera = Camera.main;
             var onScreen = mainCamera.CanSee(Target.transform, out Vector3 screenPosition);
 
-
             if (onScreen)
             {
                 _renderer.enabled = false;
@@ -32,7 +29,6 @@ public  class IndicatorBehavior:AthenaMonoBehavior
 
                 var indicatorScreenPosition = new Vector3(Mathf.Clamp(screenPosition.x, 0, 1),
                     Mathf.Clamp(screenPosition.y, 0, 1), screenPosition.z);
-
 
                 var indicatorWorldPosition = mainCamera.ViewportToWorldPoint(indicatorScreenPosition);
 
@@ -50,7 +46,5 @@ public  class IndicatorBehavior:AthenaMonoBehavior
         {
             _renderer.enabled = false;
         }
-
     }
 }
-

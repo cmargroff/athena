@@ -9,7 +9,6 @@ public class GrowBehavior : AthenaMonoBehavior
     protected override void PlausibleUpdate()
     {
         base.PlausibleUpdate();
-        this.transform.localScale *= 1f+(0.1f*Time.deltaTime);
+        this.transform.localScale *= 1f + (0.1f * Time.deltaTime);
     }
-
 }

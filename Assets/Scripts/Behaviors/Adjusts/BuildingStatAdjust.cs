@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 
-
-public  class BuildingStatAdjust : StatAdjust
+public class BuildingStatAdjust : StatAdjust
 {
     protected override void Start()
     {
@@ -16,14 +10,8 @@ public  class BuildingStatAdjust : StatAdjust
             () => OnStatsChanged?.Invoke()
         );
     }
-
-
-
     public override float GetAttackFrequency()
     {
         return _gameManager.BuildingCharacter.AttackFrequency;
     }
-
-
 }
-

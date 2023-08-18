@@ -1,4 +1,4 @@
-﻿public class PlayerStatAdjust:StatAdjust
+﻿public class PlayerStatAdjust : StatAdjust
 {
     protected override void Start()
     {
@@ -7,8 +7,6 @@
             () => OnStatsChanged?.Invoke()
             );
     }
-
-
     public override float GetSpeedAdjust()
     {
         return _gameManager.PlayerCharacter.Speed;
@@ -21,7 +19,4 @@
     {
         return _gameManager.PlayerCharacter.AttackFrequency;
     }
-
-
 }
-

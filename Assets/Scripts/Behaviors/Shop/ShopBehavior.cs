@@ -1,42 +1,30 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.UIViewModels;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public abstract class ShopBehavior:AthenaMonoBehavior
+public abstract class ShopBehavior : AthenaMonoBehavior
 {
     public abstract void BuildShop();
     public int MinCost;
     public UnityEvent OnMinCostChanged;
 }
 
-
 [RequireComponent(typeof(UIDocument))]
-public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShopItemSO
+public abstract class ShopBehavior<TAsset> : ShopBehavior where TAsset : BaseShopItemSO
 {
     private UIDocument _shopUI;
-
     [SerializeField]
     private VisualTreeAsset _shopItemAsset;
     public List<TAsset> Items;
-
     public int GlobalMarkup;
     public int RepeatItemMarkup;
-
-
-
     private int _numberOfItemsSold;
-    private readonly Dictionary<string, int> _itemsSold= new();
+    private readonly Dictionary<string, int> _itemsSold = new();
     private @PlayerInputActions _controls;
-
-
-   
     protected abstract string GetTitle();
-
     //public override void  OnActive()
     //{
     //    base.OnActive();
@@ -45,14 +33,12 @@ public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShop
     //    SafeAssigned(_shopItemAsset);
 
     //}
-    protected  override void Start()
+    protected override void Start()
     {
         _controls = new();
         _controls.Menues.Enable();
-        
         //gameObject.GetComponent<UIDocument>().enabled = false;//todo:this is all kind of dumb Make it less dumb
         //StartCoroutine(StartOff());
-
     }
 
     public override void DisabledStart()
@@ -60,24 +46,20 @@ public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShop
         base.DisabledStart();
         ComputeMinCost();
     }
-
     //private IEnumerator StartOff()
     //{
 
     //    //returning 0 will make it wait 1 frame
-        
+
     //    yield return 0;
     //    gameObject.GetComponent<UIDocument>().enabled=true;
     //    gameObject.SetActive(false);
 
     //    //code goes here
-
-
     //}
-
     public void ComputeMinCost()
     {
-        MinCost= Items.Min(ComputeCost);
+        MinCost = Items.Min(ComputeCost);
         OnMinCostChanged?.Invoke();
     }
 
@@ -123,7 +105,7 @@ public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShop
     {
         var cost = asset.Cost;
         cost += _numberOfItemsSold * GlobalMarkup;
-        cost+=_itemsSold.GetValueOrDefault(asset.name)* RepeatItemMarkup;
+        cost += _itemsSold.GetValueOrDefault(asset.name) * RepeatItemMarkup;
         return cost;
     }
 
@@ -143,7 +125,4 @@ public abstract class ShopBehavior<TAsset>: ShopBehavior where TAsset : BaseShop
         ComputeMinCost();
         BuildShop();
     }
-
-
-
 }

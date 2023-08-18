@@ -1,4 +1,3 @@
-﻿public interface  IAlive: IState
+﻿public interface IAlive : IState
 {
 }
-

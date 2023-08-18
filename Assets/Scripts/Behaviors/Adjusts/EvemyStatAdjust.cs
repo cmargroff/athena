@@ -1,5 +1,3 @@
-﻿public class EnemyStatAdjust:StatAdjust
+﻿public class EnemyStatAdjust : StatAdjust
 {
-  
 }
-

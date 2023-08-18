@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "PowerUp", menuName = "athena/PowerUp", order = 0)]
 public class PowerUpSO : BaseShopItemSO
 {
- 
+
 
     [Range(0f, 10)]
     public float Damage;
@@ -22,4 +19,3 @@ public class PowerUpSO : BaseShopItemSO
     [Range(0f, 10)]
     public float AttackFrequency;
 }
-

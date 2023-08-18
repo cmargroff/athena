@@ -9,9 +9,9 @@ public abstract class UIVM
         {
             foreach (VisualElementBindAttribute attribute in field.GetCustomAttributes(typeof(VisualElementBindAttribute), true))
             {
-                var controlName = attribute.ControlName?? field.Name;
+                var controlName = attribute.ControlName ?? field.Name;
                 var control = element.Q(controlName);
-                control.SetPropertyValue(attribute.FieldName,Convert.ChangeType(field.GetValue(this), field.FieldType));
+                control.SetPropertyValue(attribute.FieldName, Convert.ChangeType(field.GetValue(this), field.FieldType));
             }
             foreach (VisualElementEventAttribute attribute in field.GetCustomAttributes(typeof(VisualElementEventAttribute), true))
             {
@@ -22,8 +22,8 @@ public abstract class UIVM
 
                 var controlName = attribute.ControlName ?? field.Name;
                 var control = element.Q<Button>(controlName);
-                
-                control.RegisterCallback<ClickEvent>(evt =>((Action)field.GetValue(this))() );
+
+                control.RegisterCallback<ClickEvent>(evt => ((Action)field.GetValue(this))());
                 control.RegisterCallback<NavigationSubmitEvent>(evt => ((Action)field.GetValue(this))());
             }
 

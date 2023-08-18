@@ -91,7 +91,6 @@ namespace Assets.Scripts.Utils
             // If the collider type is not supported or unknown, return false.
             return false;
         }
-
         private static bool IsPointInsideBoxCollider(BoxCollider collider, Vector3 point)
         {
             Vector3 localPoint = collider.transform.InverseTransformPoint(point);
@@ -108,7 +107,6 @@ namespace Assets.Scripts.Utils
 
             return false;
         }
-
         private static bool IsPointInsideSphereCollider(SphereCollider collider, Vector3 point)
         {
             Vector3 localPoint = collider.transform.InverseTransformPoint(point);
@@ -121,7 +119,6 @@ namespace Assets.Scripts.Utils
 
             return false;
         }
-
         private static bool IsPointInsideCapsuleCollider(CapsuleCollider collider, Vector3 point)
         {
             Vector3 localPoint = collider.transform.InverseTransformPoint(point);

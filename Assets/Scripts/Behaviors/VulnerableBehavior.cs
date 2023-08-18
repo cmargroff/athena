@@ -1,4 +1,5 @@
 using UnityEngine;
+
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatAdjust))]
 public class VulnerableBehavior : AthenaMonoBehavior, IAlive
@@ -8,8 +9,8 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
     public float MaxHealth = 1;
     public int Weight = 1;
     public int Friction = 1;
-    
-    public  float Health = 0;
+
+    public float Health = 0;
     [SerializeField]
     private LifebarBehavior _lifebar;
 
@@ -118,7 +119,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
     }
     //private void Damage(Collider2D other)
     //{
-       
+
     //}
 
 }

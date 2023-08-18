@@ -37,4 +37,3 @@ public abstract class BaseStateMachineBehavior : MonoBehaviour
     }
     protected abstract Type GetInitialState();
 }
-

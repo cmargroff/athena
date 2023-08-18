@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class MilitaryShopBehavior : ShopBehavior<PowerUpSO>
 {
     [SerializeField]
     private WeaponSO _buildingTurretConfig;
-
     private ShopBuildingBehavior[] _buildings;
-
     protected override void Start()
     {
         base.Start();
@@ -20,12 +12,10 @@ public class MilitaryShopBehavior : ShopBehavior<PowerUpSO>
         SafeAssigned(_buildingTurretConfig);
 
     }
-
     protected override string GetTitle()
     {
         return "Research Lab";
     }
-
     public override void Buy(PowerUpSO item)
     {
         base.Buy(item);
@@ -40,12 +30,8 @@ public class MilitaryShopBehavior : ShopBehavior<PowerUpSO>
                 weaponBehavior.enabled = true;
             }
         }
-        
-
-
         _gameManager.BuildingCharacter.Knockback += item.Knockback;
         _gameManager.BuildingCharacter.Damage += item.Damage;
-
         if (item.AttackFrequency > 0)
         {
             _gameManager.BuildingCharacter.AttackFrequency += item.AttackFrequency;

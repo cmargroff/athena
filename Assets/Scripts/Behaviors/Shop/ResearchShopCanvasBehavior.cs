@@ -1,12 +1,10 @@
 
 using UnityEngine;
-public  class ResearchShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
+public class ResearchShopCanvasBehavior : ShopCanvasBehavior<PowerUpSO>
 {
     [SerializeField]
     private WeaponSO _buildingTurretConfig;
-
     private ShopBuildingBehavior[] _buildings;
-
     protected override void Start()
     {
         base.Start();

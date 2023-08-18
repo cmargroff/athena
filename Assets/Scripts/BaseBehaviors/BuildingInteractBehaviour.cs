@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 [RequireComponent(typeof(BuildingHoverBehaviour))]
-public  class BuildingInteractBehaviour:AthenaMonoBehavior
+public class BuildingInteractBehaviour : AthenaMonoBehavior
 {
     [SerializeField]
     protected GameObject _indicatorTemplate;
@@ -8,13 +8,10 @@ public  class BuildingInteractBehaviour:AthenaMonoBehavior
     public BuildingHoverBehaviour BuildingHover;
     protected override void Start()
     {
-        BuildingHover=GetComponent<BuildingHoverBehaviour>();
+        BuildingHover = GetComponent<BuildingHoverBehaviour>();
     }
-
     public virtual void Interact()
     {
         Debug.Log("Building interaction");
     }
-
-
 }

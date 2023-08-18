@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class OrbitalBehavior : BaseWeaponBehavior, IAlive
 {
-    
-
-
     public override void OnActive()
     {
         base.OnActive();
@@ -31,6 +28,5 @@ public class OrbitalBehavior : BaseWeaponBehavior, IAlive
                 orbit.transform.localPosition = new Vector3(x, y, 0f);
             };
         }
-
     }
 }

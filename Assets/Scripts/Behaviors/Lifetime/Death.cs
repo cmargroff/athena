@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 [RequireComponent(typeof(BaseStateMachineBehavior))]
-public  class Death: AthenaMonoBehavior,IDeath
+public class Death : AthenaMonoBehavior, IDeath
 {
     private Sequence _seq;
     public override void OnActive()
@@ -20,4 +20,3 @@ public  class Death: AthenaMonoBehavior,IDeath
         _seq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
 }
-

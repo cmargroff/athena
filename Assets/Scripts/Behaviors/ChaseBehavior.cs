@@ -1,8 +1,7 @@
 using UnityEngine;
 [RequireComponent(typeof(FlyingBehavior))]
-public class  ChaseBehavior: AthenaMonoBehavior, IAlive
+public class ChaseBehavior : AthenaMonoBehavior, IAlive
 {
-
     private FlyingBehavior _flying;
     // Start is called before the first frame update
     protected override void Start()
@@ -11,11 +10,10 @@ public class  ChaseBehavior: AthenaMonoBehavior, IAlive
         _flying = GetComponent<FlyingBehavior>();
         SafeAssigned(_gameManager);
     }
-
     // Update is called once per frame
     protected override void PlausibleUpdate()
     {
-        var target =  _gameManager.Player.transform.position - _flying.transform.position;
-        _flying.MoveAngle = new Vector2(target.x, target.y );
+        var target = _gameManager.Player.transform.position - _flying.transform.position;
+        _flying.MoveAngle = new Vector2(target.x, target.y);
     }
 }

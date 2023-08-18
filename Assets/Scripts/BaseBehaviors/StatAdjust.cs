@@ -1,7 +1,8 @@
 ﻿using UnityEngine.Events;
 
-public  class  StatAdjust:AthenaMonoBehavior
+public class StatAdjust : AthenaMonoBehavior
 {
+    public UnityEvent OnStatsChanged;
     public virtual float GetSpeedAdjust()
     {
         return 1f;
@@ -10,15 +11,8 @@ public  class  StatAdjust:AthenaMonoBehavior
     {
         return 1f;
     }
- 
-    public  UnityEvent OnStatsChanged;
-
     public virtual float GetAttackFrequency()
     {
         return 1f;
     }
-
-
-  
 }
-

@@ -1,5 +1,3 @@
-﻿public interface IDeath:IState
+﻿public interface IDeath : IState
 {
 }
-
-

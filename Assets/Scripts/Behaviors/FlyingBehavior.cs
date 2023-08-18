@@ -1,4 +1,3 @@
-
 using Assets.Scripts.Utils;
 using UnityEngine;
 
@@ -6,43 +5,27 @@ using UnityEngine;
 public class FlyingBehavior : AthenaMonoBehavior, IAlive
 {
     private StatAdjust _statAdjust;
-
     public Vector2 MoveAngle;
-
     public Vector2 LastMoveAngle;
-
     public bool FacesRight = true;
-
     private Collider2D _bounds;
-
     [SerializeField]
     private Renderer _visual;
-
     [SerializeField]
     public float Speed;
-
     [SerializeField]
     private LayerMask _bumpsInto;
-
-    [SerializeField] private Vector3 _flipVector3 = new Vector3(0, 0, 180);
-
+    [SerializeField]
+    private Vector3 _flipVector3 = new Vector3(0, 0, 180);
+    private float OffsetAngle = 90;
+    private float Slowdown = 2f;
+    private static readonly int Flip = Shader.PropertyToID("_Flip");
     protected override void Start()
     {
         base.Start();
         _bounds = _gameManager.Bounds;
         _statAdjust = GetComponent<StatAdjust>();
-
-        
     }
-
-
-    private float OffsetAngle = 90;
-
-
-    private float Slowdown = 2f;
-
-    private static readonly int Flip = Shader.PropertyToID("_Flip");
-
     // Update is called once per frame
     protected override void PlausibleUpdate()
     {
@@ -82,13 +65,7 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
             moveDir = (_bounds.transform.position - transform.position).normalized;
             transform.position += moveDir * deltaSpeed;
         }
-
-
-
-        _visual.material.SetFloat(Flip, moveDir.x < 0 == FacesRight?0f:1f);
-
-
-
+        _visual.material.SetFloat(Flip, moveDir.x < 0 == FacesRight ? 0f : 1f);
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -108,6 +85,3 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
         }
     }
 }
-
-
-

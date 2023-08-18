@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-
 [RequireComponent(typeof(Collider2D))]
 public class PickupBehavior : AthenaMonoBehavior, IAlive
 {
@@ -25,7 +23,6 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
             }
         };
     }
-
     public void Pickup()
     {
         _stateMachine.SetState(typeof(IDeath));

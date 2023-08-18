@@ -6,13 +6,8 @@ using UnityEngine;
 public class WeaponBehavior : BaseWeaponBehavior, IAlive
 {
     private StatAdjust _statAdjust;
-
-
     private TimedEvent _timedEvent;
-
     private AudioSource _audioSource;
-
-
     protected override void Start()
     {
         base.Start();
@@ -22,7 +17,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         _audioSource = GetComponent<AudioSource>();
         SafeAssigned(WeaponConfig);
 
-        if(_statAdjust.GetAttackFrequency()>0)
+        if (_statAdjust.GetAttackFrequency() > 0)
         {
             _timedEvent = _gameManager.AddTimedEvent(WeaponConfig.Rate / _statAdjust.GetAttackFrequency(), () =>
             {
@@ -31,26 +26,24 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
                 switch (WeaponConfig.FireAngle)
                 {
                     case WeaponSO.FireAngleEnum.MovementDirection:
-                    {
-                        if (flying.LastMoveAngle != Vector2.zero)
                         {
-                            fireAngle = flying.LastMoveAngle;
+                            if (flying.LastMoveAngle != Vector2.zero)
+                            {
+                                fireAngle = flying.LastMoveAngle;
+                            }
+                            break;
                         }
-
-                        break;
-                    }
                     case WeaponSO.FireAngleEnum.ClosestEnemy:
-                    {
-                        var closest = FindClosestEnemy(_gameManager.Player.transform.position);
-                        if (closest != null)
                         {
-                            fireAngle = (closest.transform.position - _gameManager.Player.transform.position)
-                                .normalized;
+                            var closest = FindClosestEnemy(_gameManager.Player.transform.position);
+                            if (closest != null)
+                            {
+                                fireAngle = (closest.transform.position - _gameManager.Player.transform.position)
+                                    .normalized;
 
+                            }
+                            break;
                         }
-
-                        break;
-                    }
                 }
 
                 fireAngle ??= Random.insideUnitCircle.normalized;
@@ -67,11 +60,8 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
                 WeaponConfig.FireSound?.Play(_audioSource);
 
             }, gameObject);
-
         }
-
     }
-
     private void StatsChanged()
     {
         if (_statAdjust.GetAttackFrequency() > 0)
@@ -80,14 +70,12 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         }
         else
         {
-            if (_timedEvent!= null)
+            if (_timedEvent != null)
             {
                 _gameManager.RemoveTimedEvent(_timedEvent);
             }
         }
     }
-
-
     private Collider2D FindClosestEnemy(Vector2 point)
     {
         Collider2D[] result = new Collider2D[1];
@@ -101,7 +89,6 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         }
         return null;
     }
-
     private void CreateBullet(Vector2 fireAngle)
     {
         float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);

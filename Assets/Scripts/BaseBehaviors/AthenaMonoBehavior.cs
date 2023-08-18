@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public  class AthenaMonoBehavior : MonoBehaviour
+public class AthenaMonoBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
     protected GameManagerBehavior _gameManager;
-    private bool _started;
-
     protected BaseStateMachineBehavior _stateMachine;
-
+    private bool _started;
 
     protected virtual void Awake()
     {
@@ -16,12 +14,10 @@ public  class AthenaMonoBehavior : MonoBehaviour
 
     protected virtual void Start()
     {
-        
-
         _stateMachine = GetComponent<BaseStateMachineBehavior>();
-        
+
         OnActive();
-        _started=true;
+        _started = true;
     }
 
     public virtual void DisabledStart()
@@ -43,7 +39,6 @@ public  class AthenaMonoBehavior : MonoBehaviour
         if (_lastPauseState && !_gameManager.Paused)
         {
             OnUnPaused();
-            
         }
         else if (!_lastPauseState && _gameManager.Paused)
         {
@@ -54,12 +49,10 @@ public  class AthenaMonoBehavior : MonoBehaviour
         if (_gameManager.Paused)
         {
             WhenPausedUpdate();
-            
         }
         else
         {
             PlausibleUpdate();
-            
         }
     }
     public virtual void OnActive()
@@ -69,7 +62,6 @@ public  class AthenaMonoBehavior : MonoBehaviour
             _stateMachine.SetInitialState();
         }
     }
-    
 
     protected virtual void OnPaused()
     {
@@ -91,9 +83,8 @@ public  class AthenaMonoBehavior : MonoBehaviour
             PlausibleFixedUpdate();
         }
     }
-
     protected virtual void ContinuousUpdate()
-    { 
+    {
     }
     protected virtual void PlausibleUpdate()
     {
@@ -110,17 +101,13 @@ public  class AthenaMonoBehavior : MonoBehaviour
     protected virtual void WhenPausedFixedUpdate()
     {
     }
-
-
     protected void SafeAssigned<T>(T obj)
     {
-        if (obj == null|| obj.ToString()=="null")
+        if (obj == null || obj.ToString() == "null")
         {
             throw new System.Exception($"{typeof(T).Name} not assigned in editor");
         }
     }
-
-
     protected T SafeFindObjectOfType<T>() where T : UnityEngine.Object
     {
         var obj = FindObjectOfType<T>();
@@ -130,5 +117,4 @@ public  class AthenaMonoBehavior : MonoBehaviour
         }
         return obj;
     }
-
 }

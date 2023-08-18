@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 
-
-public static  class ListExtensions
+public static class ListExtensions
 {
     public static T GetValueOrDefault<T>(this List<T> list, int pos)
     {
@@ -14,9 +12,8 @@ public static  class ListExtensions
         {
             return default;
         }
-
     }
-    public static TValue GetValueOrDefault<TKey,TValue>(this Dictionary<TKey,TValue> dic, TKey key)
+    public static TValue GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dic, TKey key)
     {
         if (dic.TryGetValue(key, out TValue value))
         {
@@ -26,13 +23,10 @@ public static  class ListExtensions
         {
             return default;
         }
-
     }
     public static TValue GetRandom<TValue>(this List<TValue> list)
     {
         return list[UnityEngine.Random.Range(0, list.Count)];
 
     }
-
 }
-

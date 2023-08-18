@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
 
-
 public class FieldInteractBehavior : AthenaMonoBehavior
 {
     private @PlayerInputActions _controls;
     protected override void Start()
     {
         base.Start();
-
-
-
-        _controls = new ();
+        _controls = new();
         _controls.Game.Enable();
     }
-
     private BuildingHoverBehaviour _lastBuildingTouched;
     protected override void PlausibleFixedUpdate()
     {
@@ -25,7 +20,7 @@ public class FieldInteractBehavior : AthenaMonoBehavior
             if (building != null)
             {
                 building.BuildingHover.EnableHoverIndicator();
-                _lastBuildingTouched=building.BuildingHover;
+                _lastBuildingTouched = building.BuildingHover;
                 if (_controls.Game.Interact.ReadValue<float>() > 0)
                 {
                     building.Interact();
@@ -37,12 +32,7 @@ public class FieldInteractBehavior : AthenaMonoBehavior
                 _lastBuildingTouched?.DisableHoverIndicator();
             }
 
-
         }
-
-
-
 
     }
 }
-

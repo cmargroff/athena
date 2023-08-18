@@ -11,9 +11,7 @@ public class BulletBehavior : AthenaMonoBehavior
     public bool IsLooped;
     public float TimeOffset;
     public DOSetter<float> customTravelMode;
-
     protected Sequence _seq;
-
     public override void OnActive()
     {
         base.OnActive();
@@ -68,7 +66,4 @@ public class BulletBehavior : AthenaMonoBehavior
         base.PlausibleFixedUpdate();
         _seq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
-
-
 }
-

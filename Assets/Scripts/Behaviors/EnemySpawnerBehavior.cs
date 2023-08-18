@@ -7,19 +7,14 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
     [SerializeField]
     private BoxCollider2D _spawnBoundary;
     public LevelSO Level;
-
     //private Vector3 _trueBoundingScale=Vector3.one;
-
     private Sequence _sequence;
 
     protected override void Start()
     {
         base.Start();
 
-
         SafeAssigned(_spawnBoundary);
-
-
         BuildSpawnTriggers();
     }
 
@@ -28,33 +23,29 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         base.PlausibleFixedUpdate();
         _sequence.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
-
-
     private void BuildSpawnTriggers()
     {
         int startPos = 0;
         int endPos = 0;
 
-        float timelineTime=0f;
+        float timelineTime = 0f;
         _sequence = DOTween.Sequence();
         _sequence.SetUpdate(UpdateType.Manual);
         while (startPos < Level.EnemyTimings.Count || endPos < Level.EnemyTimings.Count)
         {
-            if ((Level.EnemyTimings.GetValueOrDefault(startPos)?.StartTime??float.PositiveInfinity) <= (Level.EnemyTimings.GetValueOrDefault(endPos)?.StartTime ?? float.PositiveInfinity))
+            if ((Level.EnemyTimings.GetValueOrDefault(startPos)?.StartTime ?? float.PositiveInfinity) <= (Level.EnemyTimings.GetValueOrDefault(endPos)?.StartTime ?? float.PositiveInfinity))
             {
                 _sequence.AppendInterval(Level.EnemyTimings[startPos].StartTime - timelineTime);
                 var pos = startPos;
                 _sequence.AppendCallback(() =>
                 {
-                    Debug.Log($"starting {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].StartTime} game time {Time.realtimeSinceStartup }");
+                    Debug.Log($"starting {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].StartTime} game time {Time.realtimeSinceStartup}");
                     Level.EnemyTimings[pos].Timer = _gameManager.AddTimedEvent(Level.EnemyTimings[pos].Rate, () =>
                     {
                         SpawnEnemy(Level.EnemyTimings[pos].Enemy, Level.EnemyTimings[pos].Aggressiveness, Level.EnemyTimings[pos].Sides);
-                      
+
                     }, gameObject);
                 });
-
-
 
                 timelineTime = Level.EnemyTimings[startPos].StartTime;
                 startPos++;
@@ -65,7 +56,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
                 var pos = endPos;
                 _sequence.AppendCallback(() =>
                 {
-                    Debug.Log($"stopping {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].EndTime} game time {Time.realtimeSinceStartup }");
+                    Debug.Log($"stopping {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].EndTime} game time {Time.realtimeSinceStartup}");
                     _gameManager.RemoveTimedEvent(Level.EnemyTimings[pos].Timer);
                 });
                 timelineTime = Level.EnemyTimings[endPos].EndTime;
@@ -73,11 +64,6 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
             }
         }
     }
-
-
-
-
-
     private void SpawnEnemy(EnemySO enemySO, float aggressiveness, EnemyTiming.SidesEnum side)
     {
         var newPosition = GetRandomPointOnBorder(_spawnBoundary, aggressiveness, side);
@@ -94,7 +80,6 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         vulnerable.Friction = enemySO.Friction;
         rewardDrop.Rewards = enemySO.Rewards;
     }
-
     private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider, float aggressiveness, EnemyTiming.SidesEnum side)
     {
         // Get the BoxCollider2D's position, size, and rotation
@@ -116,7 +101,6 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         {
             side = (EnemyTiming.SidesEnum)Random.Range(1, 5); // Randomly select a side of the box
         }
-        
 
         switch (side)
         {
@@ -142,9 +126,8 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         // Transform the rotated point back to world space
         Vector2 randomPointWorld = position + randomPointRotated;
 
-        var playerPosition=_gameManager.Player.transform.position;
+        var playerPosition = _gameManager.Player.transform.position;
 
         return Vector2.Lerp(randomPointWorld, playerPosition, aggressiveness);
     }
 }
-

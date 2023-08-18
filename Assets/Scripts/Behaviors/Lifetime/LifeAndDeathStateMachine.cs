@@ -2,8 +2,8 @@
 
 public class LifeAndDeathStateMachine : BaseStateMachineBehavior
 {
-    protected override Type GetInitialState() {
+    protected override Type GetInitialState()
+    {
         return typeof(ISpawn);
     }
 }
-

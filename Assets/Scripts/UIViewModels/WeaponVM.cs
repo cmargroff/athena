@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class WeaponVM: UIVM
+public class WeaponVM : UIVM
 {
     [VisualElementBind]
     public string Name;
@@ -9,10 +9,9 @@ public class WeaponVM: UIVM
     [VisualElementBind]
     public string Cost;
 
-    [VisualElementEvent] 
+    [VisualElementEvent]
     public Action Buy;
 
-    [VisualElementBind(controlName:"Buy", "enabled")]
+    [VisualElementBind(controlName: "Buy", "enabled")]
     public bool CanBuy;
 }
-
