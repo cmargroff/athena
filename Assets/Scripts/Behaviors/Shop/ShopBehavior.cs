@@ -24,6 +24,14 @@ public abstract class ShopBehavior<TAsset> : ShopBehavior where TAsset : BaseSho
     private int _numberOfItemsSold;
     private readonly Dictionary<string, int> _itemsSold = new();
     private @PlayerInputActions _controls;
+
+    public float Damage;
+    public float Weight;
+    public float Speed;
+    public float Health;
+    public float SpawnFrequency;
+
+
     protected abstract string GetTitle();
     //public override void  OnActive()
     //{
@@ -124,5 +132,14 @@ public abstract class ShopBehavior<TAsset> : ShopBehavior where TAsset : BaseSho
 
         ComputeMinCost();
         BuildShop();
+    }
+
+    private void UpdateEnemyCharacter()
+    {
+        _gameManager.EnemyCharacter.Damage = Damage;
+        _gameManager.EnemyCharacter.Weight = Weight;
+        _gameManager.EnemyCharacter.Speed = Speed;
+        _gameManager.EnemyCharacter.Health = Health;
+        _gameManager.EnemyCharacter.SpawnFrequency = SpawnFrequency;
     }
 }

@@ -40,7 +40,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
                 _sequence.AppendCallback(() =>
                 {
                     Debug.Log($"starting {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].StartTime} game time {Time.realtimeSinceStartup}");
-                    Level.EnemyTimings[pos].Timer = _gameManager.AddTimedEvent(Level.EnemyTimings[pos].Rate, () =>
+                    Level.EnemyTimings[pos].Timer = _gameManager.AddTimedEvent(Level.EnemyTimings[pos].Rate*_gameManager.EnemyCharacter.SpawnFrequency , () =>
                     {
                         SpawnEnemy(Level.EnemyTimings[pos].Enemy, Level.EnemyTimings[pos].Aggressiveness, Level.EnemyTimings[pos].Sides);
 
@@ -73,10 +73,10 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         var vulnerable = enemy.GetComponent<VulnerableBehavior>();
         var rewardDrop = enemy.GetComponent<RewardDropBehavior>();
 
-        flying.Speed = enemySO.Speed;
-        damaging.Damage = enemySO.TouchDamage;
-        vulnerable.MaxHealth = enemySO.Health;
-        vulnerable.Weight = enemySO.Weight;
+        flying.Speed = enemySO.Speed*_gameManager.EnemyCharacter.Speed;
+        damaging.Damage = enemySO.TouchDamage * _gameManager.EnemyCharacter.Damage;
+        vulnerable.MaxHealth = enemySO.Health * _gameManager.EnemyCharacter.Health;
+        vulnerable.Weight = enemySO.Weight * _gameManager.EnemyCharacter.Weight;
         vulnerable.Friction = enemySO.Friction;
         rewardDrop.Rewards = enemySO.Rewards;
     }

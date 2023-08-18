@@ -10,7 +10,6 @@ public class MilitaryShopBehavior : ShopBehavior<PowerUpSO>
         base.Start();
         _buildings = FindObjectsByType<ShopBuildingBehavior>(FindObjectsSortMode.None);
         SafeAssigned(_buildingTurretConfig);
-
     }
     protected override string GetTitle()
     {

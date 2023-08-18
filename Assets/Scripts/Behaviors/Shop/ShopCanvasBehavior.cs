@@ -14,6 +14,13 @@ public abstract class ShopCanvasBehavior : AthenaMonoBehavior
     public abstract void Hide();
     public abstract void Build();
     public event Action<int> MinCostChanged;
+
+    public float Damage;
+    public float Weight;
+    public float Speed;
+    public float Health;
+    public float SpawnFrequency;
+
     protected void OnMinCostChanged(int min)
     {
         MinCostChanged?.Invoke(min);
@@ -105,7 +112,13 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         UpdateBinds();
         UpdateMinCost();
     }
-    public abstract void Buy(TAsset item);
+
+    public virtual void Buy(TAsset item)
+    {
+        Spend(item);
+        UpdateEnemyCharacter();
+    }
+
     public void AnimateRemoveItem(string name)
     {
         var seq = DOTween.Sequence();
@@ -196,5 +209,14 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
             }
         }
         OnMinCostChanged(min);
+    }
+
+    protected void UpdateEnemyCharacter()
+    {
+        _gameManager.EnemyCharacter.Damage = Damage;
+        _gameManager.EnemyCharacter.Weight = Weight;
+        _gameManager.EnemyCharacter.Speed = Speed;
+        _gameManager.EnemyCharacter.Health = Health;
+        _gameManager.EnemyCharacter.SpawnFrequency = SpawnFrequency;
     }
 }
