@@ -23,16 +23,20 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public Dictionary<string, int> Pickups = new();
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
+    public EnemyCharacterBehaviour EnemyCharacter;
     public event Action<string, int> OnInventoryChanged;
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
     public UnityEvent<float> OnEnemyDamaged;
     //end debug events
+    public CameraBehavior CameraBehavior;
+
     protected override void Awake()
     {
         base.Awake();
         PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
         BuildingCharacter = GetComponent<BuildingCharacterBehavior>();
+        EnemyCharacter = GetComponent<EnemyCharacterBehaviour>();
     }
     protected override void Start()
     {
@@ -42,7 +46,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         SafeAssigned(Bounds);
         SafeAssigned(Player);
         SafeAssigned(Weapons);
-
+        SafeAssigned(CameraBehavior);
         CreateShops();
         RunDisabledStarts();
     }
@@ -63,7 +67,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
                 obj.transform.localRotation = Quaternion.identity;
                 var b = obj.GetComponent<ShopCanvasBehavior>();
                 b.Build();
+
                 _shops.Add(shopBehavior.ShopType, b);
+                //b.DisabledStart();//run this manually because it's added too late
             }
         }
     }
