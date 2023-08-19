@@ -232,10 +232,10 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
 
     protected void UpdateEnemyCharacter()
     {
-        _gameManager.EnemyCharacter.Damage = Damage;
-        _gameManager.EnemyCharacter.Weight = Weight;
-        _gameManager.EnemyCharacter.Speed = Speed;
-        _gameManager.EnemyCharacter.Health = Health;
-        _gameManager.EnemyCharacter.SpawnFrequency = SpawnFrequency;
+        _gameManager.EnemyCharacter.Damage += Damage;
+        _gameManager.EnemyCharacter.Weight += Weight;
+        _gameManager.EnemyCharacter.Speed += Speed;
+        _gameManager.EnemyCharacter.Health += Health;
+        _gameManager.EnemyCharacter.SpawnFrequency += SpawnFrequency;
     }
 }
