@@ -7,6 +7,12 @@ public class ShopBuildingBehavior : BuildingInteractBehaviour
     public int MinimumCost = 5; // todo:set this value for real
     private IndicatorBehavior _indicator;
     private BuildingUsableIndicator _buildingUsableIndicator;
+
+    //private void Awake()
+    //{
+
+    //}
+
     protected override void Start()
     {
         base.Start();
@@ -26,10 +32,11 @@ public class ShopBuildingBehavior : BuildingInteractBehaviour
             Debug.LogError($"Shop not found for {ShopType}");
             return;
         }
-        Shop.MinCostChanged += (min) =>
+
+        Shop.OnMinCostChanged.AddListener((min) =>
         {
             MinimumCost = min;
-        };
+        });
     }
     private void CoinsChanged(int amount = 0)
     {

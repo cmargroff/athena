@@ -65,7 +65,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
                 obj.transform.localRotation = Quaternion.identity;
                 var b = obj.GetComponent<ShopCanvasBehavior>();
                 b.Build();
+
                 _shops.Add(shopBehavior.ShopType, b);
+                //b.DisabledStart();//run this manually because it's added too late
             }
         }
     }
