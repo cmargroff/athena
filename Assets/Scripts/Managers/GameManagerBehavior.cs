@@ -98,6 +98,11 @@ public class GameManagerBehavior : AthenaMonoBehavior
     }
     public TimedEvent AddTimedEvent(float seconds, Action action, GameObject owner)
     {
+        if (seconds == 0)
+        {
+            throw new ArgumentException("Setting things to repeat every zero seconds is not right");
+        }
+
         var te = new TimedEvent()
         {
             Id = Guid.NewGuid(),
@@ -127,14 +132,14 @@ public class GameManagerBehavior : AthenaMonoBehavior
         }
         _frameCount++;
     }
-    public void UseInvtentoryItem(string name, int amount)
-    {
-        if (Pickups.ContainsKey(name))
-        {
-            Pickups[name] -= amount;
-            OnInventoryChanged?.Invoke(name, Pickups[name]);
-        }
-    }
+    //public void UseInvtentoryItem(string name, int amount)
+    //{
+    //    if (Pickups.ContainsKey(name))
+    //    {
+    //        Pickups[name] -= amount;
+    //        OnInventoryChanged?.Invoke(name, Pickups[name]);
+    //    }
+    //}
     public void CollectPickup(PickupBehavior pickup)
     {
         if (Pickups.ContainsKey(pickup.Name))
