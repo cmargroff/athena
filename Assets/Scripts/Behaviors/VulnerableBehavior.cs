@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatAdjust))]
@@ -29,6 +30,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 
     [SerializeField]
     private bool _cameraShake;
+
 
     protected override void Start()
     {
