@@ -109,16 +109,18 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         {
             AnimateRemoveItem(item.name);
         }
+        else
+        {
+            AnimateBuyItem(item.name);
+        }
         UpdateBinds();
         UpdateMinCost();
     }
-
     public virtual void Buy(TAsset item)
     {
         Spend(item);
         UpdateEnemyCharacter();
     }
-
     public void AnimateRemoveItem(string name)
     {
         var seq = DOTween.Sequence();
@@ -167,6 +169,16 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         }, containerRect.rect.width, newWidth, ItemAnimationDuration));
         seq.Play();
     }
+
+    private void AnimateBuyItem(string name)
+    {
+        var (count, item) = _shopItems[name];
+        var seq = DOTween.Sequence();
+        seq.Pause();
+        seq.Append(item.transform.DOScale(0.7f, 0.1f).SetEase(Ease.OutSine));
+        seq.Append(item.transform.DOScale(1f, 0.05f).SetEase(Ease.InSine));
+        seq.Play();
+    }
     public override void Show()
     {
         gameObject.SetActive(true);
@@ -210,7 +222,6 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         }
         OnMinCostChanged(min);
     }
-
     protected void UpdateEnemyCharacter()
     {
         _gameManager.EnemyCharacter.Damage = Damage;
