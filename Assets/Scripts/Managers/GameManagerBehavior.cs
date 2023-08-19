@@ -29,6 +29,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
     public UnityEvent<float> OnEnemyDamaged;
     //end debug events
+    public CameraBehavior CameraBehavior;
+
     protected override void Awake()
     {
         base.Awake();
@@ -44,7 +46,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         SafeAssigned(Bounds);
         SafeAssigned(Player);
         SafeAssigned(Weapons);
-
+        SafeAssigned(CameraBehavior);
         CreateShops();
         RunDisabledStarts();
     }
