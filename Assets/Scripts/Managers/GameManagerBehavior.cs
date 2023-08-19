@@ -29,6 +29,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
     public UnityEvent<float> OnEnemyDamaged;
     //end debug events
+    public CameraBehavior CameraBehavior;
+
     protected override void Awake()
     {
         base.Awake();
@@ -44,7 +46,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         SafeAssigned(Bounds);
         SafeAssigned(Player);
         SafeAssigned(Weapons);
-
+        SafeAssigned(CameraBehavior);
         CreateShops();
         RunDisabledStarts();
     }
@@ -65,7 +67,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
                 obj.transform.localRotation = Quaternion.identity;
                 var b = obj.GetComponent<ShopCanvasBehavior>();
                 b.Build();
+
                 _shops.Add(shopBehavior.ShopType, b);
+                //b.DisabledStart();//run this manually because it's added too late
             }
         }
     }

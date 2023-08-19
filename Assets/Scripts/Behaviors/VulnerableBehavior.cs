@@ -27,6 +27,9 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
     private AudioSource _audioSource;
     private RewardDropBehavior _rewards;
 
+    [SerializeField]
+    private bool _cameraShake;
+
     protected override void Start()
     {
         base.Start();
@@ -105,6 +108,11 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         _knockbackVector = damaging.GetKnockbackAngle();
                         _knockback = CalculateKnockback(damaging.Knockback);
                         _hitstun = true;
+                    }
+
+                    if (_cameraShake)
+                    {
+                        _gameManager.CameraBehavior.ShakeCamera(5,0.5f);
                     }
 
                     _gameManager.OnEnemyChanged?.Invoke(this);

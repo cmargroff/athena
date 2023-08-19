@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public abstract class ShopCanvasBehavior : AthenaMonoBehavior
 {
@@ -13,7 +15,7 @@ public abstract class ShopCanvasBehavior : AthenaMonoBehavior
     public abstract void Show();
     public abstract void Hide();
     public abstract void Build();
-    public event Action<int> MinCostChanged;
+    public UnityEvent<int> OnMinCostChanged;
 
     public float Damage;
     public float Weight;
@@ -21,9 +23,9 @@ public abstract class ShopCanvasBehavior : AthenaMonoBehavior
     public float Health;
     public float SpawnFrequency;
 
-    protected void OnMinCostChanged(int min)
+    protected void MinCostChanged(int min)
     {
-        MinCostChanged?.Invoke(min);
+        OnMinCostChanged?.Invoke(min);
     }
 }
 
@@ -37,6 +39,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     private @PlayerInputActions _controls;
     protected GameObject _shopItemsContainer;
     private int _numberOfItemsSold;
+
     public override void Build()
     {
         _controls = new();
@@ -52,6 +55,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
             Debug.LogError("ShopItems container not found");
             return;
         }
+
         foreach (var item in Items)
         {
             var shopItem = Instantiate(ShopItemPrefab);
@@ -73,10 +77,25 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
             shopItem.transform.ResetLocal();
             _shopItems[item.name] = (0, shopItem);
         }
+
         UpdateBinds();
-        UpdateMinCost();
+
         (_shopItemsContainer.transform as RectTransform).ArrangeChildrenAnchorsEvenly();
     }
+
+    public override void DisabledStart()
+    {
+        base.DisabledStart();
+        _gameManager.StartCoroutine(DisabledStartWorker()); //has to be done through game manager to prevent inactive issue
+    }
+    
+    private IEnumerator DisabledStartWorker()
+    {
+        yield return 0;
+        UpdateMinCost();
+    }
+
+
     private void UpdateBinds()
     {
         var currentCoins = _gameManager.Pickups.GetValueOrDefault("Coin");
@@ -220,7 +239,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
                 min = cost;
             }
         }
-        OnMinCostChanged(min);
+        MinCostChanged(min);
     }
     protected void UpdateEnemyCharacter()
     {
