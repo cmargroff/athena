@@ -19,9 +19,9 @@ public class ShopBuildingBehavior : BuildingInteractBehaviour
         SetupIndicator();
         _buildingUsableIndicator = GetComponent<BuildingUsableIndicator>();
 
-        _gameManager.OnInventoryChanged += (key, amount) =>
+        _gameManager.OnInventoryChanged += (type, amount) =>
         {
-            if (key == "Coin")
+            if (type == PickupTypeEnum.Coin)
             {
                 CoinsChanged(amount);
             }
