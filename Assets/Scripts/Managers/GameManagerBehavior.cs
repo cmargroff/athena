@@ -25,6 +25,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public BuildingCharacterBehavior BuildingCharacter;
     public EnemyCharacterBehaviour EnemyCharacter;
     public event Action<PickupTypeEnum, int> OnInventoryChanged;
+    public event Action<float> PlayerHealthChanged;
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
     public UnityEvent<float> OnEnemyDamaged;
@@ -131,6 +132,10 @@ public class GameManagerBehavior : AthenaMonoBehavior
             }
         }
         _frameCount++;
+    }
+    public void UpdatePlayerHealth(float health)
+    {
+        PlayerHealthChanged?.Invoke(health);
     }
     //public void UseInvtentoryItem(string name, int amount)
     //{
