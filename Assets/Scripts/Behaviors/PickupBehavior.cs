@@ -5,7 +5,7 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
 {
     public int Amount = 1;
     public Color Color;
-    public string Name;
+    public PickupTypeEnum Type;
 
     public override void OnActive()
     {
