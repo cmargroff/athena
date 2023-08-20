@@ -2,8 +2,7 @@
 
 public enum PickupTypeEnum
 {
-    Ammo,
-
+    Ammo, //not a good idea in an auto fire game
     Coin,
     Health,
     PowerUp,
