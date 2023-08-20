@@ -5,7 +5,7 @@ public class TimedEvent
 {
     public void SetFramesInSeconds(float seconds)
     {
-        Frames = (int)Math.Ceiling(seconds / Time.fixedDeltaTime);
+        Frames = (int)Math.Ceiling((1/seconds) / Time.fixedDeltaTime);
     }
 
     public Guid Id;

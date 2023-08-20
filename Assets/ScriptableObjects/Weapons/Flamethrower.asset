@@ -16,8 +16,8 @@ MonoBehaviour:
   Description: Sometimes to make an omlet you have to set the world on fire
   Cost: 10
   Icon: {fileID: 2800000, guid: 869c0fbb621665048a73c57a31d434b8, type: 3}
-  NumberInStore: 1
   Color: {r: 1, g: 0.5227602, b: 0, a: 0}
+  NumberInStore: 1
   Damage: 300
   Pierce: Infinity
   Speed:
@@ -29,7 +29,7 @@ MonoBehaviour:
     max: 4
   Scatter: 0
   Number: 1
-  Rate: 8
+  Rate: 0.125
   Knockback: 0
   Scale: 1
   FireAngle: 2
