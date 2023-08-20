@@ -11,6 +11,9 @@ public class PlayerCharacterBehavior : MonoBehaviour
     public float Speed = 1f;
     [Range(0.1f, 10)]
     public float Armor = 1f;
+    [Range(0.1f, 10)]
+    public float BulletSize = 1f;
+
     //public float AttackSpeed = 1f;
     //public float AttackDuration = 1f;
     [Range(0.1f, 10)]

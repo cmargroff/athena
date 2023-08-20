@@ -557,6 +557,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1139493409}
     m_Modifications:
+    - target: {fileID: 10472795008621317, guid: 8c73bd0f6c597784b883e43d3b5fb458, type: 3}
+      propertyPath: MinimumCost
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6903938923694384600, guid: 8c73bd0f6c597784b883e43d3b5fb458, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.72
@@ -2508,6 +2512,8 @@ GameObject:
   - component: {fileID: 1797170649}
   - component: {fileID: 1797170650}
   - component: {fileID: 1797170651}
+  - component: {fileID: 1797170652}
+  - component: {fileID: 1797170653}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2546,6 +2552,7 @@ MonoBehaviour:
   KnockbackFactor: 0.2
   PlayerCharacter: {fileID: 0}
   BuildingCharacter: {fileID: 0}
+  EnemyCharacter: {fileID: 0}
   OnEnemyChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2680,6 +2687,7 @@ MonoBehaviour:
   Knockback: 1
   Speed: 1
   Armor: 1
+  BulletSize: 1
   AttackFrequency: 1
   OnStatsChanged:
     m_PersistentCalls:
@@ -2734,6 +2742,47 @@ MonoBehaviour:
   displayLogs: 1
   backgroundColor: {r: 0, g: 0, b: 0, a: 0.7}
   graphs: []
+--- !u!114 &1797170652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797170644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69eb6d10f887fa342bd3c970913b4fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  Weight: 1
+  Speed: 1
+  Health: 1
+  SpawnFrequency: 1
+  OnStatsChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1797170653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797170644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6455f442155687c4d873fbeb5f56d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  Knockback: 1
+  Speed: 1
+  Armor: 1
+  BulletSize: 1
+  AttackFrequency: 1
+  OnStatsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1983952868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2640357145786065855, guid: 161d1f5681a289b43bce3df50394de2e, type: 3}
@@ -2753,7 +2802,6 @@ GameObject:
   - component: {fileID: 2012974775}
   - component: {fileID: 2012974780}
   - component: {fileID: 2012974779}
-  - component: {fileID: 2012974781}
   - component: {fileID: 2012974782}
   m_Layer: 5
   m_Name: ShopCanvas
@@ -2889,30 +2937,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &2012974781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012974773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b981ec22fc003c469af731dede261f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MinCost: 0
-  OnMinCostChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  _shopItemAsset: {fileID: 9197481963319205126, guid: 3aa6d90e43415ca45a77923f5a4cb29c, type: 3}
-  Items:
-  - {fileID: 11400000, guid: 706df4f7dd9d89145a044d1e107146a8, type: 2}
-  - {fileID: 11400000, guid: 87f193900c52d2c42bdae71065c183d3, type: 2}
-  - {fileID: 11400000, guid: 6bb2662e5c141e34696ba8dd871e103d, type: 2}
-  GlobalMarkup: 0
-  RepeatItemMarkup: 0
-  _buildingTurretConfig: {fileID: 11400000, guid: 228f558bed915e34bbbacf4060ef672d, type: 2}
 --- !u!114 &2012974782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3091,6 +3115,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2207888028003062275, guid: 1e49351b456de574eb2378ff2485ec78, type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633003924986972748, guid: 1e49351b456de574eb2378ff2485ec78, type: 3}
+      propertyPath: MinimumCost
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5352032485552952602, guid: 1e49351b456de574eb2378ff2485ec78, type: 3}
@@ -3296,6 +3324,10 @@ PrefabInstance:
     - target: {fileID: 5096760757971926677, guid: f4330f194ba28ec4bab72f17b1dc0487, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229164548300449761, guid: f4330f194ba28ec4bab72f17b1dc0487, type: 3}
+      propertyPath: MinimumCost
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7313328978260545438, guid: f4330f194ba28ec4bab72f17b1dc0487, type: 3}
       propertyPath: m_Name

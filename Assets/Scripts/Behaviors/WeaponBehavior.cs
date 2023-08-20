@@ -79,7 +79,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
     private Collider2D FindClosestEnemy(Vector2 point)
     {
         Collider2D[] result = new Collider2D[1];
-        for (float f = 1; f <= 32; f += 1)
+        for (float f = 1; f <= 32; f += 1)//32 is about the size of the stage
         {
             Physics2D.OverlapCircleNonAlloc(point, f, result, _gameManager.Enemies);
             if (result[0] != null)
@@ -108,5 +108,6 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         behavior.Speed = WeaponConfig.Speed.GetRandomValue();
         behavior.MoveAngle = fireAngle;
         behavior.Duration = WeaponConfig.Duration.GetRandomValue();
+        bullet.transform.localScale*=_gameManager.PlayerCharacter.BulletSize;
     }
 }

@@ -23,16 +23,20 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public Dictionary<string, int> Pickups = new();
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
+    public EnemyCharacterBehaviour EnemyCharacter;
     public event Action<string, int> OnInventoryChanged;
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
     public UnityEvent<float> OnEnemyDamaged;
     //end debug events
+    public CameraBehavior CameraBehavior;
+
     protected override void Awake()
     {
         base.Awake();
         PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
         BuildingCharacter = GetComponent<BuildingCharacterBehavior>();
+        EnemyCharacter = GetComponent<EnemyCharacterBehaviour>();
     }
     protected override void Start()
     {
@@ -42,7 +46,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         SafeAssigned(Bounds);
         SafeAssigned(Player);
         SafeAssigned(Weapons);
-
+        SafeAssigned(CameraBehavior);
         CreateShops();
         RunDisabledStarts();
     }
@@ -63,7 +67,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
                 obj.transform.localRotation = Quaternion.identity;
                 var b = obj.GetComponent<ShopCanvasBehavior>();
                 b.Build();
+
                 _shops.Add(shopBehavior.ShopType, b);
+                //b.DisabledStart();//run this manually because it's added too late
             }
         }
     }
@@ -92,6 +98,11 @@ public class GameManagerBehavior : AthenaMonoBehavior
     }
     public TimedEvent AddTimedEvent(float seconds, Action action, GameObject owner)
     {
+        if (seconds == 0)
+        {
+            throw new ArgumentException("Setting things to repeat every zero seconds is not right");
+        }
+
         var te = new TimedEvent()
         {
             Id = Guid.NewGuid(),
@@ -121,14 +132,14 @@ public class GameManagerBehavior : AthenaMonoBehavior
         }
         _frameCount++;
     }
-    public void UseInvtentoryItem(string name, int amount)
-    {
-        if (Pickups.ContainsKey(name))
-        {
-            Pickups[name] -= amount;
-            OnInventoryChanged?.Invoke(name, Pickups[name]);
-        }
-    }
+    //public void UseInvtentoryItem(string name, int amount)
+    //{
+    //    if (Pickups.ContainsKey(name))
+    //    {
+    //        Pickups[name] -= amount;
+    //        OnInventoryChanged?.Invoke(name, Pickups[name]);
+    //    }
+    //}
     public void CollectPickup(PickupBehavior pickup)
     {
         if (Pickups.ContainsKey(pickup.Name))

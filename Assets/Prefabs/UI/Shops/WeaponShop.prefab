@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7725361888796084267
+--- !u!1001 &2888692707205984311
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,6 +8,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2677900316427909212}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2677900316427909212}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HoverLeave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BlurLeave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopCanvasBehavior`1[[WeaponSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopCanvasBehavior`1[[WeaponSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020838788959255732, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4141644230794905830, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -99,7 +159,7 @@ PrefabInstance:
     - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4131437281505083999}
+      objectReference: {fileID: 2677900316427909212}
     - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -110,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ShopCanvasBehavior`1[[PowerUpSO, Assembly-CSharp
+      value: ShopCanvasBehavior`1[[WeaponSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4484121061931626662, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -118,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4727580651559165644, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       propertyPath: m_Name
-      value: ResearchShop
+      value: WeaponShop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -126,32 +186,36 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4727580651559165644, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4131437281505083999}
+      addedObject: {fileID: 2677900316427909212}
   m_SourcePrefab: {fileID: 100100000, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
---- !u!1 &3075468416714905319 stripped
+--- !u!1 &7605752080258019067 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4727580651559165644, guid: 50416acd844badc4a9fe4cb15efc42b8, type: 3}
-  m_PrefabInstance: {fileID: 7725361888796084267}
+  m_PrefabInstance: {fileID: 2888692707205984311}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4131437281505083999
+--- !u!114 &2677900316427909212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3075468416714905319}
+  m_GameObject: {fileID: 7605752080258019067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e7cf6185f9bbdd4fb2711f322b17523, type: 3}
+  m_Script: {fileID: 11500000, guid: d588ac35552c0984b87498c768572511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalMarkup: 1
-  RepeatItemMarkup: 5
-  ShopType: 2
-  ShopItemPrefab: {fileID: 2494432396409834772, guid: 4567f9250be2ffe49a6eba5266a7d2da, type: 3}
+  GlobalMarkup: 10
+  RepeatItemMarkup: 0
+  ShopType: 0
+  ShopItemPrefab: {fileID: 4627359993382493365, guid: 92790850cd9cb42459b893109decce5d, type: 3}
+  Damage: 0
+  Weight: 0
+  Speed: 0
+  Health: 0
+  SpawnFrequency: 0.1
   Items:
-  - {fileID: 11400000, guid: 6bb8d89cf3dae6545a0ccee7ed048515, type: 2}
-  - {fileID: 11400000, guid: 775007c5bede7994bbf78d75eb7a5c42, type: 2}
-  - {fileID: 11400000, guid: 6bb2662e5c141e34696ba8dd871e103d, type: 2}
+  - {fileID: 11400000, guid: b2e4d8f898b59704dbb7d654f60cfa44, type: 2}
+  - {fileID: 11400000, guid: 68544029edc89e24da16f170f53ff173, type: 2}
+  - {fileID: 11400000, guid: fbf9e1d75e5c0614abb057fc0c498fa8, type: 2}
   ItemAnimationDuration: 0.7
-  _buildingTurretConfig: {fileID: 11400000, guid: 228f558bed915e34bbbacf4060ef672d, type: 2}
