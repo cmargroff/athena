@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerCharacterBehavior))]
@@ -61,7 +61,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
             {
                 var obj = Instantiate(shop);
                 obj.SetActive(false);
-                obj.transform.parent = ShopCanvas.transform;
+                obj.transform.SetParent(ShopCanvas.transform, false);
                 obj.transform.localPosition = Vector3.zero;
                 obj.transform.localScale = Vector3.one;
                 obj.transform.localRotation = Quaternion.identity;
