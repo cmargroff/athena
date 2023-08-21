@@ -21,4 +21,4 @@ MonoBehaviour:
   Prefab: {fileID: 5139043680067844705, guid: 5cd1ad17bdf32814985317137a233b92, type: 3}
   Rewards:
   - Pickup: {fileID: 11400000, guid: 40aaf77af6d3e4f49b080e09cc029171, type: 2}
-    Chance: 100
+    Chance: 1

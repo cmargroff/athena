@@ -13,44 +13,100 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   EnemyTimings:
-  - Name: Scout Worker mix S
+  - Name: 1
     StartTime: 0
-    EndTime: 30
-    Rate: 0.5
-    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
-    Sides: 0
-    Aggressiveness: 0
-  - Name: Scout Worker mix S
-    StartTime: 30
-    EndTime: 50
+    EndTime: 60
     Rate: 1
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
-  - Name: Scout Worker mix S
-    StartTime: 30
-    EndTime: 60
+  - Name: 2
+    StartTime: 60
+    EndTime: 120
+    Rate: 2
+    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 3
+    StartTime: 120
+    EndTime: 180
     Rate: 1
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0
-  - Name: Scout Worker mix S
-    StartTime: 60
-    EndTime: 120
-    Rate: 1
-    Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
-    Sides: 0
-    Aggressiveness: 0
-  - Name: Scout Worker mix S
-    StartTime: 80
-    EndTime: 120
+  - Name: 4
+    StartTime: 180
+    EndTime: 240
     Rate: 1
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
-  - Name: Scout Worker mix S
-    StartTime: 80
-    EndTime: 120
+  - Name: 4
+    StartTime: 180
+    EndTime: 240
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 5
+    StartTime: 240
+    EndTime: 300
+    Rate: 0.125
+    Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 6
+    StartTime: 300
+    EndTime: 360
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 5
+    StartTime: 300
+    EndTime: 360
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 7
+    StartTime: 360
+    EndTime: 420
+    Rate: 6
+    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 8
+    StartTime: 420
+    EndTime: 480
+    Rate: 8
+    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 9
+    StartTime: 480
+    EndTime: 540
+    Rate: 2
+    Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 8
+    StartTime: 480
+    EndTime: 540
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 10
+    StartTime: 540
+    EndTime: 600
+    Rate: 0.125
+    Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 10
+    StartTime: 540
+    EndTime: 600
     Rate: 1
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
