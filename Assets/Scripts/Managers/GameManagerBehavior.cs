@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerCharacterBehavior))]
 public class GameManagerBehavior : AthenaMonoBehavior
@@ -17,7 +18,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public List<GameObject> Shops;
     private Dictionary<ShopBuildingBehavior.ShopTypeEnum, ShopCanvasBehavior> _shops = new();
     private readonly Dictionary<Guid, TimedEvent> _timedEvents = new();
-    private Int64 _frameCount = 1;
+    public uint FrameCount = 1;
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
     public Dictionary<string, int> Pickups = new();
@@ -109,7 +110,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
             Action = action,
             Owner = owner
         };
-        te.SetFramesInSeconds(seconds);
+        te.SetFramesInSeconds(seconds, FrameCount);
         _timedEvents.Add(te.Id, te);
         return te;
     }
@@ -122,15 +123,12 @@ public class GameManagerBehavior : AthenaMonoBehavior
     {
         foreach (var kv in _timedEvents)
         {
-            if (kv.Value.Owner.activeInHierarchy)
+            if (kv.Value.IsActiveFrame(FrameCount))
             {
-                if (_frameCount % kv.Value.Frames == 0)
-                {
-                    kv.Value.Action();
-                }
+                kv.Value.Action();
             }
         }
-        _frameCount++;
+        FrameCount++;
     }
     //public void UseInvtentoryItem(string name, int amount)
     //{

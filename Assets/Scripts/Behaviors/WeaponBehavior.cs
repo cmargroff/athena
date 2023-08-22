@@ -1,5 +1,7 @@
+using System;
 using Assets.Scripts.Utils;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(StatAdjust))]
@@ -10,6 +12,8 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
     private AudioSource _audioSource;
     protected override void Start()
     {
+
+
         base.Start();
         _statAdjust = GetComponent<StatAdjust>();
         _statAdjust.OnStatsChanged.AddListener(StatsChanged);
@@ -35,10 +39,10 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
                         }
                     case WeaponSO.FireAngleEnum.ClosestEnemy:
                         {
-                            var closest = FindClosestEnemy(_gameManager.Player.transform.position);
+                            var closest = FindClosestEnemy(transform.position);
                             if (closest != null)
                             {
-                                fireAngle = (closest.transform.position - _gameManager.Player.transform.position)
+                                fireAngle = (closest.transform.position - transform.position)
                                     .normalized;
 
                             }
@@ -55,6 +59,8 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
                     var newAngle = fireAngle.Value.Rotate(random - WeaponConfig.Scatter / 2f);
 
                     CreateBullet(newAngle);
+
+                    
                 }
 
                 WeaponConfig.FireSound?.Play(_audioSource);
@@ -66,7 +72,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
     {
         if (_statAdjust.GetAttackFrequency() > 0)
         {
-            _timedEvent?.SetFramesInSeconds(WeaponConfig.Rate / _statAdjust.GetAttackFrequency());
+            _timedEvent?.SetFramesInSeconds(WeaponConfig.Rate / _statAdjust.GetAttackFrequency(),_gameManager.FrameCount);
         }
         else
         {
@@ -81,7 +87,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         Collider2D[] result = new Collider2D[1];
         for (float f = 1; f <= 32; f += 1)//32 is about the size of the stage
         {
-            Physics2D.OverlapCircleNonAlloc(point, f, result, _gameManager.Enemies);
+            Physics2D.OverlapCircleNonAlloc(point, f, result, WeaponConfig.Enemies);
             if (result[0] != null)
             {
                 return result[0];
@@ -110,4 +116,19 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         behavior.Duration = WeaponConfig.Duration.GetRandomValue();
         bullet.transform.localScale*=_gameManager.PlayerCharacter.BulletSize;
     }
+    private void OnDestroy()
+    {
+        if (_timedEvent != null)
+        {
+            _gameManager.RemoveTimedEvent(_timedEvent);
+        }
+    }
+
+    //private void OnDisable() //taking this out. Not sure why it breaks the player, or if there is an issue where dead enemies shoot back
+    //{
+    //    if (_timedEvent != null)
+    //    {
+    //        _gameManager.RemoveTimedEvent(_timedEvent);
+    //    }
+    //}
 }

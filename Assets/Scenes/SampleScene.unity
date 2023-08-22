@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnBoundary: {fileID: 85562257}
-  Level: {fileID: 11400000, guid: c3db3f589342d5440967f9b252d9949a, type: 2}
+  Level: {fileID: 11400000, guid: 09b52363859fcab40b860b856a3f6ca8, type: 2}
 --- !u!1 &585523091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2580,7 @@ MonoBehaviour:
   - {fileID: 7605752080258019067, guid: cf583580971f6de4692c9a692e213aef, type: 3}
   - {fileID: 2928931018689820525, guid: 5733544861c4190459f6cba65db9e4ce, type: 3}
   - {fileID: 3075468416714905319, guid: 97ba9ea7e54837f45a906588fa16abd3, type: 3}
+  FrameCount: 1
   KnockbackFriction: 0.01
   KnockbackFactor: 0.2
   PlayerCharacter: {fileID: 0}

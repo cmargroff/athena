@@ -12,4 +12,6 @@ public class EnemySO : ScriptableObject
     public int TouchDamage;   
     public GameObject Prefab;
     public List<Reward> Rewards;
+
+    public WeaponSO Weapon;
 }

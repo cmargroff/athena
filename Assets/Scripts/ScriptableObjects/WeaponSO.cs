@@ -24,6 +24,7 @@ public class WeaponSO : BaseShopItemSO
     public bool Orbit;
     public GameSound FireSound;
     public GameSound HitSound;
+    public LayerMask Enemies;
     public enum FireAngleEnum
     {
         Random = 0,

@@ -10,39 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a40327d8f2426ff418fad21b4adc6e2f, type: 3}
-  m_Name: Flak
+  m_Name: Enemy Gun
   m_EditorClassIdentifier: 
-  FriendlyName: Flak
-  Description: Aiming is hard, burst fire is easy
-  Cost: 10
-  Icon: {fileID: 2800000, guid: d943c0921a72cee4fb0c4fcac074e869, type: 3}
-  Color: {r: 0, g: 0.735849, b: 0.14977618, a: 0}
+  FriendlyName: Vulcan
+  Description: This is your basic gun. Doesn't mean it won't kill things
+  Cost: 5
+  Icon: {fileID: 2800000, guid: 2fe9a5a12a7d2e5448bb9f9a8cdb1bc4, type: 3}
+  Color: {r: 1, g: 0, b: 0, a: 0}
   NumberInStore: 1
-  Damage: 200
+  Damage: 500
   Pierce: 1
   Speed:
     min: 0.1
-    max: 0.2
-  Range: 1
+    max: 0.1
+  Range: 0
   Duration:
     min: 10
     max: 10
-  Scatter: 22
-  Number: 50
-  Rate: 1
+  Scatter: 0
+  Number: 1
+  Rate: 0.1
   Knockback: 500
   Scale: 1
   FireAngle: 2
   Behavior: 0
-  Bullet: {fileID: 1451932744883786014, guid: 1d9e713897cec294587ab37603511736, type: 3}
+  Bullet: {fileID: 1451932744883786014, guid: e6798016b845ac34c8d2abda7599692a, type: 3}
   ParentedToPlayer: 0
   Orbit: 0
   FireSound:
-    Sound: {fileID: 8300000, guid: c9a73efd26253e649aaef23eec2a6ea4, type: 3}
-    Volume: 1
+    Sound: {fileID: 8300000, guid: e661232542fc7734bac5e117da1a0c4a, type: 3}
+    Volume: 0.524
   HitSound:
     Sound: {fileID: 8300000, guid: 55a66d2c8b7e83c4ca87605e489c6705, type: 3}
     Volume: 1
   Enemies:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64

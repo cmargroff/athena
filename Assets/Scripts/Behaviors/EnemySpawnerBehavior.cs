@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -79,6 +80,20 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         vulnerable.Weight = enemySO.Weight * _gameManager.EnemyCharacter.Weight;
         vulnerable.Friction = enemySO.Friction;
         rewardDrop.Rewards = enemySO.Rewards;
+
+        foreach (var oldWeapon in enemy.GetComponents<BaseWeaponBehavior>())//we need to do this because of pooling
+        {
+            Destroy(oldWeapon);
+        }
+        
+        if (enemySO.Weapon != null)
+        {
+            var weaponBehavior = (BaseWeaponBehavior)enemy.AddComponent(
+                Type.GetType(enemySO.Weapon.Behavior.ToString())
+            );
+            weaponBehavior.WeaponConfig = enemySO.Weapon;
+            weaponBehavior.enabled = true;
+        }
     }
     private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider, float aggressiveness, EnemyTiming.SidesEnum side)
     {
