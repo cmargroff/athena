@@ -14,6 +14,8 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
     [SerializeField]
     public float Speed;
     [SerializeField]
+    public float SpeedModifier=1;
+    [SerializeField]
     private LayerMask _bumpsInto;
     [SerializeField]
     private Vector3 _flipVector3 = new Vector3(0, 0, 180);
@@ -36,7 +38,7 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
         }
 
 
-        var deltaSpeed = Speed * _statAdjust.GetSpeedAdjust() * Time.deltaTime;
+        var deltaSpeed = Speed* SpeedModifier * _statAdjust.GetSpeedAdjust() * Time.deltaTime;
         var moveDir = new Vector3(MoveAngle.x, MoveAngle.y, 0f);
         if (ColliderUtils.IsPointInsideCollider2D(_bounds, transform.position)) //if we are inside the bounds, do normal movement
         {
