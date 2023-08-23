@@ -21,11 +21,12 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public uint FrameCount = 1;
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
-    public Dictionary<string, int> Pickups = new();
+    public Dictionary<PickupTypeEnum, int> Pickups = new();
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
     public EnemyCharacterBehaviour EnemyCharacter;
-    public event Action<string, int> OnInventoryChanged;
+    public event Action<PickupTypeEnum, int> OnInventoryChanged;
+    public event Action<float> PlayerHealthChanged;
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
     public UnityEvent<float> OnEnemyDamaged;
@@ -130,6 +131,10 @@ public class GameManagerBehavior : AthenaMonoBehavior
         }
         FrameCount++;
     }
+    public void UpdatePlayerHealth(float health)
+    {
+        PlayerHealthChanged?.Invoke(health);
+    }
     //public void UseInvtentoryItem(string name, int amount)
     //{
     //    if (Pickups.ContainsKey(name))
@@ -140,15 +145,15 @@ public class GameManagerBehavior : AthenaMonoBehavior
     //}
     public void CollectPickup(PickupBehavior pickup)
     {
-        if (Pickups.ContainsKey(pickup.Name))
+        if (Pickups.ContainsKey(pickup.Type))
         {
-            Pickups[pickup.Name] += pickup.Amount;
+            Pickups[pickup.Type] += pickup.Amount;
         }
         else
         {
-            Pickups.Add(pickup.Name, pickup.Amount);
+            Pickups.Add(pickup.Type, pickup.Amount);
         }
-        OnInventoryChanged?.Invoke(pickup.Name, Pickups[pickup.Name]);
+        OnInventoryChanged?.Invoke(pickup.Type, Pickups[pickup.Type]);
     }
     private void RunDisabledStarts()
     {
