@@ -70,6 +70,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         var newPosition = GetRandomPointOnBorder(_spawnBoundary, aggressiveness, side);
         var enemy = _gameManager.Pool.GetPooledObject(enemySO.Prefab, newPosition, Quaternion.identity);
         var flying = enemy.GetComponent<FlyingBehavior>();
+        var chase = enemy.GetComponent<ChaseBehavior>();
         var damaging = enemy.GetComponent<DamagingBehavior>();
         var vulnerable = enemy.GetComponent<VulnerableBehavior>();
         var rewardDrop = enemy.GetComponent<RewardDropBehavior>();
@@ -80,6 +81,9 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         vulnerable.Weight = enemySO.Weight * _gameManager.EnemyCharacter.Weight;
         vulnerable.Friction = enemySO.Friction;
         rewardDrop.Rewards = enemySO.Rewards;
+        chase.LoopTime=enemySO.LoopTime;
+        chase.MaxSpeedReaim=enemySO.MaxSpeedReaim;
+        chase.SpeedCurve=enemySO.SpeedCurve;
 
         foreach (var oldWeapon in enemy.GetComponents<BaseWeaponBehavior>())//we need to do this because of pooling
         {

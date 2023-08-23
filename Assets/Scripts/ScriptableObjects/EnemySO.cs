@@ -14,4 +14,10 @@ public class EnemySO : ScriptableObject
     public List<Reward> Rewards;
 
     public WeaponSO Weapon;
+
+    
+    public  AnimationCurve SpeedCurve;
+    public float LoopTime = 1;
+    public float MaxSpeedReaim = 1;
+
 }
