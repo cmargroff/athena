@@ -98,7 +98,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
 
     private void UpdateBinds()
     {
-        var currentCoins = _gameManager.Pickups.GetValueOrDefault("Coin");
+        var currentCoins = _gameManager.Pickups.GetValueOrDefault(PickupTypeEnum.Coin);
         foreach (var item in _shopItems)
         {
             var (count, shopItem) = item.Value;

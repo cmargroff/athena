@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33a9d348b4a2af4fa33232c0966d2ad, type: 3}
   m_Name: Health
   m_EditorClassIdentifier: 
-  FriendlyName: Health
+  Type: 2
   Description: 
   Color: {r: 0.09320569, g: 1, b: 0, a: 1}
   PreFab: {fileID: 5084446526900982690, guid: 161d1f5681a289b43bce3df50394de2e, type: 3}

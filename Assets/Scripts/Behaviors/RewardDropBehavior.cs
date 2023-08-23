@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class RewardDropBehavior : AthenaMonoBehavior
 {
@@ -17,7 +17,7 @@ public class RewardDropBehavior : AthenaMonoBehavior
                 pickup.transform.localScale = Vector3.one * 0.5f;
                 var pickupBehavior = pickup.GetComponent<PickupBehavior>();
                 pickupBehavior.Color = reward.Pickup.Color;
-                pickupBehavior.Name = reward.Pickup.name;
+                pickupBehavior.Type = reward.Pickup.Type;
             }
         }
     }
