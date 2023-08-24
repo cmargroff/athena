@@ -7,8 +7,9 @@ public class HUDHealthBehavior : AthenaMonoBehavior
     private Material _mat;
     private Sequence _seq;
     private bool _animating;
-    private void Start()
+    protected override  void Start()
     {
+        base.Start();
         var img = gameObject.FindObjectByName("Fill").GetComponent<Image>();
         img.material = new Material(img.material);
         _mat = img.material;

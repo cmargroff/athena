@@ -8,8 +8,9 @@ public class HUDInventoryBehavior : AthenaMonoBehavior
     public PickupSO[] TrackedItems;
     private Dictionary<PickupTypeEnum, RectTransform> _items = new();
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         var rect = GetComponent<RectTransform>();
         var i = 0;
         foreach (var item in TrackedItems)

@@ -62,11 +62,18 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
-  - Name: 5
+  - Name: 6
     StartTime: 300
     EndTime: 360
     Rate: 1
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 6
+    StartTime: 300
+    EndTime: 360
+    Rate: 1
+    Enemy: {fileID: 11400000, guid: 023a876185b764543b4163e00e85c55a, type: 2}
     Sides: 0
     Aggressiveness: 0
   - Name: 7
@@ -74,6 +81,13 @@ MonoBehaviour:
     EndTime: 420
     Rate: 6
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 7
+    StartTime: 360
+    EndTime: 420
+    Rate: 1.5
+    Enemy: {fileID: 11400000, guid: 023a876185b764543b4163e00e85c55a, type: 2}
     Sides: 0
     Aggressiveness: 0
   - Name: 8
@@ -90,11 +104,18 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
-  - Name: 8
+  - Name: 9
     StartTime: 480
     EndTime: 540
     Rate: 1
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
+    Sides: 0
+    Aggressiveness: 0
+  - Name: 9
+    StartTime: 480
+    EndTime: 540
+    Rate: 2
+    Enemy: {fileID: 11400000, guid: 023a876185b764543b4163e00e85c55a, type: 2}
     Sides: 0
     Aggressiveness: 0
   - Name: 10
@@ -111,3 +132,4 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0
+  Boss: {fileID: 0}
