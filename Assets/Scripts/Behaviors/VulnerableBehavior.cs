@@ -30,6 +30,8 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 
     [SerializeField]
     private bool _cameraShake;
+    private bool _isPlayer;
+
 
 
     protected override void Start()
@@ -37,6 +39,11 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         base.Start();
         _rewards = GetComponent<RewardDropBehavior>();
         _statAdjust = GetComponent<StatAdjust>();
+        _isPlayer = gameObject.CompareTag("Player");//todo: don't rely on tags
+        if (_isPlayer)
+        {
+            _gameManager.UpdatePlayerHealth(1f);
+        }
     }
 
     public override void OnActive()
@@ -44,8 +51,12 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         base.OnActive();
         _audioSource = GetComponent<AudioSource>();
         Health = MaxHealth;
-        _lifebar.SetHealthPercent(Health / MaxHealth);
+
         _knockback = 0;
+        if (_lifebar != null)
+        {
+            _lifebar.SetHealthPercent(Health / MaxHealth);
+        }
 
         _gameManager.OnEnemyChanged?.Invoke(this);
     }
@@ -74,15 +85,13 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                     _hitLast = Time.realtimeSinceStartup;
                     var damage = damaging.Damage / _statAdjust?.GetArmorAdjust() ?? 1f;
                     Health -= damage;//todo:this is a hack, to tiered to fix right now
+
                     _gameManager.OnEnemyDamaged.Invoke(damage);
                     if (_lifebar != null)
                     {
                         _lifebar.SetHealthPercent(Health / MaxHealth);
-
                     }
 
-                    //if (_health >=0)
-                    //{
                     if (_audioSource != null)
                     {
                         damaging.HitSound.Play(_audioSource);
@@ -91,8 +100,6 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                     {
                         Debug.LogWarning("Empty _audioSource tried to play sound");
                     }
-                    //}
-
 
                     if (Health < 1)
                     {
@@ -110,11 +117,15 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         _knockbackVector = damaging.GetKnockbackAngle();
                         _knockback = CalculateKnockback(damaging.Knockback);
                         _hitstun = true;
+                        if (_isPlayer)
+                        {
+                            _gameManager.UpdatePlayerHealth(Health / MaxHealth);
+                        }
                     }
 
                     if (_cameraShake)
                     {
-                        _gameManager.CameraBehavior.ShakeCamera(5,0.5f);
+                        _gameManager.CameraBehavior.ShakeCamera(5, 0.5f);
                     }
 
                     _gameManager.OnEnemyChanged?.Invoke(this);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33a9d348b4a2af4fa33232c0966d2ad, type: 3}
   m_Name: Weapon
   m_EditorClassIdentifier: 
-  FriendlyName: Weapon
+  Type: 5
   Description: 
   Color: {r: 1, g: 0, b: 0.027426243, a: 1}
   PreFab: {fileID: 5084446526900982690, guid: 161d1f5681a289b43bce3df50394de2e, type: 3}

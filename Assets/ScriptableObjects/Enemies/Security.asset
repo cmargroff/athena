@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0593f97ef5280a74bb47936f303fa7fb, type: 3}
+  m_Name: Security
+  m_EditorClassIdentifier: 
+  FriendlyName: Scout
+  Speed: 0.5
+  Health: 1000
+  Weight: 1000
+  Friction: 1
+  TouchDamage: 100
+  Prefab: {fileID: 9047705116722791758, guid: a0b6fd7f93978a1438a3d2a21e248eee, type: 3}
+  Rewards:
+  - Pickup: {fileID: 11400000, guid: 40aaf77af6d3e4f49b080e09cc029171, type: 2}
+    Chance: 0.25
+  Weapon: {fileID: 11400000, guid: b5c54f9733983d0439d1511ef6bb6b81, type: 2}

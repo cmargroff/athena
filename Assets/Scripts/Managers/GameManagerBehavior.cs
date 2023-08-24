@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerCharacterBehavior))]
 public class GameManagerBehavior : AthenaMonoBehavior
@@ -17,14 +19,15 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public List<GameObject> Shops;
     private Dictionary<ShopBuildingBehavior.ShopTypeEnum, ShopCanvasBehavior> _shops = new();
     private readonly Dictionary<Guid, TimedEvent> _timedEvents = new();
-    private Int64 _frameCount = 1;
+    public uint FrameCount = 1;
     public float KnockbackFriction = 0.1f;
     public float KnockbackFactor = 1f;
-    public Dictionary<string, int> Pickups = new();
+    public Dictionary<PickupTypeEnum, int> Pickups = new();
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
     public EnemyCharacterBehaviour EnemyCharacter;
-    public event Action<string, int> OnInventoryChanged;
+    public event Action<PickupTypeEnum, int> OnInventoryChanged;
+    public event Action<float> PlayerHealthChanged;
     //debug events
     public UnityEvent<VulnerableBehavior> OnEnemyChanged;
     public UnityEvent<float> OnEnemyDamaged;
@@ -61,7 +64,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
             {
                 var obj = Instantiate(shop);
                 obj.SetActive(false);
-                obj.transform.parent = ShopCanvas.transform;
+                obj.transform.SetParent(ShopCanvas.transform, false);
                 obj.transform.localPosition = Vector3.zero;
                 obj.transform.localScale = Vector3.one;
                 obj.transform.localRotation = Quaternion.identity;
@@ -109,7 +112,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
             Action = action,
             Owner = owner
         };
-        te.SetFramesInSeconds(seconds);
+        te.SetFramesInSeconds(seconds, FrameCount);
         _timedEvents.Add(te.Id, te);
         return te;
     }
@@ -122,15 +125,16 @@ public class GameManagerBehavior : AthenaMonoBehavior
     {
         foreach (var kv in _timedEvents)
         {
-            if (kv.Value.Owner.activeInHierarchy)
+            if (kv.Value.IsActiveFrame(FrameCount))
             {
-                if (_frameCount % kv.Value.Frames == 0)
-                {
-                    kv.Value.Action();
-                }
+                kv.Value.Action();
             }
         }
-        _frameCount++;
+        FrameCount++;
+    }
+    public void UpdatePlayerHealth(float health)
+    {
+        PlayerHealthChanged?.Invoke(health);
     }
     //public void UseInvtentoryItem(string name, int amount)
     //{
@@ -142,15 +146,15 @@ public class GameManagerBehavior : AthenaMonoBehavior
     //}
     public void CollectPickup(PickupBehavior pickup)
     {
-        if (Pickups.ContainsKey(pickup.Name))
+        if (Pickups.ContainsKey(pickup.Type))
         {
-            Pickups[pickup.Name] += pickup.Amount;
+            Pickups[pickup.Type] += pickup.Amount;
         }
         else
         {
-            Pickups.Add(pickup.Name, pickup.Amount);
+            Pickups.Add(pickup.Type, pickup.Amount);
         }
-        OnInventoryChanged?.Invoke(pickup.Name, Pickups[pickup.Name]);
+        OnInventoryChanged?.Invoke(pickup.Type, Pickups[pickup.Type]);
     }
     private void RunDisabledStarts()
     {
@@ -162,5 +166,14 @@ public class GameManagerBehavior : AthenaMonoBehavior
                 obj.DisabledStart();
             }
         }
+    }
+
+    public void EndLevel()
+    {
+        SceneManager.LoadSceneAsync("SampleScene", LoadSceneMode.Single);
+    }
+    public void Lose()
+    {
+        SceneManager.LoadSceneAsync("Start", LoadSceneMode.Single);
     }
 }

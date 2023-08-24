@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Worker
   m_EditorClassIdentifier: 
   FriendlyName: Worker
-  Speed: 1
+  Speed: 10
   Health: 5000
   Weight: 2000
   Friction: 1
@@ -22,3 +22,39 @@ MonoBehaviour:
   Rewards:
   - Pickup: {fileID: 11400000, guid: 40aaf77af6d3e4f49b080e09cc029171, type: 2}
     Chance: 0.5
+  Weapon: {fileID: 0}
+  SpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.054166667
+      value: 0.014141412
+      inSlope: -2.132237
+      outSlope: -2.132237
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.03750101
+    - serializedVersion: 3
+      time: 0.4878779
+      value: 0.99995744
+      inSlope: -0.0001996361
+      outSlope: -0.0001996361
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.43633437
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0458333
+      value: 0.01717174
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 0
+    m_PostInfinity: 0
+    m_RotationOrder: 4
+  LoopTime: 2
+  MaxSpeedReaim: 0

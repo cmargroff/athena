@@ -16,8 +16,8 @@ MonoBehaviour:
   Description: This is your basic gun. Doesn't mean it won't kill things
   Cost: 5
   Icon: {fileID: 2800000, guid: 2fe9a5a12a7d2e5448bb9f9a8cdb1bc4, type: 3}
-  NumberInStore: 1
   Color: {r: 1, g: 0, b: 0, a: 0}
+  NumberInStore: 1
   Damage: 500
   Pierce: 1
   Speed:
@@ -29,7 +29,7 @@ MonoBehaviour:
     max: 10
   Scatter: 0
   Number: 1
-  Rate: 0.1
+  Rate: 10
   Knockback: 500
   Scale: 1
   FireAngle: 0

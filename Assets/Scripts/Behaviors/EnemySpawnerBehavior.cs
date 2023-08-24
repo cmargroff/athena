@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,6 +17,17 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
 
         SafeAssigned(_spawnBoundary);
         BuildSpawnTriggers();
+        if (Level.Boss != null)
+        {
+            _sequence.AppendCallback(() =>
+            {
+                var enemy = SpawnEnemy(Level.Boss, 0, EnemyTiming.SidesEnum.Random);
+                var death=enemy.GetComponent<Death>();
+                death.DeathComplete.AddListener(() => _gameManager.EndLevel());
+
+            });
+        }
+
     }
 
     protected override void PlausibleFixedUpdate()
@@ -64,11 +76,12 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
             }
         }
     }
-    private void SpawnEnemy(EnemySO enemySO, float aggressiveness, EnemyTiming.SidesEnum side)
+    private GameObject SpawnEnemy(EnemySO enemySO, float aggressiveness, EnemyTiming.SidesEnum side)
     {
         var newPosition = GetRandomPointOnBorder(_spawnBoundary, aggressiveness, side);
         var enemy = _gameManager.Pool.GetPooledObject(enemySO.Prefab, newPosition, Quaternion.identity);
         var flying = enemy.GetComponent<FlyingBehavior>();
+        var chase = enemy.GetComponent<ChaseBehavior>();
         var damaging = enemy.GetComponent<DamagingBehavior>();
         var vulnerable = enemy.GetComponent<VulnerableBehavior>();
         var rewardDrop = enemy.GetComponent<RewardDropBehavior>();
@@ -79,6 +92,25 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         vulnerable.Weight = enemySO.Weight * _gameManager.EnemyCharacter.Weight;
         vulnerable.Friction = enemySO.Friction;
         rewardDrop.Rewards = enemySO.Rewards;
+        chase.LoopTime=enemySO.LoopTime;
+        chase.MaxSpeedReaim=enemySO.MaxSpeedReaim;
+        chase.SpeedCurve=enemySO.SpeedCurve;
+
+        foreach (var oldWeapon in enemy.GetComponents<BaseWeaponBehavior>())//we need to do this because of pooling
+        {
+            Destroy(oldWeapon);
+        }
+        
+        if (enemySO.Weapon != null)
+        {
+            var weaponBehavior = (BaseWeaponBehavior)enemy.AddComponent(
+                Type.GetType(enemySO.Weapon.Behavior.ToString())
+            );
+            weaponBehavior.WeaponConfig = enemySO.Weapon;
+            weaponBehavior.enabled = true;
+        }
+
+        return enemy;
     }
     private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider, float aggressiveness, EnemyTiming.SidesEnum side)
     {

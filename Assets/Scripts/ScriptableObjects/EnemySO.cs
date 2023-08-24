@@ -12,4 +12,12 @@ public class EnemySO : ScriptableObject
     public int TouchDamage;   
     public GameObject Prefab;
     public List<Reward> Rewards;
+
+    public WeaponSO Weapon;
+
+    
+    public  AnimationCurve SpeedCurve;
+    public float LoopTime = 1;
+    public float MaxSpeedReaim = 1;//this is the setting that lets enemies blind charge forward
+
 }

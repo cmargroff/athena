@@ -5,4 +5,6 @@ using UnityEngine;
 public class LevelSO : ScriptableObject
 {
     public List<EnemyTiming> EnemyTimings;
+
+    public EnemySO Boss;
 }

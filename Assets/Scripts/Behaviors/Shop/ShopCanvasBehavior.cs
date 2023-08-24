@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public abstract class ShopCanvasBehavior : AthenaMonoBehavior
 {
@@ -73,7 +73,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
                 Cost = item.Cost.ToString(),
                 Buy = (Action)(() => Buy(item))
             });
-            shopItem.transform.parent = _shopItemsContainer.transform;
+            shopItem.transform.SetParent(_shopItemsContainer.transform, false);
             shopItem.transform.ResetLocal();
             _shopItems[item.name] = (0, shopItem);
         }
@@ -88,7 +88,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         base.DisabledStart();
         _gameManager.StartCoroutine(DisabledStartWorker()); //has to be done through game manager to prevent inactive issue
     }
-    
+
     private IEnumerator DisabledStartWorker()
     {
         yield return 0;
@@ -98,7 +98,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
 
     private void UpdateBinds()
     {
-        var currentCoins = _gameManager.Pickups.GetValueOrDefault("Coin");
+        var currentCoins = _gameManager.Pickups.GetValueOrDefault(PickupTypeEnum.Coin);
         foreach (var item in _shopItems)
         {
             var (count, shopItem) = item.Value;
