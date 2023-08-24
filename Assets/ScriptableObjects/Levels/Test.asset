@@ -15,29 +15,9 @@ MonoBehaviour:
   EnemyTimings:
   - Name: A
     StartTime: 0
-    EndTime: 600
+    EndTime: 10
     Rate: 0.5
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
-  - Name: A
-    StartTime: 0
-    EndTime: 600
-    Rate: 0.5
-    Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
-    Sides: 0
-    Aggressiveness: 0
-  - Name: A
-    StartTime: 0
-    EndTime: 600
-    Rate: 0.5
-    Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
-    Sides: 0
-    Aggressiveness: 0
-  - Name: A
-    StartTime: 0
-    EndTime: 600
-    Rate: 0.5
-    Enemy: {fileID: 11400000, guid: 023a876185b764543b4163e00e85c55a, type: 2}
-    Sides: 0
-    Aggressiveness: 0
+  Boss: {fileID: 11400000, guid: 16ac3cc48b8578643b734d256438e640, type: 2}

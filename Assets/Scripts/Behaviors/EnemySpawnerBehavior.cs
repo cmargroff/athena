@@ -17,6 +17,11 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
 
         SafeAssigned(_spawnBoundary);
         BuildSpawnTriggers();
+        if (Level.Boss != null)
+        {
+            _sequence.AppendCallback(() => SpawnEnemy(Level.Boss, 0, EnemyTiming.SidesEnum.Random));
+        }
+
     }
 
     protected override void PlausibleFixedUpdate()
