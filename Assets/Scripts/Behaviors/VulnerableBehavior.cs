@@ -30,8 +30,8 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 
     [SerializeField]
     private bool _cameraShake;
-
     private bool _isPlayer;
+
 
 
     protected override void Start()
@@ -39,7 +39,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         base.Start();
         _rewards = GetComponent<RewardDropBehavior>();
         _statAdjust = GetComponent<StatAdjust>();
-        _isPlayer = gameObject.CompareTag("Player");
+        _isPlayer = gameObject.CompareTag("Player");//todo: don't rely on tags
         if (_isPlayer)
         {
             _gameManager.UpdatePlayerHealth(1f);

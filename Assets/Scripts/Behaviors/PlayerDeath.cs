@@ -18,7 +18,7 @@ public class PlayerDeath: AthenaMonoBehavior, IDeath
         _seq.SetUpdate(UpdateType.Manual);
         _seq.Append(transform.DOScale(0, 1));
         _seq.AppendCallback(
-            () => SceneManager.LoadSceneAsync("Start", LoadSceneMode.Single)
+            () => _gameManager.Lose()
         );
     }
     protected override void PlausibleFixedUpdate()

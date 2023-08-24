@@ -1,9 +1,19 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
+
 [RequireComponent(typeof(BaseStateMachineBehavior))]
 public class Death : AthenaMonoBehavior, IDeath
 {
+    public UnityEvent DeathComplete; 
     protected Sequence _seq;
+
+    protected override void Start()
+    {
+        base.Start();
+        DeathComplete=new UnityEvent();
+    }
+
     public override void OnActive()
     {
         base.OnActive();
@@ -11,8 +21,11 @@ public class Death : AthenaMonoBehavior, IDeath
         _seq.SetUpdate(UpdateType.Manual);
         _seq.Append(transform.DOScale(0, 1));
         _seq.AppendCallback(
-            () => gameObject.SetActive(false)
-        );
+            () =>
+            {
+                DeathComplete?.Invoke();
+                gameObject.SetActive(false);
+            });
     }
     protected override void PlausibleFixedUpdate()
     {

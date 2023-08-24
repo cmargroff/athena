@@ -19,7 +19,13 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         BuildSpawnTriggers();
         if (Level.Boss != null)
         {
-            _sequence.AppendCallback(() => SpawnEnemy(Level.Boss, 0, EnemyTiming.SidesEnum.Random));
+            _sequence.AppendCallback(() =>
+            {
+                var enemy = SpawnEnemy(Level.Boss, 0, EnemyTiming.SidesEnum.Random);
+                var death=enemy.GetComponent<Death>();
+                death.DeathComplete.AddListener(() => _gameManager.EndLevel());
+
+            });
         }
 
     }
@@ -70,7 +76,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
             }
         }
     }
-    private void SpawnEnemy(EnemySO enemySO, float aggressiveness, EnemyTiming.SidesEnum side)
+    private GameObject SpawnEnemy(EnemySO enemySO, float aggressiveness, EnemyTiming.SidesEnum side)
     {
         var newPosition = GetRandomPointOnBorder(_spawnBoundary, aggressiveness, side);
         var enemy = _gameManager.Pool.GetPooledObject(enemySO.Prefab, newPosition, Quaternion.identity);
@@ -103,6 +109,8 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
             weaponBehavior.WeaponConfig = enemySO.Weapon;
             weaponBehavior.enabled = true;
         }
+
+        return enemy;
     }
     private Vector2 GetRandomPointOnBorder(BoxCollider2D boxCollider, float aggressiveness, EnemyTiming.SidesEnum side)
     {

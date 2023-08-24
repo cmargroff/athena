@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerCharacterBehavior))]
@@ -165,5 +166,14 @@ public class GameManagerBehavior : AthenaMonoBehavior
                 obj.DisabledStart();
             }
         }
+    }
+
+    public void EndLevel()
+    {
+        SceneManager.LoadSceneAsync("SampleScene", LoadSceneMode.Single);
+    }
+    public void Lose()
+    {
+        SceneManager.LoadSceneAsync("Start", LoadSceneMode.Single);
     }
 }

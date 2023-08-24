@@ -18,6 +18,6 @@ public class EnemySO : ScriptableObject
     
     public  AnimationCurve SpeedCurve;
     public float LoopTime = 1;
-    public float MaxSpeedReaim = 1;
+    public float MaxSpeedReaim = 1;//this is the setting that lets enemies blind charge forward
 
 }
