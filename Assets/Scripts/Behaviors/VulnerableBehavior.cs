@@ -30,20 +30,24 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 
     [SerializeField]
     private bool _cameraShake;
-    private bool _isPlayer;
 
+
+    public UnityEvent OnHealthChanged;
+
+    protected override void  Awake()
+    {
+        base.Awake();
+        OnHealthChanged = new UnityEvent();
+    }
 
 
     protected override void Start()
     {
         base.Start();
+       
         _rewards = GetComponent<RewardDropBehavior>();
         _statAdjust = GetComponent<StatAdjust>();
-        _isPlayer = gameObject.CompareTag("Player");//todo: don't rely on tags
-        if (_isPlayer)
-        {
-            _gameManager.UpdatePlayerHealth(1f);
-        }
+
     }
 
     public override void OnActive()
@@ -51,7 +55,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         base.OnActive();
         _audioSource = GetComponent<AudioSource>();
         Health = MaxHealth;
-
+        OnHealthChanged?.Invoke();
         _knockback = 0;
         if (_lifebar != null)
         {
@@ -117,10 +121,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         _knockbackVector = damaging.GetKnockbackAngle();
                         _knockback = CalculateKnockback(damaging.Knockback);
                         _hitstun = true;
-                        if (_isPlayer)
-                        {
-                            _gameManager.UpdatePlayerHealth(Health / MaxHealth);
-                        }
+                        OnHealthChanged?.Invoke();
                     }
 
                     if (_cameraShake)
