@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+#if UNITY_EDITOR
 
+[RequireComponent(typeof(DebugGUI))]
 public class MonitorBehavior:AthenaMonoBehavior
 {
     
@@ -19,6 +21,9 @@ public class MonitorBehavior:AthenaMonoBehavior
     private readonly Dictionary<int, float> _enemyHealths=new ();
     private readonly Dictionary<float, float> _playerDPS = new();
 
+    private @PlayerInputActions _controls;
+    private DebugGUI _debugGUI;
+
     protected override void Start()
     {
         base.Start();
@@ -30,6 +35,17 @@ public class MonitorBehavior:AthenaMonoBehavior
             DPS10 = _playerDPS.Where(x => x.Key > Time.realtimeSinceStartup - 10).Sum(x => x.Value)/Math.Min(10, Time.realtimeSinceStartup);
 
         }, this.gameObject);
+
+        _debugGUI = GetComponent<DebugGUI>();
+
+        _controls = new();
+        _controls.Debug.Enable();
+
+        _controls.Debug.ShowStats.performed += context =>
+        {
+            Debug.Log("F2");
+            _debugGUI.displayGraphs = _debugGUI.displayGraphs == false;
+        };
     }
 
 
@@ -55,4 +71,4 @@ public class MonitorBehavior:AthenaMonoBehavior
         _playerDPS.Add(Time.realtimeSinceStartup, damage);
     }
 }
-
+#endif

@@ -2614,10 +2614,7 @@ MonoBehaviour:
   PlayerCharacter: {fileID: 0}
   BuildingCharacter: {fileID: 0}
   EnemyCharacter: {fileID: 0}
-  OnEnemyChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnemyDamaged:
+  OnEnemyHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   CameraBehavior: {fileID: 587789811}
