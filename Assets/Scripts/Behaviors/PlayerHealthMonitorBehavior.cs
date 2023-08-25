@@ -14,7 +14,7 @@ public  class PlayerHealthMonitorBehavior :AthenaMonoBehavior, IAlive
           
         }
 
-        private void HealthChanged()
+        private void HealthChanged(float damage)
         {
             _gameManager.UpdatePlayerHealth(_vulnerable.Health / _vulnerable.MaxHealth);
         }

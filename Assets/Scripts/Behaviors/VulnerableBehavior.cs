@@ -32,12 +32,12 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
     private bool _cameraShake;
 
 
-    public UnityEvent OnHealthChanged;
+    public UnityEvent<float> OnHealthChanged;
 
     protected override void  Awake()
     {
         base.Awake();
-        OnHealthChanged = new UnityEvent();
+        OnHealthChanged = new UnityEvent<float>();
     }
 
 
@@ -55,14 +55,14 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         base.OnActive();
         _audioSource = GetComponent<AudioSource>();
         Health = MaxHealth;
-        OnHealthChanged?.Invoke();
+        OnHealthChanged?.Invoke(0);
         _knockback = 0;
         if (_lifebar != null)
         {
             _lifebar.SetHealthPercent(Health / MaxHealth);
         }
 
-        _gameManager.OnEnemyChanged?.Invoke(this);
+        _gameManager.OnEnemyHealthChanged?.Invoke(this,0);
     }
     // Update is called once per frame
     protected override void PlausibleUpdate()
@@ -90,7 +90,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                     var damage = damaging.Damage / _statAdjust?.GetArmorAdjust() ?? 1f;
                     Health -= damage;//todo:this is a hack, to tiered to fix right now
 
-                    _gameManager.OnEnemyDamaged.Invoke(damage);
+                    OnHealthChanged.Invoke(damage);
                     if (_lifebar != null)
                     {
                         _lifebar.SetHealthPercent(Health / MaxHealth);
@@ -121,7 +121,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         _knockbackVector = damaging.GetKnockbackAngle();
                         _knockback = CalculateKnockback(damaging.Knockback);
                         _hitstun = true;
-                        OnHealthChanged?.Invoke();
+                        
                     }
 
                     if (_cameraShake)
@@ -129,7 +129,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         _gameManager.CameraBehavior.ShakeCamera(5, 0.5f);
                     }
 
-                    _gameManager.OnEnemyChanged?.Invoke(this);
+                
                 }
             }
         }

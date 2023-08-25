@@ -22,8 +22,7 @@ public class MonitorBehavior:AthenaMonoBehavior
     protected override void Start()
     {
         base.Start();
-        _gameManager.OnEnemyChanged.AddListener(EnemyChanged);
-        _gameManager.OnEnemyDamaged.AddListener(EnemyDamaged);
+        _gameManager.OnEnemyHealthChanged.AddListener(EnemyChanged);
         _gameManager.AddTimedEvent(1, () =>
         {
             TotalEnemyHealth = _enemyHealths.Sum(x => x.Value);
@@ -33,13 +32,10 @@ public class MonitorBehavior:AthenaMonoBehavior
         }, this.gameObject);
     }
 
-    private void EnemyDamaged(float damage)
-    {
-        _playerDPS.Add(Time.realtimeSinceStartup,damage);
-    }
+
 
     //todo: only track enemies
-    private void EnemyChanged(VulnerableBehavior vulnerable)
+    private void EnemyChanged(VulnerableBehavior vulnerable,float damage)
     {
         if (_enemyHealths.ContainsKey(vulnerable.GetInstanceID()))
         {
@@ -56,6 +52,7 @@ public class MonitorBehavior:AthenaMonoBehavior
         {
             _enemyHealths.Add(vulnerable.GetInstanceID(),vulnerable.Health);
         }
+        _playerDPS.Add(Time.realtimeSinceStartup, damage);
     }
 }
 
