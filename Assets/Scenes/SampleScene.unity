@@ -2088,6 +2088,7 @@ GameObject:
   - component: {fileID: 1523056419}
   - component: {fileID: 1523056426}
   - component: {fileID: 1523056418}
+  - component: {fileID: 1523056429}
   - component: {fileID: 1523056420}
   - component: {fileID: 1523056421}
   - component: {fileID: 1523056422}
@@ -2177,6 +2178,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _cameraShake: 1
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &1523056421
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2369,6 +2373,18 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 274bb9103d5895946ac0ca38324b22ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1523056429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523056415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b638852e720fa34db1fd71ad5162e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1664282803
@@ -2598,10 +2614,7 @@ MonoBehaviour:
   PlayerCharacter: {fileID: 0}
   BuildingCharacter: {fileID: 0}
   EnemyCharacter: {fileID: 0}
-  OnEnemyChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnemyDamaged:
+  OnEnemyHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   CameraBehavior: {fileID: 587789811}

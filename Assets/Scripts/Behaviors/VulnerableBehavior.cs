@@ -30,20 +30,24 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
 
     [SerializeField]
     private bool _cameraShake;
-    private bool _isPlayer;
 
+
+    public UnityEvent<float> OnHealthChanged;
+
+    protected override void  Awake()
+    {
+        base.Awake();
+        OnHealthChanged = new UnityEvent<float>();
+    }
 
 
     protected override void Start()
     {
         base.Start();
+       
         _rewards = GetComponent<RewardDropBehavior>();
         _statAdjust = GetComponent<StatAdjust>();
-        _isPlayer = gameObject.CompareTag("Player");//todo: don't rely on tags
-        if (_isPlayer)
-        {
-            _gameManager.UpdatePlayerHealth(1f);
-        }
+
     }
 
     public override void OnActive()
@@ -51,14 +55,13 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         base.OnActive();
         _audioSource = GetComponent<AudioSource>();
         Health = MaxHealth;
-
+      
         _knockback = 0;
         if (_lifebar != null)
         {
             _lifebar.SetHealthPercent(Health / MaxHealth);
         }
-
-        _gameManager.OnEnemyChanged?.Invoke(this);
+        OnHealthChanged?.Invoke(0);
     }
     // Update is called once per frame
     protected override void PlausibleUpdate()
@@ -86,7 +89,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                     var damage = damaging.Damage / _statAdjust?.GetArmorAdjust() ?? 1f;
                     Health -= damage;//todo:this is a hack, to tiered to fix right now
 
-                    _gameManager.OnEnemyDamaged.Invoke(damage);
+                    OnHealthChanged.Invoke(damage);
                     if (_lifebar != null)
                     {
                         _lifebar.SetHealthPercent(Health / MaxHealth);
@@ -117,10 +120,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         _knockbackVector = damaging.GetKnockbackAngle();
                         _knockback = CalculateKnockback(damaging.Knockback);
                         _hitstun = true;
-                        if (_isPlayer)
-                        {
-                            _gameManager.UpdatePlayerHealth(Health / MaxHealth);
-                        }
+                        
                     }
 
                     if (_cameraShake)
@@ -128,7 +128,7 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
                         _gameManager.CameraBehavior.ShakeCamera(5, 0.5f);
                     }
 
-                    _gameManager.OnEnemyChanged?.Invoke(this);
+                
                 }
             }
         }

@@ -33,7 +33,7 @@ public class DebugGUI : MonoBehaviour
     // Show logs and graphs in build?
     [SerializeField] bool drawInBuild = false;
 
-    [SerializeField] bool displayGraphs = true;
+    public bool displayGraphs = true;
     [SerializeField] bool displayLogs = true;
 
     [SerializeField] Color backgroundColor = new Color(0f, 0f, 0f, 0.7f);

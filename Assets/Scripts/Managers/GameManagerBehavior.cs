@@ -29,8 +29,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public event Action<PickupTypeEnum, int> OnInventoryChanged;
     public event Action<float> PlayerHealthChanged;
     //debug events
-    public UnityEvent<VulnerableBehavior> OnEnemyChanged;
-    public UnityEvent<float> OnEnemyDamaged;
+    public UnityEvent<VulnerableBehavior,float> OnEnemyHealthChanged;
     //end debug events
     public CameraBehavior CameraBehavior;
 
@@ -155,6 +154,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
             Pickups.Add(pickup.Type, pickup.Amount);
         }
         OnInventoryChanged?.Invoke(pickup.Type, Pickups[pickup.Type]);
+
+        pickup.SpecialAction?.Invoke();
     }
     private void RunDisabledStarts()
     {
