@@ -154,6 +154,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
             Pickups.Add(pickup.Type, pickup.Amount);
         }
         OnInventoryChanged?.Invoke(pickup.Type, Pickups[pickup.Type]);
+
+        pickup.SpecialAction?.Invoke();
     }
     private void RunDisabledStarts()
     {
