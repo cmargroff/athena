@@ -55,14 +55,13 @@ public class VulnerableBehavior : AthenaMonoBehavior, IAlive
         base.OnActive();
         _audioSource = GetComponent<AudioSource>();
         Health = MaxHealth;
-        OnHealthChanged?.Invoke(0);
+      
         _knockback = 0;
         if (_lifebar != null)
         {
             _lifebar.SetHealthPercent(Health / MaxHealth);
         }
-
-        _gameManager.OnEnemyHealthChanged?.Invoke(this,0);
+        OnHealthChanged?.Invoke(0);
     }
     // Update is called once per frame
     protected override void PlausibleUpdate()

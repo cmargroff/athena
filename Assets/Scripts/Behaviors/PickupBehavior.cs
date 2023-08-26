@@ -16,7 +16,7 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
         var trail = GetComponentInChildren<TrailRenderer>();
         trail.colorGradient = new Gradient()
         {
-            colorKeys = new GradientColorKey[]
+            colorKeys = new []
             {
                 new GradientColorKey(Color,0),
                 new GradientColorKey(Color,1)
