@@ -10,11 +10,13 @@ public class AthenaMonoBehavior : MonoBehaviour
     protected virtual void Awake()
     {
         _gameManager = SafeFindObjectOfType<GameManagerBehavior>();
+        _stateMachine = GetComponent<BaseStateMachineBehavior>();
     }
 
     protected virtual void Start()
     {
-        _stateMachine = GetComponent<BaseStateMachineBehavior>();
+       
+
 
         OnActive();
         _started = true;

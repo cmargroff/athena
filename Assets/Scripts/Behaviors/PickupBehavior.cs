@@ -8,12 +8,14 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
     public Color Color;
     public PickupTypeEnum Type;
     public Action SpecialAction;
+
+    private static readonly int ColorProperty = Shader.PropertyToID("_Color");
     public override void OnActive()
     {
         base.OnActive();
-        var spriteMat = GetComponentInChildren<SpriteRenderer>().material;
+        Renderer quad = GetComponentInChildren<Renderer>();//todo: this is currently relying on sort order. Fix it
         // clean up this switch statement to something more readable
-        spriteMat.color = Color;
+        //quad.material.SetColor(ColorProperty,Color);
         var trail = GetComponentInChildren<TrailRenderer>();
         trail.colorGradient = new Gradient()
         {
