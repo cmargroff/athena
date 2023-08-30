@@ -51,7 +51,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
                 var pos = startPos;
                 _sequence.AppendCallback(() =>
                 {
-                    Debug.Log($"starting {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].StartTime} game time {Time.realtimeSinceStartup}");
+                    //Debug.Log($"starting {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].StartTime} game time {Time.realtimeSinceStartup}");
                     Level.EnemyTimings[pos].Timer = _gameManager.AddTimedEvent(Level.EnemyTimings[pos].Rate*_gameManager.EnemyCharacter.SpawnFrequency , () =>
                     {
                         SpawnEnemy(Level.EnemyTimings[pos].Enemy, Level.EnemyTimings[pos].Aggressiveness, Level.EnemyTimings[pos].Sides);
@@ -68,7 +68,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
                 var pos = endPos;
                 _sequence.AppendCallback(() =>
                 {
-                    Debug.Log($"stopping {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].EndTime} game time {Time.realtimeSinceStartup}");
+                    //Debug.Log($"stopping {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].EndTime} game time {Time.realtimeSinceStartup}");
                     _gameManager.RemoveTimedEvent(Level.EnemyTimings[pos].Timer);
                 });
                 timelineTime = Level.EnemyTimings[endPos].EndTime;

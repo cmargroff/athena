@@ -13,7 +13,7 @@ public  class PickupSpawnBehavior:AthenaMonoBehavior, ISpawn
         _seq = DOTween.Sequence();
 
         _seq.SetUpdate(UpdateType.Manual);
-        _seq.Append(transform.DOMove(transform.position+ (Vector3)Random.insideUnitCircle.normalized, 1f)).SetEase(Ease.OutQuad);
+        _seq.Append(transform.DOMove(transform.position+ (Vector3)Random.insideUnitCircle, 1f)).SetEase(Ease.OutQuad);
         _seq.AppendCallback(() =>
             _stateMachine.SetState(typeof(IAlive))
         );

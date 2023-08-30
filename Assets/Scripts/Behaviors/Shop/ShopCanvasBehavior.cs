@@ -52,7 +52,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         _shopItemsContainer = transform.Find("ShopItems").gameObject;
         if (_shopItemsContainer == null)
         {
-            Debug.LogError("ShopItems container not found");
+            //Debug.LogError("ShopItems container not found");
             return;
         }
 
