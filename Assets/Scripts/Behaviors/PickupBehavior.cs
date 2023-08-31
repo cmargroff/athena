@@ -10,21 +10,29 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
     public Action SpecialAction;
 
     private static readonly int ColorProperty = Shader.PropertyToID("_Color");
-    public override void OnActive()
+    public void UpdateColor(Color color)
     {
-        base.OnActive();
-        Renderer quad = GetComponentInChildren<Renderer>();//todo: this is currently relying on sort order. Fix it
-        // clean up this switch statement to something more readable
-        //quad.material.SetColor(ColorProperty,Color);
+        Color = color;
         var trail = GetComponentInChildren<TrailRenderer>();
         trail.colorGradient = new Gradient()
         {
-            colorKeys = new []
+            colorKeys = new[]
             {
-                new GradientColorKey(Color,0),
-                new GradientColorKey(Color,1)
+                new GradientColorKey(Color, 0),
+                new GradientColorKey(Color, 1)
             }
         };
+        GetComponentInChildren<Renderer>().material.SetColor(ColorProperty, Color);//todo: this is currently relying on sort order. Fix it
+
+    }
+
+    public override void OnActive()
+    {
+        base.OnActive();
+        //Renderer quad = GetComponentInChildren<Renderer>();
+        //                                                   // clean up this switch statement to something more readable
+        //                                                   //quad.material.SetColor(ColorProperty,Color);
+
         if (Type == PickupTypeEnum.Health)
         {
             SpecialAction = Heal;

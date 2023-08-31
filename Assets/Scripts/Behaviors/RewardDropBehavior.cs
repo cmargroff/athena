@@ -6,7 +6,7 @@ public class RewardDropBehavior : AthenaMonoBehavior
 {
     [SerializeField]
     public List<Reward> Rewards = new();
-    private static readonly int ColorProperty = Shader.PropertyToID("_Color");
+
 
     public void DropRewards()
     {
@@ -20,8 +20,7 @@ public class RewardDropBehavior : AthenaMonoBehavior
                 var pickup = _gameManager.Pool.GetPooledObject(reward.Pickup.PreFab, transform.position, Quaternion.identity);
                 pickup.transform.localScale = Vector3.one * 0.5f;
                 var pickupBehavior = pickup.GetComponent<PickupBehavior>();
-                pickupBehavior.Color = reward.Pickup.Color;
-                pickupBehavior.GetComponentInChildren<Renderer>().material.SetColor(ColorProperty, reward.Pickup.Color);
+                pickupBehavior.UpdateColor(reward.Pickup.Color);
                 pickupBehavior.Type = reward.Pickup.Type;
             }
         }

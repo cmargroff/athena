@@ -21,7 +21,7 @@ MonoBehaviour:
   Prefab: {fileID: 9047705116722791758, guid: 91d3088f832d8834d8c60ef0a2be6abf, type: 3}
   Rewards:
   - Pickup: {fileID: 11400000, guid: 40aaf77af6d3e4f49b080e09cc029171, type: 2}
-    Chance: 1
+    Chance: 10
   Weapon: {fileID: 0}
   SpeedCurve:
     serializedVersion: 2
