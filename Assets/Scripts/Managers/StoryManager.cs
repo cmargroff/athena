@@ -26,12 +26,18 @@ public class StoryManager : MonoBehaviour
 
     protected  void Start()
     {
+        Console.WriteLine("Story started");
         _controls.Menues.Enable();
         StartImageSequence();
 
         _controls.Menues.Submit.performed+=context => {
             SceneManager.LoadSceneAsync(SceneName,LoadSceneMode.Single);
         };
+    }
+
+    public void ConfigureStory()
+    {
+        Console.WriteLine("Story configured");
     }
 
     private void StartImageSequence()
