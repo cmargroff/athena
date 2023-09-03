@@ -22,7 +22,7 @@ public class PickupBehavior : AthenaMonoBehavior, IAlive
                 new GradientColorKey(Color, 1)
             }
         };
-        GetComponentInChildren<Renderer>().material.SetColor(ColorProperty, Color);//todo: this is currently relying on sort order. Fix it
+        GetComponentInChildren<Renderer>().material.color = Color;//todo: this is currently relying on sort order. Fix it
 
     }
 
