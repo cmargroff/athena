@@ -29,11 +29,8 @@ public class ApplicationManager:MonoBehaviour
 
     public void StartGame()
     {
-        LoadScene(ScenesEnum.Story, () =>
-        {
-            LoadScene(ScenesEnum.Game);
+        LoadScene(ScenesEnum.Game);
 
-        });
     }
 
     public void EndGameInLoss()

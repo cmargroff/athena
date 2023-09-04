@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+
 
 public class MainMenuManager : BaseMonoBehavior
 {
@@ -19,15 +20,16 @@ public class MainMenuManager : BaseMonoBehavior
         _applicationManager = SafeFindObjectOfType<ApplicationManager>();
         SafeAssigned(_startButton);
         SafeAssigned(_settingsButton);
-        _startButton.clicked += () =>
+        _startButton.onClick.AddListener( () =>
         {
+            Debug.Log("Starting Game");
+            _applicationManager.StartGame();
+        });
 
-        };
-
-        _settingsButton.clicked += () =>
+        _startButton.onClick.AddListener(() =>
         {
             Debug.Log("Not yet implemented");
-        };
+        });
     }
 }
 
