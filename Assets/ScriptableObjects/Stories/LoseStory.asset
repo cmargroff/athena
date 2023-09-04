@@ -22,6 +22,9 @@ MonoBehaviour:
       Time: 10
       Ease: 4
     VoiceLines:
+    - VoiceClip: {fileID: 0}
+      Text: 
+      Time: 1
     - VoiceClip: {fileID: 8300000, guid: 7c31d84e36467f3448bf05d6d4fe6640, type: 3}
       Text: 'AHENA is destroyed. The city lies in flames. A billion are dead with
         casualties rising. '
@@ -45,3 +48,4 @@ MonoBehaviour:
         use it to improve the Ages Titan, and we will be ready for ECLIPSE\u2019s
         arrival."
       Time: 16
+  Song: {fileID: 8300000, guid: e0c33a93ab82301439539d43a012929a, type: 3}
