@@ -152,7 +152,7 @@
     },
     "m_ActiveTargets": [
         {
-            "m_Id": "2d35904c0db242c4b491e06be9cd58e5"
+            "m_Id": "49483e7e92934356af196a8f26d340fc"
         }
     ]
 }
@@ -217,12 +217,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.Rendering.BuiltIn.ShaderGraph.BuiltInUnlitSubTarget",
-    "m_ObjectId": "110f51718f0d453c9812cec5240b91f1"
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.OneMinusNode",
     "m_ObjectId": "2a363a825fc6406f933e974f0deaeebe",
     "m_Group": {
@@ -262,23 +256,6 @@
 }
 
 {
-    "m_SGVersion": 2,
-    "m_Type": "UnityEditor.Rendering.BuiltIn.ShaderGraph.BuiltInTarget",
-    "m_ObjectId": "2d35904c0db242c4b491e06be9cd58e5",
-    "m_ActiveSubTarget": {
-        "m_Id": "110f51718f0d453c9812cec5240b91f1"
-    },
-    "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 1,
-    "m_ZWriteControl": 0,
-    "m_ZTestMode": 4,
-    "m_AlphaMode": 0,
-    "m_RenderFace": 2,
-    "m_AlphaClip": false,
-    "m_CustomEditorGUI": ""
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "48f1ade727c140c3a9eab610a79df247",
@@ -293,6 +270,28 @@
     "m_Labels": [
         "Z"
     ]
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
+    "m_ObjectId": "49483e7e92934356af196a8f26d340fc",
+    "m_Datas": [],
+    "m_ActiveSubTarget": {
+        "m_Id": "63ccd24334294f5692b40e989636f42a"
+    },
+    "m_AllowMaterialOverride": false,
+    "m_SurfaceType": 1,
+    "m_ZTestMode": 4,
+    "m_ZWriteControl": 0,
+    "m_AlphaMode": 0,
+    "m_RenderFace": 2,
+    "m_AlphaClip": false,
+    "m_CastShadows": true,
+    "m_ReceiveShadows": true,
+    "m_SupportsLODCrossFade": false,
+    "m_CustomEditorGUI": "",
+    "m_SupportVFX": false
 }
 
 {
@@ -537,6 +536,12 @@
             "m_Id": "4eb1238c5e94496f978bdeed02d0f5cc"
         }
     ]
+}
+
+{
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
+    "m_ObjectId": "63ccd24334294f5692b40e989636f42a"
 }
 
 {
