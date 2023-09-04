@@ -33,12 +33,15 @@ public class GameManagerBehavior : AthenaMonoBehavior
     //end debug events
     public CameraBehavior CameraBehavior;
 
+    private ApplicationManager _applicationManager;
+
     protected override void Awake()
     {
         base.Awake();
         PlayerCharacter = GetComponent<PlayerCharacterBehavior>();
         BuildingCharacter = GetComponent<BuildingCharacterBehavior>();
         EnemyCharacter = GetComponent<EnemyCharacterBehaviour>();
+        _applicationManager = SafeFindObjectOfType<ApplicationManager>();
     }
     protected override void Start()
     {
@@ -175,6 +178,6 @@ public class GameManagerBehavior : AthenaMonoBehavior
     }
     public void Lose()
     {
-        SceneManager.LoadSceneAsync("Start", LoadSceneMode.Single);
+        _applicationManager.EndGameInLoss();
     }
 }

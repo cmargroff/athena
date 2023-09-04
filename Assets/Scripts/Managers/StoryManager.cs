@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-
+[RequireComponent(typeof(AudioSource))]
 public class StoryManager : MonoBehaviour
 {
-    public List<Pan> Pans;
-    protected Sequence _seq;
 
+    protected Sequence _imageSeq;
+    protected Sequence _audioSeq;
     [SerializeField]
     private RectTransform _image;
 
@@ -23,55 +25,116 @@ public class StoryManager : MonoBehaviour
     private @PlayerInputActions _controls;
 
     public string SceneName;
+    [SerializeField]
+    private StorySO _story;
 
-    protected  void Start()
+    public UnityEvent Completed;
+
+    private AudioSource _voiceAudioSource;
+    private AudioSource _musicAudioSource;
+    [SerializeField]
+    protected TextMeshProUGUI _text;
+
+    protected void Start()
     {
-        Console.WriteLine("Story started");
+        _controls = new();
+        var soundSources = GetComponents<AudioSource>();
+        _voiceAudioSource = soundSources[0];
+        _musicAudioSource = soundSources[1];
+        _musicAudioSource.loop=true;
+        _musicAudioSource.PlayOneShot(_story.Song);
+        
+
         _controls.Menues.Enable();
         StartImageSequence();
 
-        _controls.Menues.Submit.performed+=context => {
-            SceneManager.LoadSceneAsync(SceneName,LoadSceneMode.Single);
+        _controls.Menues.Submit.performed += context =>
+        {
+            Completed?.Invoke();
         };
     }
 
-    public void ConfigureStory()
+    public void ConfigureStory(StorySO story)
     {
-        Console.WriteLine("Story configured");
+        _story = story;
     }
 
     private void StartImageSequence()
     {
-        _seq = DOTween.Sequence(); //new Sequence()
-        _seq.SetUpdate(UpdateType.Manual);
-
-        //Vector2 ratio = new Vector2(_image.rect.width / _canvas.rect.width, _image.rect.height / _canvas.rect.height);
-        var baseCoordinates = _image.transform.position;
-        var oldCoordinates = new Vector3(
-            _image.transform.position.x - (_image.rect.width - _canvas.rect.width) * Pans[0].Coordinates.x,
-            _image.transform.position.y + (_image.rect.height - _canvas.rect.height) * Pans[0].Coordinates.y,
-            0);
-
-        foreach (var pan in Pans.Skip(1).Append(Pans[0]))
+        var imageImage = _image.GetComponent<UnityEngine.UI.Image>();
+        Vector3 oldCoordinates = new Vector3();
+        Vector3 baseCoordinates = _image.transform.position; ;
+        _imageSeq = DOTween.Sequence();
+        _audioSeq = DOTween.Sequence();
+        _imageSeq.SetUpdate(UpdateType.Manual);
+        _audioSeq.SetUpdate(UpdateType.Manual);
+        foreach (var panel in _story.Panels)
         {
-            var newCoordinates = new Vector3(
-                baseCoordinates.x - (_image.rect.width - _canvas.rect.width) * pan.Coordinates.x,
-                baseCoordinates.y + (_image.rect.height - _canvas.rect.height) * pan.Coordinates.y,
-                0);
-            var tween = DOTween.To(x => { _image.transform.position = Vector3.Lerp(oldCoordinates, newCoordinates, x); }, 0,
-                1, pan.Time);
-            tween.SetEase(pan.Ease);
-            _seq.Append(tween);
-            _seq.AppendCallback(() => { oldCoordinates = _image.transform.position; });
+            foreach (var voiceLine in panel.VoiceLines)
+            {
+                _audioSeq.AppendCallback(() =>
+                {
+                    if (voiceLine.VoiceClip != null)
+                    {
+                        _voiceAudioSource.PlayOneShot(voiceLine.VoiceClip);
+                    }
+
+                    _text.text = voiceLine.Text;
+                });
+                _audioSeq.AppendInterval(voiceLine.Time);
+            }
+
+            float extraTime = panel.Pans.Sum(x => x.Time) - panel.VoiceLines.Sum(x => x.Time);
+            if (extraTime > 0)
+            {
+                _audioSeq.AppendInterval(extraTime);
+            }
+
+            //set up voice clips
+
+            //set up image
+            _imageSeq.AppendCallback(() =>
+            {
+                imageImage.sprite = panel.Image;
+
+            });
+            oldCoordinates = new Vector3(
+                    _image.transform.position.x -
+                    (_image.rect.width - _canvas.rect.width) * panel.Pans[0].Coordinates.x,
+                    _image.transform.position.y +
+                    (_image.rect.height - _canvas.rect.height) * panel.Pans[0].Coordinates.y,
+                    0);
+
+
+            foreach (var pan in panel.Pans.Skip(1).Append(panel.Pans[0]))
+            {
+                var newCoordinates = new Vector3(
+                    baseCoordinates.x - (_image.rect.width - _canvas.rect.width) * pan.Coordinates.x,
+                    baseCoordinates.y + (_image.rect.height - _canvas.rect.height) * pan.Coordinates.y,
+                    0);
+                var tween = DOTween.To(
+                    x => { _image.transform.position = Vector3.Lerp(oldCoordinates, newCoordinates, x); }, 0,
+                    1, pan.Time);
+                tween.SetEase(pan.Ease);
+                _imageSeq.Append(tween);
+                _imageSeq.AppendCallback(() => { oldCoordinates = _image.transform.position; });
+            }
         }
 
-        _seq.SetLoops(-1);
+        _imageSeq.AppendCallback(() =>
+            {
+                Completed?.Invoke();
+            }
+
+        );
+
     }
 
 
     protected void FixedUpdate()
     {
-       // base.PlausibleFixedUpdate();
-        _seq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
+        // base.PlausibleFixedUpdate();
+        _imageSeq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
+        _audioSeq.ManualUpdate(Time.fixedDeltaTime, Time.fixedDeltaTime);
     }
 }

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2e66dd1c9ea464ea34c4a75c828d51, type: 3}
+  m_Name: LoseStory
+  m_EditorClassIdentifier: 
+  Panels:
+  - Image: {fileID: 21300000, guid: a40b93287bf03df4b9715d32d07cde90, type: 3}
+    Pans:
+    - Coordinates: {x: 0.5, y: 1}
+      Time: 0
+      Ease: 4
+    - Coordinates: {x: 0.5, y: 0}
+      Time: 10
+      Ease: 4
+    VoiceLines:
+    - VoiceClip: {fileID: 8300000, guid: 7c31d84e36467f3448bf05d6d4fe6640, type: 3}
+      Text: 'AHENA is destroyed. The city lies in flames. A billion are dead with
+        casualties rising. '
+      Time: 6
+  - Image: {fileID: 21300000, guid: 34cae9b668b0992449c7f933c06378cd, type: 3}
+    Pans:
+    - Coordinates: {x: 0.5, y: 1}
+      Time: 5
+      Ease: 4
+    - Coordinates: {x: 0.5, y: 0.2}
+      Time: 10
+      Ease: 4
+    - Coordinates: {x: 0, y: 0}
+      Time: 5
+      Ease: 4
+    VoiceLines:
+    - VoiceClip: {fileID: 8300000, guid: 9ec96d9cd1aca6243bdb0def3fc2af22, type: 3}
+      Text: "Good thing it was only a simulation. You have to train longer and try
+        harder. You are humanity\u2019s only hope. Not everything is lost though.
+        We did gather precious combat data by analyzing your performance. We will
+        use it to improve the Ages Titan, and we will be ready for ECLIPSE\u2019s
+        arrival."
+      Time: 16

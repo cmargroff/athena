@@ -10,5 +10,7 @@ public class StorySO : ScriptableObject
 {
     public List<StoryPanel> Panels;
 
+    public AudioClip Song;
+
 }
 

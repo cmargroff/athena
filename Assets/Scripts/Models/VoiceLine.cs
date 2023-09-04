@@ -8,5 +8,8 @@ using UnityEngine;
 public  class VoiceLine
 {
     public AudioClip VoiceClip;
+    [TextArea(5, 20)]
     public string Text;
+
+    public float Time;
 }
