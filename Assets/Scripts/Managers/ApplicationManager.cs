@@ -27,6 +27,15 @@ public class ApplicationManager:MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+        LoadScene(ScenesEnum.Story, () =>
+        {
+            LoadScene(ScenesEnum.Game);
+
+        });
+    }
+
     public void EndGameInLoss()
     {
         LoadScene(ScenesEnum.Story, () =>
@@ -35,7 +44,7 @@ public class ApplicationManager:MonoBehaviour
             storyManager.ConfigureStory(_loseGameStory);
             storyManager.Completed.AddListener(() =>
             {
-                LoadScene(ScenesEnum.Start);
+                LoadScene(ScenesEnum.MainMenu);
             });
 
         });
@@ -61,6 +70,7 @@ public class ApplicationManager:MonoBehaviour
     public enum ScenesEnum
     {
         Start,
+        MainMenu,
         Story,
         Game
     }

@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(AudioSource))]
-public class StoryManager : MonoBehaviour
+public class StoryManager : BaseMonoBehavior
 {
 
     protected Sequence _imageSeq;
