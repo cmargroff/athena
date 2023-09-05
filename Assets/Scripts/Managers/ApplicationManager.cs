@@ -49,12 +49,7 @@ public class ApplicationManager:MonoBehaviour
     }
 
 
-    private void LoadScene(ScenesEnum scene)
-    {
-        LoadScene(scene, null);
-    }
-
-    private void LoadScene(ScenesEnum scene, Action onLoad)
+    private void LoadScene(ScenesEnum scene, Action onLoad = null)
     {
         var operation= SceneManager.LoadSceneAsync(scene.ToString(), LoadSceneMode.Single);
         if(onLoad!=null)

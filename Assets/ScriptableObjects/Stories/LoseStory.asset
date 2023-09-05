@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: LoseStory
   m_EditorClassIdentifier: 
   Panels:
-  - Image: {fileID: 21300000, guid: a40b93287bf03df4b9715d32d07cde90, type: 3}
+  - Image: {fileID: 2800000, guid: a40b93287bf03df4b9715d32d07cde90, type: 3}
     Pans:
     - Coordinates: {x: 0.5, y: 1}
+      Zoom: 1
       Time: 0
       Ease: 4
     - Coordinates: {x: 0.5, y: 0}
+      Zoom: 1
       Time: 10
       Ease: 4
     VoiceLines:
@@ -29,15 +31,18 @@ MonoBehaviour:
       Text: 'AHENA is destroyed. The city lies in flames. A billion are dead with
         casualties rising. '
       Time: 6
-  - Image: {fileID: 21300000, guid: 34cae9b668b0992449c7f933c06378cd, type: 3}
+  - Image: {fileID: 2800000, guid: 34cae9b668b0992449c7f933c06378cd, type: 3}
     Pans:
     - Coordinates: {x: 0.5, y: 1}
+      Zoom: 1
       Time: 5
       Ease: 4
     - Coordinates: {x: 0.5, y: 0.2}
+      Zoom: 1
       Time: 10
       Ease: 4
     - Coordinates: {x: 0, y: 0}
+      Zoom: 1
       Time: 5
       Ease: 4
     VoiceLines:

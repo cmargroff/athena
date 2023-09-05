@@ -9,6 +9,7 @@ using UnityEngine;
 public class Pan
 {
     public Vector2 Coordinates;
+    public float Zoom = 1;
     public float Time;
 
     public Ease Ease=Ease.Linear;

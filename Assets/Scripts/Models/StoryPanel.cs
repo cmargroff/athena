@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public  class StoryPanel
 {
-    public Sprite Image;
+    public Texture2D Image;
     public List<Pan> Pans;
     public List<VoiceLine> VoiceLines;
 
