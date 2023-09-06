@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loseGameStory: {fileID: 11400000, guid: 126ddfc94a8569e48936d02a0297c1a4, type: 2}
+  _startStory: {fileID: 11400000, guid: 1ca5a9dfe92f55a4c8d4f781a67d010e, type: 2}

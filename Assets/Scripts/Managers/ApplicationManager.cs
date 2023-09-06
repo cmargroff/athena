@@ -13,7 +13,8 @@ public class ApplicationManager:MonoBehaviour
 
     [SerializeField]
     private StorySO _loseGameStory;
-
+    [SerializeField]
+    private StorySO _startStory;
     private void Awake()
     {
         if (Instance == null)
@@ -25,6 +26,20 @@ public class ApplicationManager:MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void StartApplication()
+    {
+        LoadScene(ScenesEnum.Story, () =>
+        {
+            var storyManager = FindAnyObjectByType<StoryManager>();
+            storyManager.ConfigureStory(_startStory);
+            storyManager.Completed.AddListener(() =>
+            {
+                LoadScene(ScenesEnum.MainMenu);
+            });
+
+        });
     }
 
     public void StartGame()
