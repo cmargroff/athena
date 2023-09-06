@@ -62,9 +62,10 @@ public class StoryManager : BaseMonoBehavior
     private void StartImageSequence()
     {
         var imageImage = _image.GetComponent<UnityEngine.UI.Image>();
+        imageImage.material.SetVector("_CanvasSize", new Vector2(_canvas.rect.width,_canvas.rect.height));
 
-        Vector3 oldCoordinates = new Vector3();
-        Vector3 baseCoordinates = _image.transform.position; ;
+
+
         _imageSeq = DOTween.Sequence();
         _audioSeq = DOTween.Sequence();
         _imageSeq.SetUpdate(UpdateType.Manual);
@@ -97,35 +98,31 @@ public class StoryManager : BaseMonoBehavior
             _imageSeq.AppendCallback(() =>
             {
                 imageImage.material.SetTexture("_Image", panel.Image);
+
+                imageImage.material.SetVector("_ImageSize", new Vector2(panel.Image.width, panel.Image.height));
                 //imageImage.sprite = panel.Image;
 
             });
-            oldCoordinates = new Vector3(
-                    _image.transform.position.x -
-                    (_image.rect.width - _canvas.rect.width) * panel.Pans[0].Coordinates.x,
-                    _image.transform.position.y +
-                    (_image.rect.height - _canvas.rect.height) * panel.Pans[0].Coordinates.y,
-                    0);
+           var oldPan = panel.Pans[0].Coordinates;
             var oldZoom= panel.Pans[0].Zoom;
 
             foreach (var pan in panel.Pans.Skip(1).Append(panel.Pans[0]))
             {
-                var newCoordinates = new Vector3(
-                    baseCoordinates.x - (_image.rect.width - _canvas.rect.width) * pan.Coordinates.x,
-                    baseCoordinates.y + (_image.rect.height - _canvas.rect.height) * pan.Coordinates.y,
-                    0);
-                var coordinates = oldCoordinates;
                 var tween = DOTween.To(
                     x =>
                     {
-                        _image.transform.position = Vector3.Lerp(coordinates, newCoordinates, x);
+                        imageImage.material.SetVector("_Pan", Vector2.Lerp(oldPan, pan.Coordinates, x));
                         imageImage.material.SetFloat("_Zoom", Mathf.Lerp(oldZoom,  pan.Zoom, x));
 
                     }, 0,
                     1, pan.Time);
                 tween.SetEase(pan.Ease);
                 _imageSeq.Append(tween);
-                _imageSeq.AppendCallback(() => { oldCoordinates = _image.transform.position; });
+                _imageSeq.AppendCallback(() =>
+                {
+                    oldPan = pan.Coordinates;
+                    oldZoom= pan.Zoom;
+                });
             }
         }
 
