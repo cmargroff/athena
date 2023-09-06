@@ -67,7 +67,11 @@ public class FlyingBehavior : AthenaMonoBehavior, IAlive
             moveDir = (_bounds.transform.position - transform.position).normalized;
             transform.position += moveDir * deltaSpeed;
         }
-        _visual.material.SetFloat(Flip, moveDir.x < 0 == FacesRight ? 0f : 1f);
+
+        if (moveDir.x != 0)
+        {
+            _visual.material.SetFloat(Flip, moveDir.x < 0 == FacesRight ? 0f : 1f);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)

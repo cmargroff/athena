@@ -19,7 +19,7 @@ public class HUDInventoryBehavior : AthenaMonoBehavior
             var itemRect = go.GetComponent<RectTransform>();
             _items.Add(item.Type, itemRect);
             itemRect.Bind(new { Count = 0, Color = item.Color });
-            Debug.Log(itemRect.rect.width);
+            //Debug.Log(itemRect.rect.width);
             itemRect.anchoredPosition = new Vector2(i * -1 * itemRect.rect.width, 0);
             i++;
         }

@@ -58,12 +58,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8442249432780088784, guid: 199330a2113a56c42bd258f8b4f7a962, type: 3}
       propertyPath: Rewards.Array.data[0].Chance
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8442249432780088784, guid: 199330a2113a56c42bd258f8b4f7a962, type: 3}
       propertyPath: Rewards.Array.data[0].Pickup
       value: 
-      objectReference: {fileID: 11400000, guid: 7def535bc8fce1d47bf5bc60bec4e642, type: 2}
+      objectReference: {fileID: 11400000, guid: 40aaf77af6d3e4f49b080e09cc029171, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

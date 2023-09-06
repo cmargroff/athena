@@ -12,6 +12,6 @@ public class BuildingInteractBehaviour : AthenaMonoBehavior
     }
     public virtual void Interact()
     {
-        Debug.Log("Building interaction");
+    
     }
 }

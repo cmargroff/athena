@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2e66dd1c9ea464ea34c4a75c828d51, type: 3}
+  m_Name: OpeniingStory
+  m_EditorClassIdentifier: 
+  Panels:
+  - Image: {fileID: 2800000, guid: fa8c64dd079018c42b1166c9f8c03e6c, type: 3}
+    Pans:
+    - Coordinates: {x: 0.5, y: 0.2}
+      Zoom: 5
+      Time: 0
+      Ease: 0
+    - Coordinates: {x: 0.5, y: 0.5}
+      Zoom: 0.9
+      Time: 67
+      Ease: 0
+    VoiceLines:
+    - VoiceClip: {fileID: 8300000, guid: 8b539035848901847866d15aa67e0250, type: 3}
+      Text: Ladies and gentlemen, esteemed guests and fellow beings of the galactic
+        arm,
+      Time: 6
+    - VoiceClip: {fileID: 8300000, guid: a0436d29c98be854ea8d8143088e12af, type: 3}
+      Text: Today, I stand before you as the CEO of the ECLIPSE corporation, representing
+        a new era of dominance and power. Our civilization has traversed vast cosmic
+        distances, witnessing countless worlds and species along the way. Among these,
+        we encountered the most enigmatic and dangerous entity known as humanity.
+      Time: 25
+    - VoiceClip: {fileID: 8300000, guid: 8f8e13384e2a40741a3ddbe63c89e743, type: 3}
+      Text: Yes, the human species, a plague upon the cosmos, an incessant swarm
+        that has grown uncontrollably, spreading like a malignant virus across the
+        galaxies. They infest planets, exploit resources, and squander the delicate
+        balance of life wherever they tread. The time has come for us, as enlightened
+        beings, to address this grave issue with swift and unyielding action.
+      Time: 26
+  - Image: {fileID: 2800000, guid: 9d28f9cbf3932a64d845a25df4c3ad54, type: 3}
+    Pans:
+    - Coordinates: {x: 0.5, y: 1}
+      Zoom: 1
+      Time: 0
+      Ease: 4
+    - Coordinates: {x: 0.5, y: 0}
+      Zoom: 1
+      Time: 35
+      Ease: 4
+    VoiceLines:
+    - VoiceClip: {fileID: 8300000, guid: ae8476bad864a8a479bbd96245e03da3, type: 3}
+      Text: "Good morning pilot. Over a thousand unidentified spacecraft have entered
+        earth\u2019s orbit. They\u2019re transmitting messages, informing us of their
+        plans for our  eradication and decimation of population centers. "
+      Time: 14
+    - VoiceClip: {fileID: 8300000, guid: 5e3db4944e6359a4f89d0f3d3c81623c, type: 3}
+      Text: This is exactly why the ATHENA project was created. You must be ready
+        to pilot the Aegis Titan. Humanity will show the galaxy that we will not
+        be an easy target. Today you will fight for our survival. Go ATHENA, Humanity's
+        Extraterrestrial Nemesis Annihilator!
+      Time: 18
+  Song: {fileID: 8300000, guid: 15fe777d9b438b14cb2b18cd086a46f2, type: 3}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AthenaMonoBehavior : MonoBehaviour
+public class AthenaMonoBehavior : BaseMonoBehavior
 {
     // Start is called before the first frame update
     protected GameManagerBehavior _gameManager;
@@ -10,11 +10,13 @@ public class AthenaMonoBehavior : MonoBehaviour
     protected virtual void Awake()
     {
         _gameManager = SafeFindObjectOfType<GameManagerBehavior>();
+        _stateMachine = GetComponent<BaseStateMachineBehavior>();
     }
 
     protected virtual void Start()
     {
-        _stateMachine = GetComponent<BaseStateMachineBehavior>();
+       
+
 
         OnActive();
         _started = true;
@@ -100,22 +102,6 @@ public class AthenaMonoBehavior : MonoBehaviour
     }
     protected virtual void WhenPausedFixedUpdate()
     {
-    }
-    protected void SafeAssigned<T>(T obj)
-    {
-        if (obj == null || obj.ToString() == "null")
-        {
-            throw new System.Exception($"{typeof(T).Name} not assigned in editor");
-        }
-    }
-    protected T SafeFindObjectOfType<T>() where T : UnityEngine.Object
-    {
-        var obj = FindObjectOfType<T>();
-        if (obj == null || obj.ToString() == "null")
-        {
-            throw new System.Exception($"{typeof(T).Name} not found in world");
-        }
-        return obj;
     }
 
 
