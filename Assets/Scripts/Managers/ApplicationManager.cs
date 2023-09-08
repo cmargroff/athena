@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+[RequireComponent(typeof(SaveLoadBehavior))]
 public class ApplicationManager:MonoBehaviour
 {
     public static ApplicationManager Instance;
