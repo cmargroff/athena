@@ -17,6 +17,13 @@ public class SaveLoadBehavior :BaseMonoBehavior
 
     public Settings LoadSettings()
     {
-        return ES3.Load<Settings>(SettingsKey, SettingsFile);
+        if (ES3.FileExists(SettingsFile))
+        {
+            return ES3.Load<Settings>(SettingsKey, SettingsFile);
+        }
+        else
+        {
+            return null;
+        }
     }
 }

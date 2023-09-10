@@ -20,16 +20,16 @@ public class MainMenuManager : BaseMonoBehavior
         _applicationManager = SafeFindObjectOfType<ApplicationManager>();
         SafeAssigned(_startButton);
         SafeAssigned(_settingsButton);
-        _startButton.onClick.AddListener( () =>
-        {
-            Debug.Log("Starting Game");
-            _applicationManager.StartGame();
-        });
 
-        _startButton.onClick.AddListener(() =>
-        {
-            Debug.Log("Not yet implemented");
-        });
+    }
+
+    public void OnStartButton()
+    {
+        _applicationManager.StartGame();
+    }
+    public void OnSettingsButton()
+    {
+        _applicationManager.OpenSettings();
     }
 }
 

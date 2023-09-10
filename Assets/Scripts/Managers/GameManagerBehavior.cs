@@ -29,12 +29,12 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public event Action<PickupTypeEnum, int> OnInventoryChanged;
     public event Action<float> PlayerHealthChanged;
     //debug events
-    public UnityEvent<VulnerableBehavior,float> OnEnemyHealthChanged;
+    public UnityEvent<VulnerableBehavior, float> OnEnemyHealthChanged;
     //end debug events
     public CameraBehavior CameraBehavior;
 
     private ApplicationManager _applicationManager;
-
+    private @PlayerInputActions _controls;
     protected override void Awake()
     {
         base.Awake();
@@ -54,6 +54,12 @@ public class GameManagerBehavior : AthenaMonoBehavior
         SafeAssigned(CameraBehavior);
         CreateShops();
         RunDisabledStarts();
+
+        _controls = new();
+        _controls.Game.Enable();
+
+        _controls.Game.Pause.performed += context => { Pause(); };
+
     }
     private void CreateShops()
     {
@@ -180,4 +186,18 @@ public class GameManagerBehavior : AthenaMonoBehavior
     {
         _applicationManager.EndGameInLoss();
     }
+
+    public void Pause()
+    {
+        Paused = true;
+        _applicationManager.OpenSettings(UnPause);
+
+    }
+
+    public void UnPause()
+    {
+        Paused=false;
+    }
+
+
 }

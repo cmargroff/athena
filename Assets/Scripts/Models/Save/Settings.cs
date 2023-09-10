@@ -10,6 +10,6 @@ public class Settings
     public float MasterVolume;
     public float MusicVolume;
     public float VoiceVolume;
-    public float SoundEffectVolume;
+    public float EffectsVolume;
 }
 

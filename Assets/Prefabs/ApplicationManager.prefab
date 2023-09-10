@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loseGameStory: {fileID: 11400000, guid: 126ddfc94a8569e48936d02a0297c1a4, type: 2}
   _startStory: {fileID: 11400000, guid: 1ca5a9dfe92f55a4c8d4f781a67d010e, type: 2}
+  _mixer: {fileID: 24100000, guid: c944492fa16f4c143ad4e2c8d5881ba8, type: 2}
 --- !u!114 &3339973171250926491
 MonoBehaviour:
   m_ObjectHideFlags: 0

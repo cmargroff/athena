@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 [RequireComponent(typeof(SaveLoadBehavior))]
-public class ApplicationManager:MonoBehaviour
+public class ApplicationManager:BaseMonoBehavior
 {
     public static ApplicationManager Instance;
 
@@ -15,6 +16,10 @@ public class ApplicationManager:MonoBehaviour
     private StorySO _loseGameStory;
     [SerializeField]
     private StorySO _startStory;
+
+    private SaveLoadBehavior _saveLoad;
+    [SerializeField]
+    private AudioMixer _mixer;
     private void Awake()
     {
         if (Instance == null)
@@ -26,8 +31,36 @@ public class ApplicationManager:MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _saveLoad = GetComponent<SaveLoadBehavior>();
+        SafeAssigned(_mixer);
+
+        SetMixer(_saveLoad.LoadSettings());
     }
 
+    public void SetMixer(Settings settings)
+    {
+        SetMixer(SoundSources.Master, SoundHelper.ToDecibel(settings.MasterVolume));
+        SetMixer(SoundSources.Music, SoundHelper.ToDecibel(settings.MusicVolume));
+        SetMixer(SoundSources.Voice, SoundHelper.ToDecibel(settings.VoiceVolume));
+        SetMixer(SoundSources.Effects, SoundHelper.ToDecibel(settings.EffectsVolume));
+    }
+
+    public void SetMixer(SoundSources mixer, float value)
+    {
+        _mixer.SetFloat($"{mixer}{SoundVariables.Volume}", SoundHelper.ToDecibel(value));
+    }
+    public enum SoundSources
+    {
+        Master,
+        Music,
+        Voice,
+        Effects
+    }
+    public enum SoundVariables
+    {
+        Volume
+    }
     public void StartApplication()
     {
         LoadScene(ScenesEnum.Story, () =>
@@ -45,7 +78,6 @@ public class ApplicationManager:MonoBehaviour
     public void StartGame()
     {
         LoadScene(ScenesEnum.Game);
-
     }
 
     public void EndGameInLoss()
@@ -63,7 +95,14 @@ public class ApplicationManager:MonoBehaviour
 
     }
 
-
+    public Settings LoadSettings()
+    {
+        return _saveLoad.LoadSettings();
+    }
+    public void SaveSettings(Settings settings)
+    {
+        _saveLoad.SaveSettings(settings);
+    }
     private void LoadScene(ScenesEnum scene, Action onLoad = null)
     {
         var operation= SceneManager.LoadSceneAsync(scene.ToString(), LoadSceneMode.Single);
@@ -79,6 +118,21 @@ public class ApplicationManager:MonoBehaviour
         Start,
         MainMenu,
         Story,
-        Game
+        Game,
+        Settings
+    }
+
+    private Action _settingsCallback;
+    public void OpenSettings(Action callback=null)
+    {
+        ApplicationManager.Instance._settingsCallback = callback;
+        SceneManager.LoadSceneAsync(ScenesEnum.Settings.ToString(), LoadSceneMode.Additive);
+    }
+    public void CloseSettings()
+    {
+        SceneManager.UnloadSceneAsync(ScenesEnum.Settings.ToString()).completed += operation =>
+        {
+            ApplicationManager.Instance._settingsCallback?.Invoke();
+        };
     }
 }
