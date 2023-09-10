@@ -23,7 +23,7 @@ public class SaveLoadBehavior :BaseMonoBehavior
         }
         else
         {
-            return null;
+            return new Settings() { MusicVolume = 1, VoiceVolume = 1, EffectsVolume = 1, MasterVolume = 1 }; 
         }
     }
 }

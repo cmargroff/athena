@@ -32,7 +32,6 @@ public class SettingsManager : BaseMonoBehavior
         SafeAssigned(_effectsVolume);
 
         var settings=_applicationManager.LoadSettings();
-        settings ??= new Settings(){MusicVolume = 1,VoiceVolume = 1,EffectsVolume = 1, MasterVolume = 1};
         SetSettingsControls(settings);
     }
 
