@@ -13,8 +13,11 @@ public class EnemyTiming
     [Range(0, 1)]
     public float Aggressiveness;
 
+    public VoiceLine VoiceLine;
     [HideInInspector]
     public TimedEvent Timer;
+
+    
     public enum SidesEnum
     {
         Random = 0,

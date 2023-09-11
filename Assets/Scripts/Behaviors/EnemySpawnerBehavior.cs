@@ -14,7 +14,6 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
     protected override void Start()
     {
         base.Start();
-
         SafeAssigned(_spawnBoundary);
         BuildSpawnTriggers();
         if (Level.Boss != null)
