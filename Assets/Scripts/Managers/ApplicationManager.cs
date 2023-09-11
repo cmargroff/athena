@@ -20,6 +20,8 @@ public class ApplicationManager:BaseMonoBehavior
     private SaveLoadBehavior _saveLoad;
     [SerializeField]
     private AudioMixer _mixer;
+
+    public int SaveSlot = 1;
     private void Awake()
     {
         if (Instance == null)
