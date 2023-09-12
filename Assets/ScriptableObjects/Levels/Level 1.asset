@@ -20,6 +20,14 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 8300000, guid: eb47408d1de63c946adae7c231e3203a, type: 3}
+      Text: Greetings Hu Mans. As you seem to no longer be able to stay within your
+        own planetary orbit you have been scheduled for pruning. There is nothing
+        to be concerned about, we expect casualties to remain under five billion.
+        Please have a wonderful day.
+      Time: 16
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 2
     StartTime: 60
     EndTime: 120
@@ -27,6 +35,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 3
     StartTime: 120
     EndTime: 180
@@ -34,6 +47,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 4
     StartTime: 180
     EndTime: 240
@@ -41,6 +59,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 4
     StartTime: 180
     EndTime: 240
@@ -48,6 +71,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 5
     StartTime: 240
     EndTime: 300
@@ -55,6 +83,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 6
     StartTime: 300
     EndTime: 360
@@ -62,6 +95,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 6
     StartTime: 300
     EndTime: 360
@@ -69,6 +107,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 6
     StartTime: 300
     EndTime: 360
@@ -76,6 +119,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 023a876185b764543b4163e00e85c55a, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 7
     StartTime: 360
     EndTime: 420
@@ -83,6 +131,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 7
     StartTime: 360
     EndTime: 420
@@ -90,6 +143,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 023a876185b764543b4163e00e85c55a, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 8
     StartTime: 420
     EndTime: 480
@@ -97,6 +155,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 9
     StartTime: 480
     EndTime: 540
@@ -104,6 +167,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 49b41c436f4de8d4fbede657a664058f, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 9
     StartTime: 480
     EndTime: 540
@@ -111,6 +179,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 9
     StartTime: 480
     EndTime: 540
@@ -118,6 +191,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 023a876185b764543b4163e00e85c55a, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 10
     StartTime: 540
     EndTime: 600
@@ -125,6 +203,11 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: ab40bea9ac3912040a066bb3a88e84a7, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   - Name: 10
     StartTime: 540
     EndTime: 600
@@ -132,4 +215,9 @@ MonoBehaviour:
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0
+    VoiceLine:
+      VoiceClip: {fileID: 0}
+      Text: 
+      Time: 0
+      Portrait: {fileID: 0}
   Boss: {fileID: 0}

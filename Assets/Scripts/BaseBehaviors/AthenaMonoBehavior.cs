@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class AthenaMonoBehavior : BaseMonoBehavior
@@ -85,6 +87,7 @@ public class AthenaMonoBehavior : BaseMonoBehavior
             PlausibleFixedUpdate();
         }
     }
+
     protected virtual void ContinuousUpdate()
     {
     }

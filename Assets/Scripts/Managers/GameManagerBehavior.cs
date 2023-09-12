@@ -37,6 +37,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     private @PlayerInputActions _controls;
 
     public AudioSource AudioSource;
+    public CaptionBehavior Caption;
+
     protected override void Awake()
     {
         base.Awake();
@@ -55,6 +57,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         SafeAssigned(Weapons);
         SafeAssigned(CameraBehavior);
         SafeAssigned(AudioSource);
+        SafeAssigned(Caption);
         CreateShops();
         RunDisabledStarts();
 
@@ -204,6 +207,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public void PlayVoiceClip(VoiceLine line) {
         AudioSource.Stop();
         AudioSource.PlayOneShot(line.VoiceClip);
+        Caption.SetCaption(line);
     }
 
 }

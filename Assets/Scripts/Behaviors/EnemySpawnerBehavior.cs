@@ -50,10 +50,15 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
                 var pos = startPos;
                 _sequence.AppendCallback(() =>
                 {
-                    //Debug.Log($"starting {Level.EnemyTimings[pos].Name} at {Level.EnemyTimings[pos].StartTime} game time {Time.realtimeSinceStartup}");
-                    Level.EnemyTimings[pos].Timer = _gameManager.AddTimedEvent(Level.EnemyTimings[pos].Rate*_gameManager.EnemyCharacter.SpawnFrequency , () =>
+                    var enemyTiming = Level.EnemyTimings[pos];
+                    if (enemyTiming.VoiceLine != null)
                     {
-                        SpawnEnemy(Level.EnemyTimings[pos].Enemy, Level.EnemyTimings[pos].Aggressiveness, Level.EnemyTimings[pos].Sides);
+                        _gameManager.PlayVoiceClip(enemyTiming.VoiceLine);
+                    }
+
+                    enemyTiming.Timer = _gameManager.AddTimedEvent(enemyTiming.Rate*_gameManager.EnemyCharacter.SpawnFrequency , () =>
+                    {
+                        SpawnEnemy(enemyTiming.Enemy, enemyTiming.Aggressiveness, enemyTiming.Sides);
 
                     }, gameObject);
                 });
