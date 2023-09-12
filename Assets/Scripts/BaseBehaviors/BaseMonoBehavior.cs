@@ -34,7 +34,6 @@ public class BaseMonoBehavior: MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         action.Invoke();
-        // Code to execute after the delay
     }
 
 }

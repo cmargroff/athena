@@ -42,10 +42,10 @@ public class ApplicationManager:BaseMonoBehavior
 
     public void SetMixer(Settings settings)
     {
-        SetMixer(SoundSources.Master, SoundHelper.ToDecibel(settings.MasterVolume));
-        SetMixer(SoundSources.Music, SoundHelper.ToDecibel(settings.MusicVolume));
-        SetMixer(SoundSources.Voice, SoundHelper.ToDecibel(settings.VoiceVolume));
-        SetMixer(SoundSources.Effects, SoundHelper.ToDecibel(settings.EffectsVolume));
+        SetMixer(SoundSources.Master, settings.MasterVolume);
+        SetMixer(SoundSources.Music, settings.MusicVolume);
+        SetMixer(SoundSources.Voice, settings.VoiceVolume);
+        SetMixer(SoundSources.Effects, settings.EffectsVolume);
     }
 
     public void SetMixer(SoundSources mixer, float value)
