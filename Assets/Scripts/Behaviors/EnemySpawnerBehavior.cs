@@ -20,6 +20,7 @@ public class EnemySpawnerBehavior : AthenaMonoBehavior
         {
             _sequence.AppendCallback(() =>
             {
+                _gameManager.PlayVoiceClip(Level.BossVoiceLine);
                 var enemy = SpawnEnemy(Level.Boss, 0, EnemyTiming.SidesEnum.Random);
                 var death=enemy.GetComponent<Death>();
                 death.DeathComplete.AddListener(() => _gameManager.EndLevel());
