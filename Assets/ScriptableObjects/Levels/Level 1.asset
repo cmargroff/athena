@@ -21,7 +21,7 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 8300000, guid: eb47408d1de63c946adae7c231e3203a, type: 3}
+      VoiceClip: {fileID: 8300000, guid: 6676f22dc9ce25f4190ce16b93cddc9f, type: 3}
       Text: Greetings Hu Mans. As you seem to no longer be able to stay within your
         own planetary orbit you have been scheduled for pruning. There is nothing
         to be concerned about, we expect casualties to remain under five billion.
@@ -36,10 +36,12 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: ed9dff21d3252604db4bb9b8a74816da, type: 3}
+      Text: We are sorry, but there appears to be some sort of robot  damaging our
+        equipment. Please shut it down, we would really prefer not to get legal involved
+        in this.
+      Time: 11
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 3
     StartTime: 120
     EndTime: 180
@@ -48,10 +50,10 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: f960b3f42e2dc714aa41e5c1faa65a87, type: 3}
+      Text: "You\u2019re seriously trying to defend this rock, aren\u2019t you?"
+      Time: 4
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 4
     StartTime: 180
     EndTime: 240
@@ -60,10 +62,11 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: c4fb81fb9abf6574198b79bd08b04668, type: 3}
+      Text: "This isn\u2019t going to end any better than those Xoralaxians chained
+        themselves to an asteroid to protect some endangered shlurks."
+      Time: 8
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 4
     StartTime: 180
     EndTime: 240
@@ -84,10 +87,11 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: ace1740da01c87749974c3593c3f5b88, type: 3}
+      Text: 'Your efforts so far have only lowered our efficiency by 0.0002%. We
+        are assigning a supervisor to close the gap. '
+      Time: 9
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 6
     StartTime: 300
     EndTime: 360
@@ -96,10 +100,10 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: 3d1efa85876a8084b9bd80089242d488, type: 3}
+      Text: Now you did it, deploying security forces.
+      Time: 4
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 6
     StartTime: 300
     EndTime: 360
@@ -132,10 +136,10 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: 09e338fb0fb6b6445b6da6ccfdacebce, type: 3}
+      Text: I know just what to do, here comes our employee of the week.
+      Time: 4
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 7
     StartTime: 360
     EndTime: 420
@@ -156,10 +160,11 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: 687f69634f68c6e4d8e0982e7a5b31a9, type: 3}
+      Text: "You killed our employee of the week! It\u2019s okay, behold our employee
+        of the month!"
+      Time: 6
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 9
     StartTime: 480
     EndTime: 540
@@ -168,10 +173,11 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: bd90c4e6c867a3443ab8158382c060c9, type: 3}
+      Text: "If this leads to paid overtime, I\u2019m going to be upset. You won\u2019t
+        like me upset."
+      Time: 6
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 9
     StartTime: 480
     EndTime: 540
@@ -204,10 +210,11 @@ MonoBehaviour:
     Sides: 0
     Aggressiveness: 0
     VoiceLine:
-      VoiceClip: {fileID: 0}
-      Text: 
-      Time: 0
-      Portrait: {fileID: 0}
+      VoiceClip: {fileID: 8300000, guid: 04a839af7d3337f4e98ae687caf86b89, type: 3}
+      Text: I am providing this information for your awareness. We recommend you
+        cease and desist.
+      Time: 6
+      Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
   - Name: 10
     StartTime: 540
     EndTime: 600
@@ -220,4 +227,10 @@ MonoBehaviour:
       Text: 
       Time: 0
       Portrait: {fileID: 0}
-  Boss: {fileID: 0}
+  Boss: {fileID: 11400000, guid: 16ac3cc48b8578643b734d256438e640, type: 2}
+  BossVoiceLine:
+    VoiceClip: {fileID: 8300000, guid: c1b3e8aff8b23964fbae2c50fe695ab2, type: 3}
+    Text: "That was not a wise decision. He\u2019s big, he\u2019s mean, he\u2019s
+      qualified for the job. Behold Nepotist!"
+    Time: 10
+    Portrait: {fileID: 21300000, guid: a740bac2a6251ae47a68c8d3703f5d23, type: 3}
