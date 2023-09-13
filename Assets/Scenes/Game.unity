@@ -746,7 +746,7 @@ Camera:
   m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1152
+    m_Bits: 1408
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1583,7 +1583,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7007
+    m_Bits: 6751
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3154,6 +3154,7 @@ MonoBehaviour:
   CameraBehavior: {fileID: 587789811}
   AudioSource: {fileID: 963194231}
   Caption: {fileID: 1872015850}
+  BuildingAttackFireRate: 0.2
 --- !u!4 &1797170646
 Transform:
   m_ObjectHideFlags: 0
@@ -3302,6 +3303,7 @@ MonoBehaviour:
   Damage: 1
   Knockback: 1
   AttackFrequency: 0.5
+  BulletSize: 3
   OnStatsChanged:
     m_PersistentCalls:
       m_Calls: []

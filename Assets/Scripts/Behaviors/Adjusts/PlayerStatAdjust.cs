@@ -19,4 +19,9 @@
     {
         return _gameManager.PlayerCharacter.AttackFrequency;
     }
+
+    public override float GetBulletSize()
+    {
+       return  _gameManager.PlayerCharacter.BulletSize;
+    }
 }

@@ -15,4 +15,8 @@ public class StatAdjust : AthenaMonoBehavior
     {
         return 1f;
     }
+    public virtual float GetBulletSize()
+    {
+        return 1f;
+    }
 }

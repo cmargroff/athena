@@ -270,7 +270,7 @@ PrefabInstance:
     - target: {fileID: 9154757669276490419, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 25c1e7803118fd64dab82c3a6fdbff1d, type: 2}
+      objectReference: {fileID: 2100000, guid: 68be2732ea1e3fc439968483069a816d, type: 2}
     m_RemovedComponents:
     - {fileID: 919436344462600720, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
     - {fileID: 9058140562795579314, guid: 6df4269ab28b7724e83110c631a7b916, type: 3}
@@ -309,4 +309,5 @@ MonoBehaviour:
   _indicatorTemplate: {fileID: 6899680089020460783, guid: 8273bde622da706408a13c333691daa8, type: 3}
   BuildingHover: {fileID: 0}
   ShopType: 1
+  Shop: {fileID: 0}
   MinimumCost: 5

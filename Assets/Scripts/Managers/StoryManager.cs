@@ -7,6 +7,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -48,10 +49,13 @@ public class StoryManager : BaseMonoBehavior
         _controls.Menues.Enable();
         StartImageSequence();
 
-        _controls.Menues.Submit.performed += context =>
-        {
-            Completed?.Invoke();
-        };
+        _controls.Menues.Submit.performed += OnSubmitOnperformed;
+    }
+
+    private void OnSubmitOnperformed(InputAction.CallbackContext context)
+    {
+        _controls.Menues.Submit.performed -= OnSubmitOnperformed;
+        Completed?.Invoke();
     }
 
     public void ConfigureStory(StorySO story)

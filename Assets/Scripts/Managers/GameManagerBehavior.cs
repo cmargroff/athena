@@ -39,6 +39,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public AudioSource AudioSource;
     public CaptionBehavior Caption;
 
+    public float BuildingAttackFireRate = 0.2f;
     protected override void Awake()
     {
         base.Awake();

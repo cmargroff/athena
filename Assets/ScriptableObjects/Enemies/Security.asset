@@ -21,5 +21,13 @@ MonoBehaviour:
   Prefab: {fileID: 9047705116722791758, guid: a0b6fd7f93978a1438a3d2a21e248eee, type: 3}
   Rewards:
   - Pickup: {fileID: 11400000, guid: 40aaf77af6d3e4f49b080e09cc029171, type: 2}
-    Chance: 0.25
+    Chance: 5
   Weapon: {fileID: 11400000, guid: b5c54f9733983d0439d1511ef6bb6b81, type: 2}
+  SpeedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  LoopTime: 1
+  MaxSpeedReaim: 1

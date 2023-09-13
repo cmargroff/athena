@@ -10,6 +10,8 @@ public class BuildingCharacterBehavior : MonoBehaviour
     public float Knockback = 1f;
     [Range(0.0f, 10)]
     public float AttackFrequency = 0f;
+    [Range(0.0f, 10)]
+    public float BulletSize = 3f;
     public UnityEvent OnStatsChanged;
     void OnValidate()
     {

@@ -149,6 +149,9 @@ MonoBehaviour:
   RepeatItemMarkup: 5
   ShopType: 1
   ShopItemPrefab: {fileID: 2494432396409834772, guid: 4567f9250be2ffe49a6eba5266a7d2da, type: 3}
+  OnMinCostChanged:
+    m_PersistentCalls:
+      m_Calls: []
   Damage: 0
   Weight: 0
   Speed: 0.1
@@ -158,4 +161,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 706df4f7dd9d89145a044d1e107146a8, type: 2}
   - {fileID: 11400000, guid: 87f193900c52d2c42bdae71065c183d3, type: 2}
   - {fileID: 11400000, guid: 6bb2662e5c141e34696ba8dd871e103d, type: 2}
+  - {fileID: 11400000, guid: a116e45dfa55e4641b76abcf43146736, type: 2}
+  - {fileID: 11400000, guid: 775007c5bede7994bbf78d75eb7a5c42, type: 2}
+  - {fileID: 11400000, guid: 6bb8d89cf3dae6545a0ccee7ed048515, type: 2}
   ItemAnimationDuration: 0.7
