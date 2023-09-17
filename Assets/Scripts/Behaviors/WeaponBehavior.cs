@@ -23,7 +23,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
 
         if (_statAdjust.GetAttackFrequency() > 0)
         {
-            _timedEvent = _gameManager.AddTimedEvent(WeaponConfig.Rate / _statAdjust.GetAttackFrequency(), () =>
+            _timedEvent = _gameManager.AddTimedEvent(WeaponConfig.Rate * _statAdjust.GetAttackFrequency(), () =>
             {
                 var flying = _gameManager.Player.GetComponent<FlyingBehavior>();
                 Vector2? fireAngle = null;
@@ -100,6 +100,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         float angle = Mathf.Atan2(fireAngle.y, fireAngle.x);
 
         var bullet = _gameManager.Pool.GetPooledObject(WeaponConfig.Bullet, transform.position, Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg));
+        bullet.layer = 8;//PlayerBullets
         if (WeaponConfig.ParentedToPlayer)
         {
             bullet.transform.SetParent(transform, true);
@@ -114,7 +115,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
         behavior.Speed = WeaponConfig.Speed.GetRandomValue();
         behavior.MoveAngle = fireAngle;
         behavior.Duration = WeaponConfig.Duration.GetRandomValue();
-        bullet.transform.localScale*=_gameManager.PlayerCharacter.BulletSize;
+        bullet.transform.localScale*=_statAdjust.GetBulletSize();
     }
     private void OnDestroy()
     {

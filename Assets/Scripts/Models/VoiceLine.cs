@@ -12,4 +12,6 @@ public  class VoiceLine
     public string Text;
 
     public float Time;
+
+    public Sprite Portrait;
 }

@@ -19,8 +19,8 @@ MonoBehaviour:
   Color: {r: 0.0047774436, g: 0.745283, b: 0, a: 1}
   NumberInStore: 99
   Damage: 0
-  Knockback: 0.5
+  Knockback: 0.2
   Speed: 0
   Armor: 0
-  BulletSize: 0.1
+  BulletSize: 0
   AttackFrequency: 0

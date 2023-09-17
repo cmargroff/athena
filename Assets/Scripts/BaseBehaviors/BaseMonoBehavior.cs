@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,16 @@ public class BaseMonoBehavior: MonoBehaviour
         return obj;
     }
 
+    public void ExecuteAfterTime(float time, Action action)
+    {
+        StartCoroutine(ExecuteAfterTimeInvoke(time, action));
+    }
+
+    protected IEnumerator ExecuteAfterTimeInvoke(float time, Action action)
+    {
+        yield return new WaitForSeconds(time);
+        action.Invoke();
+    }
 
 }
 

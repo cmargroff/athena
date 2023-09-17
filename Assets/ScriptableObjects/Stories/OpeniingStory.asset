@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OpeniingStory
   m_EditorClassIdentifier: 
   Panels:
-  - Image: {fileID: 2800000, guid: fa8c64dd079018c42b1166c9f8c03e6c, type: 3}
+  - Image: {fileID: 2800000, guid: 2415c0f55289316479d9196285123302, type: 3}
     Pans:
     - Coordinates: {x: 0.5, y: 0.2}
       Zoom: 5
@@ -28,12 +28,14 @@ MonoBehaviour:
       Text: Ladies and gentlemen, esteemed guests and fellow beings of the galactic
         arm,
       Time: 6
+      Portrait: {fileID: 0}
     - VoiceClip: {fileID: 8300000, guid: a0436d29c98be854ea8d8143088e12af, type: 3}
       Text: Today, I stand before you as the CEO of the ECLIPSE corporation, representing
         a new era of dominance and power. Our civilization has traversed vast cosmic
         distances, witnessing countless worlds and species along the way. Among these,
         we encountered the most enigmatic and dangerous entity known as humanity.
       Time: 25
+      Portrait: {fileID: 0}
     - VoiceClip: {fileID: 8300000, guid: 8f8e13384e2a40741a3ddbe63c89e743, type: 3}
       Text: Yes, the human species, a plague upon the cosmos, an incessant swarm
         that has grown uncontrollably, spreading like a malignant virus across the
@@ -41,7 +43,8 @@ MonoBehaviour:
         balance of life wherever they tread. The time has come for us, as enlightened
         beings, to address this grave issue with swift and unyielding action.
       Time: 26
-  - Image: {fileID: 2800000, guid: 9d28f9cbf3932a64d845a25df4c3ad54, type: 3}
+      Portrait: {fileID: 0}
+  - Image: {fileID: 2800000, guid: 493aa1cba0a103d4dac1409f70ce1279, type: 3}
     Pans:
     - Coordinates: {x: 0.5, y: 1}
       Zoom: 1
@@ -57,10 +60,12 @@ MonoBehaviour:
         earth\u2019s orbit. They\u2019re transmitting messages, informing us of their
         plans for our  eradication and decimation of population centers. "
       Time: 14
+      Portrait: {fileID: 0}
     - VoiceClip: {fileID: 8300000, guid: 5e3db4944e6359a4f89d0f3d3c81623c, type: 3}
       Text: This is exactly why the ATHENA project was created. You must be ready
         to pilot the Aegis Titan. Humanity will show the galaxy that we will not
         be an easy target. Today you will fight for our survival. Go ATHENA, Humanity's
         Extraterrestrial Nemesis Annihilator!
       Time: 18
+      Portrait: {fileID: 0}
   Song: {fileID: 8300000, guid: 15fe777d9b438b14cb2b18cd086a46f2, type: 3}

@@ -12,6 +12,10 @@ public class BuildingStatAdjust : StatAdjust
     }
     public override float GetAttackFrequency()
     {
-        return _gameManager.BuildingCharacter.AttackFrequency;
+        return _gameManager.BuildingCharacter.AttackFrequency*_gameManager.BuildingAttackFireRate;
+    }
+    public override float GetBulletSize()
+    {
+        return _gameManager.BuildingCharacter.BulletSize;
     }
 }

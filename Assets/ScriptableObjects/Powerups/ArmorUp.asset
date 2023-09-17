@@ -21,6 +21,6 @@ MonoBehaviour:
   Damage: 0
   Knockback: 0
   Speed: 0
-  Armor: 0.5
-  BulletSize: 0.1
+  Armor: 0.1
+  BulletSize: 0
   AttackFrequency: 0

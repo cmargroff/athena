@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public class RewardDropBehavior : AthenaMonoBehavior
@@ -14,8 +16,9 @@ public class RewardDropBehavior : AthenaMonoBehavior
         foreach (var reward in Rewards)
         {
             int drops = Rand(reward.Chance);
-            //Debug.Log($"chance: {reward.Chance} drops:{drops}");
-            for (var i=0 ;i<= drops; i++)
+            
+            Debug.Log($"chance: {reward.Chance} drops:{drops}");
+            for (var i=0 ;i< drops; i++)
             {
                 var pickup = _gameManager.Pool.GetPooledObject(reward.Pickup.PreFab, transform.position, Quaternion.identity);
                 pickup.transform.localScale = Vector3.one * 0.5f;

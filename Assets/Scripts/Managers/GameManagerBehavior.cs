@@ -26,8 +26,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
     public EnemyCharacterBehaviour EnemyCharacter;
-    public event Action<PickupTypeEnum, int> OnInventoryChanged;
-    public event Action<float> PlayerHealthChanged;
+    public UnityEvent<PickupTypeEnum> OnInventoryChanged;
+    public UnityEvent<float> PlayerHealthChanged;
     //debug events
     public UnityEvent<VulnerableBehavior, float> OnEnemyHealthChanged;
     //end debug events
@@ -37,6 +37,9 @@ public class GameManagerBehavior : AthenaMonoBehavior
     private @PlayerInputActions _controls;
 
     public AudioSource AudioSource;
+    public CaptionBehavior Caption;
+
+    public float BuildingAttackFireRate = 0.2f;
     protected override void Awake()
     {
         base.Awake();
@@ -55,6 +58,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
         SafeAssigned(Weapons);
         SafeAssigned(CameraBehavior);
         SafeAssigned(AudioSource);
+        SafeAssigned(Caption);
         CreateShops();
         RunDisabledStarts();
 
@@ -159,15 +163,14 @@ public class GameManagerBehavior : AthenaMonoBehavior
     {
         if (Pickups.ContainsKey(pickup.Type))
         {
-            Pickups[pickup.Type] += pickup.Amount;
+            Pickups[pickup.Type] ++;
         }
         else
         {
-            Pickups.Add(pickup.Type, pickup.Amount);
+            Pickups.Add(pickup.Type, 1);
         }
-        OnInventoryChanged?.Invoke(pickup.Type, Pickups[pickup.Type]);
-
         pickup.SpecialAction?.Invoke();
+        OnInventoryChanged?.Invoke(pickup.Type);
     }
     private void RunDisabledStarts()
     {
@@ -204,6 +207,7 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public void PlayVoiceClip(VoiceLine line) {
         AudioSource.Stop();
         AudioSource.PlayOneShot(line.VoiceClip);
+        Caption.SetCaption(line);
     }
 
 }

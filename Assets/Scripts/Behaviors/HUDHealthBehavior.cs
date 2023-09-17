@@ -13,7 +13,7 @@ public class HUDHealthBehavior : AthenaMonoBehavior
         var img = gameObject.FindObjectByName("Fill").GetComponent<Image>();
         img.material = new Material(img.material);
         _mat = img.material;
-        _gameManager.PlayerHealthChanged += UpdateHealth;
+        _gameManager.PlayerHealthChanged.AddListener(UpdateHealth);
     }
     private void UpdateHealth(float percent)
     {

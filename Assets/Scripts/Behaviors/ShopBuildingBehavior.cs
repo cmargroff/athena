@@ -19,13 +19,13 @@ public class ShopBuildingBehavior : BuildingInteractBehaviour
         SetupIndicator();
         _buildingUsableIndicator = GetComponent<BuildingUsableIndicator>();
 
-        _gameManager.OnInventoryChanged += (type, amount) =>
+        _gameManager.OnInventoryChanged.AddListener((type) =>
         {
             if (type == PickupTypeEnum.Coin)
             {
-                CoinsChanged(amount);
+                CoinsChanged(_gameManager.Pickups[PickupTypeEnum.Coin]);
             }
-        };
+        });
         Shop = _gameManager.GetShop(ShopType);
         if (Shop == null)
         {
