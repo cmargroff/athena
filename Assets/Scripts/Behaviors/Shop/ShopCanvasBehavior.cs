@@ -119,8 +119,13 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     }
     protected void Spend(TAsset item)
     {
-        _numberOfItemsSold++;
+        
+
         var (count, shopItem) = _shopItems[item.name];
+        var cost = ComputeCost(count, item);
+        _gameManager.Pickups[PickupTypeEnum.Coin] -= cost;
+        _gameManager.OnInventoryChanged?.Invoke(PickupTypeEnum.Coin);
+        _numberOfItemsSold++;
         count++;
         _shopItems[item.name] = (count, shopItem);
         // var btn = shopItem.GetComponentInChildren<Button>();

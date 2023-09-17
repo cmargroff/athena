@@ -26,8 +26,8 @@ public class GameManagerBehavior : AthenaMonoBehavior
     public PlayerCharacterBehavior PlayerCharacter;
     public BuildingCharacterBehavior BuildingCharacter;
     public EnemyCharacterBehaviour EnemyCharacter;
-    public event Action<PickupTypeEnum, int> OnInventoryChanged;
-    public event Action<float> PlayerHealthChanged;
+    public UnityEvent<PickupTypeEnum> OnInventoryChanged;
+    public UnityEvent<float> PlayerHealthChanged;
     //debug events
     public UnityEvent<VulnerableBehavior, float> OnEnemyHealthChanged;
     //end debug events
@@ -163,15 +163,14 @@ public class GameManagerBehavior : AthenaMonoBehavior
     {
         if (Pickups.ContainsKey(pickup.Type))
         {
-            Pickups[pickup.Type] += pickup.Amount;
+            Pickups[pickup.Type] ++;
         }
         else
         {
-            Pickups.Add(pickup.Type, pickup.Amount);
+            Pickups.Add(pickup.Type, 1);
         }
-        OnInventoryChanged?.Invoke(pickup.Type, Pickups[pickup.Type]);
-
         pickup.SpecialAction?.Invoke();
+        OnInventoryChanged?.Invoke(pickup.Type);
     }
     private void RunDisabledStarts()
     {

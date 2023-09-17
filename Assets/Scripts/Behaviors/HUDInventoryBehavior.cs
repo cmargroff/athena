@@ -24,15 +24,15 @@ public class HUDInventoryBehavior : AthenaMonoBehavior
             i++;
         }
 
-        _gameManager.OnInventoryChanged += InventoryChanged;
+        _gameManager.OnInventoryChanged.AddListener(InventoryChanged);
     }
 
-    private void InventoryChanged(PickupTypeEnum type, int count)
+    private void InventoryChanged(PickupTypeEnum type)
     {
         if (!_items.ContainsKey(type))
         {
             return;
         }
-        _items[type].Bind(new { Count = count });
+        _items[type].Bind(new { Count = _gameManager.Pickups[type]});
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class PickupBehavior : AthenaMonoBehavior, IAlive
 {
-    public int Amount = 1;
     public Color Color;
     public PickupTypeEnum Type;
     public Action SpecialAction;
