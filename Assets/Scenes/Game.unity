@@ -3148,6 +3148,12 @@ MonoBehaviour:
   PlayerCharacter: {fileID: 0}
   BuildingCharacter: {fileID: 0}
   EnemyCharacter: {fileID: 0}
+  OnInventoryChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayerHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   OnEnemyHealthChanged:
     m_PersistentCalls:
       m_Calls: []
