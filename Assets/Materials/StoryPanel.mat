@@ -100,11 +100,11 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _Zoom: 4.7993526
+    - _Zoom: 4.7162514
     m_Colors:
     - _CanvasSize: {r: 2372.5, g: 1283.5, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ImageSize: {r: 2048, g: 2048, b: 0, a: 0}
-    - _Pan: {r: 0.5, g: 0.2146815, b: 0, a: 0}
+    - _Pan: {r: 0.5, g: 0.2207621, b: 0, a: 0}
   m_BuildTextureStacks: []
