@@ -102,23 +102,31 @@ public class GameManagerBehavior : AthenaMonoBehavior
         _shops.TryGetValue(shopType, out var shop);
         return shop;
     }
+
+    private float _hideShopTimer;
+
     public void ShowShop(ShopBuildingBehavior.ShopTypeEnum shopType)
     {
-        Paused = true;
-        _shops.TryGetValue(shopType, out var shop);
-        if (shop)
+        if (_hideShopTimer+1 < Time.timeSinceLevelLoad)//the shop can't be reopened for a second after it was closed 
         {
-            shop.Show();
+            Paused = true;
+            _shops.TryGetValue(shopType, out var shop);
+            if (shop)
+            {
+                shop.Show();
+            }
         }
     }
     public void HideShop(ShopBuildingBehavior.ShopTypeEnum shopType)
     {
-        Paused = false;
         _shops.TryGetValue(shopType, out var shop);
         if (shop)
         {
             shop.Hide();
         }
+        Paused = false;
+        _hideShopTimer = Time.timeSinceLevelLoad;
+
     }
     public TimedEvent AddTimedEvent(float seconds, Action action, GameObject owner)
     {

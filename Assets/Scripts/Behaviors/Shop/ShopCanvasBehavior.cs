@@ -119,7 +119,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     {
         base.OnActive();
         UpdateBinds();
-        _gameManager.SetItemAsSelected(_leaveButton.gameObject);
+       
     }
     protected void Spend(TAsset item)
     {
@@ -143,6 +143,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         }
         UpdateBinds();
         UpdateMinCost();
+        _gameManager.SetItemAsSelected(_leaveButton.gameObject);
     }
     public virtual void Buy(TAsset item)
     {
@@ -218,6 +219,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
             if (item)
                 item.gameObject.GetComponentInChildren<Button>().Select();
         }
+        _gameManager.SetItemAsSelected(_leaveButton.gameObject);
     }
     public override void Hide()
     {

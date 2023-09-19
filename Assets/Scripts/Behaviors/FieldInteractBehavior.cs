@@ -10,7 +10,7 @@ public class FieldInteractBehavior : AthenaMonoBehavior
         _controls.Game.Enable();
     }
     private BuildingHoverBehaviour _lastBuildingTouched;
-    protected override void PlausibleFixedUpdate()
+    protected override void PlausibleUpdate()
     {
 
         Collider2D[] result = new Collider2D[1];
@@ -21,7 +21,8 @@ public class FieldInteractBehavior : AthenaMonoBehavior
             {
                 building.BuildingHover.EnableHoverIndicator();
                 _lastBuildingTouched = building.BuildingHover;
-                if (_controls.Game.Interact.ReadValue<float>() > 0)
+                
+                if (_controls.Game.Interact.WasPressedThisFrame()) //(_controls.Game.Interact.ReadValue<float>() > 0)
                 {
                     building.Interact();
                 }
