@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 [RequireComponent(typeof(SaveLoadBehavior))]
@@ -22,6 +23,8 @@ public class ApplicationManager:BaseMonoBehavior
     private AudioMixer _mixer;
 
     public int SaveSlot = 1;
+    public EventSystem EventSystem;
+
     private void Awake()
     {
         if (Instance == null)

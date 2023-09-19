@@ -91,6 +91,12 @@ public class GameManagerBehavior : AthenaMonoBehavior
             }
         }
     }
+
+    public void SetItemAsSelected(GameObject gameObject)
+    {
+        _applicationManager.EventSystem.SetSelectedGameObject(gameObject);
+    }
+
     public ShopCanvasBehavior GetShop(ShopBuildingBehavior.ShopTypeEnum shopType)
     {
         _shops.TryGetValue(shopType, out var shop);

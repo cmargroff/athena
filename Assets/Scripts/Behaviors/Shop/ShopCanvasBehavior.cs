@@ -50,6 +50,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
         rect.Bind(new { ShopTitle = GetTitle() });
 
         _shopItemsContainer = transform.Find("ShopItems").gameObject;
+        _leaveButton= transform.Find("LeaveButton").GetComponent<Button>();
         if (_shopItemsContainer == null)
         {
             //Debug.LogError("ShopItems container not found");
@@ -77,6 +78,8 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
             shopItem.transform.ResetLocal();
             _shopItems[item.name] = (0, shopItem);
         }
+        
+
 
         UpdateBinds();
 
@@ -116,6 +119,7 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     {
         base.OnActive();
         UpdateBinds();
+        _gameManager.SetItemAsSelected(_leaveButton.gameObject);
     }
     protected void Spend(TAsset item)
     {
