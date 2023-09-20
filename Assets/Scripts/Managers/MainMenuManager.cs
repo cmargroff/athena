@@ -42,5 +42,9 @@ public class MainMenuManager : BaseMonoBehavior
     {
         _applicationManager.OpenSettings();
     }
+    public void OnQuitButton()
+    {
+        Application.Quit();
+    }
 }
 
