@@ -72,7 +72,7 @@ public class WeaponBehavior : BaseWeaponBehavior, IAlive
     {
         if (_statAdjust.GetAttackFrequency() > 0)
         {
-            _timedEvent?.SetFramesInSeconds(WeaponConfig.Rate / _statAdjust.GetAttackFrequency(),_gameManager.FrameCount);
+            _timedEvent?.SetFramesInSeconds(WeaponConfig.Rate * _statAdjust.GetAttackFrequency(),_gameManager.FrameCount);
         }
         else
         {

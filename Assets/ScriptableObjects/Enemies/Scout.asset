@@ -22,6 +22,8 @@ MonoBehaviour:
   Rewards:
   - Pickup: {fileID: 11400000, guid: 40aaf77af6d3e4f49b080e09cc029171, type: 2}
     Chance: 0.25
+  - Pickup: {fileID: 11400000, guid: 7def535bc8fce1d47bf5bc60bec4e642, type: 2}
+    Chance: 0.1
   Weapon: {fileID: 0}
   SpeedCurve:
     serializedVersion: 2

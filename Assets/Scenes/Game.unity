@@ -3083,7 +3083,6 @@ GameObject:
   - component: {fileID: 1797170650}
   - component: {fileID: 1797170651}
   - component: {fileID: 1797170652}
-  - component: {fileID: 1797170653}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3338,27 +3337,6 @@ MonoBehaviour:
   Speed: 1
   Health: 1
   SpawnFrequency: 1
-  OnStatsChanged:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1797170653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797170644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6455f442155687c4d873fbeb5f56d89b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
-  Knockback: 1
-  Speed: 1
-  Armor: 1
-  BulletSize: 1
-  AttackFrequency: 1
   OnStatsChanged:
     m_PersistentCalls:
       m_Calls: []
