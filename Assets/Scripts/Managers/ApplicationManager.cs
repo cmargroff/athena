@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 [RequireComponent(typeof(SaveLoadBehavior))]
+[DefaultExecutionOrder(-100)]
 public class ApplicationManager:BaseMonoBehavior
 {
     public static ApplicationManager Instance;
@@ -25,17 +26,24 @@ public class ApplicationManager:BaseMonoBehavior
     public int SaveSlot = 1;
     public EventSystem EventSystem;
 
+    [SerializeField] 
+    private GameObject EventSystemPrefab;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            EventSystem=Instantiate(EventSystemPrefab, this.transform).GetComponent<EventSystem>();
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
+            return;
         }
+
+        
 
         _saveLoad = GetComponent<SaveLoadBehavior>();
         SafeAssigned(_mixer);

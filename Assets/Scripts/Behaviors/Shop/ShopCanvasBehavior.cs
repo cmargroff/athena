@@ -43,7 +43,6 @@ public abstract class ShopCanvasBehavior<TAsset> : ShopCanvasBehavior where TAss
     public override void Build()
     {
         _controls = new();
-        _controls.Menues.Enable();
         _shopItems = new();
 
         var rect = GetComponent<RectTransform>();

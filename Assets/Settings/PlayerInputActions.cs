@@ -240,6 +240,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e637c4df-b414-4e0d-9b2a-b9251efbbad5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""b3dbb006-6ae4-4871-83b5-b77e6706a8ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -341,6 +359,72 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8106b4a-68c9-43b8-8e77-0fd5fa979063"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4164d77-a771-4c54-afe3-94ad56f267d5"",
+                    ""path"": ""<Pen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0daac2fe-6208-4e96-9aa6-2a6b65b1f6aa"",
+                    ""path"": ""<Touchscreen>/touch*/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c0f8d38-16d1-4471-ad19-a2c14e733b31"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86175da4-bb62-43d3-a06c-f76dceaa5a1d"",
+                    ""path"": ""<Pen>/tip"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7602711c-f896-47b8-abf3-c9fd02cf9057"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -386,6 +470,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Menues = asset.FindActionMap("Menues", throwIfNotFound: true);
         m_Menues_Submit = m_Menues.FindAction("Submit", throwIfNotFound: true);
         m_Menues_Move = m_Menues.FindAction("Move", throwIfNotFound: true);
+        m_Menues_Point = m_Menues.FindAction("Point", throwIfNotFound: true);
+        m_Menues_Click = m_Menues.FindAction("Click", throwIfNotFound: true);
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_ShowStats = m_Debug.FindAction("Show Stats", throwIfNotFound: true);
@@ -530,12 +616,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IMenuesActions> m_MenuesActionsCallbackInterfaces = new List<IMenuesActions>();
     private readonly InputAction m_Menues_Submit;
     private readonly InputAction m_Menues_Move;
+    private readonly InputAction m_Menues_Point;
+    private readonly InputAction m_Menues_Click;
     public struct MenuesActions
     {
         private @PlayerInputActions m_Wrapper;
         public MenuesActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Submit => m_Wrapper.m_Menues_Submit;
         public InputAction @Move => m_Wrapper.m_Menues_Move;
+        public InputAction @Point => m_Wrapper.m_Menues_Point;
+        public InputAction @Click => m_Wrapper.m_Menues_Click;
         public InputActionMap Get() { return m_Wrapper.m_Menues; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -551,6 +641,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Point.started += instance.OnPoint;
+            @Point.performed += instance.OnPoint;
+            @Point.canceled += instance.OnPoint;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
         }
 
         private void UnregisterCallbacks(IMenuesActions instance)
@@ -561,6 +657,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Point.started -= instance.OnPoint;
+            @Point.performed -= instance.OnPoint;
+            @Point.canceled -= instance.OnPoint;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
         }
 
         public void RemoveCallbacks(IMenuesActions instance)
@@ -636,6 +738,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnSubmit(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnPoint(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
     public interface IDebugActions
     {

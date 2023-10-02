@@ -45,7 +45,7 @@ MonoBehaviour:
   - Name: 3
     StartTime: 120
     EndTime: 180
-    Rate: 1
+    Rate: 0.6
     Enemy: {fileID: 11400000, guid: 7bbf4b5e24db3fd4680c628e750d43df, type: 2}
     Sides: 0
     Aggressiveness: 0

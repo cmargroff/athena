@@ -45,10 +45,8 @@ public class StoryManager : BaseMonoBehavior
         _musicAudioSource.loop=true;
         _musicAudioSource.PlayOneShot(_story.Song);
         
-
-        _controls.Menues.Enable();
         StartImageSequence();
-
+        _controls.Menues.Enable();
         _controls.Menues.Submit.performed += OnSubmitOnperformed;
     }
 
